@@ -2,5 +2,8 @@ pandoc: 2.14.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-10-07T16:41Z
+last_built: 2022-10-07T16:50Z
+urls:
+  reference: https://larmarange.github.io/ggcoef/reference
+  article: https://larmarange.github.io/ggcoef/articles
 
