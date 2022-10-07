@@ -62,7 +62,7 @@
 #'     time = "Time (lunch or dinner ?)",
 #'     total_bill = "Total of the bill"
 #'   ),
-#'   facet_labeller = label_wrap_gen(10)
+#'   facet_labeller = ggplot2::label_wrap_gen(10)
 #' )
 #'
 #' # do not display variable facets but add colour guide
@@ -611,54 +611,54 @@ ggcoef_plot <- function (
   }
 
   # mapping
-  mapping <- aes_string(x = x, y = y)
+  mapping <- ggplot2::aes_string(x = x, y = y)
 
   errorbar <- errorbar & all(c("conf.low", "conf.high") %in% names(data))
   if(errorbar) {
-    mapping$xmin <- aes_string(xmin = "conf.low")$xmin
-    mapping$xmax <- aes_string(xmax = "conf.high")$xmax
+    mapping$xmin <- ggplot2::aes_string(xmin = "conf.low")$xmin
+    mapping$xmax <- ggplot2::aes_string(xmax = "conf.high")$xmax
   }
   if(!is.null(shape) && shape %in% names(data)) {
-    mapping$shape <- aes_string(shape = shape)$shape
+    mapping$shape <- ggplot2::aes_string(shape = shape)$shape
   }
   if(!is.null(colour) && colour %in% names(data)) {
-    mapping$colour <- aes_string(colour = colour)$colour
-    mapping$group <- aes_string(group = colour)$group
+    mapping$colour <- ggplot2::aes_string(colour = colour)$colour
+    mapping$group <- ggplot2::aes_string(group = colour)$group
   }
 
   # position
   if (dodged)
-    position <- position_dodge(dodged_width)
+    position <- ggplot2::position_dodge(dodged_width)
   else
-    position <- position_identity()
+    position <- ggplot2::position_identity()
 
   # plot
-  p <- ggplot(data = data, mapping = mapping)
+  p <- ggplot2::ggplot(data = data, mapping = mapping)
 
   if (stripped_rows)
     p <- p +
       geom_stripped_rows(
-        mapping = aes_string(
+        mapping = ggplot2::aes_string(
           odd = ".fill", even = ".fill",
           colour = NULL, linetype = NULL
         )
       )
 
   if (vline)
-    p <- p + geom_vline(xintercept = ifelse(exponentiate, 1, 0), colour = vline_colour)
+    p <- p + ggplot2::geom_vline(xintercept = ifelse(exponentiate, 1, 0), colour = vline_colour)
 
   if(errorbar) {
     if (!is.null(colour) & errorbar_coloured) {
       p <- p +
-        geom_errorbarh(
+        ggplot2::geom_errorbarh(
           na.rm = TRUE,
           height = errorbar_height,
           position = position
         )
     } else {
       p <- p +
-        geom_errorbarh(
-          mapping = aes(colour = NULL),
+        ggplot2::geom_errorbarh(
+          mapping = ggplot2::aes(colour = NULL),
           na.rm = TRUE,
           height = errorbar_height,
           colour = "black",
@@ -668,73 +668,73 @@ ggcoef_plot <- function (
   }
 
   if (!is.null(facet_col) & is.character(facet_col))
-    facet_col <- vars(!!sym(facet_col))
+    facet_col <- ggplot2::vars(!!sym(facet_col))
   if (!is.null(facet_row) & is.character(facet_row))
-    facet_row <- vars(!!sym(facet_row))
+    facet_row <- ggplot2::vars(!!sym(facet_row))
 
   p <- p +
-    geom_point(
+    ggplot2::geom_point(
       size = point_size,
       stroke = point_stroke,
       fill = point_fill,
       position = position,
       na.rm = TRUE
     ) +
-    facet_grid(
+    ggplot2::facet_grid(
       rows = facet_row,
       cols = facet_col,
       labeller = facet_labeller,
       scales = "free_y", space = "free_y", switch = "y"
     ) +
-    ylab("") +
-    scale_y_discrete(expand = expansion(mult = 0, add = .5)) +
-    theme_light() +
-    theme(
+    ggplot2::ylab("") +
+    ggplot2::scale_y_discrete(expand = ggplot2::expansion(mult = 0, add = .5)) +
+    ggplot2::theme_light() +
+    ggplot2::theme(
       legend.position = "bottom",
       legend.box = "vertical",
       strip.placement = "outside",
-      strip.text.y.left = element_text(face = "bold", angle = 0, colour = "black", hjust = 0, vjust = 1),
-      strip.text.x = element_text(face = "bold", colour = "black"),
-      strip.background = element_blank(),
-      panel.grid.minor = element_blank(),
-      panel.grid.major.y = element_blank(),
-      panel.grid.major.x = element_line(linetype = "dashed"),
-      axis.title.x = element_text(face = "bold"),
-      axis.ticks.y = element_blank()
+      strip.text.y.left = ggplot2::element_text(face = "bold", angle = 0, colour = "black", hjust = 0, vjust = 1),
+      strip.text.x = ggplot2::element_text(face = "bold", colour = "black"),
+      strip.background = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank(),
+      panel.grid.major.y = ggplot2::element_blank(),
+      panel.grid.major.x = ggplot2::element_line(linetype = "dashed"),
+      axis.title.x = ggplot2::element_text(face = "bold"),
+      axis.ticks.y = ggplot2::element_blank()
     )
 
   if(!is.null(colour) && colour %in% names(data)) {
     if (colour_guide) {
-      colour_guide <- guide_legend()
+      colour_guide <- ggplot2::guide_legend()
     } else {
       colour_guide <- "none"
     }
     p <- p +
-      scale_colour_discrete(guide = colour_guide, labels = colour_labels) +
-      labs(colour = colour_lab)
+      ggplot2::scale_colour_discrete(guide = colour_guide, labels = colour_labels) +
+      ggplot2::labs(colour = colour_lab)
   }
 
   if(!is.null(shape) && shape %in% names(data)) {
     if (shape_guide) {
-      shape_guide <- guide_legend()
+      shape_guide <- ggplot2::guide_legend()
     } else {
       shape_guide <- "none"
     }
     p <- p +
-      scale_shape_manual(
+      ggplot2::scale_shape_manual(
         values = shape_values,
         drop = FALSE,
         guide = shape_guide,
         na.translate = FALSE
       ) +
-      labs(shape = shape_lab)
+      ggplot2::labs(shape = shape_lab)
   }
 
   if (exponentiate)
-    p <- p + scale_x_log10()
+    p <- p + ggplot2::scale_x_log10()
 
   if (!is.null(attr(data, "coefficients_label")))
-    p <- p + xlab(attr(data, "coefficients_label"))
+    p <- p + ggplot2::xlab(attr(data, "coefficients_label"))
 
   p
 }

@@ -25,6 +25,7 @@ Suggests:
     emmeans,
     labelled,
     reshape,
+    rmarkdown,
     nnet,
     testthat (>= 3.0.0),
     spelling,

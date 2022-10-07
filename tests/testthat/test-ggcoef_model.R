@@ -45,7 +45,7 @@ test_that("example of ggcoef_model", {
       time = "Time (lunch or dinner ?)",
       total_bill = "Total of the bill"
     ),
-    facet_labeller = label_wrap_gen(10)
+    facet_labeller = ggplot2::label_wrap_gen(10)
   ))
 
   # do not display variable facets but add colour guide
@@ -176,6 +176,7 @@ test_that("ggcoef_compare() does not produce an error with an include", {
 })
 
 test_that("geom_stripped_cols() and geom_stripped_rows() works", {
+  library(ggplot2)
   p <- ggplot(iris) + aes(x = Species, y = Petal.Length) + geom_count()
 
   expect_print <- function(x) {

@@ -286,7 +286,7 @@ ggcoef_model(
     time = "Time (lunch or dinner ?)",
     total_bill = "Total of the bill"
   ),
-  facet_labeller = label_wrap_gen(10)
+  facet_labeller = ggplot2::label_wrap_gen(10)
 )
 
 # do not display variable facets but add colour guide
