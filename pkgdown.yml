@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   ggcoef_model: ggcoef_model.html
-last_built: 2022-10-07T22:05Z
+last_built: 2022-10-07T22:13Z
 urls:
   reference: https://larmarange.github.io/ggstats/reference
   article: https://larmarange.github.io/ggstats/articles
