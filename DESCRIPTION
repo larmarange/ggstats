@@ -1,14 +1,15 @@
 Package: ggstats
 Type: Package
-Title: Plot Model Coefficients
+Title: Extension to `ggplot2` for Plotting Stats
 Version: 0.1.0
 Authors@R: c(
     person("Joseph", "Larmarange", , "joseph@larmarange.net", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-7097-700X"))
   )
 Description: Provides suite of functions to plot regression model coefficients
-    ("forest plots") using `ggplot2`.
-    The suite includes new geometries to add alternating background color to a plot.
+    ("forest plots"). The suite also includes new statistics to compute 
+    proportions, weihted mean and cross-tabulation statistics, as well as new 
+    geometries to add alternative background color to a plot.
 License: GPL-3
 URL: https://larmarange.github.io/ggstats/
 BugReports: https://github.com/larmarange/ggstats/issues
@@ -19,6 +20,7 @@ Imports:
     ggplot2,
     lifecycle,
     scales,
+    stats,
     tidyr
 Suggests:
     broom,
@@ -29,6 +31,7 @@ Suggests:
     nnet,
     testthat (>= 3.0.0),
     spelling,
+    survey,
     survival,
     knitr
 Encoding: UTF-8

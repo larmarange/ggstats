@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggstats
+# `ggstats`: extension to `ggplot2` for plotting stats
 
 <!-- badges: start -->
 
@@ -15,14 +15,15 @@ status](https://www.r-pkg.org/badges/version/ggstats)](https://CRAN.R-project.or
 <!-- [![DOI](https://zenodo.org/badge/286680847.svg)](https://zenodo.org/badge/latestdoi/286680847) -->
 <!-- badges: end -->
 
-The `ggstats` package provides a suite of functions to plot regression
-model coefficients (“forest plots”) using `ggplot2`.
+The `ggstats` package provides suite of functions to plot regression
+model coefficients (“forest plots”) using `ggplot2`..
 
-The suite includes new geometries to add alternating background color to
-a plot.
+The suite also includes new statistics to compute proportions, weihted
+mean and cross-tabulation statistics, as well as new geometries to add
+alternative background color to a plot.
 
-The original version of `gccoef_model()` was developed with the
-`{GGally}` package.
+The original versions of several functions were originally developed
+within the `{GGally}` package.
 
 ## Installation
 

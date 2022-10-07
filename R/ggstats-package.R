@@ -7,6 +7,7 @@
 #' @importFrom lifecycle deprecate_soft
 #' @importFrom lifecycle deprecated
 #' @importFrom dplyr .data sym
+#' @importFrom ggplot2 after_stat
 ## usethis namespace: end
 NULL
 
