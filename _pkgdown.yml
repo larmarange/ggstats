@@ -1,6 +1,7 @@
 url: https://larmarange.github.io/ggcoef/
 template:
   bootstrap: 5
+  bootswatch: flatly
 
 authors:
   Joseph Larmarange:
