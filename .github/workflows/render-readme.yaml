@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+name: Render README
+
+jobs:
+  render:
+    name: Render README
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup R
+        uses: r-lib/actions/setup-r@master
+        with:
+          crayon.enabled: 'FALSE'
+      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install rmarkdown, remotes, and the local package
+        run: |
+          install.packages("remotes", type = "binary", repos = "http://cran.rstudio.com/")
+          remotes::install_local(".", type = "binary", repos = "http://cran.rstudio.com/")
+          remotes::install_cran("rmarkdown", type = "binary", repos = "http://cran.rstudio.com/")
+          remotes::install_cran("gtsummary", type = "binary", repos = "http://cran.rstudio.com/")
+          remotes::install_cran("emmeans", type = "binary", repos = "http://cran.rstudio.com/")
+        shell: Rscript {0}
+      - name: Render README
+        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"

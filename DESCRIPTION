@@ -1,11 +1,38 @@
 Package: ggcoef
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Plot Model Coefficients
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+    person("Joseph", "Larmarange", , "joseph@larmarange.net", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7097-700X"))
+  )
+Description: Provides suite of functions to plot regression model coefficients
+    ("forest plots") using `ggplot2`.
+    The suite includes new geometries to add alternating backgroung color to a plot.
+License: GPL-3
+URL: https://larmarange.github.io/ggcoef/
+BugReports: https://github.com/larmarange/ggcoef/issues
+Depends:
+    ggplot2
+Imports: 
+    broom.helpers,
+    dplyr,
+    forcats,
+    lifecycle,
+    scales,
+    tidyr
+Suggests:
+    broom,
+    emmeans,
+    labelled,
+    reshape,
+    nnet,
+    testthat (>= 3.0.0),
+    spelling,
+    survival
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+Language: en-US
