@@ -1,0 +1,17 @@
+url: https://larmarange.github.io/ggcoef/
+template:
+  bootstrap: 5
+
+reference:
+
+- title: Plotting model coefficients
+  contents:
+  - ggcoef_model
+
+- title: Additional geometries for `ggplot2`
+  contents:
+  - geom_stripped_rows
+
+- title: Utilities
+  contents:
+  - signif_stars
