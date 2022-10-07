@@ -12,12 +12,11 @@ Description: Provides suite of functions to plot regression model coefficients
 License: GPL-3
 URL: https://larmarange.github.io/ggcoef/
 BugReports: https://github.com/larmarange/ggcoef/issues
-Depends:
-    ggplot2
 Imports: 
     broom.helpers,
     dplyr,
     forcats,
+    ggplot2,
     lifecycle,
     scales,
     tidyr
