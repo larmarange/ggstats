@@ -19,7 +19,7 @@ status](https://www.r-pkg.org/badges/version/ggcoef)](https://CRAN.R-project.org
 The `ggcoef` package provides a suite of functions to plot regression
 model coefficients (“forest plots”) using `ggplot2`.
 
-The suite includes new geometries to add alternating backgroung color to
+The suite includes new geometries to add alternating background color to
 a plot.
 
 ## Installation

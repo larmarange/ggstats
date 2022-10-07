@@ -6,7 +6,7 @@
 \alias{ggcoef-package}
 \title{ggcoef: Plot Model Coefficients}
 \description{
-Provides suite of functions to plot regression model coefficients ("forest plots") using `ggplot2`. The suite includes new geometries to add alternating backgroung color to a plot.
+Provides suite of functions to plot regression model coefficients ("forest plots") using `ggplot2`. The suite includes new geometries to add alternating background color to a plot.
 }
 \seealso{
 Useful links:
