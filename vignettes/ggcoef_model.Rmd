@@ -23,9 +23,8 @@ The purpose of `ggcoef_model()` is to quickly plot the coefficients of a model. 
 
 ## Quick coefficients plot
 
-To work automatically, this function requires the [`broom.helpers` package](https://larmarange.github.io/broom.helpers/). Simply call `ggcoef_model()` with a model object. It could be the result of `stats::lm`, `stats::glm` or any other model covered by `broom.helpers`[^1].
+To work automatically, this function requires the `{broom.helpers}`. Simply call `ggcoef_model()` with a model object. It could be the result of `stats::lm`, `stats::glm` or any other model covered by `{broom.helpers}`.
 
-[^1]: See <https://larmarange.github.io/broom.helpers/articles/tidy.html>.
 
 ```{r ggcoef-reg}
 data(tips, package = "reshape")
@@ -51,7 +50,7 @@ ggcoef_model(mod_titanic, exponentiate = TRUE)
 
 ### Variable labels
 
-You can use the `labelled` package to define variable labels. They will be automatically used by `ggcoef_model()`. Note that variable labels should be defined before computing the model.
+You can use the `{labelled}` package to define variable labels. They will be automatically used by `ggcoef_model()`. Note that variable labels should be defined before computing the model.
 
 ```{r}
 library(labelled)
@@ -250,3 +249,15 @@ ggcoef_compare(models, type = "faceted")
 ## Advanced users
 
 Advanced users could use their own dataset and pass it to `ggcoef_plot()`. Such dataset could be produced by `ggcoef_model()`, `ggcoef_compare()` or `ggcoef_multinom()` with the option `return_data = TRUE` or by using `broom::tidy()` or `broom.helpers::tidy_plus_plus()`.
+
+## Supported models
+
+```{r, echo=FALSE}
+broom.helpers::supported_models %>%
+  dplyr::rename_with(stringr::str_to_title) %>%
+  dplyr::arrange(Model) %>%
+  knitr::kable()
+```
+
+Note: this list of models has been tested. `{broom.helpers}`, and therefore `ggcoef_model()`, may or may not work properly or partially with other 
+types of models. 
