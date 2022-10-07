@@ -7,8 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R build
-status](https://github.com/larmarange/ggcoef/workflows/R-CMD-check/badge.svg)](https://github.com/larmarange/ggcoef/actions)
+[![R-CMD-check](https://github.com/larmarange/ggcoef/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/larmarange/ggcoef/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/larmarange/ggcoef/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larmarange/ggcoef?branch=main)
 [![CRAN
@@ -43,7 +42,6 @@ remotes::install_github("larmarange/ggcoef")
 
 ``` r
 library(ggcoef)
-#> Le chargement a nécessité le package : ggplot2
 
 data(tips, package = "reshape")
 mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
