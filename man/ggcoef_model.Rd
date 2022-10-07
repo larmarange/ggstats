@@ -242,8 +242,6 @@ then pass your customized \code{tibble} to \code{ggcoef_plot()}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ggcoef_model()}: Redesign of \code{\link[GGally:ggcoef]{GGally::ggcoef()}} based on \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}}.
-
 \item \code{ggcoef_compare()}: Designed for displaying several models on the same plot.
 
 \item \code{ggcoef_multinom()}: A variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet::multinom()}}.

@@ -1,6 +1,5 @@
 #' Plot model coefficients
 #'
-#' @describeIn ggcoef_model Redesign of [GGally::ggcoef()] based on [broom.helpers::tidy_plus_plus()].
 #' @inheritParams broom.helpers::tidy_plus_plus
 #' @param model a regression model object
 #' @param conf.level the confidence level to use for the confidence

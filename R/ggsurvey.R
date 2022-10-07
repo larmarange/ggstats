@@ -6,18 +6,18 @@
 #'
 #' Graphs will be correct as long as only weights are required
 #' to compute the graph. However, statistic or geometry requiring
-#' correct variance computation (like 
+#' correct variance computation (like
 #' \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}}) will
 #' be statistically incorrect.
 #'
-#' @param design A survey design object, usually created with 
+#' @param design A survey design object, usually created with
 #' \code{\link[survey:svydesign]{survey::svydesign()}}
 #' @param mapping Default list of aesthetic mappings to use for plot,
 #' to be created with \code{\link[ggplot2:aes]{ggplot2::aes()}}.
 #' @param ... Other arguments passed on to methods. Not currently used.
 #' @importFrom stats weights
 #' @export
-#' @examples
+#' @examplesIf interactive()
 #' if (require(survey) & require(ggplot2)) {
 #'   data(api)
 #'   dstrat <- svydesign(
@@ -31,8 +31,8 @@
 #'
 #'   d <- as.data.frame(Titanic)
 #'   dw <- svydesign(ids = ~1, weights = ~Freq, data = d)
-#'   ggsurvey(dw) + 
-#'     aes(x = Class, fill = Survived) + 
+#'   ggsurvey(dw) +
+#'     aes(x = Class, fill = Survived) +
 #'     geom_bar(position = "fill")
 #' }
 ggsurvey <- function(design = NULL, mapping = NULL, ...) {
@@ -47,12 +47,12 @@ ggsurvey <- function(design = NULL, mapping = NULL, ...) {
   }
   data <- design$variables
   data$.weights <- weights(design)
-  
+
   if(is.null(mapping)) {
     mapping <- ggplot2::aes()
   }
-  
+
   mapping$weight <- ggplot2::aes_string(weight = ".weights")$weight
-  
+
   ggplot2::ggplot(data, mapping, ...)
 }

@@ -6,8 +6,7 @@
 #' The \code{by} aesthetic should be a factor.
 #'
 #' @inheritParams ggplot2::stat_count
-#' @param geom Override the default connection between \code{\link[ggplot2]{geom_bar}}
-#'   and \code{stat_prop}.
+#' @param geom Override the default connection with [ggplot2::geom_bar()].
 #' @section Aesthetics:
 #' `stat_prop()` understands the following aesthetics (required aesthetics are in bold):
 #'

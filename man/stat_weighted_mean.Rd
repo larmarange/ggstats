@@ -39,6 +39,8 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
+\item{geom}{Override the default connection with \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
@@ -81,44 +83,42 @@ aesthetic if provided.
 }
 
 \examples{
-# Small function to display plots only if it's interactive
-p_ <- GGally::print_if_interactive
-
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(tips, package = "reshape")
 
-p_(ggplot(tips) +
+ggplot(tips) +
   aes(x = day, y = total_bill) +
-  geom_point())
+  geom_point()
 
-p_(ggplot(tips) +
+ggplot(tips) +
   aes(x = day, y = total_bill) +
-  stat_weighted_mean())
+  stat_weighted_mean()
 
-p_(ggplot(tips) +
+ggplot(tips) +
   aes(x = day, y = total_bill, group = 1) +
   stat_weighted_mean(geom = "line"))
 
-p_(ggplot(tips) +
+ggplot(tips) +
   aes(x = day, y = total_bill, colour = sex, group = sex) +
-  stat_weighted_mean(geom = "line"))
+  stat_weighted_mean(geom = "line")
 
-p_(ggplot(tips) +
+ggplot(tips) +
   aes(x = day, y = total_bill, fill = sex) +
-  stat_weighted_mean(geom = "bar", position = "dodge"))
+  stat_weighted_mean(geom = "bar", position = "dodge")
 
 # computing a proportion on the fly
-p_(ggplot(tips) +
+ggplot(tips) +
   aes(x = day, y = as.integer(smoker == "Yes"), fill = sex) +
   stat_weighted_mean(geom = "bar", position = "dodge") +
-  scale_y_continuous(labels = scales::percent))
+  scale_y_continuous(labels = scales::percent)
 
 # taking into account some weights
 d <- as.data.frame(Titanic)
-p_(ggplot(d) +
+ggplot(d) +
   aes(x = Class, y = as.integer(Survived == "Yes"), weight = Freq, fill = Sex) +
   geom_bar(stat = "weighted_mean", position = "dodge") +
   scale_y_continuous(labels = scales::percent) +
-  labs(y = "Survived"))
+  labs(y = "Survived")
 
 
 \dontrun{
@@ -145,5 +145,6 @@ ggplot(cuse) +
   geom_text(aes(label = scales::percent(after_stat(y))), stat = "weighted_mean", vjust = 0) +
   facet_grid(~ education)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

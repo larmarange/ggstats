@@ -28,6 +28,7 @@ correct variance computation (like
 be statistically incorrect.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 if (require(survey) & require(ggplot2)) {
   data(api)
   dstrat <- svydesign(
@@ -41,8 +42,9 @@ if (require(survey) & require(ggplot2)) {
 
   d <- as.data.frame(Titanic)
   dw <- svydesign(ids = ~1, weights = ~Freq, data = d)
-  ggsurvey(dw) + 
-    aes(x = Class, fill = Survived) + 
+  ggsurvey(dw) +
+    aes(x = Class, fill = Survived) +
     geom_bar(position = "fill")
 }
+\dontshow{\}) # examplesIf}
 }
