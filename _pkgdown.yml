@@ -14,6 +14,8 @@ navbar:
     href: index.html
   - text: Reference
     href: reference/index.html
+  - text: Getting Started
+    href: articles/ggcoef_model.html
   - text: News
     href: news/index.html
   right:

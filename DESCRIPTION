@@ -29,10 +29,12 @@ Suggests:
     nnet,
     testthat (>= 3.0.0),
     spelling,
-    survival
+    survival,
+    knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Language: en-US
+VignetteBuilder: knitr
