@@ -6,7 +6,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">ggcoef</a>
 
@@ -26,6 +26,9 @@
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../articles/ggcoef_model.html">Getting Started</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">News</a>
@@ -430,7 +433,7 @@ then pass your customized <code>tibble</code> to <code>ggcoef_plot()</code>.</p>
 <span class="r-in"><span>    time <span class="op">=</span> <span class="st">"Time (lunch or dinner ?)"</span>,</span></span>
 <span class="r-in"><span>    total_bill <span class="op">=</span> <span class="st">"Total of the bill"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  facet_labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_wrap_gen</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  facet_labeller <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_wrap_gen</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># do not display variable facets but add colour guide</span></span></span>
@@ -462,7 +465,7 @@ then pass your customized <code>tibble</code> to <code>ggcoef_plot()</code>.</p>
 <span class="r-in"><span>  categorical_terms_pattern <span class="op">=</span> <span class="st">"{level} (ref: {reference_level})"</span>,</span></span>
 <span class="r-in"><span>  interaction_sep <span class="op">=</span> <span class="st">" x "</span></span></span>
 <span class="r-in"><span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">scale_y_discrete</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display only a subset of terms</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Age"</span>, <span class="st">"Class"</span><span class="op">)</span><span class="op">)</span></span></span>
