@@ -1,9 +1,9 @@
 ---
-title: "Plot model coefficients"
+title: "Plot model coefficients with ggcoef_model()"
 author: Joseph Larmarange
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Plot model coefficients}
+  %\VignetteIndexEntry{Plot model coefficients with ggcoef_model()}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(ggcoef)
+library(ggstats)
 ```
 
 The purpose of `ggcoef_model()` is to quickly plot the coefficients of a model. It is an updated and improved version of `GGally::ggcoef()` based on `broom.helpers::tidy_plus_plus()`. For displaying a nicely formatted table of the same models, look at `gtsummary::tbl_regression()`.

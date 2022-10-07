@@ -1,3 +1,3 @@
-# ggcoef 0.1.0
+# ggstats 0.1.0
 
 * First version

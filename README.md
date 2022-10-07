@@ -1,21 +1,21 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggcoef
+# ggstats
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/larmarange/ggcoef/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/larmarange/ggcoef/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/larmarange/ggstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/larmarange/ggstats/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/larmarange/ggcoef/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larmarange/ggcoef?branch=main)
+coverage](https://codecov.io/gh/larmarange/ggstats/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larmarange/ggstats?branch=main)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/ggcoef)](https://CRAN.R-project.org/package=ggcoef)
+status](https://www.r-pkg.org/badges/version/ggstats)](https://CRAN.R-project.org/package=ggstats)
 <!-- [![DOI](https://zenodo.org/badge/286680847.svg)](https://zenodo.org/badge/latestdoi/286680847) -->
 <!-- badges: end -->
 
-The `ggcoef` package provides a suite of functions to plot regression
+The `ggstats` package provides a suite of functions to plot regression
 model coefficients (“forest plots”) using `ggplot2`.
 
 The suite includes new geometries to add alternating background color to
@@ -30,7 +30,7 @@ The original version of `gccoef_model()` was developed with the
 
 
 ```r
-install.packages("ggcoef")
+install.packages("ggstats")
 ```
 
 -->
@@ -38,13 +38,13 @@ install.packages("ggcoef")
 To install development version:
 
 ``` r
-remotes::install_github("larmarange/ggcoef")
+remotes::install_github("larmarange/ggstats")
 ```
 
 ## A basic example
 
 ``` r
-library(ggcoef)
+library(ggstats)
 
 data(tips, package = "reshape")
 mod_simple <- lm(tip ~ day + time + total_bill, data = tips)

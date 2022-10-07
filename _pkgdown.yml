@@ -1,4 +1,4 @@
-url: https://larmarange.github.io/ggcoef/
+url: https://larmarange.github.io/ggstats/
 
 template:
   params:
@@ -15,13 +15,11 @@ navbar:
     href: index.html
   - text: Reference
     href: reference/index.html
-  - text: Getting Started
-    href: articles/ggcoef_model.html
   - text: News
     href: news/index.html
   right:
   - icon: fa-github fa-lg
-    href: https://github.com/larmarange/ggcoef
+    href: https://github.com/larmarange/ggstats
 
 
 reference:

@@ -1,4 +1,4 @@
-Package: ggcoef
+Package: ggstats
 Type: Package
 Title: Plot Model Coefficients
 Version: 0.1.0
@@ -10,8 +10,8 @@ Description: Provides suite of functions to plot regression model coefficients
     ("forest plots") using `ggplot2`.
     The suite includes new geometries to add alternating background color to a plot.
 License: GPL-3
-URL: https://larmarange.github.io/ggcoef/
-BugReports: https://github.com/larmarange/ggcoef/issues
+URL: https://larmarange.github.io/ggstats/
+BugReports: https://github.com/larmarange/ggstats/issues
 Imports: 
     broom.helpers,
     dplyr,
