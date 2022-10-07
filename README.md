@@ -21,6 +21,9 @@ model coefficients (“forest plots”) using `ggplot2`.
 The suite includes new geometries to add alternating background color to
 a plot.
 
+The original version of `gccoef_model()` was developed with the
+`{GGally}` package.
+
 ## Installation
 
 <!-- To install stable version:
