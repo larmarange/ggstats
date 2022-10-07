@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://larmarange.github.io/ggcoef/404.html</loc>
+    <loc>https://larmarange.github.io/ggstats/404.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/articles/ggcoef_model.html</loc>
+    <loc>https://larmarange.github.io/ggstats/articles/ggcoef_model.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/articles/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/authors.html</loc>
+    <loc>https://larmarange.github.io/ggstats/authors.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/news/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/news/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/reference/geom_stripped_rows.html</loc>
+    <loc>https://larmarange.github.io/ggstats/reference/geom_stripped_rows.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/reference/ggcoef-package.html</loc>
+    <loc>https://larmarange.github.io/ggstats/reference/ggcoef_model.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/reference/ggcoef_model.html</loc>
+    <loc>https://larmarange.github.io/ggstats/reference/ggstats-package.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/reference/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/reference/pipe.html</loc>
+    <loc>https://larmarange.github.io/ggstats/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggcoef/reference/signif_stars.html</loc>
+    <loc>https://larmarange.github.io/ggstats/reference/signif_stars.html</loc>
   </url>
 </urlset>
