@@ -2,8 +2,25 @@ url: https://larmarange.github.io/ggcoef/
 template:
   bootstrap: 5
 
-reference:
+authors:
+  Joseph Larmarange:
+    href: "http://joseph.larmarange.net/"
 
+navbar:
+  type: default
+  left:
+  - icon: fa-home
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  - text: News
+    href: news/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/larmarange/ggcoef
+
+
+reference:
 - title: Plotting model coefficients
   contents:
   - ggcoef_model
