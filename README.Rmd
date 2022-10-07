@@ -27,6 +27,8 @@ The `ggcoef` package provides a suite of functions to plot regression model coef
 
 The suite includes new geometries to add alternating background color to a plot.
 
+The original version of `gccoef_model()` was developed with the `{GGally}` package.
+
 ## Installation
 
 <!-- To install stable version:
