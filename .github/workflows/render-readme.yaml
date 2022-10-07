@@ -26,10 +26,7 @@ jobs:
       - name: Install rmarkdown, remotes, and the local package
         run: |
           install.packages("remotes", type = "binary", repos = "http://cran.rstudio.com/")
-          remotes::install_local(".", type = "binary", repos = "http://cran.rstudio.com/")
-          remotes::install_cran("rmarkdown", type = "binary", repos = "http://cran.rstudio.com/")
-          remotes::install_cran("gtsummary", type = "binary", repos = "http://cran.rstudio.com/")
-          remotes::install_cran("emmeans", type = "binary", repos = "http://cran.rstudio.com/")
+          remotes::install_local(".", type = "binary", repos = "http://cran.rstudio.com/", dependencies = TRUE)
         shell: Rscript {0}
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
