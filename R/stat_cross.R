@@ -119,7 +119,9 @@ StatCross <- ggplot2::ggproto(
   ggplot2::Stat,
   required_aes = c("x", "y"),
   default_aes = ggplot2::aes(weight = 1),
-  setup_params = function(data, params) {params},
+  setup_params = function(data, params) {
+    params
+  },
   extra_params = c("na.rm"),
   compute_panel = function(self, data, scales, keep.zero.cells = FALSE) {
     if (is.null(data$weight)) {
