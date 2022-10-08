@@ -1,9 +1,9 @@
 ---
-title: "Plot model coefficients with ggcoef_model()"
+title: "Plot model coefficients with `ggcoef_model()`"
 author: Joseph Larmarange
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Plot model coefficients with ggcoef_model()}
+  %\VignetteIndexEntry{Plot model coefficients with `ggcoef_model()`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
