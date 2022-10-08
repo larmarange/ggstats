@@ -4,7 +4,7 @@
 \name{ggstats-package}
 \alias{ggstats}
 \alias{ggstats-package}
-\title{ggstats: Extension to `ggplot2` for Plotting Stats}
+\title{ggstats: Extension to 'ggplot2' for Plotting Stats}
 \description{
 Provides suite of functions to plot regression model coefficients ("forest plots"). The suite also includes new statistics to compute proportions, weighted mean and cross-tabulation statistics, as well as new geometries to add alternative background color to a plot.
 }
