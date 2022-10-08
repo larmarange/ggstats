@@ -415,13 +415,20 @@ ggcoef_multinom <- function(
     significance_labels = significance_labels
   )
 
-  if (!is.null(y.level_label))
+  if (!is.null(y.level_label)) {
+    missing_levels <- setdiff(
+      levels(.in_order(data$y.level)),
+      names(y.level_label)
+    )
+    names(missing_levels) <- missing_levels
     data$y.level <- factor(
       data$y.level,
-      levels = names(y.level_label),
-      labels = y.level_label
-  ) else
+      levels = c(names(y.level_label), missing_levels),
+      labels = c(y.level_label, missing_levels)
+    )
+  } else {
     data$y.level <- .in_order(data$y.level)
+  }
 
   if (return_data)
     return(data)
