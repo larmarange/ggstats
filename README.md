@@ -104,8 +104,6 @@ ggplot(as.data.frame(Titanic)) +
   stat_cross(shape = 22) +
   scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
   scale_size_area(max_size = 20)
-#> Warning: Computation failed in `stat_cross()`:
-#> there is no package called 'GDAtools'
 ```
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
