@@ -188,11 +188,12 @@ StatCross <- ggplot2::ggproto(
 #' @details
 #' Phi coeffcients are a measurement of the degree of association
 #' between two binary variables.
-#' A value between -1.0 to -0.7 indicates a strong negative association.
-#' A value between -0.7 to -0.3 indicates a weak negative association.
-#' A value between -0.3 to +0.3 indicates a little or no association.
-#' A value between +0.3 to +0.7 indicates a weak positive association.
-#' A value between +0.7 to +1.0 indicates a strong positive association.
+#'
+#' - A value between -1.0 to -0.7 indicates a strong negative association.
+#' - A value between -0.7 to -0.3 indicates a weak negative association.
+#' - A value between -0.3 to +0.3 indicates a little or no association.
+#' - A value between +0.3 to +0.7 indicates a weak positive association.
+#' - A value between +0.7 to +1.0 indicates a strong positive association.
 #' @export
 #' @param x a chi-square test as returned by [stats::chisq.test()]
 #' @seealso [stat_cross()], `GDAtools::phi.table()` or `psych::phi()`

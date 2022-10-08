@@ -15,11 +15,13 @@ Augment a chi-square test and compute phi coefficients
 \details{
 Phi coeffcients are a measurement of the degree of association
 between two binary variables.
-A value between -1.0 to -0.7 indicates a strong negative association.
-A value between -0.7 to -0.3 indicates a weak negative association.
-A value between -0.3 to +0.3 indicates a little or no association.
-A value between +0.3 to +0.7 indicates a weak positive association.
-A value between +0.7 to +1.0 indicates a strong positive association.
+\itemize{
+\item A value between -1.0 to -0.7 indicates a strong negative association.
+\item A value between -0.7 to -0.3 indicates a weak negative association.
+\item A value between -0.3 to +0.3 indicates a little or no association.
+\item A value between +0.3 to +0.7 indicates a weak positive association.
+\item A value between +0.7 to +1.0 indicates a strong positive association.
+}
 }
 \examples{
 tab <- xtabs(Freq ~ Sex + Class, data = as.data.frame(Titanic))
