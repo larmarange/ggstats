@@ -20,6 +20,10 @@
 #'   \item{expected}{expected count under the null hypothesis}
 #'   \item{resid}{Pearson's residual}
 #'   \item{std.resid}{standardized residual}
+#'   \item{row.observed}{total number of observations within row}
+#'   \item{col.observed}{total number of observations within column}
+#'   \item{total.observed}{total number of observations within the table}
+#'   \item{phi}{phi coeffcients, see [.augment_and_add_phi()]}
 #' }
 #'
 #' @export
@@ -42,6 +46,17 @@
 #'   stat_cross(shape = 22) +
 #'   scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
 #'   scale_size_area(max_size = 20)
+#'
+#' # custom shape and fill colour based on phi coeffients
+#' ggplot(d) +
+#'   aes(
+#'     x = Class, y = Survived, weight = Freq,
+#'     size = after_stat(observed), fill = after_stat(phi)
+#'   ) +
+#'   stat_cross(shape = 22) +
+#'   scale_fill_steps2(show.limits = TRUE) +
+#'   scale_size_area(max_size = 20)
+#'
 #'
 #' # plotting the number of observations as a table
 #' ggplot(d) +
@@ -99,14 +114,12 @@ stat_cross <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
+StatCross <- ggplot2::ggproto(
+  "StatCross",
+  ggplot2::Stat,
   required_aes = c("x", "y"),
-  default_aes = ggplot2::aes(
-    weight = 1
-  ),
-  setup_params = function(data, params) {
-    params
-  },
+  default_aes = ggplot2::aes(weight = 1),
+  setup_params = function(data, params) {params},
   extra_params = c("na.rm"),
   compute_panel = function(self, data, scales, keep.zero.cells = FALSE) {
     if (is.null(data$weight)) {
@@ -114,13 +127,9 @@ StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
     }
 
     # compute cross statistics
-    panel <- broom::augment(chisq.test(xtabs(weight ~ y + x, data = data)))
-    panel$.phi <- with(
-      data,
-      GDAtools::phi.table(y, x, weight)
-    ) %>%
-      as.data.frame() %>%
-      dplyr::pull(.data$Freq)
+    panel <- .augment_and_add_phi(
+      chisq.test(xtabs(weight ~ y + x, data = data))
+    )
 
     panel_names <- names(panel)
     for (to_name in c(
@@ -130,7 +139,11 @@ StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
       "col.prop",
       "expected",
       "resid",
-      "std.resid"
+      "std.resid",
+      "row.observed",
+      "col.observed",
+      "total.observed",
+      "phi"
     )) {
       from_name <- paste0(".", to_name)
       panel_names[which(panel_names == from_name)] <- to_name
@@ -159,3 +172,45 @@ StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
     panel
   }
 )
+
+# Compute phi coefficients
+# see psych::phi() and GDAtools::phi.table()
+.compute_phi <-
+  function(.prop, .row.observed, .col.observed, .total.observed) {
+    rp <- .row.observed / .total.observed
+    cp <- .col.observed / .total.observed
+    (.prop - rp * cp) / sqrt(rp * (1 - rp) * cp * (1 - cp))
+  }
+
+#' Augment a chi-square test and compute phi coefficients
+#' @details
+#' Phi coeffcients are a measurement of the degree of association
+#' between two binary variables.
+#' A value between -1.0 to -0.7 indicates a strong negative association.
+#' A value between -0.7 to -0.3 indicates a weak negative association.
+#' A value between -0.3 to +0.3 indicates a little or no association.
+#' A value between +0.3 to +0.7 indicates a weak positive association.
+#' A value between +0.7 to +1.0 indicates a strong positive association.
+#' @export
+#' @param x a chi-square test as returned by [stats::chisq.test()]
+#' @seealso [stat_cross()], `GDAtools::phi.table()` or `psych::phi()`
+#' @examples
+#' tab <- xtabs(Freq ~ Sex + Class, data = as.data.frame(Titanic))
+#' .augment_and_add_phi(chisq.test(tab))
+.augment_and_add_phi <- function(x) {
+  broom::augment(x) %>%
+    dplyr::group_by(dplyr::across(1)) %>%
+    dplyr::mutate(.row.observed = sum(.data$.observed)) %>%
+    dplyr::group_by(dplyr::across(2)) %>%
+    dplyr::mutate(.col.observed = sum(.data$.observed)) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(
+      .total.observed = sum(.data$.observed),
+      .phi = .compute_phi(
+        .data$.prop,
+        .data$.row.observed,
+        .data$.col.observed,
+        .data$.total.observed
+      )
+    )
+}

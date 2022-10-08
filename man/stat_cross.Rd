@@ -85,6 +85,10 @@ Computes statistics of a 2-dimensional matrix using \link[broom:augment.htest]{b
 \item{expected}{expected count under the null hypothesis}
 \item{resid}{Pearson's residual}
 \item{std.resid}{standardized residual}
+\item{row.observed}{total number of observations within row}
+\item{col.observed}{total number of observations within column}
+\item{total.observed}{total number of observations within the table}
+\item{phi}{phi coeffcients, see \code{\link[=.augment_and_add_phi]{.augment_and_add_phi()}}}
 }
 }
 
@@ -108,6 +112,17 @@ ggplot(d) +
   stat_cross(shape = 22) +
   scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
   scale_size_area(max_size = 20)
+
+# custom shape and fill colour based on phi coeffients
+ggplot(d) +
+  aes(
+    x = Class, y = Survived, weight = Freq,
+    size = after_stat(observed), fill = after_stat(phi)
+  ) +
+  stat_cross(shape = 22) +
+  scale_fill_steps2(show.limits = TRUE) +
+  scale_size_area(max_size = 20)
+
 
 # plotting the number of observations as a table
 ggplot(d) +
