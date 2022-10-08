@@ -101,7 +101,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://larmarange.github.io/ggstats/">ggstats</a></span><span class="op">)</span></span></code></pre></div>
-<p>The purpose of <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> is to quickly plot the coefficients of a model. It is an updated and improved version of <code>GGally::ggcoef()</code> based on <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>. For displaying a nicely formatted table of the same models, look at <code>gtsummary::tbl_regression()</code>.</p>
+<p>The purpose of <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> is to quickly plot the coefficients of a model. It is an updated and improved version of <code>GGally::ggcoef()</code> based on <code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>. For displaying a nicely formatted table of the same models, look at <code>gtsummary::tbl_regression()</code>.</p>
 <div class="section level2">
 <h2 id="quick-coefficients-plot">Quick coefficients plot<a class="anchor" aria-label="anchor" href="#quick-coefficients-plot"></a>
 </h2>
@@ -217,13 +217,13 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_titanic2</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_titanic2</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_categorical</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  categorical_terms_pattern <span class="op">=</span> <span class="st">"{level}/{reference_level}"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-9-3.png" width="700"></p>
@@ -333,7 +333,7 @@
 <div class="section level2">
 <h2 id="advanced-users">Advanced users<a class="anchor" aria-label="anchor" href="#advanced-users"></a>
 </h2>
-<p>Advanced users could use their own dataset and pass it to <code><a href="../reference/ggcoef_model.html">ggcoef_plot()</a></code>. Such dataset could be produced by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>, <code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code> or <code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code> with the option <code>return_data = TRUE</code> or by using <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> or <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>.</p>
+<p>Advanced users could use their own dataset and pass it to <code><a href="../reference/ggcoef_model.html">ggcoef_plot()</a></code>. Such dataset could be produced by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>, <code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code> or <code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code> with the option <code>return_data = TRUE</code> or by using <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> or <code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="supported-models">Supported models<a class="anchor" aria-label="anchor" href="#supported-models"></a>
@@ -505,7 +505,7 @@
 </tr>
 <tr class="even">
 <td align="left"><code>VGAM::vglm()</code></td>
-<td align="left">Limited support. It is recommended to use <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_parameters.html" class="external-link">tidy_parameters()</a></code> as <code>tidy_fun</code>.</td>
+<td align="left">Limited support. It is recommended to use <code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_parameters.html" class="external-link">tidy_parameters()</a></code> as <code>tidy_fun</code>.</td>
 </tr>
 </tbody>
 </table>
