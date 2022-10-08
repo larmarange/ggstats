@@ -1,6 +1,6 @@
 Package: ggstats
 Type: Package
-Title: Extension to `ggplot2` for Plotting Stats
+Title: Extension to 'ggplot2' for Plotting Stats
 Version: 0.1.0
 Authors@R: c(
     person("Joseph", "Larmarange", , "joseph@larmarange.net", role = c("aut", "cre"),
