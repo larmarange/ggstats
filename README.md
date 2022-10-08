@@ -11,7 +11,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Codecov test
 coverage](https://codecov.io/gh/larmarange/ggstats/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larmarange/ggstats?branch=main)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/ggstats)](https://CRAN.R-project.org/package=ggstats)
+status](https://www.r-pkg.org/badges/version/ggstats)](https://CRAN.R-project.org/)
 <!-- badges: end -->
 
 The `ggstats` package provides suite of functions to plot regression
@@ -113,8 +113,8 @@ ggplot(as.data.frame(Titanic)) +
 ``` r
 library(survey, quietly = TRUE)
 #> 
-#> Attaching package: 'survey'
-#> The following object is masked from 'package:graphics':
+#> Attachement du package : 'survey'
+#> L'objet suivant est masqué depuis 'package:graphics':
 #> 
 #>     dotchart
 dw <- svydesign(
