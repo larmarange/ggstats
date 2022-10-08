@@ -22,6 +22,6 @@ reference:
   - starts_with("geom_")
 
 - title: Utilities
-  contents
+  contents:
   - ggsurvey
   - signif_stars
