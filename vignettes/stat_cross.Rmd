@@ -46,7 +46,10 @@ We can go further using a custom shape and filling points with standardized resi
 
 ```{r fig.height=6, fig.width=6}
 ggplot(d) +
-  aes(x = Class, y = Survived, weight = Freq, size = after_stat(observed), fill = after_stat(std.resid)) +
+  aes(
+    x = Class, y = Survived, weight = Freq,
+    size = after_stat(observed), fill = after_stat(std.resid)
+  ) +
   stat_cross(shape = 22) +
   scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
   scale_size_area(max_size = 20)

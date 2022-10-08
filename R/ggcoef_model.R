@@ -33,7 +33,8 @@
 #' ggcoef_model(mod_simple)
 #'
 #' # custom variable labels
-#' # you can use the labelled package to define variable labels before computing model
+#' # you can use the labelled package to define variable labels
+#' # before computing model
 #' if (require(labelled)) {
 #'   tips_labelled <- tips %>%
 #'     labelled::set_variable_labels(
@@ -134,7 +135,7 @@
 #'   )
 #'   ggcoef_model(mod2)
 #' }
-ggcoef_model <- function (
+ggcoef_model <- function(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
   conf.int = TRUE,
@@ -154,7 +155,7 @@ ggcoef_model <- function (
   signif_stars = TRUE,
   return_data = FALSE,
   ...
-){
+) {
   data <- ggcoef_data(
     model = model,
     tidy_fun = tidy_fun,
@@ -173,19 +174,23 @@ ggcoef_model <- function (
     significance_labels = significance_labels
   )
 
-  if (show_p_values & signif_stars)
+  if (show_p_values && signif_stars)
     data$add_to_label <- paste0(data$p_value_label, data$signif_stars)
-  if (show_p_values & !signif_stars)
+  if (show_p_values && !signif_stars)
     data$add_to_label <- data$p_value_label
-  if (!show_p_values & signif_stars)
+  if (!show_p_values && signif_stars)
     data$add_to_label <- data$signif_stars
 
-  if (show_p_values | signif_stars) {
+  if (show_p_values || signif_stars) {
     data$label <- forcats::fct_inorder(
       factor(
         paste0(
           data$label,
-          ifelse(data$add_to_label == "", "", paste0(" (", data$add_to_label, ")"))
+          ifelse(
+            data$add_to_label == "",
+            "",
+            paste0(" (", data$add_to_label, ")")
+          )
         )
       )
     )
@@ -193,7 +198,11 @@ ggcoef_model <- function (
       factor(
         paste0(
           data$label_light,
-          ifelse(data$add_to_label == "", "", paste0(" (", data$add_to_label, ")"))
+          ifelse(
+            data$add_to_label == "",
+            "",
+            paste0(" (", data$add_to_label, ")")
+          )
         )
       )
     )
@@ -209,7 +218,7 @@ ggcoef_model <- function (
   if (!"y" %in% names(args) && !"facet_row" %in% names(args))
     args$y <- "label_light"
 
-  if (!"colour" %in% names(args) & !all(is.na(data$var_label))) {
+  if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
     args$colour <- "var_label"
     if (!"colour_guide" %in% names(args)) {
       args$colour_guide <- FALSE
@@ -219,7 +228,8 @@ ggcoef_model <- function (
   do.call(ggcoef_plot, args)
 }
 
-#' @describeIn ggcoef_model Designed for displaying several models on the same plot.
+#' @describeIn ggcoef_model Designed for displaying several models on the same
+#'   plot.
 #' @export
 #' @param models named list of models
 #' @param type a dodged plot or a faceted plot?
@@ -230,18 +240,22 @@ ggcoef_model <- function (
 #'   mod1 <- lm(Fertility ~ ., data = swiss)
 #'   mod2 <- step(mod1, trace = 0)
 #'   mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
-#'   models <- list("Full model" = mod1, "Simplified model" = mod2, "With interaction" = mod3)
+#'   models <- list(
+#'     "Full model" = mod1,
+#'     "Simplified model" = mod2,
+#'     "With interaction" = mod3
+#'   )
 #'
 #'   ggcoef_compare(models)
 #'   ggcoef_compare(models, type = "faceted")
 #'
-#'   # you can reverse the vertical position of the point by using a negative value
-#'   # for dodged_width (but it will produce some warnings)
+#'   # you can reverse the vertical position of the point by using a negative
+#'   # value for dodged_width (but it will produce some warnings)
 #'   \dontrun{
 #'     ggcoef_compare(models, dodged_width = -.9)
 #'   }
 #' }
-ggcoef_compare <- function (
+ggcoef_compare <- function(
   models,
   type = c("dodged", "faceted"),
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
@@ -260,7 +274,7 @@ ggcoef_compare <- function (
   significance_labels = NULL,
   return_data = FALSE,
   ...
-){
+) {
   data <- lapply(
     X = models,
     FUN = ggcoef_data,
@@ -288,7 +302,7 @@ ggcoef_compare <- function (
   data <- data %>%
     broom.helpers::tidy_select_variables(
       include = {{ include }},
-      model = models[[1]] # we just need to pass a model to allow the function to work
+      model = models[[1]] # just need to pass 1 model for the function to work
     ) %>%
     broom.helpers::tidy_detach_model()
 
@@ -331,7 +345,7 @@ ggcoef_compare <- function (
     if (!"facet_col" %in% names(args)) {
       args$facet_col <- "model"
     }
-    if (!"colour" %in% names(args) & !all(is.na(data$var_label))) {
+    if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
       args$colour <- "var_label"
       if (!"colour_guide" %in% names(args)) {
         args$colour_guide <- FALSE
@@ -342,8 +356,10 @@ ggcoef_compare <- function (
   do.call(ggcoef_plot, args)
 }
 
-#' @describeIn ggcoef_model A variation of [ggcoef_model()] adapted to multinomial logistic regressions performed with [nnet::multinom()].
-#' @param y.level_label an optional named vector for labeling `y.level` (see examples)
+#' @describeIn ggcoef_model A variation of [ggcoef_model()] adapted to
+#'   multinomial logistic regressions performed with [nnet::multinom()].
+#' @param y.level_label an optional named vector for labeling `y.level`
+#'   (see examples)
 #' @export
 #' @examplesIf interactive()
 #'
@@ -358,7 +374,7 @@ ggcoef_compare <- function (
 #'     y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
 #'   )
 #' }
-ggcoef_multinom <- function (
+ggcoef_multinom <- function(
   model,
   type = c("dodged", "faceted"),
   y.level_label = NULL,
@@ -380,7 +396,7 @@ ggcoef_multinom <- function (
   signif_stars = TRUE,
   return_data = FALSE,
   ...
-){
+) {
   data <- ggcoef_data(
     model,
     tidy_fun = tidy_fun,
@@ -432,7 +448,7 @@ ggcoef_multinom <- function (
     if (!"facet_col" %in% names(args)) {
       args$facet_col <- "y.level"
     }
-    if (!"colour" %in% names(args) & !all(is.na(data$var_label))) {
+    if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
       args$colour <- "var_label"
       if (!"colour_guide" %in% names(args)) {
         args$colour_guide <- FALSE
@@ -444,7 +460,7 @@ ggcoef_multinom <- function (
 }
 
 # not exporting ggcoef_data
-ggcoef_data <- function (
+ggcoef_data <- function(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
   conf.int = TRUE,
@@ -460,7 +476,7 @@ ggcoef_data <- function (
   include = dplyr::everything(),
   significance = conf.level,
   significance_labels = NULL
-){
+) {
   if (!requireNamespace("broom.helpers", quietly = TRUE))
     stop("Package broom.helpers is required.")
 
@@ -491,7 +507,7 @@ ggcoef_data <- function (
     significance <- NULL
   }
 
-  if(!is.null(significance)) {
+  if (!is.null(significance)) {
     if (is.null(significance_labels))
       significance_labels <- paste(c("p \u2264", "p >"), significance)
     data$significance <- factor(
@@ -503,7 +519,11 @@ ggcoef_data <- function (
 
   data$signif_stars <- signif_stars(data$p.value, point = NULL)
 
-  data$p_value_label <- ifelse(is.na(data$p.value), "", scales::pvalue(data$p.value, add_p = TRUE))
+  data$p_value_label <- ifelse(
+    is.na(data$p.value),
+    "",
+    scales::pvalue(data$p.value, add_p = TRUE)
+  )
 
   # keep only rows with estimate
   data <- data[!is.na(data$estimate), ]
@@ -553,17 +573,18 @@ ggcoef_data <- function (
 #' @param stripped_rows should stripped rows be displayed in the background?
 #' @param strips_odd color of the odd rows
 #' @param strips_even color of the even rows
-#' @param vline should a vertical line be drawn at 0 (or 1 if `exponentiate = TRUE`)?
+#' @param vline should a vertical line be drawn at 0 (or 1 if
+#'   `exponentiate = TRUE`)?
 #' @param vline_colour colour of vertical line
 #' @param dodged should points be dodged (according to the colour aesthetic)?
 #' @param dodged_width width value for [ggplot2::position_dodge()]
 #' @param facet_row variable name to be used for row facets
 #' @param facet_col optional variable name to be used for column facets
 #' @param facet_labeller labeller function to be used for labeling facets;
-#'   if labels are too long, you can use [ggplot2::label_wrap_gen()] (see examples),
-#'   more information in the documentation of [ggplot2::facet_grid()]
+#'   if labels are too long, you can use [ggplot2::label_wrap_gen()] (see
+#'   examples), more information in the documentation of [ggplot2::facet_grid()]
 #' @export
-ggcoef_plot <- function (
+ggcoef_plot <- function(
   data,
   x = "estimate",
   y = "label",
@@ -592,7 +613,7 @@ ggcoef_plot <- function (
   facet_row = "var_label",
   facet_col = NULL,
   facet_labeller = "label_value"
-){
+) {
   data[[y]] <- forcats::fct_rev(.in_order(data[[y]]))
   if (!is.null(facet_row))
     data[[facet_row]] <- .in_order(data[[facet_row]])
@@ -613,14 +634,14 @@ ggcoef_plot <- function (
   mapping <- ggplot2::aes_string(x = x, y = y)
 
   errorbar <- errorbar & all(c("conf.low", "conf.high") %in% names(data))
-  if(errorbar) {
+  if (errorbar) {
     mapping$xmin <- ggplot2::aes_string(xmin = "conf.low")$xmin
     mapping$xmax <- ggplot2::aes_string(xmax = "conf.high")$xmax
   }
-  if(!is.null(shape) && shape %in% names(data)) {
+  if (!is.null(shape) && shape %in% names(data)) {
     mapping$shape <- ggplot2::aes_string(shape = shape)$shape
   }
-  if(!is.null(colour) && colour %in% names(data)) {
+  if (!is.null(colour) && colour %in% names(data)) {
     mapping$colour <- ggplot2::aes_string(colour = colour)$colour
     mapping$group <- ggplot2::aes_string(group = colour)$group
   }
@@ -644,10 +665,13 @@ ggcoef_plot <- function (
       )
 
   if (vline)
-    p <- p + ggplot2::geom_vline(xintercept = ifelse(exponentiate, 1, 0), colour = vline_colour)
+    p <- p + ggplot2::geom_vline(
+      xintercept = ifelse(exponentiate, 1, 0),
+      colour = vline_colour
+    )
 
-  if(errorbar) {
-    if (!is.null(colour) & errorbar_coloured) {
+  if (errorbar) {
+    if (!is.null(colour) && errorbar_coloured) {
       p <- p +
         ggplot2::geom_errorbarh(
           na.rm = TRUE,
@@ -666,9 +690,9 @@ ggcoef_plot <- function (
     }
   }
 
-  if (!is.null(facet_col) & is.character(facet_col))
+  if (!is.null(facet_col) && is.character(facet_col))
     facet_col <- ggplot2::vars(!!sym(facet_col))
-  if (!is.null(facet_row) & is.character(facet_row))
+  if (!is.null(facet_row) && is.character(facet_row))
     facet_row <- ggplot2::vars(!!sym(facet_row))
 
   p <- p +
@@ -692,7 +716,10 @@ ggcoef_plot <- function (
       legend.position = "bottom",
       legend.box = "vertical",
       strip.placement = "outside",
-      strip.text.y.left = ggplot2::element_text(face = "bold", angle = 0, colour = "black", hjust = 0, vjust = 1),
+      strip.text.y.left = ggplot2::element_text(
+        face = "bold", angle = 0, colour = "black",
+        hjust = 0, vjust = 1
+      ),
       strip.text.x = ggplot2::element_text(face = "bold", colour = "black"),
       strip.background = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
@@ -702,18 +729,21 @@ ggcoef_plot <- function (
       axis.ticks.y = ggplot2::element_blank()
     )
 
-  if(!is.null(colour) && colour %in% names(data)) {
+  if (!is.null(colour) && colour %in% names(data)) {
     if (colour_guide) {
       colour_guide <- ggplot2::guide_legend()
     } else {
       colour_guide <- "none"
     }
     p <- p +
-      ggplot2::scale_colour_discrete(guide = colour_guide, labels = colour_labels) +
+      ggplot2::scale_colour_discrete(
+        guide = colour_guide,
+        labels = colour_labels
+      ) +
       ggplot2::labs(colour = colour_lab)
   }
 
-  if(!is.null(shape) && shape %in% names(data)) {
+  if (!is.null(shape) && shape %in% names(data)) {
     if (shape_guide) {
       shape_guide <- ggplot2::guide_legend()
     } else {

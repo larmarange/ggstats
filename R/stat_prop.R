@@ -1,14 +1,15 @@
 #' Compute proportions according to custom denominator
 #'
-#' \code{stat_prop} is a variation of [ggplot2::stat_count()] allowing to compute custom
-#' proportions according to the \strong{by} aesthetic defining the denominator
-#' (i.e. all proportions for a same value of \strong{by} will sum to 1).
-#' The \code{by} aesthetic should be a factor.
+#' \code{stat_prop} is a variation of [ggplot2::stat_count()] allowing to
+#' compute custom proportions according to the \strong{by} aesthetic defining
+#' the denominator (i.e. all proportions for a same value of \strong{by} will
+#' sum to 1). The \code{by} aesthetic should be a factor.
 #'
 #' @inheritParams ggplot2::stat_count
 #' @param geom Override the default connection with [ggplot2::geom_bar()].
 #' @section Aesthetics:
-#' `stat_prop()` understands the following aesthetics (required aesthetics are in bold):
+#' `stat_prop()` understands the following aesthetics
+#' (required aesthetics are in bold):
 #'
 #' - **x *or* y**
 #' - **by** (this aesthetic should be a **factor**)
@@ -95,7 +96,11 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     label = scales::percent(after_stat(prop), accuracy = .1)
   ),
   setup_params = function(data, params) {
-    params$flipped_aes <- has_flipped_aes(data, params, main_is_orthogonal = FALSE)
+    params$flipped_aes <- ggplot2::has_flipped_aes(
+      data,
+      params,
+      main_is_orthogonal = FALSE
+    )
 
     has_x <- !(is.null(data$x) && is.null(params$x))
     has_y <- !(is.null(data$y) && is.null(params$y))
@@ -107,12 +112,16 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     }
     # there is an unresolved bug when by is a character vector. To be explored.
     if (is.character(data$by)) {
-      stop("The by aesthetic should be a factor instead of a character.", call. = FALSE)
+      stop(
+        "The by aesthetic should be a factor instead of a character.",
+        call. = FALSE
+      )
     }
     params
   },
   extra_params = c("na.rm"),
-  compute_panel = function(self, data, scales, width = NULL, flipped_aes = FALSE) {
+  compute_panel = function(self, data, scales,
+                           width = NULL, flipped_aes = FALSE) {
     data <- ggplot2::flip_data(data, flipped_aes)
     data$weight <- data$weight %||% rep(1, nrow(data))
     width <- width %||% (ggplot2::resolution(data$x) * 0.9)

@@ -6,3 +6,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+tests/testthat/_snaps
+tests/testthat/Rplots.pdf
+.lintr

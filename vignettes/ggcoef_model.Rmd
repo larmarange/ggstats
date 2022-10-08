@@ -239,7 +239,11 @@ You can easily compare several models with `ggcoef_compare()`.
 mod1 <- lm(Fertility ~ ., data = swiss)
 mod2 <- step(mod1, trace = 0)
 mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
-models <- list("Full model" = mod1, "Simplified model" = mod2, "With interaction" = mod3)
+models <- list(
+  "Full model" = mod1,
+  "Simplified model" = mod2,
+  "With interaction" = mod3
+)
 
 ggcoef_compare(models)
 ggcoef_compare(models, type = "faceted")

@@ -163,7 +163,8 @@ for plotting instead of the plot}
 
 \item{type}{a dodged plot or a faceted plot?}
 
-\item{y.level_label}{an optional named vector for labeling \code{y.level} (see examples)}
+\item{y.level_label}{an optional named vector for labeling \code{y.level}
+(see examples)}
 
 \item{data}{a data frame containing data to be plotted,
 typically the output of \code{\link[=ggcoef_model]{ggcoef_model()}}, \code{\link[=ggcoef_compare]{ggcoef_compare()}}
@@ -211,7 +212,8 @@ shape aesthetic}
 
 \item{strips_even}{color of the even rows}
 
-\item{vline}{should a vertical line be drawn at 0 (or 1 if \code{exponentiate = TRUE})?}
+\item{vline}{should a vertical line be drawn at 0 (or 1 if
+\code{exponentiate = TRUE})?}
 
 \item{vline_colour}{colour of vertical line}
 
@@ -224,8 +226,8 @@ shape aesthetic}
 \item{facet_col}{optional variable name to be used for column facets}
 
 \item{facet_labeller}{labeller function to be used for labeling facets;
-if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}} (see examples),
-more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
+if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}} (see
+examples), more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
 }
 \description{
 Plot model coefficients
@@ -242,9 +244,11 @@ then pass your customized \code{tibble} to \code{ggcoef_plot()}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ggcoef_compare()}: Designed for displaying several models on the same plot.
+\item \code{ggcoef_compare()}: Designed for displaying several models on the same
+plot.
 
-\item \code{ggcoef_multinom()}: A variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet::multinom()}}.
+\item \code{ggcoef_multinom()}: A variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
+multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet::multinom()}}.
 
 \item \code{ggcoef_plot()}: SOME DESCRIPTION HERE
 
@@ -256,7 +260,8 @@ mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
 ggcoef_model(mod_simple)
 
 # custom variable labels
-# you can use the labelled package to define variable labels before computing model
+# you can use the labelled package to define variable labels
+# before computing model
 if (require(labelled)) {
   tips_labelled <- tips \%>\%
     labelled::set_variable_labels(
@@ -365,13 +370,17 @@ if (require(broom.helpers)) {
   mod1 <- lm(Fertility ~ ., data = swiss)
   mod2 <- step(mod1, trace = 0)
   mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
-  models <- list("Full model" = mod1, "Simplified model" = mod2, "With interaction" = mod3)
+  models <- list(
+    "Full model" = mod1,
+    "Simplified model" = mod2,
+    "With interaction" = mod3
+  )
 
   ggcoef_compare(models)
   ggcoef_compare(models, type = "faceted")
 
-  # you can reverse the vertical position of the point by using a negative value
-  # for dodged_width (but it will produce some warnings)
+  # you can reverse the vertical position of the point by using a negative
+  # value for dodged_width (but it will produce some warnings)
   \dontrun{
     ggcoef_compare(models, dodged_width = -.9)
   }

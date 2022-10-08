@@ -46,13 +46,19 @@
 #' # taking into account some weights
 #' d <- as.data.frame(Titanic)
 #' ggplot(d) +
-#'   aes(x = Class, y = as.integer(Survived == "Yes"), weight = Freq, fill = Sex) +
+#'   aes(
+#'     x = Class, y = as.integer(Survived == "Yes"),
+#'     weight = Freq, fill = Sex
+#'   ) +
 #'   geom_bar(stat = "weighted_mean", position = "dodge") +
 #'   scale_y_continuous(labels = scales::percent) +
 #'   labs(y = "Survived")
 #'
 #' \dontrun{
-#' cuse <- read.table("https://data.princeton.edu/wws509/datasets/cuse.dat", header = TRUE)
+#' cuse <- read.table(
+#'   "https://data.princeton.edu/wws509/datasets/cuse.dat",
+#'   header = TRUE
+#' )
 #' cuse$n <- cuse$notUsing + cuse$using
 #' cuse$prop <- cuse$using / cuse$n
 #'
@@ -72,7 +78,11 @@
 #' ggplot(cuse) +
 #'   aes(x = age, y = prop, weight = n, fill = education) +
 #'   stat_weighted_mean(geom = "bar") +
-#'   geom_text(aes(label = scales::percent(after_stat(y))), stat = "weighted_mean", vjust = 0) +
+#'   geom_text(
+#'     aes(label = scales::percent(after_stat(y))),
+#'     stat = "weighted_mean",
+#'     vjust = 0
+#'   ) +
 #'   facet_grid(~education)
 #' }
 stat_weighted_mean <- function(mapping = NULL,
@@ -110,7 +120,7 @@ StatWeightedMean <- ggplot2::ggproto(
   required_aes = c("x", "y"),
   extra_params = c("na.rm", "orientation"),
   setup_params = function(data, params) {
-    params$flipped_aes <- has_flipped_aes(data, params)
+    params$flipped_aes <- ggplot2::has_flipped_aes(data, params)
     params
   },
   compute_panel = function(data, scales, na.rm = FALSE, flipped_aes = FALSE) {

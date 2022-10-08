@@ -62,16 +62,24 @@ test_that("example of ggcoef_model", {
   )
 
   # use 'exponentiate = TRUE' to get the Odds Ratio
-  expect_print(ggcoef_model(mod_titanic, exponentiate = TRUE))
+  expect_print(
+    ggcoef_model(mod_titanic, exponentiate = TRUE)
+  )
 
   # display intercepts
-  expect_print(ggcoef_model(mod_titanic, exponentiate = TRUE, intercept = TRUE))
+  expect_print(
+    ggcoef_model(mod_titanic, exponentiate = TRUE, intercept = TRUE)
+  )
 
   # display only a subset of terms
-  expect_print(ggcoef_model(mod_titanic, exponentiate = TRUE, include = c("Age", "Class")))
+  expect_print(
+    ggcoef_model(mod_titanic, exponentiate = TRUE, include = c("Age", "Class"))
+  )
 
   # do not change points' shape based on significance
-  expect_print(ggcoef_model(mod_titanic, exponentiate = TRUE, significance = NULL))
+  expect_print(
+    ggcoef_model(mod_titanic, exponentiate = TRUE, significance = NULL)
+  )
 
   # a black and white version
   expect_print(ggcoef_model(
@@ -85,7 +93,8 @@ test_that("example of ggcoef_model", {
     mod_titanic,
     exponentiate = TRUE,
     no_reference_row = broom.helpers::all_dichotomous(),
-    categorical_terms_pattern = "{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}",
+    categorical_terms_pattern =
+      "{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}",
     show_p_values = FALSE
   ))
 
@@ -112,7 +121,11 @@ test_that("example of ggcoef_model", {
   mod1 <- lm(Fertility ~ ., data = swiss)
   mod2 <- step(mod1, trace = 0)
   mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
-  models <- list("Full model" = mod1, "Simplified model" = mod2, "With interaction" = mod3)
+  models <- list(
+    "Full model" = mod1,
+    "Simplified model" = mod2,
+    "With interaction" = mod3
+  )
 
   expect_print(ggcoef_compare(models))
   expect_print(ggcoef_compare(models, type = "faceted"))
@@ -147,10 +160,13 @@ test_that("ggcoef_model works with tieders not returning p-values", {
   )
 })
 
-test_that("ggcoef_compare complete missing data by respecting the order if variables", {
+test_that("ggcoef_compare complete missing data respecting variables order", {
   m1 <- lm(Fertility ~ Education + Catholic, data = swiss)
   m2 <- lm(Fertility ~ Education + Catholic + Agriculture, data = swiss)
-  m3 <- lm(Fertility ~ Education + Catholic + Agriculture + Infant.Mortality, data = swiss)
+  m3 <- lm(
+    Fertility ~ Education + Catholic + Agriculture + Infant.Mortality,
+    data = swiss
+  )
   res <- ggcoef_compare(models = list(m1, m2, m3), return_data = TRUE)
   expect_equal(
     res$variable[1:4],
@@ -164,42 +180,18 @@ test_that("ggcoef_compare complete missing data by respecting the order if varia
 test_that("ggcoef_compare() does not produce an error with an include", {
   skip_if_not_installed("survival")
   skip_if_not_installed("broom.helpers")
-  m1 <- survival::coxph(survival::Surv(time, status) ~ prior + age, data = survival::veteran)
-  m2 <- survival::coxph(survival::Surv(time, status) ~ prior + celltype, data = survival::veteran)
+  m1 <- survival::coxph(
+    survival::Surv(time, status) ~ prior + age,
+    data = survival::veteran
+  )
+  m2 <- survival::coxph(
+    survival::Surv(time, status) ~ prior + celltype,
+    data = survival::veteran
+  )
   models <- list("Model 1" = m1, "Model 2" = m2)
 
   expect_error(
     ggcoef_compare(models, include = broom.helpers::starts_with("p")),
     NA
-  )
-})
-
-test_that("geom_stripped_cols() and geom_stripped_rows() works", {
-  library(ggplot2)
-  p <- ggplot(iris) +
-    aes(x = Species, y = Petal.Length) +
-    geom_count()
-
-  expect_print <- function(x) {
-    expect_error(print(x), NA)
-  }
-
-  expect_print(
-    p +
-      geom_stripped_rows(odd = "blue", even = "yellow", alpha = .1, nudge_y = .5) +
-      geom_stripped_cols()
-  )
-})
-
-
-test_that("signif_stars() works", {
-  x <- c(0.5, 0.1, 0.05, 0.01, 0.001)
-  expect_equal(
-    signif_stars(x),
-    c("", ".", "*", "**", "***")
-  )
-  expect_equal(
-    signif_stars(x, one = .15, point = NULL),
-    c("", "*", "*", "**", "***")
   )
 })

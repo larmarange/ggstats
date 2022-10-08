@@ -7,7 +7,8 @@
 signif_stars(x, three = 0.001, two = 0.01, one = 0.05, point = 0.1)
 }
 \arguments{
-\item{x}{numeric values that will be compared to the \code{point}, \code{one}, \code{two}, and \code{three} values}
+\item{x}{numeric values that will be compared to the \code{point},
+\code{one}, \code{two}, and \code{three} values}
 
 \item{three}{threshold below which to display three stars}
 
@@ -15,10 +16,12 @@ signif_stars(x, three = 0.001, two = 0.01, one = 0.05, point = 0.1)
 
 \item{one}{threshold below which to display one star}
 
-\item{point}{threshold below which to display one point (\code{NULL} to deactivate)}
+\item{point}{threshold below which to display one point
+(\code{NULL} to deactivate)}
 }
 \value{
-character vector containing the appropriate number of stars for each \code{x} value
+character vector containing the appropriate number of
+stars for each \code{x} value
 }
 \description{
 Calculate significance stars

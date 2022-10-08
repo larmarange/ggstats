@@ -1,5 +1,3 @@
-context("ggsurvey function")
-
 test_that("ggsurvey works correctly", {
   skip_if_not_installed("survey")
   skip_if_not_installed("ggplot2")

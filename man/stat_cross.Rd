@@ -39,7 +39,8 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{geom}{Override the default connection with \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+\item{geom}{Override the default connection with
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
@@ -49,7 +50,8 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{na.rm}{If \code{TRUE}, the default, missing values are removed with a warning.
+\item{na.rm}{If \code{TRUE}, the default, missing values are
+removed with a warning.
 If \code{TRUE}, missing values are silently removed.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
@@ -66,7 +68,8 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 \item{keep.zero.cells}{If \code{TRUE}, cells with no observations are kept.}
 }
 \description{
-Computes statistics of a 2-dimensional matrix using \code{\link[broom]{augment.htest}}
+Computes statistics of a 2-dimensional matrix using
+\code{\link[broom]{augment.htest}}
 from \pkg{broom}.
 }
 \section{Aesthetics}{

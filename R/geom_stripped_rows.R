@@ -55,7 +55,10 @@ geom_stripped_rows <- function(mapping = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(xfrom = xfrom, xto = xto, width = width, nudge_y = nudge_y, ...)
+    params = list(
+      xfrom = xfrom, xto = xto, width = width,
+      nudge_y = nudge_y, ...
+    )
   )
 }
 
@@ -65,10 +68,9 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
     odd = "#11111111", even = "#00000000",
     alpha = NA, colour = NA, linetype = "solid", size = .5
   ),
-
-  # draw_key = ggplot2::draw_key_blank,
   draw_key = ggplot2::draw_key_rect,
-  draw_panel = function(data, panel_params, coord, xfrom, xto, width = 1, nudge_y = 0) {
+  draw_panel = function(data, panel_params, coord,
+                        xfrom, xto, width = 1, nudge_y = 0) {
     ggplot2::GeomRect$draw_panel(
       data %>%
         dplyr::mutate(
@@ -123,7 +125,10 @@ geom_stripped_cols <- function(mapping = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(yfrom = yfrom, yto = yto, width = width, nudge_x = nudge_x, ...)
+    params = list(
+      yfrom = yfrom, yto = yto,
+      width = width, nudge_x = nudge_x, ...
+    )
   )
 }
 
@@ -133,10 +138,9 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
     odd = "#11111111", even = "#00000000",
     alpha = NA, colour = NA, linetype = "solid", size = .5
   ),
-
-  # draw_key = ggplot2::draw_key_blank,
   draw_key = ggplot2::draw_key_rect,
-  draw_panel = function(data, panel_params, coord, yfrom, yto, width = 1, nudge_x = 0) {
+  draw_panel = function(data, panel_params, coord,
+                        yfrom, yto, width = 1, nudge_x = 0) {
     ggplot2::GeomRect$draw_panel(
       data %>%
         dplyr::mutate(
