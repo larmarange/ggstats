@@ -27,7 +27,7 @@
 #'
 #' ggplot(tips) +
 #'   aes(x = day, y = total_bill, group = 1) +
-#'   stat_weighted_mean(geom = "line"))
+#'   stat_weighted_mean(geom = "line")
 #'
 #' ggplot(tips) +
 #'   aes(x = day, y = total_bill, colour = sex, group = sex) +

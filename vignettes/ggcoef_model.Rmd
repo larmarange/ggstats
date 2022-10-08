@@ -254,7 +254,6 @@ Advanced users could use their own dataset and pass it to `ggcoef_plot()`. Such 
 
 ```{r, echo=FALSE}
 broom.helpers::supported_models %>%
-  dplyr::arrange(Model) %>%
   knitr::kable()
 ```
 

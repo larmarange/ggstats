@@ -13,10 +13,15 @@ reference:
   contents:
   - ggcoef_model
 
+- title: Additional Statistics for `ggplot2`
+  contents:
+  - starts_with("stat_")
+
 - title: Additional geometries for `ggplot2`
   contents:
-  - geom_stripped_rows
+  - starts_with("geom_")
 
 - title: Utilities
-  contents:
+  contents
+  - ggsurvey
   - signif_stars
