@@ -31,7 +31,7 @@
 <polyline points='254.44,466.72 254.44,22.78 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='408.75,466.72 408.75,22.78 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='563.06,466.72 563.06,22.78 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<rect x='52.11' y='22.78' width='662.41' height='443.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter;' />
+<rect x='52.11' y='22.78' width='662.41' height='443.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter;' />
 <line x1='408.75' y1='466.72' x2='408.75' y2='22.78' style='stroke-width: 1.07; stroke: #7F7F7F; stroke-linecap: butt;' />
 <polyline points='568.14,344.64 568.14,322.44 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
 <polyline points='568.14,333.54 82.22,333.54 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
