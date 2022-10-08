@@ -1,24 +1,23 @@
-test_that("example of ggcoef_model", {
+test_that("ggcoef_model()", {
   skip_if_not_installed("broom.helpers")
-  expect_print <- function(x) {
-    expect_error(print(x), NA)
-  }
   skip_if_not_installed("reshape")
 
   data(tips, package = "reshape")
   mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
-  expect_print(ggcoef_model(mod_simple))
 
-  expect_warning(
-    print(
-      ggcoef_model(mod_simple, shape_guide = FALSE, colour_guide = FALSE)
-    ),
-    NA
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() mod simple",
+    ggcoef_model(mod_simple)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() mod simple no guide",
+    ggcoef_model(mod_simple, shape_guide = FALSE, colour_guide = FALSE)
   )
 
   # custom variable labels
   # you can use to define variable labels before computing model
-  if (require(labelled)) {
+  if (requireNamespace("labelled")) {
     tips_labelled <- tips %>%
       labelled::set_variable_labels(
         day = "Day of the week",
@@ -26,30 +25,47 @@ test_that("example of ggcoef_model", {
         total_bill = "Bill's total"
       )
     mod_labelled <- lm(tip ~ day + time + total_bill, data = tips_labelled)
-    expect_print(ggcoef_model(mod_labelled))
+    vdiffr::expect_doppelganger(
+      "ggcoef_model() mod labelled",
+      ggcoef_model(mod_labelled)
+    )
   }
 
-  expect_print(ggcoef_model(
-    mod_simple,
-    variable_labels = c(
-      day = "Week day",
-      time = "Time (lunch or dinner ?)",
-      total_bill = "Total of the bill"
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() mod simple with variable labels",
+    ggcoef_model(
+      mod_simple,
+      variable_labels = c(
+        day = "Week day",
+        time = "Time (lunch or dinner ?)",
+        total_bill = "Total of the bill"
+      )
     )
-  ))
+  )
+
   # if labels are too long, you can use 'facet_labeller' to wrap them
-  expect_print(ggcoef_model(
-    mod_simple,
-    variable_labels = c(
-      day = "Week day",
-      time = "Time (lunch or dinner ?)",
-      total_bill = "Total of the bill"
-    ),
-    facet_labeller = ggplot2::label_wrap_gen(10)
-  ))
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() mod simple facet_labeller",
+    ggcoef_model(
+      mod_simple,
+      variable_labels = c(
+        day = "Week day",
+        time = "Time (lunch or dinner ?)",
+        total_bill = "Total of the bill"
+      ),
+      facet_labeller = ggplot2::label_wrap_gen(10)
+    )
+  )
 
   # do not display variable facets but add colour guide
-  expect_print(ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE))
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() mod simple no variable facets",
+    ggcoef_model(
+      mod_simple,
+      facet_row = NULL,
+      colour_guide = TRUE
+    )
+  )
 
   # a logistic regression example
   d_titanic <- as.data.frame(Titanic)
@@ -61,61 +77,80 @@ test_that("example of ggcoef_model", {
     family = binomial
   )
 
-  # use 'exponentiate = TRUE' to get the Odds Ratio
-  expect_print(
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() logistic regression",
     ggcoef_model(mod_titanic, exponentiate = TRUE)
   )
 
-  # display intercepts
-  expect_print(
+  # display intercept
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() logistic regression with intercept",
     ggcoef_model(mod_titanic, exponentiate = TRUE, intercept = TRUE)
   )
 
   # display only a subset of terms
-  expect_print(
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() logistic regression subset",
     ggcoef_model(mod_titanic, exponentiate = TRUE, include = c("Age", "Class"))
   )
 
   # do not change points' shape based on significance
-  expect_print(
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() logistic regression no significance",
     ggcoef_model(mod_titanic, exponentiate = TRUE, significance = NULL)
   )
 
   # a black and white version
-  expect_print(ggcoef_model(
-    mod_titanic,
-    exponentiate = TRUE,
-    colour = NULL, stripped_rows = FALSE
-  ))
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() logistic regression black and white",
+    ggcoef_model(
+      mod_titanic,
+      exponentiate = TRUE,
+      colour = NULL,
+      stripped_rows = FALSE
+    )
+  )
 
   # show dichotomous terms on one row
-  expect_print(ggcoef_model(
-    mod_titanic,
-    exponentiate = TRUE,
-    no_reference_row = broom.helpers::all_dichotomous(),
-    categorical_terms_pattern =
-      "{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}",
-    show_p_values = FALSE
-  ))
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() logistic regression no reference row",
+    ggcoef_model(
+      mod_titanic,
+      exponentiate = TRUE,
+      no_reference_row = broom.helpers::all_dichotomous(),
+      categorical_terms_pattern =
+        "{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}",
+      show_p_values = FALSE
+    )
+  )
 
   # works also with with polynomial terms
   mod_poly <- lm(
     tip ~ poly(total_bill, 3) + day,
     data = tips,
   )
-  expect_print(ggcoef_model(mod_poly))
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() polynomial terms",
+    ggcoef_model(mod_poly)
+  )
 
   # or with different type of contrasts
   # for sum contrasts, the value of the reference term is computed
-  emmeans_is_installed <- (system.file(package = "emmeans") != "")
-  if (emmeans_is_installed) {
+  if (requireNamespace("emmeans")) {
     mod2 <- lm(
       tip ~ day + time + sex,
       data = tips,
       contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
     )
-    expect_print(ggcoef_model(mod2))
+    vdiffr::expect_doppelganger(
+      "ggcoef_model() different types of contrasts",
+      ggcoef_model(mod2)
+    )
   }
+})
+
+test_that("ggcoef_compare()", {
+  skip_if_not_installed("broom.helpers")
 
   # Use ggcoef_compare() for comparing several models on the same plot
   mod1 <- lm(Fertility ~ ., data = swiss)
@@ -127,25 +162,46 @@ test_that("example of ggcoef_model", {
     "With interaction" = mod3
   )
 
-  expect_print(ggcoef_compare(models))
-  expect_print(ggcoef_compare(models, type = "faceted"))
+  vdiffr::expect_doppelganger(
+    "ggcoef_compare() dodged",
+    ggcoef_compare(models)
+  )
 
-  # specific function for nnet::multinom models
-  skip_if_not_installed("nnet")
-  library(nnet)
-  mod <- multinom(Species ~ ., data = iris)
-  expect_print(ggcoef_multinom(mod, exponentiate = TRUE))
-  expect_print(ggcoef_multinom(mod, type = "faceted"))
-  expect_print(ggcoef_multinom(
-    mod,
-    type = "faceted",
-    y.level_label = c(
-      "versicolor" = "versicolor\n(ref: setosa)"
-    )
-  ))
+  vdiffr::expect_doppelganger(
+    "ggcoef_compare() faceted",
+    ggcoef_compare(models, type = "faceted")
+  )
 })
 
-test_that("ggcoef_model works with tieders not returning p-values", {
+test_that("ggcoef_multinom()", {
+  skip_if_not_installed("broom.helpers")
+  skip_if_not_installed("nnet")
+
+  library(nnet)
+  mod <- multinom(Species ~ ., data = iris)
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multinom() dodged",
+    ggcoef_multinom(mod, exponentiate = TRUE)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multinom() faceted",
+    ggcoef_multinom(mod, type = "faceted")
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multinom() faceted custom y level label",
+    ggcoef_multinom(
+      mod,
+      type = "faceted",
+      y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
+    )
+  )
+})
+
+
+test_that("ggcoef_model() works with tieders not returning p-values", {
   skip_if_not_installed("broom.helpers")
 
   mod <- lm(Sepal.Width ~ Species, iris)
@@ -154,13 +210,15 @@ test_that("ggcoef_model works with tieders not returning p-values", {
       broom::tidy(...) %>%
       dplyr::select(-.data$p.value)
   }
-  expect_error(
-    mod %>% ggcoef_model(tidy_fun = my_tidier),
-    NA
+  vdiffr::expect_doppelganger(
+    "ggcoef_model() no p values",
+    ggcoef_model(mod, tidy_fun = my_tidier)
   )
 })
 
-test_that("ggcoef_compare complete missing data respecting variables order", {
+test_that("ggcoef_compare() complete NA respecting variables order", {
+  skip_if_not_installed("broom.helpers")
+
   m1 <- lm(Fertility ~ Education + Catholic, data = swiss)
   m2 <- lm(Fertility ~ Education + Catholic + Agriculture, data = swiss)
   m3 <- lm(
@@ -190,8 +248,8 @@ test_that("ggcoef_compare() does not produce an error with an include", {
   )
   models <- list("Model 1" = m1, "Model 2" = m2)
 
-  expect_error(
-    ggcoef_compare(models, include = broom.helpers::starts_with("p")),
-    NA
+  vdiffr::expect_doppelganger(
+    "ggcoef_compare() with include",
+    ggcoef_compare(models, include = broom.helpers::starts_with("p"))
   )
 })

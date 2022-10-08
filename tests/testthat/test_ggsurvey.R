@@ -9,19 +9,21 @@ test_that("ggsurvey works correctly", {
     weights = ~pw, data = apistrat,
     fpc = ~fpc
   )
-  expect_error(
+
+  vdiffr::expect_doppelganger(
+    "ggsurvey() dstrat",
     ggsurvey(dstrat) +
       aes(x = cnum, y = dnum) +
-      geom_count(),
-    NA
+      geom_count()
   )
 
   d <- as.data.frame(Titanic)
   dw <- survey::svydesign(ids = ~1, weights = ~Freq, data = d)
-  expect_error(
+
+  vdiffr::expect_doppelganger(
+    "ggsurvey() titanic",
     ggsurvey(dw) +
       aes(x = Class, fill = Survived) +
-      geom_bar(position = "fill"),
-    NA
+      geom_bar(position = "fill")
   )
 })

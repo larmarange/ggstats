@@ -1,35 +1,36 @@
 test_that("stat_cross()", {
-  expect_print <- function(x) {
-    expect_silent(print(x))
-  }
-  d <- as.data.frame(Titanic)
   library(ggplot2)
 
+  d <- as.data.frame(Titanic)
+
   # plot number of observations
-  expect_print(ggplot(d) +
+  p <- ggplot(d) +
     aes(x = Class, y = Survived, weight = Freq, size = after_stat(observed)) +
     stat_cross() +
-    scale_size_area(max_size = 20))
+    scale_size_area(max_size = 20)
+  vdiffr::expect_doppelganger("stat_cross() n obs", p)
 
   # custom shape and fill colour based on chi-squared residuals
-  expect_print(ggplot(d) +
+  p <- ggplot(d) +
     aes(
       x = Class, y = Survived, weight = Freq,
       size = after_stat(observed), fill = after_stat(std.resid)
     ) +
     stat_cross(shape = 22) +
     scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
-    scale_size_area(max_size = 20))
+    scale_size_area(max_size = 20)
+  vdiffr::expect_doppelganger("stat_cross() shape-22", p)
 
   # plotting the number of observations as a table
-  expect_print(ggplot(d) +
+  p <- ggplot(d) +
     aes(
       x = Class, y = Survived, weight = Freq, label = after_stat(observed)
     ) +
-    geom_text(stat = "cross"))
+    geom_text(stat = "cross")
+  vdiffr::expect_doppelganger("stat_cross() table", p)
 
   # Row proportions with standardized residuals
-  expect_print(ggplot(d) +
+  p <- ggplot(d) +
     aes(
       x = Class, y = Survived, weight = Freq,
       label = scales::percent(after_stat(row.prop)),
@@ -39,6 +40,6 @@ test_that("stat_cross()", {
     geom_text(stat = "cross") +
     scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
     facet_grid(Sex ~ .) +
-    labs(fill = "Standardized residuals") +
-    theme_minimal())
+    labs(fill = "Standardized residuals")
+  vdiffr::expect_doppelganger("stat_cross() residuals", p)
 })
