@@ -10,6 +10,15 @@
     <loc>https://larmarange.github.io/ggstats/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://larmarange.github.io/ggstats/articles/stat_cross.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/articles/stat_prop.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/articles/stat_weighted_mean.html</loc>
+  </url>
+  <url>
     <loc>https://larmarange.github.io/ggstats/authors.html</loc>
   </url>
   <url>
@@ -28,6 +37,9 @@
     <loc>https://larmarange.github.io/ggstats/reference/ggstats-package.html</loc>
   </url>
   <url>
+    <loc>https://larmarange.github.io/ggstats/reference/ggsurvey.html</loc>
+  </url>
+  <url>
     <loc>https://larmarange.github.io/ggstats/reference/index.html</loc>
   </url>
   <url>
@@ -35,5 +47,14 @@
   </url>
   <url>
     <loc>https://larmarange.github.io/ggstats/reference/signif_stars.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/reference/stat_cross.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/reference/stat_prop.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/reference/stat_weighted_mean.html</loc>
   </url>
 </urlset>

@@ -32,7 +32,16 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/ggcoef_model.html">Plot model coefficients with ggcoef_model()</a>
+      <a href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a>
+    </li>
+    <li>
+      <a href="../articles/stat_cross.html">Compute cross-tabulation statistics with `stat_cross()`</a>
+    </li>
+    <li>
+      <a href="../articles/stat_prop.html">Compute custom proportions with `stat_prop()`</a>
+    </li>
+    <li>
+      <a href="../articles/stat_weighted_mean.html">Compute weighted mean with `stat_weighted_mean()`</a>
     </li>
   </ul></li>
 <li>
@@ -264,7 +273,8 @@ for plotting instead of the plot</p></dd>
 
 
 <dt>y.level_label</dt>
-<dd><p>an optional named vector for labeling <code>y.level</code> (see examples)</p></dd>
+<dd><p>an optional named vector for labeling <code>y.level</code>
+(see examples)</p></dd>
 
 
 <dt>data</dt>
@@ -352,7 +362,8 @@ shape aesthetic</p></dd>
 
 
 <dt>vline</dt>
-<dd><p>should a vertical line be drawn at 0 (or 1 if <code>exponentiate = TRUE</code>)?</p></dd>
+<dd><p>should a vertical line be drawn at 0 (or 1 if
+<code>exponentiate = TRUE</code>)?</p></dd>
 
 
 <dt>vline_colour</dt>
@@ -377,8 +388,8 @@ shape aesthetic</p></dd>
 
 <dt>facet_labeller</dt>
 <dd><p>labeller function to be used for labeling facets;
-if labels are too long, you can use <code><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">ggplot2::label_wrap_gen()</a></code> (see examples),
-more information in the documentation of <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">ggplot2::facet_grid()</a></code></p></dd>
+if labels are too long, you can use <code><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">ggplot2::label_wrap_gen()</a></code> (see
+examples), more information in the documentation of <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">ggplot2::facet_grid()</a></code></p></dd>
 
 </dl></div>
     <div id="details">
@@ -394,9 +405,10 @@ then pass your customized <code>tibble</code> to <code>ggcoef_plot()</code>.</p>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>ggcoef_model()</code>: Redesign of <code>GGally::ggcoef()</code> based on <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>.</p></li>
-<li><p><code>ggcoef_compare()</code>: Designed for displaying several models on the same plot.</p></li>
-<li><p><code>ggcoef_multinom()</code>: A variation of <code>ggcoef_model()</code> adapted to multinomial logistic regressions performed with <code><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">nnet::multinom()</a></code>.</p></li>
+<ul><li><p><code>ggcoef_compare()</code>: Designed for displaying several models on the same
+plot.</p></li>
+<li><p><code>ggcoef_multinom()</code>: A variation of <code>ggcoef_model()</code> adapted to
+multinomial logistic regressions performed with <code><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">nnet::multinom()</a></code>.</p></li>
 <li><p><code>ggcoef_plot()</code>: SOME DESCRIPTION HERE</p></li>
 </ul></div>
 
@@ -408,7 +420,8 @@ then pass your customized <code>tibble</code> to <code>ggcoef_plot()</code>.</p>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_simple</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># custom variable labels</span></span></span>
-<span class="r-in"><span><span class="co"># you can use the labelled package to define variable labels before computing model</span></span></span>
+<span class="r-in"><span><span class="co"># you can use the labelled package to define variable labels</span></span></span>
+<span class="r-in"><span><span class="co"># before computing model</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>    <span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span></span>
@@ -517,13 +530,17 @@ then pass your customized <code>tibble</code> to <code>ggcoef_plot()</code>.</p>
 <span class="r-in"><span>  <span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/step.html" class="external-link">step</a></span><span class="op">(</span><span class="va">mod1</span>, trace <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">Agriculture</span> <span class="op">+</span> <span class="va">Education</span> <span class="op">*</span> <span class="va">Catholic</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Full model"</span> <span class="op">=</span> <span class="va">mod1</span>, <span class="st">"Simplified model"</span> <span class="op">=</span> <span class="va">mod2</span>, <span class="st">"With interaction"</span> <span class="op">=</span> <span class="va">mod3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="st">"Full model"</span> <span class="op">=</span> <span class="va">mod1</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"Simplified model"</span> <span class="op">=</span> <span class="va">mod2</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"With interaction"</span> <span class="op">=</span> <span class="va">mod3</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># you can reverse the vertical position of the point by using a negative value</span></span></span>
-<span class="r-in"><span>  <span class="co"># for dodged_width (but it will produce some warnings)</span></span></span>
+<span class="r-in"><span>  <span class="co"># you can reverse the vertical position of the point by using a negative</span></span></span>
+<span class="r-in"><span>  <span class="co"># value for dodged_width (but it will produce some warnings)</span></span></span>
 <span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, dodged_width <span class="op">=</span> <span class="op">-</span><span class="fl">.9</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
