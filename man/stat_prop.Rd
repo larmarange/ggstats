@@ -106,15 +106,16 @@ p <- ggplot(d) +
   geom_bar(position = "fill") +
   geom_text(stat = "prop", position = position_fill(.5))
 p
-p + facet_grid(~ Sex)
+p + facet_grid(~Sex)
 
 ggplot(d) +
   aes(x = Class, fill = Survived, weight = Freq) +
   geom_bar(position = "dodge") +
   geom_text(
-    aes(by = Survived), stat = "prop",
+    aes(by = Survived),
+    stat = "prop",
     position = position_dodge(0.9), vjust = "bottom"
- )
+  )
 
 ggplot(d) +
   aes(x = Class, fill = Survived, weight = Freq, by = 1) +
@@ -123,7 +124,7 @@ ggplot(d) +
     aes(label = scales::percent(after_stat(prop), accuracy = 1)),
     stat = "prop",
     position = position_stack(.5)
- )
+  )
 \dontshow{\}) # examplesIf}
 }
 \seealso{

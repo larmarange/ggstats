@@ -61,7 +61,6 @@ geom_stripped_rows <- function(mapping = NULL,
 
 GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
   required_aes = c("y"),
-
   default_aes = ggplot2::aes(
     odd = "#11111111", even = "#00000000",
     alpha = NA, colour = NA, linetype = "solid", size = .5
@@ -69,7 +68,6 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
 
   # draw_key = ggplot2::draw_key_blank,
   draw_key = ggplot2::draw_key_rect,
-
   draw_panel = function(data, panel_params, coord, xfrom, xto, width = 1, nudge_y = 0) {
     ggplot2::GeomRect$draw_panel(
       data %>%
@@ -131,7 +129,6 @@ geom_stripped_cols <- function(mapping = NULL,
 
 GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
   required_aes = c("y"),
-
   default_aes = ggplot2::aes(
     odd = "#11111111", even = "#00000000",
     alpha = NA, colour = NA, linetype = "solid", size = .5
@@ -139,7 +136,6 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
 
   # draw_key = ggplot2::draw_key_blank,
   draw_key = ggplot2::draw_key_rect,
-
   draw_panel = function(data, panel_params, coord, yfrom, yto, width = 1, nudge_x = 0) {
     ggplot2::GeomRect$draw_panel(
       data %>%
@@ -172,4 +168,3 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
     )
   }
 )
-

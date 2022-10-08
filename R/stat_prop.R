@@ -33,15 +33,16 @@
 #'   geom_bar(position = "fill") +
 #'   geom_text(stat = "prop", position = position_fill(.5))
 #' p
-#' p + facet_grid(~ Sex)
+#' p + facet_grid(~Sex)
 #'
 #' ggplot(d) +
 #'   aes(x = Class, fill = Survived, weight = Freq) +
 #'   geom_bar(position = "dodge") +
 #'   geom_text(
-#'     aes(by = Survived), stat = "prop",
+#'     aes(by = Survived),
+#'     stat = "prop",
 #'     position = position_dodge(0.9), vjust = "bottom"
-#'  )
+#'   )
 #'
 #' ggplot(d) +
 #'   aes(x = Class, fill = Survived, weight = Freq, by = 1) +
@@ -50,20 +51,17 @@
 #'     aes(label = scales::percent(after_stat(prop), accuracy = 1)),
 #'     stat = "prop",
 #'     position = position_stack(.5)
-#'  )
-stat_prop <- function(
-  mapping = NULL,
-  data = NULL,
-  geom = "bar",
-  position = "fill",
-  ...,
-  width = NULL,
-  na.rm = FALSE,
-  orientation = NA,
-  show.legend = NA,
-  inherit.aes = TRUE
-) {
-
+#'   )
+stat_prop <- function(mapping = NULL,
+                      data = NULL,
+                      geom = "bar",
+                      position = "fill",
+                      ...,
+                      width = NULL,
+                      na.rm = FALSE,
+                      orientation = NA,
+                      show.legend = NA,
+                      inherit.aes = TRUE) {
   params <- list(
     na.rm = na.rm,
     orientation = orientation,
@@ -96,7 +94,6 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     x = after_stat(count), y = after_stat(count), weight = 1,
     label = scales::percent(after_stat(prop), accuracy = .1)
   ),
-
   setup_params = function(data, params) {
     params$flipped_aes <- has_flipped_aes(data, params, main_is_orthogonal = FALSE)
 
@@ -114,9 +111,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     }
     params
   },
-
   extra_params = c("na.rm"),
-
   compute_panel = function(self, data, scales, width = NULL, flipped_aes = FALSE) {
     data <- ggplot2::flip_data(data, flipped_aes)
     data$weight <- data$weight %||% rep(1, nrow(data))
@@ -130,7 +125,9 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     panel$count[is.na(panel$count)] <- 0
 
     # compute proportions by by
-    sum_abs <- function(x) {sum(abs(x))}
+    sum_abs <- function(x) {
+      sum(abs(x))
+    }
     panel$prop <- panel$count / ave(panel$count, panel$by, FUN = sum_abs)
     panel$width <- width
     panel$flipped_aes <- flipped_aes

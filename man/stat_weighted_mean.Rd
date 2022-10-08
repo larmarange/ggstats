@@ -120,7 +120,6 @@ ggplot(d) +
   scale_y_continuous(labels = scales::percent) +
   labs(y = "Survived")
 
-
 \dontrun{
 cuse <- read.table("https://data.princeton.edu/wws509/datasets/cuse.dat", header = TRUE)
 cuse$n <- cuse$notUsing + cuse$using
@@ -143,7 +142,7 @@ ggplot(cuse) +
   aes(x = age, y = prop, weight = n, fill = education) +
   stat_weighted_mean(geom = "bar") +
   geom_text(aes(label = scales::percent(after_stat(y))), stat = "weighted_mean", vjust = 0) +
-  facet_grid(~ education)
+  facet_grid(~education)
 }
 \dontshow{\}) # examplesIf}
 }

@@ -48,7 +48,7 @@ ggsurvey <- function(design = NULL, mapping = NULL, ...) {
   data <- design$variables
   data$.weights <- weights(design)
 
-  if(is.null(mapping)) {
+  if (is.null(mapping)) {
     mapping <- ggplot2::aes()
   }
 

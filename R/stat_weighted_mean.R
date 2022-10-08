@@ -51,7 +51,6 @@
 #'   scale_y_continuous(labels = scales::percent) +
 #'   labs(y = "Survived")
 #'
-#'
 #' \dontrun{
 #' cuse <- read.table("https://data.princeton.edu/wws509/datasets/cuse.dat", header = TRUE)
 #' cuse$n <- cuse$notUsing + cuse$using
@@ -74,19 +73,17 @@
 #'   aes(x = age, y = prop, weight = n, fill = education) +
 #'   stat_weighted_mean(geom = "bar") +
 #'   geom_text(aes(label = scales::percent(after_stat(y))), stat = "weighted_mean", vjust = 0) +
-#'   facet_grid(~ education)
+#'   facet_grid(~education)
 #' }
-stat_weighted_mean <- function(
-  mapping = NULL,
-  data = NULL,
-  geom = "point",
-  position = "identity",
-  ...,
-  na.rm = FALSE,
-  orientation = NA,
-  show.legend = NA,
-  inherit.aes = TRUE
-) {
+stat_weighted_mean <- function(mapping = NULL,
+                               data = NULL,
+                               geom = "point",
+                               position = "identity",
+                               ...,
+                               na.rm = FALSE,
+                               orientation = NA,
+                               show.legend = NA,
+                               inherit.aes = TRUE) {
   layer(
     data = data,
     mapping = mapping,
@@ -116,15 +113,16 @@ StatWeightedMean <- ggplot2::ggproto(
     params$flipped_aes <- has_flipped_aes(data, params)
     params
   },
-
   compute_panel = function(data, scales, na.rm = FALSE, flipped_aes = FALSE) {
     data <- ggplot2::flip_data(data, flipped_aes)
-    if (is.null(data$weight))
+    if (is.null(data$weight)) {
       data$weight <- rep(1, nrow(data))
+    }
 
     summarised <- aggregate(
       cbind(numerator = y * weight, denominator = weight) ~ .,
-      data, FUN = sum, na.rm = TRUE
+      data,
+      FUN = sum, na.rm = TRUE
     )
     summarised$y <- summarised$numerator / summarised$denominator
 

@@ -94,26 +94,26 @@ d <- as.data.frame(Titanic)
 
 # plot number of observations
 ggplot(d) +
- aes(x = Class, y = Survived, weight = Freq, size = after_stat(observed)) +
- stat_cross() +
- scale_size_area(max_size = 20)
+  aes(x = Class, y = Survived, weight = Freq, size = after_stat(observed)) +
+  stat_cross() +
+  scale_size_area(max_size = 20)
 
 # custom shape and fill colour based on chi-squared residuals
 ggplot(d) +
- aes(
-   x = Class, y = Survived, weight = Freq,
-   size = after_stat(observed), fill = after_stat(std.resid)
- ) +
- stat_cross(shape = 22) +
- scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
- scale_size_area(max_size = 20)
+  aes(
+    x = Class, y = Survived, weight = Freq,
+    size = after_stat(observed), fill = after_stat(std.resid)
+  ) +
+  stat_cross(shape = 22) +
+  scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
+  scale_size_area(max_size = 20)
 
 # plotting the number of observations as a table
 ggplot(d) +
- aes(
-   x = Class, y = Survived, weight = Freq, label = after_stat(observed)
- ) +
- geom_text(stat = "cross")
+  aes(
+    x = Class, y = Survived, weight = Freq, label = after_stat(observed)
+  ) +
+  geom_text(stat = "cross")
 
 # Row proportions with standardized residuals
 ggplot(d) +

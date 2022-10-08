@@ -75,7 +75,8 @@ test_that("example of ggcoef_model", {
 
   # a black and white version
   expect_print(ggcoef_model(
-    mod_titanic, exponentiate = TRUE,
+    mod_titanic,
+    exponentiate = TRUE,
     colour = NULL, stripped_rows = FALSE
   ))
 
@@ -105,7 +106,6 @@ test_that("example of ggcoef_model", {
       contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
     )
     expect_print(ggcoef_model(mod2))
-
   }
 
   # Use ggcoef_compare() for comparing several models on the same plot
@@ -124,13 +124,12 @@ test_that("example of ggcoef_model", {
   expect_print(ggcoef_multinom(mod, exponentiate = TRUE))
   expect_print(ggcoef_multinom(mod, type = "faceted"))
   expect_print(ggcoef_multinom(
-    mod, type = "faceted",
+    mod,
+    type = "faceted",
     y.level_label = c(
       "versicolor" = "versicolor\n(ref: setosa)"
     )
   ))
-
-
 })
 
 test_that("ggcoef_model works with tieders not returning p-values", {
@@ -146,7 +145,6 @@ test_that("ggcoef_model works with tieders not returning p-values", {
     mod %>% ggcoef_model(tidy_fun = my_tidier),
     NA
   )
-
 })
 
 test_that("ggcoef_compare complete missing data by respecting the order if variables", {
@@ -156,8 +154,10 @@ test_that("ggcoef_compare complete missing data by respecting the order if varia
   res <- ggcoef_compare(models = list(m1, m2, m3), return_data = TRUE)
   expect_equal(
     res$variable[1:4],
-    structure(1:4, .Label = c("Education", "Catholic", "Agriculture",
-                              "Infant.Mortality"), class = "factor")
+    structure(1:4, .Label = c(
+      "Education", "Catholic", "Agriculture",
+      "Infant.Mortality"
+    ), class = "factor")
   )
 })
 
@@ -172,12 +172,13 @@ test_that("ggcoef_compare() does not produce an error with an include", {
     ggcoef_compare(models, include = broom.helpers::starts_with("p")),
     NA
   )
-
 })
 
 test_that("geom_stripped_cols() and geom_stripped_rows() works", {
   library(ggplot2)
-  p <- ggplot(iris) + aes(x = Species, y = Petal.Length) + geom_count()
+  p <- ggplot(iris) +
+    aes(x = Species, y = Petal.Length) +
+    geom_count()
 
   expect_print <- function(x) {
     expect_error(print(x), NA)
@@ -188,7 +189,6 @@ test_that("geom_stripped_cols() and geom_stripped_rows() works", {
       geom_stripped_rows(odd = "blue", even = "yellow", alpha = .1, nudge_y = .5) +
       geom_stripped_cols()
   )
-
 })
 
 

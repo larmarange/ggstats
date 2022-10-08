@@ -41,8 +41,10 @@ test_that("example", {
   expect_print(ggally_colbar(tips, mapping = aes(x = smoker, y = sex), size = 8))
 
   # change labels' colour and use bold
-  expect_print(ggally_colbar(tips, mapping = aes(x = smoker, y = sex),
-                   colour = "white", fontface = "bold"))
+  expect_print(ggally_colbar(tips,
+    mapping = aes(x = smoker, y = sex),
+    colour = "white", fontface = "bold"
+  ))
 
   # display number of observations instead of proportions
   expect_print(ggally_colbar(tips, mapping = aes(x = smoker, y = sex, label = after_stat(count))))
@@ -51,8 +53,10 @@ test_that("example", {
   expect_print(ggally_colbar(tips, mapping = aes(x = smoker, y = sex), geom_bar_args = list(width = .5)))
 
   # change format of labels
-  expect_print(ggally_colbar(tips, mapping = aes(x = smoker, y = sex),
-                   label_format = scales::label_percent(accuracy = .01, decimal.mark = ",")))
+  expect_print(ggally_colbar(tips,
+    mapping = aes(x = smoker, y = sex),
+    label_format = scales::label_percent(accuracy = .01, decimal.mark = ",")
+  ))
 
   expect_print(ggduo(
     data = as.data.frame(Titanic),

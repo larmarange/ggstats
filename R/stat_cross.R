@@ -28,26 +28,26 @@
 #'
 #' # plot number of observations
 #' ggplot(d) +
-#'  aes(x = Class, y = Survived, weight = Freq, size = after_stat(observed)) +
-#'  stat_cross() +
-#'  scale_size_area(max_size = 20)
+#'   aes(x = Class, y = Survived, weight = Freq, size = after_stat(observed)) +
+#'   stat_cross() +
+#'   scale_size_area(max_size = 20)
 #'
 #' # custom shape and fill colour based on chi-squared residuals
 #' ggplot(d) +
-#'  aes(
-#'    x = Class, y = Survived, weight = Freq,
-#'    size = after_stat(observed), fill = after_stat(std.resid)
-#'  ) +
-#'  stat_cross(shape = 22) +
-#'  scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
-#'  scale_size_area(max_size = 20)
+#'   aes(
+#'     x = Class, y = Survived, weight = Freq,
+#'     size = after_stat(observed), fill = after_stat(std.resid)
+#'   ) +
+#'   stat_cross(shape = 22) +
+#'   scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
+#'   scale_size_area(max_size = 20)
 #'
 #' # plotting the number of observations as a table
 #' ggplot(d) +
-#'  aes(
-#'    x = Class, y = Survived, weight = Freq, label = after_stat(observed)
-#'  ) +
-#'  geom_text(stat = "cross")
+#'   aes(
+#'     x = Class, y = Survived, weight = Freq, label = after_stat(observed)
+#'   ) +
+#'   geom_text(stat = "cross")
 #'
 #' # Row proportions with standardized residuals
 #' ggplot(d) +
@@ -76,7 +76,6 @@ stat_cross <- function(mapping = NULL, data = NULL,
                        show.legend = NA,
                        inherit.aes = TRUE,
                        keep.zero.cells = FALSE) {
-
   params <- list(
     na.rm = na.rm,
     keep.zero.cells = keep.zero.cells,
@@ -104,16 +103,14 @@ StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
   default_aes = ggplot2::aes(
     weight = 1
   ),
-
   setup_params = function(data, params) {
     params
   },
-
   extra_params = c("na.rm"),
-
   compute_panel = function(self, data, scales, keep.zero.cells = FALSE) {
-    if (is.null(data$weight))
+    if (is.null(data$weight)) {
       data$weight <- rep(1, nrow(data))
+    }
 
     # compute cross statistics
     panel <- broom::augment(chisq.test(xtabs(weight ~ y + x, data = data)))
@@ -135,8 +132,8 @@ StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
 
     # to handle the fact that ggplot2 could transform factors into integers
     # before computation of the statistic
-    if(is.numeric(data$x)) panel$x <- as.numeric(panel$x)
-    if(is.numeric(data$y)) panel$y <- as.numeric(panel$y)
+    if (is.numeric(data$x)) panel$x <- as.numeric(panel$x)
+    if (is.numeric(data$y)) panel$y <- as.numeric(panel$y)
 
     # keeping first value of other aesthetics in data
     panel <- merge(
@@ -149,7 +146,7 @@ StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
     panel <- panel %>% dplyr::distinct(.data$x, .data$y, .keep_all = TRUE)
 
     if (!keep.zero.cells) {
-      panel <- panel[panel$observed != 0,]
+      panel <- panel[panel$observed != 0, ]
     }
 
     panel
