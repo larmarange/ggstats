@@ -117,16 +117,22 @@
 <strong>resid</strong>: Pearson’s residual</li>
 <li>
 <strong>std.resid</strong>: standardized residual</li>
+<li>
+<strong>row.observed</strong>: total number of observations within row</li>
+<li>
+<strong>col.observed</strong>: total number of observations within column</li>
+<li>
+<strong>total.observed</strong>: total number of observations within the table</li>
+<li>
+<strong>phi</strong>: phi coeffcients, see [.augment_and_add_phi()]</li>
 </ul>
-<p>By default, <code><a href="../reference/stat_cross.html">stat_cross()</a></code> is using <code>ggplot2::geom_points()</code>. If you can to plot the number of observations, you need to map <code>after_stat(observed)</code> to an aesthetic (here <strong>size</strong>):</p>
+<p>By default, <code><a href="../reference/stat_cross.html">stat_cross()</a></code> is using <code>ggplot2::geom_points()</code>. If you want to plot the number of observations, you need to map <code>after_stat(observed)</code> to an aesthetic (here <strong>size</strong>):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, y <span class="op">=</span> <span class="va">Survived</span>, weight <span class="op">=</span> <span class="va">Freq</span>, size <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">observed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/stat_cross.html">stat_cross</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Computation failed in `stat_cross()`:</span></span>
-<span><span class="co">#&gt; there is no package called 'GDAtools'</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_cross_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>Note that the <strong>weight</strong> aesthetic is taken into account by <code><a href="../reference/stat_cross.html">stat_cross()</a></code>.</p>
 <p>We can go further using a custom shape and filling points with standardized residual to identify visually cells who are over- or underrepresented.</p>
@@ -138,9 +144,7 @@
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/stat_cross.html">stat_cross</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">22</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_steps.html" class="external-link">scale_fill_steps2</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, show.limits <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Computation failed in `stat_cross()`:</span></span>
-<span><span class="co">#&gt; there is no package called 'GDAtools'</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_cross_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 <p>We can easily recreate a cross-tabulated table.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -148,9 +152,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, y <span class="op">=</span> <span class="va">Survived</span>, weight <span class="op">=</span> <span class="va">Freq</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"cross"</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">observed</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Computation failed in `stat_cross()`:</span></span>
-<span><span class="co">#&gt; there is no package called 'GDAtools'</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_cross_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>Even more complicated, we want to produce a table showing column proportions and where cells are filled with standardized residuals. Note that <code><a href="../reference/stat_cross.html">stat_cross()</a></code> could be used with facets. In that case, computation is done separately in each facet.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -165,15 +167,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_steps.html" class="external-link">scale_fill_steps2</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, show.limits <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Standardized residuals"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Computation failed in `stat_cross()`:</span></span>
-<span><span class="co">#&gt; there is no package called 'GDAtools'</span></span>
-<span><span class="co">#&gt; Computation failed in `stat_cross()`:</span></span>
-<span><span class="co">#&gt; there is no package called 'GDAtools'</span></span>
-<span><span class="co">#&gt; Computation failed in `stat_cross()`:</span></span>
-<span><span class="co">#&gt; there is no package called 'GDAtools'</span></span>
-<span><span class="co">#&gt; Computation failed in `stat_cross()`:</span></span>
-<span><span class="co">#&gt; there is no package called 'GDAtools'</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_cross_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
   </div>
 

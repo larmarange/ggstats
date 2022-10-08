@@ -181,6 +181,18 @@ the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.or
 <dt>std.resid</dt>
 <dd><p>standardized residual</p></dd>
 
+<dt>row.observed</dt>
+<dd><p>total number of observations within row</p></dd>
+
+<dt>col.observed</dt>
+<dd><p>total number of observations within column</p></dd>
+
+<dt>total.observed</dt>
+<dd><p>total number of observations within the table</p></dd>
+
+<dt>phi</dt>
+<dd><p>phi coeffcients, see <code><a href="dot-augment_and_add_phi.html">.augment_and_add_phi()</a></code></p></dd>
+
 
 </dl></div>
 
@@ -205,6 +217,17 @@ the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.or
 <span class="r-in"><span>  <span class="fu">stat_cross</span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">22</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_steps.html" class="external-link">scale_fill_steps2</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, show.limits <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># custom shape and fill colour based on phi coeffients</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    x <span class="op">=</span> <span class="va">Class</span>, y <span class="op">=</span> <span class="va">Survived</span>, weight <span class="op">=</span> <span class="va">Freq</span>,</span></span>
+<span class="r-in"><span>    size <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">observed</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">stat_cross</span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">22</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_steps.html" class="external-link">scale_fill_steps2</a></span><span class="op">(</span>show.limits <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plotting the number of observations as a table</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span></span>

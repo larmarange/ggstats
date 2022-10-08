@@ -74,7 +74,7 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggcoef_model</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
-<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -97,7 +97,7 @@
 <span><span class="fu">ggcoef_compare</span><span class="op">(</span></span>
 <span>  <span class="va">models</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
-<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -119,7 +119,7 @@
 <span>  <span class="va">model</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
 <span>  y.level_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -212,7 +212,7 @@ be used for x-axis</p></dd>
 <dt>categorical_terms_pattern</dt>
 <dd><p>a <a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue pattern</a> for
 labels of categorical terms with treatment or sum contrasts
-(see <code><a href="https://rdrr.io/pkg/broom.helpers/man/model_list_terms_levels.html" class="external-link">model_list_terms_levels()</a></code>)</p></dd>
+(see <code><a href="https://larmarange.github.io/broom.helpers/reference/model_list_terms_levels.html" class="external-link">model_list_terms_levels()</a></code>)</p></dd>
 
 
 <dt>add_reference_rows</dt>
@@ -231,8 +231,8 @@ for those no reference row should be added, when <code>add_reference_rows = TRUE
 <dt>include</dt>
 <dd><p>variables to include. Accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a>
 syntax. Use <code>-</code> to remove a variable. Default is <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>.
-See also <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_dichotomous()</a></code>
-and <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
+See also <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous()</a></code>
+and <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
 
 
 <dt>significance</dt>
@@ -395,7 +395,7 @@ examples), more information in the documentation of <code><a href="https://ggplo
     <div id="details">
     <h2>Details</h2>
     <p><code>ggcoef_model()</code>, <code>ggcoef_multinom()</code> and <code>ggcoef_compare()</code> use
-<code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code> to obtain a <code>tibble</code> of the model
+<code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code> to obtain a <code>tibble</code> of the model
 coefficients, apply additional data transformation and then pass the
 produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.</p>
 <p>For more control, you can use the argument <code>return_data = TRUE</code> to
@@ -499,7 +499,7 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod_titanic</span>,</span></span>
 <span class="r-in"><span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  categorical_terms_pattern <span class="op">=</span></span></span>
 <span class="r-in"><span>    <span class="st">"{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}"</span>,</span></span>
 <span class="r-in"><span>  show_p_values <span class="op">=</span> <span class="cn">FALSE</span></span></span>
