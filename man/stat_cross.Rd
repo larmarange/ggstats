@@ -74,7 +74,7 @@ from \pkg{broom}.
 }
 \section{Aesthetics}{
 
-\code{stat_prop} requires the \strong{x} and the \strong{y} aesthetics.
+\code{stat_cross} requires the \strong{x} and the \strong{y} aesthetics.
 }
 
 \section{Computed variables}{

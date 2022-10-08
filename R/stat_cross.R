@@ -12,7 +12,7 @@
 #'   If `TRUE`, missing values are silently removed.
 #' @param keep.zero.cells If \code{TRUE}, cells with no observations are kept.
 #' @section Aesthetics:
-#' \code{stat_prop} requires the \strong{x} and the \strong{y} aesthetics.
+#' \code{stat_cross} requires the \strong{x} and the \strong{y} aesthetics.
 #' @section Computed variables:
 #' \describe{
 #'   \item{observed}{number of observations in x,y}
@@ -117,6 +117,12 @@ StatCross <- ggplot2::ggproto("StatCross", ggplot2::Stat,
 
     # compute cross statistics
     panel <- broom::augment(chisq.test(xtabs(weight ~ y + x, data = data)))
+    panel$.phi <- with(
+      data,
+      GDAtools::phi.table(y, x, weight)
+    ) %>%
+      as.data.frame() %>%
+      dplyr::pull(.data$Freq)
 
     panel_names <- names(panel)
     for (to_name in c(
