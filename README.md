@@ -114,8 +114,8 @@ ggplot(as.data.frame(Titanic)) +
 ``` r
 library(survey, quietly = TRUE)
 #> 
-#> Attachement du package : 'survey'
-#> L'objet suivant est masqué depuis 'package:graphics':
+#> Attaching package: 'survey'
+#> The following object is masked from 'package:graphics':
 #> 
 #>     dotchart
 dw <- svydesign(
