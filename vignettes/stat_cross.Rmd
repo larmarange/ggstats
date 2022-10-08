@@ -29,8 +29,12 @@ This statistic is intended to be used with two discrete variables mapped to **x*
 - **expected**: expected count under the null hypothesis
 - **resid**: Pearson's residual
 - **std.resid**: standardized residual
+- **row.observed**: total number of observations within row
+- **col.observed**: total number of observations within column
+- **total.observed**: total number of observations within the table
+- **phi**: phi coeffcients, see [.augment_and_add_phi()]
 
-By default, `stat_cross()` is using `ggplot2::geom_points()`. If you can to plot the number of observations, you need to map `after_stat(observed)` to an aesthetic (here **size**):
+By default, `stat_cross()` is using `ggplot2::geom_points()`. If you want to plot the number of observations, you need to map `after_stat(observed)` to an aesthetic (here **size**):
 
 ```{r}
 d <- as.data.frame(Titanic)
