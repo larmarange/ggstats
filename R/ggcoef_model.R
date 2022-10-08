@@ -631,19 +631,19 @@ ggcoef_plot <- function(
   }
 
   # mapping
-  mapping <- ggplot2::aes_string(x = x, y = y)
+  mapping <- ggplot2::aes(x = .data[[x]], y = .data[[y]])
 
   errorbar <- errorbar & all(c("conf.low", "conf.high") %in% names(data))
   if (errorbar) {
-    mapping$xmin <- ggplot2::aes_string(xmin = "conf.low")$xmin
-    mapping$xmax <- ggplot2::aes_string(xmax = "conf.high")$xmax
+    mapping$xmin <- ggplot2::aes(xmin = .data[["conf.low"]])$xmin
+    mapping$xmax <- ggplot2::aes(xmax = .data[["conf.high"]])$xmax
   }
   if (!is.null(shape) && shape %in% names(data)) {
-    mapping$shape <- ggplot2::aes_string(shape = shape)$shape
+    mapping$shape <- ggplot2::aes(shape = .data[[shape]])$shape
   }
   if (!is.null(colour) && colour %in% names(data)) {
-    mapping$colour <- ggplot2::aes_string(colour = colour)$colour
-    mapping$group <- ggplot2::aes_string(group = colour)$group
+    mapping$colour <- ggplot2::aes(colour = .data[[colour]])$colour
+    mapping$group <- ggplot2::aes(group = .data[[colour]])$group
   }
 
   # position
@@ -658,8 +658,8 @@ ggcoef_plot <- function(
   if (stripped_rows)
     p <- p +
       geom_stripped_rows(
-        mapping = ggplot2::aes_string(
-          odd = ".fill", even = ".fill",
+        mapping = ggplot2::aes(
+          odd = .data[[".fill"]], even = .data[[".fill"]],
           colour = NULL, linetype = NULL
         )
       )

@@ -52,7 +52,7 @@ ggsurvey <- function(design = NULL, mapping = NULL, ...) {
     mapping <- ggplot2::aes()
   }
 
-  mapping$weight <- ggplot2::aes_string(weight = ".weights")$weight
+  mapping$weight <- ggplot2::aes(weight = .data[[".weights"]])$weight
 
   ggplot2::ggplot(data, mapping, ...)
 }
