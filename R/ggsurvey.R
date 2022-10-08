@@ -1,24 +1,23 @@
 #' Easy ggplot2 with survey objects
 #'
-#' A function to facilitate \code{ggplot2} graphs using a survey object.
+#' A function to facilitate `ggplot2` graphs using a survey object.
 #' It will initiate a ggplot and map survey weights to the
 #' corresponding aesthetic.
 #'
 #' Graphs will be correct as long as only weights are required
 #' to compute the graph. However, statistic or geometry requiring
-#' correct variance computation (like
-#' \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}}) will
+#' correct variance computation (like [ggplot2::geom_smooth()]) will
 #' be statistically incorrect.
 #'
 #' @param design A survey design object, usually created with
-#' \code{\link[survey:svydesign]{survey::svydesign()}}
+#' [survey::svydesign()]
 #' @param mapping Default list of aesthetic mappings to use for plot,
-#' to be created with \code{\link[ggplot2:aes]{ggplot2::aes()}}.
+#' to be created with [ggplot2::aes()].
 #' @param ... Other arguments passed on to methods. Not currently used.
 #' @importFrom stats weights
 #' @export
 #' @examplesIf interactive()
-#' if (require(survey) & require(ggplot2)) {
+#' if (require(survey) && require(ggplot2)) {
 #'   data(api)
 #'   dstrat <- svydesign(
 #'     id = ~1, strata = ~stype,

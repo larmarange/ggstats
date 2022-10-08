@@ -2,15 +2,15 @@
 #'
 #' Calculate significance stars
 #'
-#' @param x numeric values that will be compared to the \code{point},
-#' \code{one}, \code{two}, and \code{three} values
+#' @param x numeric values that will be compared to the `point`,
+#' `one`, `two`, and `three` values
 #' @param three threshold below which to display three stars
 #' @param two threshold below which to display two stars
 #' @param one threshold below which to display one star
 #' @param point threshold below which to display one point
-#' (\code{NULL} to deactivate)
+#' (`NULL` to deactivate)
 #' @return character vector containing the appropriate number of
-#' stars for each \code{x} value
+#' stars for each `x` value
 #' @author Joseph Larmarange
 #' @export
 #' @examples

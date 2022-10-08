@@ -91,6 +91,8 @@ aesthetics \code{odd} and \code{even} that receive color codes.
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(tips, package = "reshape")
+library(ggplot2)
+
 p <- ggplot(tips) +
   aes(x = time, y = day) +
   geom_count() +

@@ -1,7 +1,7 @@
 #' Compute weighted y mean
 #'
-#' This statistic will compute the mean of \strong{y} aesthetic for
-#' each unique value of \strong{x}, taking into account \strong{weight}
+#' This statistic will compute the mean of **y** aesthetic for
+#' each unique value of **x**, taking into account **weight**
 #' aesthetic if provided.
 #'
 #' @section Computed variables:

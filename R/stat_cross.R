@@ -1,18 +1,16 @@
 #' Compute cross-tabulation statistics
 #'
-#' Computes statistics of a 2-dimensional matrix using
-#' \code{\link[broom]{augment.htest}}
-#' from \pkg{broom}.
+#' Computes statistics of a 2-dimensional matrix using [broom::augment.htest].
 #'
 #' @inheritParams ggplot2::stat_identity
 #' @param geom Override the default connection with
 #' [ggplot2::geom_point()].
-#' @param na.rm If \code{TRUE}, the default, missing values are
+#' @param na.rm If `TRUE`, the default, missing values are
 #' removed with a warning.
 #'   If `TRUE`, missing values are silently removed.
-#' @param keep.zero.cells If \code{TRUE}, cells with no observations are kept.
+#' @param keep.zero.cells If `TRUE`, cells with no observations are kept.
 #' @section Aesthetics:
-#' \code{stat_cross} requires the \strong{x} and the \strong{y} aesthetics.
+#' `stat_cross()` requires the **x** and the **y** aesthetics.
 #' @section Computed variables:
 #' \describe{
 #'   \item{observed}{number of observations in x,y}

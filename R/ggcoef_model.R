@@ -552,8 +552,8 @@ ggcoef_data <- function(
 
 #' @describeIn ggcoef_model SOME DESCRIPTION HERE
 #' @param data a data frame containing data to be plotted,
-#' typically the output of [ggcoef_model()], [ggcoef_compare()]
-#' or [ggcoef_multinom()] with the option `return_data = TRUE`
+#' typically the output of `ggcoef_model()`, `ggcoef_compare()`
+#' or `ggcoef_multinom()` with the option `return_data = TRUE`
 #' @param x,y variables mapped to x and y axis
 #' @param exponentiate if `TRUE` a logarithmic scale will
 #' be used for x-axis

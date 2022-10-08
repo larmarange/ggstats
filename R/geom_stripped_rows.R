@@ -1,7 +1,7 @@
 #' Alternating Background Color
 #'
 #' Add alternating background color along the y-axis. The geom takes default
-#' aesthetics \code{odd} and \code{even} that receive color codes.
+#' aesthetics `odd` and `even` that receive color codes.
 #'
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_rect
@@ -11,6 +11,8 @@
 #' @export
 #' @examplesIf interactive()
 #' data(tips, package = "reshape")
+#' library(ggplot2)
+#'
 #' p <- ggplot(tips) +
 #'   aes(x = time, y = day) +
 #'   geom_count() +

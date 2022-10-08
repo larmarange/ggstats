@@ -68,13 +68,11 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 \item{keep.zero.cells}{If \code{TRUE}, cells with no observations are kept.}
 }
 \description{
-Computes statistics of a 2-dimensional matrix using
-\code{\link[broom]{augment.htest}}
-from \pkg{broom}.
+Computes statistics of a 2-dimensional matrix using \link[broom:augment.htest]{broom::augment.htest}.
 }
 \section{Aesthetics}{
 
-\code{stat_cross} requires the \strong{x} and the \strong{y} aesthetics.
+\code{stat_cross()} requires the \strong{x} and the \strong{y} aesthetics.
 }
 
 \section{Computed variables}{

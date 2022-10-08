@@ -23,13 +23,12 @@ corresponding aesthetic.
 \details{
 Graphs will be correct as long as only weights are required
 to compute the graph. However, statistic or geometry requiring
-correct variance computation (like
-\code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}}) will
+correct variance computation (like \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}}) will
 be statistically incorrect.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-if (require(survey) & require(ggplot2)) {
+if (require(survey) && require(ggplot2)) {
   data(api)
   dstrat <- svydesign(
     id = ~1, strata = ~stype,

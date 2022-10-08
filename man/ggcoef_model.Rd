@@ -167,8 +167,8 @@ for plotting instead of the plot}
 (see examples)}
 
 \item{data}{a data frame containing data to be plotted,
-typically the output of \code{\link[=ggcoef_model]{ggcoef_model()}}, \code{\link[=ggcoef_compare]{ggcoef_compare()}}
-or \code{\link[=ggcoef_multinom]{ggcoef_multinom()}} with the option \code{return_data = TRUE}}
+typically the output of \code{ggcoef_model()}, \code{ggcoef_compare()}
+or \code{ggcoef_multinom()} with the option \code{return_data = TRUE}}
 
 \item{x, y}{variables mapped to x and y axis}
 

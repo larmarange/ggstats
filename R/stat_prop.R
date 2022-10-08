@@ -1,9 +1,9 @@
 #' Compute proportions according to custom denominator
 #'
-#' \code{stat_prop} is a variation of [ggplot2::stat_count()] allowing to
-#' compute custom proportions according to the \strong{by} aesthetic defining
-#' the denominator (i.e. all proportions for a same value of \strong{by} will
-#' sum to 1). The \code{by} aesthetic should be a factor.
+#' `stat_prop()` is a variation of [ggplot2::stat_count()] allowing to
+#' compute custom proportions according to the **by** aesthetic defining
+#' the denominator (i.e. all proportions for a same value of **by** will
+#' sum to 1). The **by** aesthetic should be a factor.
 #'
 #' @inheritParams ggplot2::stat_count
 #' @param geom Override the default connection with [ggplot2::geom_bar()].
