@@ -88,7 +88,7 @@ Computes statistics of a 2-dimensional matrix using \link[broom:augment.htest]{b
 \item{row.observed}{total number of observations within row}
 \item{col.observed}{total number of observations within column}
 \item{total.observed}{total number of observations within the table}
-\item{phi}{phi coeffcients, see \code{\link[=.augment_and_add_phi]{.augment_and_add_phi()}}}
+\item{phi}{phi coeffcients, see \code{\link[=augment_chisq_add_phi]{augment_chisq_add_phi()}}}
 }
 }
 

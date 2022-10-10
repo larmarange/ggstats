@@ -23,7 +23,7 @@
 #'   \item{row.observed}{total number of observations within row}
 #'   \item{col.observed}{total number of observations within column}
 #'   \item{total.observed}{total number of observations within the table}
-#'   \item{phi}{phi coeffcients, see [.augment_and_add_phi()]}
+#'   \item{phi}{phi coeffcients, see [augment_chisq_add_phi()]}
 #' }
 #'
 #' @export
@@ -129,7 +129,7 @@ StatCross <- ggplot2::ggproto(
     }
 
     # compute cross statistics
-    panel <- .augment_and_add_phi(
+    panel <- augment_chisq_add_phi(
       chisq.test(xtabs(weight ~ y + x, data = data))
     )
 
@@ -184,7 +184,7 @@ StatCross <- ggplot2::ggproto(
     (.prop - rp * cp) / sqrt(rp * (1 - rp) * cp * (1 - cp))
   }
 
-#' Augment a chi-square test and compute phi coefficients
+#' Augment a chi-squared test and compute phi coefficients
 #' @details
 #' Phi coeffcients are a measurement of the degree of association
 #' between two binary variables.
@@ -195,12 +195,18 @@ StatCross <- ggplot2::ggproto(
 #' - A value between +0.3 to +0.7 indicates a weak positive association.
 #' - A value between +0.7 to +1.0 indicates a strong positive association.
 #' @export
-#' @param x a chi-square test as returned by [stats::chisq.test()]
+#' @param x a chi-squared test as returned by [stats::chisq.test()]
 #' @seealso [stat_cross()], `GDAtools::phi.table()` or `psych::phi()`
 #' @examples
 #' tab <- xtabs(Freq ~ Sex + Class, data = as.data.frame(Titanic))
-#' .augment_and_add_phi(chisq.test(tab))
-.augment_and_add_phi <- function(x) {
+#' augment_chisq_add_phi(chisq.test(tab))
+augment_chisq_add_phi <- function(x) {
+  if (!inherits(x, "htest") && names(x$statistic) != "X-squared")
+    cli::cli_abort(paste(
+      "{.arg x} should be the result of a chi-squared test",
+      "(see {.fn stats::chisq.test}).")
+    )
+
   broom::augment(x) %>%
     dplyr::group_by(dplyr::across(1)) %>%
     dplyr::mutate(.row.observed = sum(.data$.observed)) %>%

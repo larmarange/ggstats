@@ -15,6 +15,7 @@ URL: https://larmarange.github.io/ggstats/
 BugReports: https://github.com/larmarange/ggstats/issues
 Imports: 
     broom.helpers,
+    cli,
     dplyr,
     forcats,
     ggplot2,

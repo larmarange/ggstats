@@ -36,13 +36,13 @@
 #' }
 ggsurvey <- function(design = NULL, mapping = NULL, ...) {
   if (!inherits(design, "survey.design")) {
-    stop("'design' should be a 'survey.design' object.")
+    cli::cli_abort("{.var design} should be a {.cls survey.design} object.")
   }
   if (!requireNamespace("survey", quietly = TRUE)) {
-    stop("survey package is required.")
+    cli::cli_abort("{.pkg survey} package is required.")
   }
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("ggplot2 package is required.")
+    cli::cli_abort("{.pkg ggplot2} package is required.")
   }
   data <- design$variables
   data$.weights <- weights(design)
