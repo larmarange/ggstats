@@ -25,4 +25,4 @@ reference:
   contents:
   - ggsurvey
   - signif_stars
-  - .augment_chisq_add_phi
+  - augment_chisq_add_phi
