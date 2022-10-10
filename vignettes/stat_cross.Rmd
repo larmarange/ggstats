@@ -32,7 +32,7 @@ This statistic is intended to be used with two discrete variables mapped to **x*
 - **row.observed**: total number of observations within row
 - **col.observed**: total number of observations within column
 - **total.observed**: total number of observations within the table
-- **phi**: phi coeffcients, see [.augment_and_add_phi()]
+- **phi**: phi coefficients, see [augment_chisq_add_phi()]
 
 By default, `stat_cross()` is using `ggplot2::geom_points()`. If you want to plot the number of observations, you need to map `after_stat(observed)` to an aesthetic (here **size**):
 

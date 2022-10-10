@@ -60,7 +60,7 @@ test_that("phi coefficients", {
     as.data.frame() %>%
     xtabs(Freq ~ Sex + Class, data = .) %>%
     chisq.test() %>%
-    .augment_and_add_phi() %>%
+    augment_chisq_add_phi() %>%
     dplyr::mutate(.phi = round(.data$.phi, digits = 3))
   expect_equal(
     res$.phi,

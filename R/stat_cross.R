@@ -23,7 +23,7 @@
 #'   \item{row.observed}{total number of observations within row}
 #'   \item{col.observed}{total number of observations within column}
 #'   \item{total.observed}{total number of observations within the table}
-#'   \item{phi}{phi coeffcients, see [.augment_and_add_phi()]}
+#'   \item{phi}{phi coeffcients, see [augment_chisq_add_phi()]}
 #' }
 #'
 #' @export
@@ -129,7 +129,7 @@ StatCross <- ggplot2::ggproto(
     }
 
     # compute cross statistics
-    panel <- .augment_and_add_phi(
+    panel <- augment_chisq_add_phi(
       chisq.test(xtabs(weight ~ y + x, data = data))
     )
 
@@ -199,8 +199,8 @@ StatCross <- ggplot2::ggproto(
 #' @seealso [stat_cross()], `GDAtools::phi.table()` or `psych::phi()`
 #' @examples
 #' tab <- xtabs(Freq ~ Sex + Class, data = as.data.frame(Titanic))
-#' .augment_and_add_phi(chisq.test(tab))
-.augment_and_add_phi <- function(x) {
+#' augment_chisq_add_phi(chisq.test(tab))
+augment_chisq_add_phi <- function(x) {
   broom::augment(x) %>%
     dplyr::group_by(dplyr::across(1)) %>%
     dplyr::mutate(.row.observed = sum(.data$.observed)) %>%
