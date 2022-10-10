@@ -2,15 +2,15 @@
 % Please edit documentation in R/stat_cross.R
 \name{augment_chisq_add_phi}
 \alias{augment_chisq_add_phi}
-\title{Augment a chi-square test and compute phi coefficients}
+\title{Augment a chi-squared test and compute phi coefficients}
 \usage{
 augment_chisq_add_phi(x)
 }
 \arguments{
-\item{x}{a chi-square test as returned by \code{\link[stats:chisq.test]{stats::chisq.test()}}}
+\item{x}{a chi-squared test as returned by \code{\link[stats:chisq.test]{stats::chisq.test()}}}
 }
 \description{
-Augment a chi-square test and compute phi coefficients
+Augment a chi-squared test and compute phi coefficients
 }
 \details{
 Phi coeffcients are a measurement of the degree of association
