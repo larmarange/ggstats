@@ -70,7 +70,10 @@ stat_prop <- function(mapping = NULL,
     ...
   )
   if (!is.null(params$y)) {
-    cli::cli_abort("{.fn stat_prop} must not be used with a {.arg y} aesthetic.", call. = FALSE)
+    cli::cli_abort(
+      "{.fn stat_prop} must not be used with a {.arg y} aesthetic.",
+      call. = FALSE
+    )
   }
 
   layer(
@@ -105,10 +108,16 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     has_x <- !(is.null(data$x) && is.null(params$x))
     has_y <- !(is.null(data$y) && is.null(params$y))
     if (!has_x && !has_y) {
-      cli::cli_abort("{.fn stat_prop} requires an {.arg x} or {.arg y} aesthetic.", call. = FALSE)
+      cli::cli_abort(
+        "{.fn stat_prop} requires an {.arg x} or {.arg y} aesthetic.",
+        call. = FALSE
+      )
     }
     if (has_x && has_y) {
-      cli::cli_abort("{.fn stat_prop} can only have an {.arg x} or an {.arg y} aesthetic.", call. = FALSE)
+      cli::cli_abort(
+        "{.fn stat_prop} can only have an {.arg x} or an {.arg y} aesthetic.",
+        call. = FALSE
+      )
     }
     # there is an unresolved bug when by is a character vector. To be explored.
     if (is.character(data$by)) {
