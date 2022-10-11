@@ -82,12 +82,10 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
           xmin = xfrom,
           xmax = xto
         ) %>%
-        dplyr::select(
-          .data$xmin, .data$xmax,
-          .data$ymin, .data$ymax,
-          .data$odd, .data$even,
-          .data$alpha, .data$colour, .data$linetype, .data$size
-        ) %>%
+        dplyr::select(dplyr::all_of(c(
+          "xmin", "xmax", "ymin", "ymax", "odd", "even",
+          "alpha", "colour", "linetype", "size"
+        ))) %>%
         dplyr::distinct(.data$ymin, .keep_all = TRUE) %>%
         dplyr::arrange(.data$ymin) %>%
         dplyr::mutate(
@@ -98,7 +96,7 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
             false = .data$even
           )
         ) %>%
-        dplyr::select(-.data$.n, -.data$odd, -.data$even),
+        dplyr::select(-dplyr::all_of(c(".n", "odd", "even"))),
       panel_params,
       coord
     )
@@ -152,12 +150,10 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
           ymin = yfrom,
           ymax = yto
         ) %>%
-        dplyr::select(
-          .data$xmin, .data$xmax,
-          .data$ymin, .data$ymax,
-          .data$odd, .data$even,
-          .data$alpha, .data$colour, .data$linetype, .data$size
-        ) %>%
+        dplyr::select(dplyr::all_of(c(
+          "xmin", "xmax", "ymin", "ymax", "odd", "even",
+          "alpha", "colour", "linetype", "size"
+        ))) %>%
         dplyr::distinct(.data$xmin, .keep_all = TRUE) %>%
         dplyr::arrange(.data$xmin) %>%
         dplyr::mutate(
@@ -168,7 +164,7 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
             false = .data$even
           )
         ) %>%
-        dplyr::select(-.data$.n, -.data$odd, -.data$even),
+        dplyr::select(-dplyr::all_of(c(".n", "odd", "even"))),
       panel_params,
       coord
     )

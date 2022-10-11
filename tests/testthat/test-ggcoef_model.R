@@ -208,7 +208,7 @@ test_that("ggcoef_model() works with tieders not returning p-values", {
   my_tidier <- function(x, ...) {
     x %>%
       broom::tidy(...) %>%
-      dplyr::select(-.data$p.value)
+      dplyr::select(-dplyr::all_of("p.value"))
   }
   vdiffr::expect_doppelganger(
     "ggcoef_model() no p values",

@@ -160,7 +160,7 @@ StatCross <- ggplot2::ggproto(
     # keeping first value of other aesthetics in data
     panel <- merge(
       panel,
-      dplyr::select(data, -.data$PANEL),
+      dplyr::select(data, -dplyr::all_of("PANEL")),
       by = c("x", "y"),
       all.x = TRUE
     )
