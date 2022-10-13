@@ -9,3 +9,4 @@
 tests/testthat/_snaps
 tests/testthat/Rplots.pdf
 .lintr
+^cran-comments\.md$
