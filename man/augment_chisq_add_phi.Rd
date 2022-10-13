@@ -13,7 +13,7 @@ augment_chisq_add_phi(x)
 Augment a chi-squared test and compute phi coefficients
 }
 \details{
-Phi coeffcients are a measurement of the degree of association
+Phi coefficients are a measurement of the degree of association
 between two binary variables.
 \itemize{
 \item A value between -1.0 to -0.7 indicates a strong negative association.

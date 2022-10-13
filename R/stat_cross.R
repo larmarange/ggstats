@@ -23,7 +23,7 @@
 #'   \item{row.observed}{total number of observations within row}
 #'   \item{col.observed}{total number of observations within column}
 #'   \item{total.observed}{total number of observations within the table}
-#'   \item{phi}{phi coeffcients, see [augment_chisq_add_phi()]}
+#'   \item{phi}{phi coefficients, see [augment_chisq_add_phi()]}
 #' }
 #'
 #' @export
@@ -186,7 +186,7 @@ StatCross <- ggplot2::ggproto(
 
 #' Augment a chi-squared test and compute phi coefficients
 #' @details
-#' Phi coeffcients are a measurement of the degree of association
+#' Phi coefficients are a measurement of the degree of association
 #' between two binary variables.
 #'
 #' - A value between -1.0 to -0.7 indicates a strong negative association.
