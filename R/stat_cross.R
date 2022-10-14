@@ -79,13 +79,6 @@
 #'   facet_grid(Sex ~ .) +
 #'   labs(fill = "Standardized residuals") +
 #'   theme_minimal()
-#'
-#' # can work with continuous or character variables
-#' data(tips, package = "reshape")
-#' ggplot(tips) +
-#'   aes(x = tip, y = as.character(day), size = after_stat(observed)) +
-#'   stat_cross(alpha = .1, color = "blue") +
-#'   scale_size_area(max_size = 12)
 stat_cross <- function(mapping = NULL, data = NULL,
                        geom = "point", position = "identity",
                        ...,

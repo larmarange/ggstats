@@ -233,27 +233,25 @@ examples), more information in the documentation of \code{\link[ggplot2:facet_gr
 A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.
 }
 \description{
-Plot model coefficients
-}
-\details{
 \code{ggcoef_model()}, \code{ggcoef_multinom()} and \code{ggcoef_compare()} use
 \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}} to obtain a \code{tibble} of the model
 coefficients, apply additional data transformation and then pass the
 produced \code{tibble} to \code{ggcoef_plot()} to generate the plot.
-
+}
+\details{
 For more control, you can use the argument \code{return_data = TRUE} to
 get the produced \code{tibble}, apply any transformation of your own and
 then pass your customized \code{tibble} to \code{ggcoef_plot()}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ggcoef_compare()}: Designed for displaying several models on the same
+\item \code{ggcoef_compare()}: designed for displaying several models on the same
 plot.
 
-\item \code{ggcoef_multinom()}: A variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
+\item \code{ggcoef_multinom()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
 multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet::multinom()}}.
 
-\item \code{ggcoef_plot()}: SOME DESCRIPTION HERE
+\item \code{ggcoef_plot()}: plot a tidy \code{tibble} of coefficients
 
 }}
 \examples{
@@ -371,6 +369,7 @@ if (requireNamespace("emmeans")) {
   ggcoef_model(mod2)
 }
 }
+
 \donttest{
 # Use ggcoef_compare() for comparing several models on the same plot
 mod1 <- lm(Fertility ~ ., data = swiss)
@@ -389,18 +388,18 @@ ggcoef_compare(models, type = "faceted")
 # value for dodged_width (but it will produce some warnings)
 ggcoef_compare(models, dodged_width = -.9)
 }
-\donttest{
+\dontshow{if (requireNamespace("nnet")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
+\donttest{
 # specific function for nnet::multinom models
-if (requireNamespace("nnet")) {
-  mod <- nnet::multinom(Species ~ ., data = iris)
-  ggcoef_multinom(mod, exponentiate = TRUE)
-  ggcoef_multinom(mod, type = "faceted")
-  ggcoef_multinom(
-    mod,
-    type = "faceted",
-    y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
-  )
+mod <- nnet::multinom(Species ~ ., data = iris)
+ggcoef_multinom(mod, exponentiate = TRUE)
+ggcoef_multinom(mod, type = "faceted")
+ggcoef_multinom(
+  mod,
+  type = "faceted",
+  y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
+)
 }
-}
+\dontshow{\}) # examplesIf}
 }

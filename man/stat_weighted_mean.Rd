@@ -86,39 +86,40 @@ aesthetic if provided.
 }
 
 \examples{
+\dontshow{if (requireNamespace("reshape")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{\}) # examplesIf}
 library(ggplot2)
 
-if (requireNamespace("reshape")) {
-  data(tips, package = "reshape")
+data(tips, package = "reshape")
 
+ggplot(tips) +
+  aes(x = day, y = total_bill) +
+  geom_point()
+
+ggplot(tips) +
+  aes(x = day, y = total_bill) +
+  stat_weighted_mean()
+
+ggplot(tips) +
+  aes(x = day, y = total_bill, group = 1) +
+  stat_weighted_mean(geom = "line")
+
+ggplot(tips) +
+  aes(x = day, y = total_bill, colour = sex, group = sex) +
+  stat_weighted_mean(geom = "line")
+
+ggplot(tips) +
+  aes(x = day, y = total_bill, fill = sex) +
+  stat_weighted_mean(geom = "bar", position = "dodge")
+
+# computing a proportion on the fly
+if (requireNamespace("scales")) {
   ggplot(tips) +
-    aes(x = day, y = total_bill) +
-    geom_point()
-
-  ggplot(tips) +
-    aes(x = day, y = total_bill) +
-    stat_weighted_mean()
-
-  ggplot(tips) +
-    aes(x = day, y = total_bill, group = 1) +
-    stat_weighted_mean(geom = "line")
-
-  ggplot(tips) +
-    aes(x = day, y = total_bill, colour = sex, group = sex) +
-    stat_weighted_mean(geom = "line")
-
-  ggplot(tips) +
-    aes(x = day, y = total_bill, fill = sex) +
-    stat_weighted_mean(geom = "bar", position = "dodge")
-
-  # computing a proportion on the fly
-  if (requireNamespace("scales")) {
-    ggplot(tips) +
-      aes(x = day, y = as.integer(smoker == "Yes"), fill = sex) +
-      stat_weighted_mean(geom = "bar", position = "dodge") +
-      scale_y_continuous(labels = scales::percent)
- }
+    aes(x = day, y = as.integer(smoker == "Yes"), fill = sex) +
+    stat_weighted_mean(geom = "bar", position = "dodge") +
+    scale_y_continuous(labels = scales::percent)
 }
+library(ggplot2)
 
 # taking into account some weights
 if (requireNamespace("scales")) {

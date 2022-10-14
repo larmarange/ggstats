@@ -17,24 +17,22 @@
 #' @importFrom stats weights
 #' @return A `ggplot2` plot.
 #' @export
-#' @examples
-#' if (requireNamespace("survey")) {
-#'   data(api, package = "survey")
-#'   dstrat <- survey::svydesign(
-#'     id = ~1, strata = ~stype,
-#'     weights = ~pw, data = apistrat,
-#'     fpc = ~fpc
-#'   )
-#'   ggsurvey(dstrat) +
-#'     ggplot2::aes(x = cnum, y = dnum) +
-#'     ggplot2::geom_count()
+#' @examplesIf requireNamespace("survey")
+#' data(api, package = "survey")
+#' dstrat <- survey::svydesign(
+#'   id = ~1, strata = ~stype,
+#'   weights = ~pw, data = apistrat,
+#'   fpc = ~fpc
+#' )
+#' ggsurvey(dstrat) +
+#'   ggplot2::aes(x = cnum, y = dnum) +
+#'   ggplot2::geom_count()
 #'
-#'   d <- as.data.frame(Titanic)
-#'   dw <- survey::svydesign(ids = ~1, weights = ~Freq, data = d)
-#'   ggsurvey(dw) +
-#'     ggplot2::aes(x = Class, fill = Survived) +
-#'     ggplot2::geom_bar(position = "fill")
-#' }
+#' d <- as.data.frame(Titanic)
+#' dw <- survey::svydesign(ids = ~1, weights = ~Freq, data = d)
+#' ggsurvey(dw) +
+#'   ggplot2::aes(x = Class, fill = Survived) +
+#'   ggplot2::geom_bar(position = "fill")
 ggsurvey <- function(design = NULL, mapping = NULL, ...) {
   if (!inherits(design, "survey.design")) {
     cli::cli_abort("{.var design} should be a {.cls survey.design} object.")

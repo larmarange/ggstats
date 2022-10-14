@@ -1,5 +1,13 @@
 #' Plot model coefficients
 #'
+#' `ggcoef_model()`, `ggcoef_multinom()` and `ggcoef_compare()` use
+#' [broom.helpers::tidy_plus_plus()] to obtain a `tibble` of the model
+#' coefficients, apply additional data transformation and then pass the
+#' produced `tibble` to `ggcoef_plot()` to generate the plot.
+#'
+#' For more control, you can use the argument `return_data = TRUE` to
+#' get the produced `tibble`, apply any transformation of your own and
+#' then pass your customized `tibble` to `ggcoef_plot()`.
 #' @inheritParams broom.helpers::tidy_plus_plus
 #' @param model a regression model object
 #' @param conf.level the confidence level to use for the confidence
@@ -17,15 +25,6 @@
 #' @param return_data if `TRUE`, will return the data.frame used
 #'   for plotting instead of the plot
 #' @param ... parameters passed to [ggcoef_plot()]
-#' @details
-#' `ggcoef_model()`, `ggcoef_multinom()` and `ggcoef_compare()` use
-#' [broom.helpers::tidy_plus_plus()] to obtain a `tibble` of the model
-#' coefficients, apply additional data transformation and then pass the
-#' produced `tibble` to `ggcoef_plot()` to generate the plot.
-#'
-#' For more control, you can use the argument `return_data = TRUE` to
-#' get the produced `tibble`, apply any transformation of your own and
-#' then pass your customized `tibble` to `ggcoef_plot()`.
 #' @return A `ggplot2` plot or a `tibble` if `return_data = TRUE`.
 #' @export
 #' @examples
@@ -236,12 +235,13 @@ ggcoef_model <- function(
   do.call(ggcoef_plot, args)
 }
 
-#' @describeIn ggcoef_model Designed for displaying several models on the same
+#' @describeIn ggcoef_model designed for displaying several models on the same
 #'   plot.
 #' @export
 #' @param models named list of models
 #' @param type a dodged plot or a faceted plot?
 #' @examples
+#'
 #' \donttest{
 #' # Use ggcoef_compare() for comparing several models on the same plot
 #' mod1 <- lm(Fertility ~ ., data = swiss)
@@ -361,25 +361,23 @@ ggcoef_compare <- function(
   do.call(ggcoef_plot, args)
 }
 
-#' @describeIn ggcoef_model A variation of [ggcoef_model()] adapted to
+#' @describeIn ggcoef_model a variation of [ggcoef_model()] adapted to
 #'   multinomial logistic regressions performed with [nnet::multinom()].
 #' @param y.level_label an optional named vector for labeling `y.level`
 #'   (see examples)
 #' @export
-#' @examples
-#' \donttest{
+#' @examplesIf requireNamespace("nnet")
 #'
+#' \donttest{
 #' # specific function for nnet::multinom models
-#' if (requireNamespace("nnet")) {
-#'   mod <- nnet::multinom(Species ~ ., data = iris)
-#'   ggcoef_multinom(mod, exponentiate = TRUE)
-#'   ggcoef_multinom(mod, type = "faceted")
-#'   ggcoef_multinom(
-#'     mod,
-#'     type = "faceted",
-#'     y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
-#'   )
-#' }
+#' mod <- nnet::multinom(Species ~ ., data = iris)
+#' ggcoef_multinom(mod, exponentiate = TRUE)
+#' ggcoef_multinom(mod, type = "faceted")
+#' ggcoef_multinom(
+#'   mod,
+#'   type = "faceted",
+#'   y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
+#' )
 #' }
 ggcoef_multinom <- function(
   model,
@@ -557,7 +555,7 @@ ggcoef_data <- function(
   data
 }
 
-#' @describeIn ggcoef_model SOME DESCRIPTION HERE
+#' @describeIn ggcoef_model plot a tidy `tibble` of coefficients
 #' @param data a data frame containing data to be plotted,
 #' typically the output of `ggcoef_model()`, `ggcoef_compare()`
 #' or `ggcoef_multinom()` with the option `return_data = TRUE`

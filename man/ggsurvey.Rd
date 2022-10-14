@@ -30,21 +30,21 @@ correct variance computation (like \code{\link[ggplot2:geom_smooth]{ggplot2::geo
 be statistically incorrect.
 }
 \examples{
-if (requireNamespace("survey")) {
-  data(api, package = "survey")
-  dstrat <- survey::svydesign(
-    id = ~1, strata = ~stype,
-    weights = ~pw, data = apistrat,
-    fpc = ~fpc
-  )
-  ggsurvey(dstrat) +
-    ggplot2::aes(x = cnum, y = dnum) +
-    ggplot2::geom_count()
+\dontshow{if (requireNamespace("survey")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+data(api, package = "survey")
+dstrat <- survey::svydesign(
+  id = ~1, strata = ~stype,
+  weights = ~pw, data = apistrat,
+  fpc = ~fpc
+)
+ggsurvey(dstrat) +
+  ggplot2::aes(x = cnum, y = dnum) +
+  ggplot2::geom_count()
 
-  d <- as.data.frame(Titanic)
-  dw <- survey::svydesign(ids = ~1, weights = ~Freq, data = d)
-  ggsurvey(dw) +
-    ggplot2::aes(x = Class, fill = Survived) +
-    ggplot2::geom_bar(position = "fill")
-}
+d <- as.data.frame(Titanic)
+dw <- survey::svydesign(ids = ~1, weights = ~Freq, data = d)
+ggsurvey(dw) +
+  ggplot2::aes(x = Class, fill = Survived) +
+  ggplot2::geom_bar(position = "fill")
+\dontshow{\}) # examplesIf}
 }
