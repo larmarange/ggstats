@@ -28,7 +28,6 @@
 #' @return A `ggplot2` plot or a `tibble` if `return_data = TRUE`.
 #' @export
 #' @examples
-#' library(ggplot2)
 #' mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 #' ggcoef_model(mod)
 #'
@@ -82,24 +81,6 @@
 #'     "{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}",
 #'   show_p_values = FALSE
 #' )
-#'
-#' # works also with with polynomial terms
-#' mod_poly <- lm(
-#'   tip ~ poly(total_bill, 3) + day,
-#'   data = tips,
-#' )
-#' ggcoef_model(mod_poly)
-#'
-#' # or with different type of contrasts
-#' # for sum contrasts, the value of the reference term is computed
-#' if (requireNamespace("emmeans")) {
-#'  mod2 <- lm(
-#'    tip ~ day + time + sex,
-#'    data = tips,
-#'    contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
-#'   )
-#'   ggcoef_model(mod2)
-#' }
 #' }
 #' @examplesIf requireNamespace("reshape")
 #'
@@ -144,7 +125,26 @@
 #'
 #' # do not display variable facets but add colour guide
 #' ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE)
+#'
+#' # works also with with polynomial terms
+#' mod_poly <- lm(
+#'   tip ~ poly(total_bill, 3) + day,
+#'   data = tips,
+#' )
+#' ggcoef_model(mod_poly)
+#'
+#' # or with different type of contrasts
+#' # for sum contrasts, the value of the reference term is computed
+#' if (requireNamespace("emmeans")) {
+#'  mod2 <- lm(
+#'    tip ~ day + time + sex,
+#'    data = tips,
+#'    contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
+#'   )
+#'   ggcoef_model(mod2)
 #' }
+#' }
+#'
 ggcoef_model <- function(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
