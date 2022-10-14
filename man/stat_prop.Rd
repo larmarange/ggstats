@@ -120,14 +120,16 @@ ggplot(d) +
     position = position_dodge(0.9), vjust = "bottom"
   )
 
-ggplot(d) +
-  aes(x = Class, fill = Survived, weight = Freq, by = 1) +
-  geom_bar() +
-  geom_text(
-    aes(label = scales::percent(after_stat(prop), accuracy = 1)),
-    stat = "prop",
-    position = position_stack(.5)
-  )
+if (requireNamespace("scales")) {
+  ggplot(d) +
+    aes(x = Class, fill = Survived, weight = Freq, by = 1) +
+    geom_bar() +
+    geom_text(
+      aes(label = scales::percent(after_stat(prop), accuracy = 1)),
+      stat = "prop",
+      position = position_stack(.5)
+    )
+}
 }
 \seealso{
 \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}

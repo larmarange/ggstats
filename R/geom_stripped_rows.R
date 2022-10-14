@@ -11,34 +11,36 @@
 #' @export
 #' @return A `ggplot2` plot with the added geometry.
 #' @examples
-#' data(tips, package = "reshape")
-#' library(ggplot2)
+#' if (requireNamespace("reshape")) {
+#'   data(tips, package = "reshape")
 #'
-#' p <- ggplot(tips) +
-#'   aes(x = time, y = day) +
-#'   geom_count() +
-#'   theme_light()
+#'   library(ggplot2)
+#'   p <- ggplot(tips) +
+#'     aes(x = time, y = day) +
+#'     geom_count() +
+#'     theme_light()
 #'
-#' p
-#' p + geom_stripped_rows()
-#' p + geom_stripped_cols()
-#' p + geom_stripped_rows() + geom_stripped_cols()
+#'   p
+#'   p + geom_stripped_rows()
+#'   p + geom_stripped_cols()
+#'   p + geom_stripped_rows() + geom_stripped_cols()
 #'
-#' p <- ggplot(tips) +
-#'   aes(x = total_bill, y = day) +
-#'   geom_count() +
-#'   theme_light()
-#' p
-#' p + geom_stripped_rows()
-#' p + geom_stripped_rows() + scale_y_discrete(expand = expansion(0, 0.5))
-#' p + geom_stripped_rows(xfrom = 10, xto = 35)
-#' p + geom_stripped_rows(odd = "blue", even = "yellow")
-#' p + geom_stripped_rows(odd = "blue", even = "yellow", alpha = .1)
-#' p + geom_stripped_rows(odd = "#00FF0022", even = "#FF000022")
+#'   p <- ggplot(tips) +
+#'     aes(x = total_bill, y = day) +
+#'     geom_count() +
+#'     theme_light()
+#'   p
+#'   p + geom_stripped_rows()
+#'   p + geom_stripped_rows() + scale_y_discrete(expand = expansion(0, 0.5))
+#'   p + geom_stripped_rows(xfrom = 10, xto = 35)
+#'   p + geom_stripped_rows(odd = "blue", even = "yellow")
+#'   p + geom_stripped_rows(odd = "blue", even = "yellow", alpha = .1)
+#'   p + geom_stripped_rows(odd = "#00FF0022", even = "#FF000022")
 #'
-#' p + geom_stripped_cols()
-#' p + geom_stripped_cols(width = 10)
-#' p + geom_stripped_cols(width = 10, nudge_x = 5)
+#'   p + geom_stripped_cols()
+#'   p + geom_stripped_cols(width = 10)
+#'   p + geom_stripped_cols(width = 10, nudge_x = 5)
+#' }
 geom_stripped_rows <- function(mapping = NULL,
                                data = NULL,
                                stat = "identity",

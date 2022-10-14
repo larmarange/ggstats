@@ -30,21 +30,21 @@ correct variance computation (like \code{\link[ggplot2:geom_smooth]{ggplot2::geo
 be statistically incorrect.
 }
 \examples{
-if (require(survey) && require(ggplot2)) {
-  data(api)
-  dstrat <- svydesign(
+if (requireNamespace("survey")) {
+  data(api, package = "survey")
+  dstrat <- survey::svydesign(
     id = ~1, strata = ~stype,
     weights = ~pw, data = apistrat,
     fpc = ~fpc
   )
   ggsurvey(dstrat) +
-    aes(x = cnum, y = dnum) +
-    geom_count()
+    ggplot2::aes(x = cnum, y = dnum) +
+    ggplot2::geom_count()
 
   d <- as.data.frame(Titanic)
-  dw <- svydesign(ids = ~1, weights = ~Freq, data = d)
+  dw <- survey::svydesign(ids = ~1, weights = ~Freq, data = d)
   ggsurvey(dw) +
-    aes(x = Class, fill = Survived) +
-    geom_bar(position = "fill")
+    ggplot2::aes(x = Class, fill = Survived) +
+    ggplot2::geom_bar(position = "fill")
 }
 }

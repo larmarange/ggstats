@@ -29,45 +29,50 @@
 #' @return A `ggplot2` plot or a `tibble` if `return_data = TRUE`.
 #' @export
 #' @examples
-#' data(tips, package = "reshape")
-#' mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
-#' ggcoef_model(mod_simple)
+#' \donttest{
+#' if (requireNamespace("reshape")) {
+#'   data(tips, package = "reshape")
+#'   mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
+#'   ggcoef_model(mod_simple)
 #'
-#' # custom variable labels
-#' # you can use the labelled package to define variable labels
-#' # before computing model
-#' if (require(labelled)) {
-#'   tips_labelled <- tips %>%
-#'     labelled::set_variable_labels(
-#'       day = "Day of the week",
-#'       time = "Lunch or Dinner",
-#'       total_bill = "Bill's total"
+#'   # custom variable labels
+#'   # you can use the labelled package to define variable labels
+#'   # before computing model
+#'   if (requireNamespace("labelled")) {
+#'     tips_labelled <- tips %>%
+#'       labelled::set_variable_labels(
+#'         day = "Day of the week",
+#'         time = "Lunch or Dinner",
+#'         total_bill = "Bill's total"
+#'       )
+#'     mod_labelled <- lm(tip ~ day + time + total_bill, data = tips_labelled)
+#'     ggcoef_model(mod_labelled)
+#'   }
+#'
+#'   # you can provide custom variable labels with 'variable_labels'
+#'   ggcoef_model(
+#'     mod_simple,
+#'     variable_labels = c(
+#'       day = "Week day",
+#'       time = "Time (lunch or dinner ?)",
+#'       total_bill = "Total of the bill"
 #'     )
-#'   mod_labelled <- lm(tip ~ day + time + total_bill, data = tips_labelled)
-#'   ggcoef_model(mod_labelled)
-#' }
-#' # you can provide custom variable labels with 'variable_labels'
-#' ggcoef_model(
-#'   mod_simple,
-#'   variable_labels = c(
-#'     day = "Week day",
-#'     time = "Time (lunch or dinner ?)",
-#'     total_bill = "Total of the bill"
 #'   )
-#' )
-#' # if labels are too long, you can use 'facet_labeller' to wrap them
-#' ggcoef_model(
-#'   mod_simple,
-#'   variable_labels = c(
-#'     day = "Week day",
-#'     time = "Time (lunch or dinner ?)",
-#'     total_bill = "Total of the bill"
-#'   ),
-#'   facet_labeller = ggplot2::label_wrap_gen(10)
-#' )
+#'   # if labels are too long, you can use 'facet_labeller' to wrap them
+#'   ggcoef_model(
+#'     mod_simple,
+#'     variable_labels = c(
+#'       day = "Week day",
+#'       time = "Time (lunch or dinner ?)",
+#'       total_bill = "Total of the bill"
+#'     ),
+#'     facet_labeller = ggplot2::label_wrap_gen(10)
+#'   )
 #'
-#' # do not display variable facets but add colour guide
-#' ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE)
+#'   # do not display variable facets but add colour guide
+#'   ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE)
+#' }
+#' }
 #'
 #' # a logistic regression example
 #' d_titanic <- as.data.frame(Titanic)
@@ -82,6 +87,7 @@
 #' # use 'exponentiate = TRUE' to get the Odds Ratio
 #' ggcoef_model(mod_titanic, exponentiate = TRUE)
 #'
+#' \donttest{
 #' # display intercepts
 #' ggcoef_model(mod_titanic, exponentiate = TRUE, intercept = TRUE)
 #'
@@ -95,7 +101,7 @@
 #'   categorical_terms_pattern = "{level} (ref: {reference_level})",
 #'   interaction_sep = " x "
 #' ) +
-#' scale_y_discrete(labels = scales::label_wrap(15))
+#'   ggplot2::scale_y_discrete(labels = scales::label_wrap(15))
 #'
 #' # display only a subset of terms
 #' ggcoef_model(mod_titanic, exponentiate = TRUE, include = c("Age", "Class"))
@@ -128,13 +134,14 @@
 #'
 #' # or with different type of contrasts
 #' # for sum contrasts, the value of the reference term is computed
-#' if (require(emmeans)) {
+#' if (requireNamespace("emmeans")) {
 #'  mod2 <- lm(
 #'    tip ~ day + time + sex,
 #'    data = tips,
 #'    contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
 #'   )
 #'   ggcoef_model(mod2)
+#' }
 #' }
 ggcoef_model <- function(
   model,
@@ -235,26 +242,23 @@ ggcoef_model <- function(
 #' @param models named list of models
 #' @param type a dodged plot or a faceted plot?
 #' @examples
+#' \donttest{
+#' # Use ggcoef_compare() for comparing several models on the same plot
+#' mod1 <- lm(Fertility ~ ., data = swiss)
+#' mod2 <- step(mod1, trace = 0)
+#' mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
+#' models <- list(
+#'   "Full model" = mod1,
+#'   "Simplified model" = mod2,
+#'   "With interaction" = mod3
+#' )
 #'
-#' if (require(broom.helpers)) {
-#'   # Use ggcoef_compare() for comparing several models on the same plot
-#'   mod1 <- lm(Fertility ~ ., data = swiss)
-#'   mod2 <- step(mod1, trace = 0)
-#'   mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
-#'   models <- list(
-#'     "Full model" = mod1,
-#'     "Simplified model" = mod2,
-#'     "With interaction" = mod3
-#'   )
+#' ggcoef_compare(models)
+#' ggcoef_compare(models, type = "faceted")
 #'
-#'   ggcoef_compare(models)
-#'   ggcoef_compare(models, type = "faceted")
-#'
-#'   # you can reverse the vertical position of the point by using a negative
-#'   # value for dodged_width (but it will produce some warnings)
-#'   \dontrun{
-#'     ggcoef_compare(models, dodged_width = -.9)
-#'   }
+#' # you can reverse the vertical position of the point by using a negative
+#' # value for dodged_width (but it will produce some warnings)
+#' ggcoef_compare(models, dodged_width = -.9)
 #' }
 ggcoef_compare <- function(
   models,
@@ -363,10 +367,11 @@ ggcoef_compare <- function(
 #'   (see examples)
 #' @export
 #' @examples
+#' \donttest{
 #'
 #' # specific function for nnet::multinom models
-#' if (require(nnet)) {
-#'   mod <- multinom(Species ~ ., data = iris)
+#' if (requireNamespace("nnet")) {
+#'   mod <- nnet::multinom(Species ~ ., data = iris)
 #'   ggcoef_multinom(mod, exponentiate = TRUE)
 #'   ggcoef_multinom(mod, type = "faceted")
 #'   ggcoef_multinom(
@@ -374,6 +379,7 @@ ggcoef_compare <- function(
 #'     type = "faceted",
 #'     y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
 #'   )
+#' }
 #' }
 ggcoef_multinom <- function(
   model,

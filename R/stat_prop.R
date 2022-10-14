@@ -45,14 +45,16 @@
 #'     position = position_dodge(0.9), vjust = "bottom"
 #'   )
 #'
-#' ggplot(d) +
-#'   aes(x = Class, fill = Survived, weight = Freq, by = 1) +
-#'   geom_bar() +
-#'   geom_text(
-#'     aes(label = scales::percent(after_stat(prop), accuracy = 1)),
-#'     stat = "prop",
-#'     position = position_stack(.5)
-#'   )
+#' if (requireNamespace("scales")) {
+#'   ggplot(d) +
+#'     aes(x = Class, fill = Survived, weight = Freq, by = 1) +
+#'     geom_bar() +
+#'     geom_text(
+#'       aes(label = scales::percent(after_stat(prop), accuracy = 1)),
+#'       stat = "prop",
+#'       position = position_stack(.5)
+#'     )
+#' }
 stat_prop <- function(mapping = NULL,
                       data = NULL,
                       geom = "bar",
