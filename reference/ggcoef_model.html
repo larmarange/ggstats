@@ -230,7 +230,7 @@ for those no reference row should be added, when <code>add_reference_rows = TRUE
 
 <dt>include</dt>
 <dd><p>variables to include. Accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a>
-syntax. Use <code>-</code> to remove a variable. Default is <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>.
+syntax. Use <code>-</code> to remove a variable. Default is <code>everything()</code>.
 See also <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous()</a></code>
 and <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
 
@@ -420,51 +420,51 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tips</span>, package <span class="op">=</span> <span class="st">"reshape"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mod_simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_simple</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-1.png" alt="" width="700" height="433"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"reshape"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tips</span>, package <span class="op">=</span> <span class="st">"reshape"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mod_simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_simple</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># custom variable labels</span></span></span>
-<span class="r-in"><span><span class="co"># you can use the labelled package to define variable labels</span></span></span>
-<span class="r-in"><span><span class="co"># before computing model</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      day <span class="op">=</span> <span class="st">"Day of the week"</span>,</span></span>
-<span class="r-in"><span>      time <span class="op">=</span> <span class="st">"Lunch or Dinner"</span>,</span></span>
-<span class="r-in"><span>      total_bill <span class="op">=</span> <span class="st">"Bill's total"</span></span></span>
+<span class="r-in"><span>  <span class="co"># custom variable labels</span></span></span>
+<span class="r-in"><span>  <span class="co"># you can use the labelled package to define variable labels</span></span></span>
+<span class="r-in"><span>  <span class="co"># before computing model</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        day <span class="op">=</span> <span class="st">"Day of the week"</span>,</span></span>
+<span class="r-in"><span>        time <span class="op">=</span> <span class="st">"Lunch or Dinner"</span>,</span></span>
+<span class="r-in"><span>        total_bill <span class="op">=</span> <span class="st">"Bill's total"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">mod_labelled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips_labelled</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_labelled</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># you can provide custom variable labels with 'variable_labels'</span></span></span>
+<span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">mod_simple</span>,</span></span>
+<span class="r-in"><span>    variable_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      day <span class="op">=</span> <span class="st">"Week day"</span>,</span></span>
+<span class="r-in"><span>      time <span class="op">=</span> <span class="st">"Time (lunch or dinner ?)"</span>,</span></span>
+<span class="r-in"><span>      total_bill <span class="op">=</span> <span class="st">"Total of the bill"</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">mod_labelled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips_labelled</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_labelled</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: labelled</span>
-<span class="r-plt img"><img src="ggcoef_model-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="co"># you can provide custom variable labels with 'variable_labels'</span></span></span>
-<span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">mod_simple</span>,</span></span>
-<span class="r-in"><span>  variable_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    day <span class="op">=</span> <span class="st">"Week day"</span>,</span></span>
-<span class="r-in"><span>    time <span class="op">=</span> <span class="st">"Time (lunch or dinner ?)"</span>,</span></span>
-<span class="r-in"><span>    total_bill <span class="op">=</span> <span class="st">"Total of the bill"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="co"># if labels are too long, you can use 'facet_labeller' to wrap them</span></span></span>
-<span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">mod_simple</span>,</span></span>
-<span class="r-in"><span>  variable_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    day <span class="op">=</span> <span class="st">"Week day"</span>,</span></span>
-<span class="r-in"><span>    time <span class="op">=</span> <span class="st">"Time (lunch or dinner ?)"</span>,</span></span>
-<span class="r-in"><span>    total_bill <span class="op">=</span> <span class="st">"Total of the bill"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  facet_labeller <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_wrap_gen</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span>  <span class="co"># if labels are too long, you can use 'facet_labeller' to wrap them</span></span></span>
+<span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">mod_simple</span>,</span></span>
+<span class="r-in"><span>    variable_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      day <span class="op">=</span> <span class="st">"Week day"</span>,</span></span>
+<span class="r-in"><span>      time <span class="op">=</span> <span class="st">"Time (lunch or dinner ?)"</span>,</span></span>
+<span class="r-in"><span>      total_bill <span class="op">=</span> <span class="st">"Total of the bill"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    facet_labeller <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_wrap_gen</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># do not display variable facets but add colour guide</span></span></span>
-<span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_simple</span>, facet_row <span class="op">=</span> <span class="cn">NULL</span>, colour_guide <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span>  <span class="co"># do not display variable facets but add colour guide</span></span></span>
+<span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_simple</span>, facet_row <span class="op">=</span> <span class="cn">NULL</span>, colour_guide <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-plt img"><img src="ggcoef_model-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># a logistic regression example</span></span></span>
 <span class="r-in"><span><span class="va">d_titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span></span>
@@ -478,11 +478,12 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># use 'exponentiate = TRUE' to get the Odds Ratio</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># display intercepts</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, intercept <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-7.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># customize terms labels</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
@@ -494,25 +495,25 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span>  categorical_terms_pattern <span class="op">=</span> <span class="st">"{level} (ref: {reference_level})"</span>,</span></span>
 <span class="r-in"><span>  interaction_sep <span class="op">=</span> <span class="st">" x "</span></span></span>
 <span class="r-in"><span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'y' is already present. Adding another scale for 'y', which will</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing scale.</span>
-<span class="r-plt img"><img src="ggcoef_model-8.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display only a subset of terms</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Age"</span>, <span class="st">"Class"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-9.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># do not change points' shape based on significance</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, significance <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-10.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># a black and white version</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>  colour <span class="op">=</span> <span class="cn">NULL</span>, stripped_rows <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-11.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show dichotomous terms on one row</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
@@ -523,7 +524,7 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span>    <span class="st">"{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}"</span>,</span></span>
 <span class="r-in"><span>  show_p_values <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-12.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># works also with with polynomial terms</span></span></span>
 <span class="r-in"><span><span class="va">mod_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span></span></span>
@@ -531,11 +532,11 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">tips</span>,</span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_poly</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-13.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># or with different type of contrasts</span></span></span>
 <span class="r-in"><span><span class="co"># for sum contrasts, the value of the reference term is computed</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"emmeans"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span> <span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   <span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">sex</span>,</span></span>
 <span class="r-in"><span>   data <span class="op">=</span> <span class="va">tips</span>,</span></span>
@@ -543,34 +544,41 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: emmeans</span>
-<span class="r-plt img"><img src="ggcoef_model-14.png" alt="" width="700" height="433"></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: emmeans</span>
+<span class="r-plt img"><img src="ggcoef_model-10.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># Use ggcoef_compare() for comparing several models on the same plot</span></span></span>
+<span class="r-in"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/step.html" class="external-link">step</a></span><span class="op">(</span><span class="va">mod1</span>, trace <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">Agriculture</span> <span class="op">+</span> <span class="va">Education</span> <span class="op">*</span> <span class="va">Catholic</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"Full model"</span> <span class="op">=</span> <span class="va">mod1</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"Simplified model"</span> <span class="op">=</span> <span class="va">mod2</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"With interaction"</span> <span class="op">=</span> <span class="va">mod3</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/" class="external-link">broom.helpers</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="co"># Use ggcoef_compare() for comparing several models on the same plot</span></span></span>
-<span class="r-in"><span>  <span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/step.html" class="external-link">step</a></span><span class="op">(</span><span class="va">mod1</span>, trace <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">Agriculture</span> <span class="op">+</span> <span class="va">Education</span> <span class="op">*</span> <span class="va">Catholic</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"Full model"</span> <span class="op">=</span> <span class="va">mod1</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"Simplified model"</span> <span class="op">=</span> <span class="va">mod2</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"With interaction"</span> <span class="op">=</span> <span class="va">mod3</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggcoef_model-11.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggcoef_model-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># you can reverse the vertical position of the point by using a negative</span></span></span>
-<span class="r-in"><span>  <span class="co"># value for dodged_width (but it will produce some warnings)</span></span></span>
-<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, dodged_width <span class="op">=</span> <span class="op">-</span><span class="fl">.9</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: broom.helpers</span>
+<span class="r-in"><span><span class="co"># you can reverse the vertical position of the point by using a negative</span></span></span>
+<span class="r-in"><span><span class="co"># value for dodged_width (but it will produce some warnings)</span></span></span>
+<span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, dodged_width <span class="op">=</span> <span class="op">-</span><span class="fl">.9</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
+<span class="r-plt img"><img src="ggcoef_model-13.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># specific function for nnet::multinom models</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"nnet"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">nnet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_multinom</span><span class="op">(</span></span></span>
@@ -579,7 +587,7 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span>    y.level_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"versicolor"</span> <span class="op">=</span> <span class="st">"versicolor\n(ref: setosa)"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: nnet</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: nnet</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> # weights:  18 (10 variable)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> initial  value 164.791843 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> iter  10 value 16.177348</span>
@@ -594,7 +602,8 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-out co"><span class="r-pr">#&gt;</span> iter 100 value 5.949867</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> final  value 5.949867 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> stopped after 100 iterations</span>
-<span class="r-plt img"><img src="ggcoef_model-15.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-14.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
