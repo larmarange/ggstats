@@ -20,6 +20,7 @@ Imports:
     forcats,
     ggplot2,
     lifecycle,
+    magrittr,
     scales,
     stats,
     tidyr

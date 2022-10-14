@@ -22,15 +22,12 @@ NULL
 # \lifecycle{defunct}
 # \lifecycle{archived}
 
-#' Pipe operator
-#'
-#' @name %>%
-#' @rdname pipe
-#' @keywords internal
+#' @importFrom magrittr %>%
 #' @export
-#' @importFrom dplyr %>%
-#' @usage lhs \%>\% rhs
-NULL
+magrittr::`%>%`
+
+
+# from ggplot2 (but not exported by ggplot2)
 
 `%||%` <- function(a, b) {
   if (!is.null(a))
