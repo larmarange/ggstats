@@ -28,6 +28,7 @@
 #' @return A `ggplot2` plot or a `tibble` if `return_data = TRUE`.
 #' @export
 #' @examples
+#' library(ggplot2)
 #' mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 #' ggcoef_model(mod)
 #'

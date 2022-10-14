@@ -255,6 +255,7 @@ multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet:
 
 }}
 \examples{
+library(ggplot2)
 mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 ggcoef_model(mod)
 
