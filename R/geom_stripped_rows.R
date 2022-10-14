@@ -24,6 +24,7 @@
 #' p + geom_stripped_cols()
 #' p + geom_stripped_rows() + geom_stripped_cols()
 #'
+#' \donttest{
 #' p <- ggplot(tips) +
 #'   aes(x = total_bill, y = day) +
 #'   geom_count() +
@@ -39,6 +40,7 @@
 #' p + geom_stripped_cols()
 #' p + geom_stripped_cols(width = 10)
 #' p + geom_stripped_cols(width = 10, nudge_x = 5)
+#' }
 geom_stripped_rows <- function(mapping = NULL,
                                data = NULL,
                                stat = "identity",
