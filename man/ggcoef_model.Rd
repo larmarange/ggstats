@@ -256,6 +256,7 @@ multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet:
 }}
 \examples{
 \dontshow{if (requireNamespace("reshape")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 data(tips, package = "reshape")
 mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
 ggcoef_model(mod_simple)
@@ -296,6 +297,7 @@ ggcoef_model(
 
 # do not display variable facets but add colour guide
 ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE)
+}
 \dontshow{\}) # examplesIf}
 # a logistic regression example
 d_titanic <- as.data.frame(Titanic)

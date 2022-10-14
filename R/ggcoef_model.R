@@ -28,6 +28,7 @@
 #' @return A `ggplot2` plot or a `tibble` if `return_data = TRUE`.
 #' @export
 #' @examplesIf requireNamespace("reshape")
+#' \donttest{
 #' data(tips, package = "reshape")
 #' mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
 #' ggcoef_model(mod_simple)
@@ -68,6 +69,7 @@
 #'
 #' # do not display variable facets but add colour guide
 #' ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE)
+#' }
 #'
 #' @examples
 #' # a logistic regression example
