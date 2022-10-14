@@ -133,7 +133,7 @@
 <p>You can use the <a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a> package to define variable labels. They will be automatically used by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>. Note that variable labels should be defined before computing the model.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a></span><span class="op">)</span></span>
-<span><span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span>
 <span>    day <span class="op">=</span> <span class="st">"Day of the week"</span>,</span>
 <span>    time <span class="op">=</span> <span class="st">"Lunch or Dinner"</span>,</span>
