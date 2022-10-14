@@ -27,51 +27,11 @@
 #' @param ... parameters passed to [ggcoef_plot()]
 #' @return A `ggplot2` plot or a `tibble` if `return_data = TRUE`.
 #' @export
-#' @examplesIf requireNamespace("reshape")
-#' \donttest{
-#' data(tips, package = "reshape")
-#' mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
-#' ggcoef_model(mod_simple)
-#'
-#' # custom variable labels
-#' # you can use the labelled package to define variable labels
-#' # before computing model
-#' if (requireNamespace("labelled")) {
-#'   tips_labelled <- tips %>%
-#'     labelled::set_variable_labels(
-#'       day = "Day of the week",
-#'       time = "Lunch or Dinner",
-#'       total_bill = "Bill's total"
-#'     )
-#'   mod_labelled <- lm(tip ~ day + time + total_bill, data = tips_labelled)
-#'   ggcoef_model(mod_labelled)
-#' }
-#'
-#' # you can provide custom variable labels with 'variable_labels'
-#' ggcoef_model(
-#'   mod_simple,
-#'   variable_labels = c(
-#'     day = "Week day",
-#'     time = "Time (lunch or dinner ?)",
-#'     total_bill = "Total of the bill"
-#'   )
-#' )
-#' # if labels are too long, you can use 'facet_labeller' to wrap them
-#' ggcoef_model(
-#'   mod_simple,
-#'   variable_labels = c(
-#'     day = "Week day",
-#'     time = "Time (lunch or dinner ?)",
-#'     total_bill = "Total of the bill"
-#'   ),
-#'   facet_labeller = ggplot2::label_wrap_gen(10)
-#' )
-#'
-#' # do not display variable facets but add colour guide
-#' ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE)
-#' }
-#'
 #' @examples
+#' mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
+#' ggcoef_model(mod)
+#'
+#' \donttest{
 #' # a logistic regression example
 #' d_titanic <- as.data.frame(Titanic)
 #' d_titanic$Survived <- factor(d_titanic$Survived, c("No", "Yes"))
@@ -85,7 +45,6 @@
 #' # use 'exponentiate = TRUE' to get the Odds Ratio
 #' ggcoef_model(mod_titanic, exponentiate = TRUE)
 #'
-#' \donttest{
 #' # display intercepts
 #' ggcoef_model(mod_titanic, exponentiate = TRUE, intercept = TRUE)
 #'
@@ -140,6 +99,50 @@
 #'   )
 #'   ggcoef_model(mod2)
 #' }
+#' }
+#' @examplesIf requireNamespace("reshape")
+#'
+#' \donttest{
+#' data(tips, package = "reshape")
+#' mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
+#' ggcoef_model(mod_simple)
+#'
+#' # custom variable labels
+#' # you can use the labelled package to define variable labels
+#' # before computing model
+#' if (requireNamespace("labelled")) {
+#'   tips_labelled <- tips %>%
+#'     labelled::set_variable_labels(
+#'       day = "Day of the week",
+#'       time = "Lunch or Dinner",
+#'       total_bill = "Bill's total"
+#'     )
+#'   mod_labelled <- lm(tip ~ day + time + total_bill, data = tips_labelled)
+#'   ggcoef_model(mod_labelled)
+#' }
+#'
+#' # you can provide custom variable labels with 'variable_labels'
+#' ggcoef_model(
+#'   mod_simple,
+#'   variable_labels = c(
+#'     day = "Week day",
+#'     time = "Time (lunch or dinner ?)",
+#'     total_bill = "Total of the bill"
+#'   )
+#' )
+#' # if labels are too long, you can use 'facet_labeller' to wrap them
+#' ggcoef_model(
+#'   mod_simple,
+#'   variable_labels = c(
+#'     day = "Week day",
+#'     time = "Time (lunch or dinner ?)",
+#'     total_bill = "Total of the bill"
+#'   ),
+#'   facet_labeller = ggplot2::label_wrap_gen(10)
+#' )
+#'
+#' # do not display variable facets but add colour guide
+#' ggcoef_model(mod_simple, facet_row = NULL, colour_guide = TRUE)
 #' }
 ggcoef_model <- function(
   model,
