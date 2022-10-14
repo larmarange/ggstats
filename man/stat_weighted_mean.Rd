@@ -68,6 +68,9 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
+\value{
+A \code{ggplot2} plot with the added statistic.
+}
 \description{
 This statistic will compute the mean of \strong{y} aesthetic for
 each unique value of \strong{x}, taking into account \strong{weight}
@@ -83,7 +86,6 @@ aesthetic if provided.
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(tips, package = "reshape")
 
 ggplot(tips) +
@@ -154,6 +156,5 @@ ggplot(cuse) +
   ) +
   facet_grid(~education)
 }
-\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

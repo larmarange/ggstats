@@ -9,8 +9,8 @@
 #' @param one threshold below which to display one star
 #' @param point threshold below which to display one point
 #' (`NULL` to deactivate)
-#' @return character vector containing the appropriate number of
-#' stars for each `x` value
+#' @return Character vector containing the appropriate number of
+#' stars for each `x` value.
 #' @author Joseph Larmarange
 #' @export
 #' @examples

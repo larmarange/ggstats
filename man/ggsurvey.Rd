@@ -15,6 +15,9 @@ to be created with \code{\link[ggplot2:aes]{ggplot2::aes()}}.}
 
 \item{...}{Other arguments passed on to methods. Not currently used.}
 }
+\value{
+A \code{ggplot2} plot.
+}
 \description{
 A function to facilitate \code{ggplot2} graphs using a survey object.
 It will initiate a ggplot and map survey weights to the
@@ -27,7 +30,6 @@ correct variance computation (like \code{\link[ggplot2:geom_smooth]{ggplot2::geo
 be statistically incorrect.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 if (require(survey) && require(ggplot2)) {
   data(api)
   dstrat <- svydesign(
@@ -45,5 +47,4 @@ if (require(survey) && require(ggplot2)) {
     aes(x = Class, fill = Survived) +
     geom_bar(position = "fill")
 }
-\dontshow{\}) # examplesIf}
 }

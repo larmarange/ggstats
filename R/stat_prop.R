@@ -23,9 +23,9 @@
 #' @seealso [ggplot2::stat_count()]
 #'
 #' @import ggplot2
-#' @author Joseph Larmarange
+#' @return A `ggplot2` plot with the added statistic.
 #' @export
-#' @examplesIf interactive()
+#' @examples
 #' library(ggplot2)
 #' d <- as.data.frame(Titanic)
 #'

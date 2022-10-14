@@ -15,8 +15,9 @@
 #' to be created with [ggplot2::aes()].
 #' @param ... Other arguments passed on to methods. Not currently used.
 #' @importFrom stats weights
+#' @return A `ggplot2` plot.
 #' @export
-#' @examplesIf interactive()
+#' @examples
 #' if (require(survey) && require(ggplot2)) {
 #'   data(api)
 #'   dstrat <- svydesign(

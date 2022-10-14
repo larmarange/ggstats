@@ -71,6 +71,9 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
+\value{
+A \code{ggplot2} plot with the added statistic.
+}
 \description{
 \code{stat_prop()} is a variation of \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}} allowing to
 compute custom proportions according to the \strong{by} aesthetic defining
@@ -98,7 +101,6 @@ sum to 1). The \strong{by} aesthetic should be a factor.
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(ggplot2)
 d <- as.data.frame(Titanic)
 
@@ -126,12 +128,8 @@ ggplot(d) +
     stat = "prop",
     position = position_stack(.5)
   )
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}
-}
-\author{
-Joseph Larmarange
 }
 \keyword{datasets}

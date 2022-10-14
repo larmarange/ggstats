@@ -9,7 +9,8 @@
 #' @param width width of the strips
 #' @param nudge_x,nudge_y horizontal or vertical adjustment to nudge strips by
 #' @export
-#' @examplesIf interactive()
+#' @return A `ggplot2` plot with the added geometry.
+#' @examples
 #' data(tips, package = "reshape")
 #' library(ggplot2)
 #'

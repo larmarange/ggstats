@@ -27,7 +27,8 @@
 #' }
 #'
 #' @export
-#' @examplesIf interactive()
+#' @return A `ggplot2` plot with the added statistic.
+#' @examples
 #' library(ggplot2)
 #' d <- as.data.frame(Titanic)
 #'
@@ -196,6 +197,7 @@ StatCross <- ggplot2::ggproto(
 #' - A value between +0.7 to +1.0 indicates a strong positive association.
 #' @export
 #' @param x a chi-squared test as returned by [stats::chisq.test()]
+#' @return A `tibble`.
 #' @seealso [stat_cross()], `GDAtools::phi.table()` or `psych::phi()`
 #' @examples
 #' tab <- xtabs(Freq ~ Sex + Class, data = as.data.frame(Titanic))

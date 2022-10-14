@@ -9,6 +9,9 @@ augment_chisq_add_phi(x)
 \arguments{
 \item{x}{a chi-squared test as returned by \code{\link[stats:chisq.test]{stats::chisq.test()}}}
 }
+\value{
+A \code{tibble}.
+}
 \description{
 Augment a chi-squared test and compute phi coefficients
 }

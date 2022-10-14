@@ -20,8 +20,8 @@ signif_stars(x, three = 0.001, two = 0.01, one = 0.05, point = 0.1)
 (\code{NULL} to deactivate)}
 }
 \value{
-character vector containing the appropriate number of
-stars for each \code{x} value
+Character vector containing the appropriate number of
+stars for each \code{x} value.
 }
 \description{
 Calculate significance stars

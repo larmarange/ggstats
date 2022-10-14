@@ -229,6 +229,9 @@ shape aesthetic}
 if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}} (see
 examples), more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
 }
+\value{
+A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.
+}
 \description{
 Plot model coefficients
 }
@@ -254,7 +257,6 @@ multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet:
 
 }}
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(tips, package = "reshape")
 mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
 ggcoef_model(mod_simple)
@@ -362,8 +364,6 @@ if (require(emmeans)) {
   )
   ggcoef_model(mod2)
 }
-\dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 if (require(broom.helpers)) {
   # Use ggcoef_compare() for comparing several models on the same plot
@@ -385,8 +385,6 @@ if (require(broom.helpers)) {
     ggcoef_compare(models, dodged_width = -.9)
   }
 }
-\dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 # specific function for nnet::multinom models
 if (require(nnet)) {
@@ -399,5 +397,4 @@ if (require(nnet)) {
     y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
   )
 }
-\dontshow{\}) # examplesIf}
 }

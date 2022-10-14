@@ -67,6 +67,9 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{keep.zero.cells}{If \code{TRUE}, cells with no observations are kept.}
 }
+\value{
+A \code{ggplot2} plot with the added statistic.
+}
 \description{
 Computes statistics of a 2-dimensional matrix using \link[broom:augment.htest]{broom::augment.htest}.
 }
@@ -93,7 +96,6 @@ Computes statistics of a 2-dimensional matrix using \link[broom:augment.htest]{b
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(ggplot2)
 d <- as.data.frame(Titanic)
 
@@ -151,6 +153,5 @@ ggplot(tips) +
   aes(x = tip, y = as.character(day), size = after_stat(observed)) +
   stat_cross(alpha = .1, color = "blue") +
   scale_size_area(max_size = 12)
-\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

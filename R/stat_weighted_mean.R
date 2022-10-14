@@ -14,7 +14,8 @@
 #' @inheritParams ggplot2::stat_bin
 #' @param geom Override the default connection with [ggplot2::geom_point()].
 #' @export
-#' @examplesIf interactive()
+#' @return A `ggplot2` plot with the added statistic.
+#' @examples
 #' data(tips, package = "reshape")
 #'
 #' ggplot(tips) +

@@ -84,12 +84,14 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{nudge_x, nudge_y}{horizontal or vertical adjustment to nudge strips by}
 }
+\value{
+A \code{ggplot2} plot with the added geometry.
+}
 \description{
 Add alternating background color along the y-axis. The geom takes default
 aesthetics \code{odd} and \code{even} that receive color codes.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(tips, package = "reshape")
 library(ggplot2)
 
@@ -118,5 +120,4 @@ p + geom_stripped_rows(odd = "#00FF0022", even = "#FF000022")
 p + geom_stripped_cols()
 p + geom_stripped_cols(width = 10)
 p + geom_stripped_cols(width = 10, nudge_x = 5)
-\dontshow{\}) # examplesIf}
 }

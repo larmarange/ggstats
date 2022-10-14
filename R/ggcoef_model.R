@@ -26,8 +26,9 @@
 #' For more control, you can use the argument `return_data = TRUE` to
 #' get the produced `tibble`, apply any transformation of your own and
 #' then pass your customized `tibble` to `ggcoef_plot()`.
+#' @return A `ggplot2` plot or a `tibble` if `return_data = TRUE`.
 #' @export
-#' @examplesIf interactive()
+#' @examples
 #' data(tips, package = "reshape")
 #' mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
 #' ggcoef_model(mod_simple)
@@ -233,7 +234,7 @@ ggcoef_model <- function(
 #' @export
 #' @param models named list of models
 #' @param type a dodged plot or a faceted plot?
-#' @examplesIf interactive()
+#' @examples
 #'
 #' if (require(broom.helpers)) {
 #'   # Use ggcoef_compare() for comparing several models on the same plot
@@ -361,7 +362,7 @@ ggcoef_compare <- function(
 #' @param y.level_label an optional named vector for labeling `y.level`
 #'   (see examples)
 #' @export
-#' @examplesIf interactive()
+#' @examples
 #'
 #' # specific function for nnet::multinom models
 #' if (require(nnet)) {
