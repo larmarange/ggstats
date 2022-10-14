@@ -12,3 +12,10 @@ cf. https://github.com/larmarange/ggstats/actions
 0 errors | 0 warnings | 1 note
 
 * New submission.
+
+Following requests from CRAN:
+
+* Value section has been added in documentation
+* Examples have been updated, \dontrun{} is not used anymore,
+  \dontttest{} is used when executable > 5 seconds
+* No relevant external reference to be added in DESCRIPTION
