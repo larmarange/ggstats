@@ -1,3 +1,5 @@
+# ggstats (development version)
+
 # ggstats 0.1.0
 
 * First version, based on dev version of GGally
