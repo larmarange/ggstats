@@ -63,38 +63,6 @@
 #'     scale_y_continuous(labels = scales::percent) +
 #'     labs(y = "Survived")
 #' }
-#'
-#' \donttest{
-#' cuse <- read.table(
-#'   "https://data.princeton.edu/wws509/datasets/cuse.dat",
-#'   header = TRUE
-#' )
-#' cuse$n <- cuse$notUsing + cuse$using
-#' cuse$prop <- cuse$using / cuse$n
-#'
-#' ggplot(cuse) +
-#'   aes(x = education, y = prop, weight = n) +
-#'   stat_weighted_mean()
-#'
-#' ggplot(cuse) +
-#'   aes(x = age, y = prop, weight = n, color = education) +
-#'   stat_weighted_mean()
-#'
-#' ggplot(cuse) +
-#'   aes(x = education, y = prop, weight = n) +
-#'   stat_weighted_mean(geom = "bar")
-#'
-#' # add percentages above each bar
-#' ggplot(cuse) +
-#'   aes(x = age, y = prop, weight = n, fill = education) +
-#'   stat_weighted_mean(geom = "bar") +
-#'   geom_text(
-#'     aes(label = scales::percent(after_stat(y))),
-#'     stat = "weighted_mean",
-#'     vjust = 0
-#'   ) +
-#'   facet_grid(~education)
-#' }
 stat_weighted_mean <- function(mapping = NULL,
                                data = NULL,
                                geom = "point",
