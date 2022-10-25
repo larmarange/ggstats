@@ -25,22 +25,24 @@ alternative background color to a plot.
 The original versions of several functions were originally developed
 within the `{GGally}` package.
 
-## Installation
+## Installation & Documentation
 
-<!-- To install stable version:
+To install **stable version**:
 
-
-```r
+``` r
 install.packages("ggstats")
 ```
 
--->
+Documentation of stable version: <https://larmarange.github.io/ggstats/>
 
-To install development version:
+To install **development version**:
 
 ``` r
 remotes::install_github("larmarange/ggstats")
 ```
+
+Documentation of development version:
+<https://larmarange.github.io/ggstats/dev/>
 
 ## Plot model coefficients
 
