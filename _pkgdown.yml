@@ -1,5 +1,8 @@
 url: https://larmarange.github.io/ggstats/
 
+development:
+  mode: auto
+
 template:
   params:
     bootswatch: flatly
