@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -87,7 +87,8 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Compute weighted mean with <code>stat_weighted_mean()</code>
+      <h1 data-toc-skip>Compute weighted mean with
+<code>stat_weighted_mean()</code>
 </h1>
             
       
@@ -101,39 +102,50 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://larmarange.github.io/ggstats/">ggstats</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
-<p><code><a href="../reference/stat_weighted_mean.html">stat_weighted_mean()</a></code> computes mean value of <strong>y</strong> (taking into account any <strong>weight</strong> aesthetic if provided) for each value of <strong>x</strong>. More precisely, it will return a new data frame with one line per unique value of <strong>x</strong> with the following new variables:</p>
+<p><code><a href="../reference/stat_weighted_mean.html">stat_weighted_mean()</a></code> computes mean value of
+<strong>y</strong> (taking into account any <strong>weight</strong>
+aesthetic if provided) for each value of <strong>x</strong>. More
+precisely, it will return a new data frame with one line per unique
+value of <strong>x</strong> with the following new variables:</p>
 <ul>
 <li>
-<strong>y</strong>: mean value of the original <strong>y</strong> (i.e. <strong>numerator</strong>/<strong>denominator</strong>)</li>
+<strong>y</strong>: mean value of the original <strong>y</strong>
+(i.e. <strong>numerator</strong>/<strong>denominator</strong>)</li>
 <li><strong>numerator</strong></li>
 <li><strong>denominator</strong></li>
 </ul>
-<p>Let’s take an example. The following plot shows all tips received according to the day of the week.</p>
+<p>Let’s take an example. The following plot shows all tips received
+according to the day of the week.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tips</span>, package <span class="op">=</span> <span class="st">"reshape"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">tips</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">tip</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_weighted_mean_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<p>To plot their mean value per day, simply use <code><a href="../reference/stat_weighted_mean.html">stat_weighted_mean()</a></code>.</p>
+<p>To plot their mean value per day, simply use
+<code><a href="../reference/stat_weighted_mean.html">stat_weighted_mean()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">tips</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">tip</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/stat_weighted_mean.html">stat_weighted_mean</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_weighted_mean_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<p>We can specify the geometry we want using <code>geom</code> argument. Note that for lines, we need to specify the <strong>group</strong> aesthetic as well.</p>
+<p>We can specify the geometry we want using <code>geom</code> argument.
+Note that for lines, we need to specify the <strong>group</strong>
+aesthetic as well.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">tips</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">tip</span>, group <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/stat_weighted_mean.html">stat_weighted_mean</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_weighted_mean_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<p>An alternative is to specify the statistic in <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_line()</a></code>.</p>
+<p>An alternative is to specify the statistic in
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_line()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">tips</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">tip</span>, group <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"weighted_mean"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_weighted_mean_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<p>Of course, it could be use with other geometries. Here a bar plot.</p>
+<p>Of course, it could be use with other geometries. Here a bar
+plot.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">tips</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">tip</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span> <span class="op">+</span></span>
@@ -141,11 +153,14 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"mean tip"</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
 <p><img src="stat_weighted_mean_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<p>It is very easy to add facets. In that case, computation will be done separately for each facet.</p>
+<p>It is very easy to add facets. In that case, computation will be done
+separately for each facet.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">smoker</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_weighted_mean_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<p><code><a href="../reference/stat_weighted_mean.html">stat_weighted_mean()</a></code> could be also used for computing proportions as a proportion is technically a mean of binary values (0 or 1).</p>
+<p><code><a href="../reference/stat_weighted_mean.html">stat_weighted_mean()</a></code> could be also used for computing
+proportions as a proportion is technically a mean of binary values (0 or
+1).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">tips</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">smoker</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span> <span class="op">+</span></span>
@@ -153,7 +168,9 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"proportion of smoker"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_weighted_mean_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<p>Finally, you can use the <strong>weight</strong> aesthetic to indicate weights to take into account for computing means / proportions.</p>
+<p>Finally, you can use the <strong>weight</strong> aesthetic to
+indicate weights to take into account for computing means /
+proportions.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>

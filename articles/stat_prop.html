@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -87,7 +87,8 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Compute custom proportions with <code>stat_prop()</code>
+      <h1 data-toc-skip>Compute custom proportions with
+<code>stat_prop()</code>
 </h1>
             
       
@@ -101,12 +102,28 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://larmarange.github.io/ggstats/">ggstats</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
-<p><code><a href="../reference/stat_prop.html">stat_prop()</a></code> is a variation of <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::stat_count()</a></code> allowing to compute custom proportions according to the <strong>by</strong> aesthetic defining the denominator (i.e. all proportions for a same value of <strong>by</strong> will sum to 1). The <strong>by</strong> aesthetic should be a factor. Therefore, <code><a href="../reference/stat_prop.html">stat_prop()</a></code> requires the <strong>by</strong> aesthetic and this <strong>by</strong> aesthetic should be a factor.</p>
+<p><code><a href="../reference/stat_prop.html">stat_prop()</a></code> is a variation of
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::stat_count()</a></code> allowing to compute custom
+proportions according to the <strong>by</strong> aesthetic defining the
+denominator (i.e. all proportions for a same value of
+<strong>by</strong> will sum to 1). The <strong>by</strong> aesthetic
+should be a factor. Therefore, <code><a href="../reference/stat_prop.html">stat_prop()</a></code> requires the
+<strong>by</strong> aesthetic and this <strong>by</strong> aesthetic
+should be a factor.</p>
 <div class="section level2">
 <h2 id="adding-labels-on-a-percent-stacked-bar-plot">Adding labels on a percent stacked bar plot<a class="anchor" aria-label="anchor" href="#adding-labels-on-a-percent-stacked-bar-plot"></a>
 </h2>
-<p>When using <code>position = "fill"</code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar()</a></code>, you can produce a percent stacked bar plot. However, the proportions corresponding to the <strong>y</strong> axis are not directly accessible using only <code>ggplot2</code>. With <code><a href="../reference/stat_prop.html">stat_prop()</a></code>, you can easily add them on the plot.</p>
-<p>In the following example, we indicated <code>stat = "prop"</code> to <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_text()</a></code> to use <code><a href="../reference/stat_prop.html">stat_prop()</a></code>, we defined the <strong>by</strong> aesthetic (here we want to compute the proportions separately for each value of <strong>x</strong>), and we also used <code><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">ggplot2::position_fill()</a></code> when calling <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_text()</a></code>.</p>
+<p>When using <code>position = "fill"</code> with
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar()</a></code>, you can produce a percent stacked bar plot.
+However, the proportions corresponding to the <strong>y</strong> axis
+are not directly accessible using only <code>ggplot2</code>. With
+<code><a href="../reference/stat_prop.html">stat_prop()</a></code>, you can easily add them on the plot.</p>
+<p>In the following example, we indicated <code>stat = "prop"</code> to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_text()</a></code> to use <code><a href="../reference/stat_prop.html">stat_prop()</a></code>, we
+defined the <strong>by</strong> aesthetic (here we want to compute the
+proportions separately for each value of <strong>x</strong>), and we
+also used <code><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">ggplot2::position_fill()</a></code> when calling
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_text()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
@@ -115,8 +132,10 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"prop"</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_fill</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
 <p><img src="stat_prop_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<p>Note that <code><a href="../reference/stat_prop.html">stat_prop()</a></code> has properly taken into account the <strong>weight</strong> aesthetic.</p>
-<p><code><a href="../reference/stat_prop.html">stat_prop()</a></code> is also compatible with faceting. In that case, proportions are computed separately in each facet.</p>
+<p>Note that <code><a href="../reference/stat_prop.html">stat_prop()</a></code> has properly taken into account
+the <strong>weight</strong> aesthetic.</p>
+<p><code><a href="../reference/stat_prop.html">stat_prop()</a></code> is also compatible with faceting. In that
+case, proportions are computed separately in each facet.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_prop_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
@@ -124,7 +143,9 @@
 <div class="section level2">
 <h2 id="displaying-proportions-of-the-total">Displaying proportions of the total<a class="anchor" aria-label="anchor" href="#displaying-proportions-of-the-total"></a>
 </h2>
-<p>If you want to display proportions of the total, simply map the <strong>by</strong> aesthetic to <code>1</code>. Here an example using a stacked bar chart.</p>
+<p>If you want to display proportions of the total, simply map the
+<strong>by</strong> aesthetic to <code>1</code>. Here an example using a
+stacked bar chart.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, fill <span class="op">=</span> <span class="va">Survived</span>, weight <span class="op">=</span> <span class="va">Freq</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -145,7 +166,11 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, fill <span class="op">=</span> <span class="va">Sex</span>, weight <span class="op">=</span> <span class="va">Freq</span>, by <span class="op">=</span> <span class="va">Sex</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="stat_prop_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<p>On the previous graph, it is difficult to see if first class is over- or under-represented among women, due to the fact they were much more men on the boat. <code><a href="../reference/stat_prop.html">stat_prop()</a></code> could be used to adjust the graph by displaying instead the proportion within each category (i.e. here the proportion by sex).</p>
+<p>On the previous graph, it is difficult to see if first class is over-
+or under-represented among women, due to the fact they were much more
+men on the boat. <code><a href="../reference/stat_prop.html">stat_prop()</a></code> could be used to adjust the
+graph by displaying instead the proportion within each category
+(i.e. here the proportion by sex).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, fill <span class="op">=</span> <span class="va">Sex</span>, weight <span class="op">=</span> <span class="va">Freq</span>, by <span class="op">=</span> <span class="va">Sex</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
