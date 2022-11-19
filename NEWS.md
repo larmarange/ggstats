@@ -1,5 +1,7 @@
 # ggstats (development version)
 
+* Examples relying on Internet ressources have been removed (#11)
+
 # ggstats 0.1.0
 
 * First version, based on dev version of GGally
