@@ -1,5 +1,6 @@
 CMD
 Codecov
+DOI
 GGally
 Lifecycle
 ORCID
@@ -7,6 +8,10 @@ behaviour
 colour
 dev
 ggplot
+github
 htest
+https
+io
 labeller
+larmarange
 resid

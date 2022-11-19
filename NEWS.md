@@ -1,6 +1,6 @@
 # ggstats (development version)
 
-* Examples relying on Internet ressources have been removed (#11)
+* Examples relying on Internet resources have been removed (#11)
 
 # ggstats 0.1.0
 
