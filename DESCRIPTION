@@ -27,6 +27,7 @@ Imports:
 Suggests:
     broom,
     emmeans,
+    glue,
     knitr,
     labelled,
     reshape,
