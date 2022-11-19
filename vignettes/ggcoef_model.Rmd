@@ -198,7 +198,7 @@ You can remove stripped rows with `stripped_rows = FALSE`.
 ggcoef_model(mod_simple, stripped_rows = FALSE)
 ```
 
-Do not hesitate to consult the [help file](http://ggobi.github.io/ggally/reference/ggcoef_model.html) of `ggcoef_model()` to see all available options.
+Do not hesitate to consult the help file of `ggcoef_model()` to see all available options.
 
 ### ggplot2 elements
 

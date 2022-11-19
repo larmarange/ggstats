@@ -9,13 +9,7 @@ cf. https://github.com/larmarange/ggstats/actions
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 note
 
-* New submission.
-
-Following requests from CRAN:
-
-* Value section has been added in documentation
-* Examples have been updated, \dontrun{} is not used anymore,
-  \dontttest{} is used when executable > 5 seconds
-* No relevant external reference to be added in DESCRIPTION
+* examples using Internet resources have been removed
+* glue is now declared in DESCRIPTION
