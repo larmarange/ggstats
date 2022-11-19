@@ -11,3 +11,4 @@ tests/testthat/Rplots.pdf
 .lintr
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^revdep$
