@@ -20,7 +20,7 @@ produced tibble to ggcoef_plot() to generate the plot."><!-- mathjax --><script 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@ produced tibble to ggcoef_plot() to generate the plot."><!-- mathjax --><script 
 
     <div class="ref-description">
     <p><code>ggcoef_model()</code>, <code>ggcoef_multinom()</code> and <code>ggcoef_compare()</code> use
-<code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code> to obtain a <code>tibble</code> of the model
+<code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code> to obtain a <code>tibble</code> of the model
 coefficients, apply additional data transformation and then pass the
 produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.</p>
     </div>
@@ -80,7 +80,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggcoef_model</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
-<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -103,7 +103,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span><span class="fu">ggcoef_compare</span><span class="op">(</span></span>
 <span>  <span class="va">models</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
-<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -125,7 +125,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  <span class="va">model</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
 <span>  y.level_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -218,7 +218,7 @@ be used for x-axis</p></dd>
 <dt>categorical_terms_pattern</dt>
 <dd><p>a <a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue pattern</a> for
 labels of categorical terms with treatment or sum contrasts
-(see <code><a href="https://rdrr.io/pkg/broom.helpers/man/model_list_terms_levels.html" class="external-link">model_list_terms_levels()</a></code>)</p></dd>
+(see <code><a href="https://larmarange.github.io/broom.helpers/reference/model_list_terms_levels.html" class="external-link">model_list_terms_levels()</a></code>)</p></dd>
 
 
 <dt>add_reference_rows</dt>
@@ -237,8 +237,8 @@ for those no reference row should be added, when <code>add_reference_rows = TRUE
 <dt>include</dt>
 <dd><p>variables to include. Accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a>
 syntax. Use <code>-</code> to remove a variable. Default is <code>everything()</code>.
-See also <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_dichotomous()</a></code>
-and <code><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
+See also <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous()</a></code>
+and <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
 
 
 <dt>significance</dt>
@@ -456,8 +456,8 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span>  interaction_sep <span class="op">=</span> <span class="st">" x "</span></span></span>
 <span class="r-in"><span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'y' is already present. Adding another scale for 'y', which will</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing scale.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for <span style="color: #00BB00;">y</span> is already present.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span>
 <span class="r-plt img"><img src="ggcoef_model-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display only a subset of terms</span></span></span>
@@ -479,7 +479,7 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod_titanic</span>,</span></span>
 <span class="r-in"><span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  categorical_terms_pattern <span class="op">=</span></span></span>
 <span class="r-in"><span>    <span class="st">"{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}"</span>,</span></span>
 <span class="r-in"><span>  show_p_values <span class="op">=</span> <span class="cn">FALSE</span></span></span>
@@ -552,6 +552,7 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: emmeans</span>
 <span class="r-plt img"><img src="ggcoef_model-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
@@ -574,12 +575,12 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span><span class="co"># you can reverse the vertical position of the point by using a negative</span></span></span>
 <span class="r-in"><span><span class="co"># value for dodged_width (but it will produce some warnings)</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, dodged_width <span class="op">=</span> <span class="op">-</span><span class="fl">.9</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>position_dodge requires non-overlapping x intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
 <span class="r-plt img"><img src="ggcoef_model-18.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>

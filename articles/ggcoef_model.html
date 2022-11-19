@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -105,10 +105,10 @@ Larmarange</h4>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://larmarange.github.io/ggstats/">ggstats</a></span><span class="op">)</span></span></code></pre></div>
 <p>The purpose of <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> is to quickly plot the
 coefficients of a model. It is an updated and improved version of
-<code><a href="https://ggobi.github.io/ggally/reference/ggcoef.html" class="external-link">GGally::ggcoef()</a></code> based on
-<code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>. For displaying a nicely
+<code>GGally::ggcoef()</code> based on
+<code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>. For displaying a nicely
 formatted table of the same models, look at
-<code><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html" class="external-link">gtsummary::tbl_regression()</a></code>.</p>
+<code>gtsummary::tbl_regression()</code>.</p>
 <div class="section level2">
 <h2 id="quick-coefficients-plot">Quick coefficients plot<a class="anchor" aria-label="anchor" href="#quick-coefficients-plot"></a>
 </h2>
@@ -208,8 +208,8 @@ named vector to the <code>variable_labels</code> option.</p>
 <span>    interaction_sep <span class="op">=</span> <span class="st">" x "</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Scale for 'y' is already present. Adding another scale for 'y', which will</span></span>
-<span><span class="co">#&gt; replace the existing scale.</span></span></code></pre></div>
+<span><span class="co">#&gt; Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
+<span><span class="co">#&gt; Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
 <p>By default, for categorical variables using treatment and sum
 contrasts, reference rows will be added and displayed on the graph.</p>
@@ -240,13 +240,13 @@ not have a reference row added.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_titanic2</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_titanic2</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom.helpers/man/select_helpers.html" class="external-link">all_categorical</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  no_reference_row <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  categorical_terms_pattern <span class="op">=</span> <span class="st">"{level}/{reference_level}"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-9-3.png" width="700"></p>
@@ -289,9 +289,8 @@ behavior with <code>colour = NULL</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, stripped_rows <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
-<p>Do not hesitate to consult the <a href="http://ggobi.github.io/ggally/reference/ggcoef_model.html" class="external-link">help
-file</a> of <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> to see all available
-options.</p>
+<p>Do not hesitate to consult the help file of
+<code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> to see all available options.</p>
 </div>
 <div class="section level3">
 <h3 id="ggplot2-elements">ggplot2 elements<a class="anchor" aria-label="anchor" href="#ggplot2-elements"></a>
@@ -305,8 +304,8 @@ functions to it.</p>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Custom title"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set1"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Scale for 'colour' is already present. Adding another scale for 'colour',</span></span>
-<span><span class="co">#&gt; which will replace the existing scale.</span></span></code></pre></div>
+<span><span class="co">#&gt; Scale for <span style="color: #00BB00;">colour</span> is already present.</span></span>
+<span><span class="co">#&gt; Adding another scale for <span style="color: #00BB00;">colour</span>, which will replace the existing scale.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
 </div>
@@ -375,7 +374,7 @@ Two types of visualizations are available: <code>"dodged"</code> and
 <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>, <code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code> or
 <code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code> with the option
 <code>return_data = TRUE</code> or by using <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code>
-or <code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>.</p>
+or <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="supported-models">Supported models<a class="anchor" aria-label="anchor" href="#supported-models"></a>
@@ -391,184 +390,170 @@ or <code><a href="https://rdrr.io/pkg/broom.helpers/man/tidy_plus_plus.html" cla
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/biglm/man/bigglm.html" class="external-link">biglm::bigglm()</a></code></td>
+<td align="left"><code>biglm::bigglm()</code></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/biglmm/man/bigglm.html" class="external-link">biglmm::bigglm()</a></code></td>
+<td align="left"><code>biglmm::bigglm()</code></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brms::brm()</a></code></td>
+<td align="left"><code>brms::brm()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/cmprsk/man/crr.html" class="external-link">cmprsk::crr()</a></code></td>
+<td align="left"><code>cmprsk::crr()</code></td>
 <td align="left">Limited support. It is recommended to use
-<code><a href="https://mskcc-epi-bio.github.io/tidycmprsk/reference/crr.html" class="external-link">tidycmprsk::crr()</a></code> instead.</td>
+<code>tidycmprsk::crr()</code> instead.</td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://lrberge.github.io/fixest/reference/feglm.html" class="external-link">fixest::feglm()</a></code></td>
+<td align="left"><code>fixest::feglm()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://lrberge.github.io/fixest/reference/femlm.html" class="external-link">fixest::femlm()</a></code></td>
+<td align="left"><code>fixest::femlm()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://lrberge.github.io/fixest/reference/feNmlm.html" class="external-link">fixest::feNmlm()</a></code></td>
+<td align="left"><code>fixest::feNmlm()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">fixest::feols()</a></code></td>
+<td align="left"><code>fixest::feols()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/gam/man/gam.html" class="external-link">gam::gam()</a></code></td>
+<td align="left"><code>gam::gam()</code></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/geepack/man/geeglm.html" class="external-link">geepack::geeglm()</a></code></td>
+<td align="left"><code>geepack::geeglm()</code></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html" class="external-link">glmmTMB::glmmTMB()</a></code></td>
+<td align="left"><code>glmmTMB::glmmTMB()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/lavaan/man/lavaan.html" class="external-link">lavaan::lavaan()</a></code></td>
+<td align="left"><code>lavaan::lavaan()</code></td>
 <td align="left">Limited support for categorical variables</td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/lfe/man/felm.html" class="external-link">lfe::felm()</a></code></td>
+<td align="left"><code>lfe::felm()</code></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">lme4::glmer()</a></code></td>
+<td align="left"><code>lme4::glmer()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/lme4/man/glmer.nb.html" class="external-link">lme4::glmer.nb()</a></code></td>
+<td align="left"><code>lme4::glmer.nb()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lme4::lmer()</a></code></td>
+<td align="left"><code>lme4::lmer()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/logitr/man/logitr.html" class="external-link">logitr::logitr()</a></code></td>
-<td align="left">Requires logitr &gt;= 0.8.0</td>
-</tr>
-<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/MASS/man/glm.nb.html" class="external-link">MASS::glm.nb()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/MASS/man/polr.html" class="external-link">MASS::polr()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam()</a></code></td>
 <td align="left">Use default tidier <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> for
-smooth terms only, or <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/custom_tidiers.html" class="external-link">gtsummary::tidy_gam()</a></code> to include
+smooth terms only, or <code>gtsummary::tidy_gam()</code> to include
 parametric terms</td>
 </tr>
-<tr class="odd">
-<td align="left"><code><a href="https://amices.org/mice/reference/mira-class.html" class="external-link">mice::mira</a></code></td>
+<tr class="even">
+<td align="left"><code>mice::mira</code></td>
 <td align="left">Limited support. If <code>mod</code> is a
 <code>mira</code> object, use
 <code>tidy_plus_plus(mod, tidy_fun = function(x, ...) mice::pool(x) %&gt;% mice::tidy(...))</code>
 </td>
 </tr>
-<tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/multgee/man/nomLORgee.html" class="external-link">multgee::nomLORgee()</a></code></td>
-<td align="left">Experimental support. Use <code>tidy_multgee()</code>
-as <code>tidy_fun</code>.</td>
-</tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/multgee/man/ordLORgee.html" class="external-link">multgee::ordLORgee()</a></code></td>
-<td align="left">Experimental support. Use <code>tidy_multgee()</code>
-as <code>tidy_fun</code>.</td>
-</tr>
-<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">nnet::multinom()</a></code></td>
 <td align="left"></td>
 </tr>
+<tr class="even">
+<td align="left"><code>ordinal::clm()</code></td>
+<td align="left">Limited support for models with nominal
+predictors.</td>
+</tr>
 <tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/ordinal/man/clm.html" class="external-link">ordinal::clm()</a></code></td>
+<td align="left"><code>ordinal::clmm()</code></td>
 <td align="left">Limited support for models with nominal
 predictors.</td>
 </tr>
 <tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/ordinal/man/clmm.html" class="external-link">ordinal::clmm()</a></code></td>
-<td align="left">Limited support for models with nominal
-predictors.</td>
-</tr>
-<tr class="odd">
-<td align="left"><code><a href="https://parsnip.tidymodels.org/reference/model_fit.html" class="external-link">parsnip::model_fit</a></code></td>
+<td align="left"><code>parsnip::model_fit</code></td>
 <td align="left">Supported as long as the type of model and the engine
 is supported.</td>
 </tr>
-<tr class="even">
-<td align="left"><code><a href="https://rdrr.io/pkg/plm/man/plm.html" class="external-link">plm::plm()</a></code></td>
+<tr class="odd">
+<td align="left"><code>plm::plm()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
-<td align="left"><code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html" class="external-link">rstanarm::stan_glm()</a></code></td>
+<tr class="even">
+<td align="left"><code>rstanarm::stan_glm()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/r/stats/aov.html" class="external-link">stats::aov()</a></code></td>
 <td align="left">Reference rows are not relevant for such models.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/r/stats/nls.html" class="external-link">stats::nls()</a></code></td>
 <td align="left">Limited support</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svycoxph.html" class="external-link">survey::svycoxph()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svyglm.html" class="external-link">survey::svyglm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svyolr.html" class="external-link">survey::svyolr()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survival/man/clogit.html" class="external-link">survival::clogit()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">survival::coxph()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survival/man/survreg.html" class="external-link">survival::survreg()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
-<td align="left"><code><a href="https://mskcc-epi-bio.github.io/tidycmprsk/reference/crr.html" class="external-link">tidycmprsk::crr()</a></code></td>
+<tr class="odd">
+<td align="left"><code>tidycmprsk::crr()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
-<td align="left"><code><a href="https://rdrr.io/pkg/VGAM/man/vglm.html" class="external-link">VGAM::vglm()</a></code></td>
+<tr class="even">
+<td align="left"><code>VGAM::vglm()</code></td>
 <td align="left">Limited support. It is recommended to use
 <code>tidy_parameters()</code> as <code>tidy_fun</code>.</td>
 </tr>
