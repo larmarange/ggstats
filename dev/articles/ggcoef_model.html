@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.1.9000</span>
       </span>
     </div>
 
@@ -88,9 +88,11 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Plot model coefficients with <code>ggcoef_model()</code>
+      <h1 data-toc-skip>Plot model coefficients with
+<code>ggcoef_model()</code>
 </h1>
-                        <h4 data-toc-skip class="author">Joseph Larmarange</h4>
+                        <h4 data-toc-skip class="author">Joseph
+Larmarange</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/larmarange/ggstats/blob/HEAD/vignettes/ggcoef_model.Rmd" class="external-link"><code>vignettes/ggcoef_model.Rmd</code></a></small>
@@ -102,17 +104,29 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://larmarange.github.io/ggstats/">ggstats</a></span><span class="op">)</span></span></code></pre></div>
-<p>The purpose of <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> is to quickly plot the coefficients of a model. It is an updated and improved version of <code>GGally::ggcoef()</code> based on <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>. For displaying a nicely formatted table of the same models, look at <code>gtsummary::tbl_regression()</code>.</p>
+<p>The purpose of <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> is to quickly plot the
+coefficients of a model. It is an updated and improved version of
+<code>GGally::ggcoef()</code> based on
+<code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>. For displaying a nicely
+formatted table of the same models, look at
+<code>gtsummary::tbl_regression()</code>.</p>
 <div class="section level2">
 <h2 id="quick-coefficients-plot">Quick coefficients plot<a class="anchor" aria-label="anchor" href="#quick-coefficients-plot"></a>
 </h2>
-<p>To work automatically, this function requires the <a href="https://larmarange.github.io/broom.helpers/" class="external-link">broom.helpers</a>. Simply call <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> with a model object. It could be the result of <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm</a></code> or any other model covered by <a href="https://larmarange.github.io/broom.helpers/" class="external-link">broom.helpers</a>.</p>
+<p>To work automatically, this function requires the
+<a href="https://larmarange.github.io/broom.helpers/" class="external-link">broom.helpers</a>. Simply call <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>
+with a model object. It could be the result of <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm</a></code>,
+<code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm</a></code> or any other model covered by
+<a href="https://larmarange.github.io/broom.helpers/" class="external-link">broom.helpers</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tips</span>, package <span class="op">=</span> <span class="st">"reshape"</span><span class="op">)</span></span>
 <span><span class="va">mod_simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/ggcoef-reg-1.png" width="700"></p>
-<p>In the case of a logistic regression (or any other model for which coefficients are usually exponentiated), simply indicated <code>exponentiate = TRUE</code>. Note that a logarithmic scale will be used for the x-axis.</p>
+<p>In the case of a logistic regression (or any other model for which
+coefficients are usually exponentiated), simply indicated
+<code>exponentiate = TRUE</code>. Note that a logarithmic scale will be
+used for the x-axis.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
 <span><span class="va">d_titanic</span><span class="op">$</span><span class="va">Survived</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">d_titanic</span><span class="op">$</span><span class="va">Survived</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span></span>
@@ -131,7 +145,10 @@
 <div class="section level3">
 <h3 id="variable-labels">Variable labels<a class="anchor" aria-label="anchor" href="#variable-labels"></a>
 </h3>
-<p>You can use the <a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a> package to define variable labels. They will be automatically used by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>. Note that variable labels should be defined before computing the model.</p>
+<p>You can use the <a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a> package to define variable
+labels. They will be automatically used by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>.
+Note that variable labels should be defined before computing the
+model.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a></span><span class="op">)</span></span>
 <span><span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -143,7 +160,8 @@
 <span><span class="va">mod_labelled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips_labelled</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_labelled</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<p>You can also define custom variable labels directly by passing a named vector to the <code>variable_labels</code> option.</p>
+<p>You can also define custom variable labels directly by passing a
+named vector to the <code>variable_labels</code> option.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_simple</span>,</span>
@@ -154,7 +172,9 @@
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<p>If variable labels are to long, you can pass <code><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">ggplot2::label_wrap_gen()</a></code> or any other labeller function to <code>facet_labeller.</code></p>
+<p>If variable labels are to long, you can pass
+<code><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">ggplot2::label_wrap_gen()</a></code> or any other labeller function to
+<code>facet_labeller.</code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_simple</span>,</span>
@@ -189,10 +209,11 @@
 <span>    interaction_sep <span class="op">=</span> <span class="st">" x "</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Scale for 'y' is already present. Adding another scale for 'y', which will</span></span>
-<span><span class="co">#&gt; replace the existing scale.</span></span></code></pre></div>
+<span><span class="co">#&gt; Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
+<span><span class="co">#&gt; Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
-<p>By default, for categorical variables using treatment and sum contrasts, reference rows will be added and displayed on the graph.</p>
+<p>By default, for categorical variables using treatment and sum
+contrasts, reference rows will be added and displayed on the graph.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_titanic2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span></span>
 <span>  <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">*</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Class</span>,</span>
@@ -203,12 +224,14 @@
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_titanic2</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<p>Continuous variables with polynomial terms defined with <code><a href="https://rdrr.io/r/stats/poly.html" class="external-link">stats::poly()</a></code> are also properly managed.</p>
+<p>Continuous variables with polynomial terms defined with
+<code><a href="https://rdrr.io/r/stats/poly.html" class="external-link">stats::poly()</a></code> are also properly managed.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html" class="external-link">poly</a></span><span class="op">(</span><span class="va">Petal.Width</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="va">Petal.Length</span>, data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_poly</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<p>Use <code>no_reference_row</code> to indicate which variables should not have a reference row added.</p>
+<p>Use <code>no_reference_row</code> to indicate which variables should
+not have a reference row added.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_titanic2</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -236,19 +259,25 @@
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, intercept <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
-<p>You can remove confidence intervals with <code>conf.int = FALSE</code>.</p>
+<p>You can remove confidence intervals with
+<code>conf.int = FALSE</code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, conf.int <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
-<p>By default, significant terms (i.e. with a p-value below 5%) are highlighted using two types of dots. You can control the level of significance with <code>significance</code> or remove it with <code>significance = NULL</code>.</p>
+<p>By default, significant terms (i.e. with a p-value below 5%) are
+highlighted using two types of dots. You can control the level of
+significance with <code>significance</code> or remove it with
+<code>significance = NULL</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, significance <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
-<p>By default, dots are colored by variable. You can deactivate this behavior with <code>colour = NULL</code>.</p>
+<p>By default, dots are colored by variable. You can deactivate this
+behavior with <code>colour = NULL</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, colour <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
-<p>You can display only a subset of terms with <strong>include</strong>.</p>
+<p>You can display only a subset of terms with
+<strong>include</strong>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="st">"total_bill"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
@@ -256,31 +285,37 @@
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, include <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"t"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
-<p>You can remove stripped rows with <code>stripped_rows = FALSE</code>.</p>
+<p>You can remove stripped rows with
+<code>stripped_rows = FALSE</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span>, stripped_rows <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
-<p>Do not hesitate to consult the <a href="http://ggobi.github.io/ggally/reference/ggcoef_model.html" class="external-link">help file</a> of <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> to see all available options.</p>
+<p>Do not hesitate to consult the help file of
+<code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> to see all available options.</p>
 </div>
 <div class="section level3">
 <h3 id="ggplot2-elements">ggplot2 elements<a class="anchor" aria-label="anchor" href="#ggplot2-elements"></a>
 </h3>
-<p>The plot returned by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> is a classic <code>ggplot2</code> plot. You can therefore apply <code>ggplot2</code> functions to it.</p>
+<p>The plot returned by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code> is a classic
+<code>ggplot2</code> plot. You can therefore apply <code>ggplot2</code>
+functions to it.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod_simple</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Coefficients"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Custom title"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set1"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Scale for 'colour' is already present. Adding another scale for 'colour',</span></span>
-<span><span class="co">#&gt; which will replace the existing scale.</span></span></code></pre></div>
+<span><span class="co">#&gt; Scale for <span style="color: #00BB00;">colour</span> is already present.</span></span>
+<span><span class="co">#&gt; Adding another scale for <span style="color: #00BB00;">colour</span>, which will replace the existing scale.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="multinomial-models">Multinomial models<a class="anchor" aria-label="anchor" href="#multinomial-models"></a>
 </h2>
-<p>For multinomial models, simply use <code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code>. Two types of visualizations are available: <code>"dodged"</code> and <code>"faceted"</code>.</p>
+<p>For multinomial models, simply use <code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code>.
+Two types of visualizations are available: <code>"dodged"</code> and
+<code>"faceted"</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span>
@@ -314,7 +349,8 @@
 <div class="section level2">
 <h2 id="comparing-several-models">Comparing several models<a class="anchor" aria-label="anchor" href="#comparing-several-models"></a>
 </h2>
-<p>You can easily compare several models with <code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code>.</p>
+<p>You can easily compare several models with
+<code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span>
 <span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/step.html" class="external-link">step</a></span><span class="op">(</span><span class="va">mod1</span>, trace <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -334,7 +370,12 @@
 <div class="section level2">
 <h2 id="advanced-users">Advanced users<a class="anchor" aria-label="anchor" href="#advanced-users"></a>
 </h2>
-<p>Advanced users could use their own dataset and pass it to <code><a href="../reference/ggcoef_model.html">ggcoef_plot()</a></code>. Such dataset could be produced by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>, <code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code> or <code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code> with the option <code>return_data = TRUE</code> or by using <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> or <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>.</p>
+<p>Advanced users could use their own dataset and pass it to
+<code><a href="../reference/ggcoef_model.html">ggcoef_plot()</a></code>. Such dataset could be produced by
+<code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>, <code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code> or
+<code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code> with the option
+<code>return_data = TRUE</code> or by using <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code>
+or <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="supported-models">Supported models<a class="anchor" aria-label="anchor" href="#supported-models"></a>
@@ -364,7 +405,8 @@
 </tr>
 <tr class="even">
 <td align="left"><code>cmprsk::crr()</code></td>
-<td align="left">Limited support. It is recommended to use <code>tidycmprsk::crr()</code> instead.</td>
+<td align="left">Limited support. It is recommended to use
+<code>tidycmprsk::crr()</code> instead.</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>fixest::feglm()</code></td>
@@ -428,11 +470,15 @@
 </tr>
 <tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam()</a></code></td>
-<td align="left">Use default tidier <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> for smooth terms only, or <code>gtsummary::tidy_gam()</code> to include parametric terms</td>
+<td align="left">Use default tidier <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> for
+smooth terms only, or <code>gtsummary::tidy_gam()</code> to include
+parametric terms</td>
 </tr>
 <tr class="even">
 <td align="left"><code>mice::mira</code></td>
-<td align="left">Limited support. If <code>mod</code> is a <code>mira</code> object, use <code>tidy_plus_plus(mod, tidy_fun = function(x, ...) mice::pool(x) %&gt;% mice::tidy(...))</code>
+<td align="left">Limited support. If <code>mod</code> is a
+<code>mira</code> object, use
+<code>tidy_plus_plus(mod, tidy_fun = function(x, ...) mice::pool(x) %&gt;% mice::tidy(...))</code>
 </td>
 </tr>
 <tr class="odd">
@@ -441,15 +487,18 @@
 </tr>
 <tr class="even">
 <td align="left"><code>ordinal::clm()</code></td>
-<td align="left">Limited support for models with nominal predictors.</td>
+<td align="left">Limited support for models with nominal
+predictors.</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>ordinal::clmm()</code></td>
-<td align="left">Limited support for models with nominal predictors.</td>
+<td align="left">Limited support for models with nominal
+predictors.</td>
 </tr>
 <tr class="even">
 <td align="left"><code>parsnip::model_fit</code></td>
-<td align="left">Supported as long as the type of model and the engine is supported.</td>
+<td align="left">Supported as long as the type of model and the engine
+is supported.</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>plm::plm()</code></td>
@@ -506,11 +555,15 @@
 </tr>
 <tr class="even">
 <td align="left"><code>VGAM::vglm()</code></td>
-<td align="left">Limited support. It is recommended to use <code>tidy_parameters()</code> as <code>tidy_fun</code>.</td>
+<td align="left">Limited support. It is recommended to use
+<code>tidy_parameters()</code> as <code>tidy_fun</code>.</td>
 </tr>
 </tbody>
 </table>
-<p>Note: this list of models has been tested. <a href="https://larmarange.github.io/broom.helpers/" class="external-link">broom.helpers</a>, and therefore <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>, may or may not work properly or partially with other types of models.</p>
+<p>Note: this list of models has been tested.
+<a href="https://larmarange.github.io/broom.helpers/" class="external-link">broom.helpers</a>, and therefore <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>,
+may or may not work properly or partially with other types of
+models.</p>
 </div>
   </div>
 
