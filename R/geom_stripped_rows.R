@@ -71,7 +71,7 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
   required_aes = c("y"),
   default_aes = ggplot2::aes(
     odd = "#11111111", even = "#00000000",
-    alpha = NA, colour = NA, linetype = "solid", size = .5
+    alpha = NA, colour = NA, linetype = "solid", linewidth = .5
   ),
   draw_key = ggplot2::draw_key_rect,
   draw_panel = function(data, panel_params, coord,
@@ -87,7 +87,7 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
         ) %>%
         dplyr::select(dplyr::all_of(c(
           "xmin", "xmax", "ymin", "ymax", "odd", "even",
-          "alpha", "colour", "linetype", "size"
+          "alpha", "colour", "linetype", "linewidth"
         ))) %>%
         dplyr::distinct(.data$ymin, .keep_all = TRUE) %>%
         dplyr::arrange(.data$ymin) %>%
@@ -139,7 +139,7 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
   required_aes = c("y"),
   default_aes = ggplot2::aes(
     odd = "#11111111", even = "#00000000",
-    alpha = NA, colour = NA, linetype = "solid", size = .5
+    alpha = NA, colour = NA, linetype = "solid", linewidth = .5
   ),
   draw_key = ggplot2::draw_key_rect,
   draw_panel = function(data, panel_params, coord,
@@ -155,7 +155,7 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
         ) %>%
         dplyr::select(dplyr::all_of(c(
           "xmin", "xmax", "ymin", "ymax", "odd", "even",
-          "alpha", "colour", "linetype", "size"
+          "alpha", "colour", "linetype", "linewidth"
         ))) %>%
         dplyr::distinct(.data$xmin, .keep_all = TRUE) %>%
         dplyr::arrange(.data$xmin) %>%

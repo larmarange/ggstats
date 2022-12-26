@@ -1,5 +1,10 @@
 # ggstats (development version)
 
+* Now requires `ggplot2` version 3.4.0 or more (#15)
+* Following change in `geom_rect()`, the `size` aesthetic is now deprecated
+  in `geom_stripped_cols()` and `geom_stripped_rows()`: please use the
+  `linewidth` aesthetic instead (#15)
+
 # ggstats 0.1.1
 
 * Examples relying on Internet resources have been removed (#11)
