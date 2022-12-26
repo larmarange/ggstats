@@ -1,4 +1,5 @@
 test_that("geom_stripped_cols() and geom_stripped_rows() works", {
+  skip_on_cran()
   library(ggplot2)
 
   p <- ggplot(iris) +

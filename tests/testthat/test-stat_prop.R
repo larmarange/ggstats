@@ -1,4 +1,5 @@
 test_that("stat_prop()", {
+  skip_on_cran()
   library(ggplot2)
   d <- as.data.frame(Titanic)
 
@@ -44,6 +45,7 @@ test_that("stat_prop()", {
 
 test_that("stat_prop() works with an y aesthetic", {
   library(ggplot2)
+  skip_on_cran()
 
   d <- as.data.frame(Titanic)
   p <- ggplot(d) +

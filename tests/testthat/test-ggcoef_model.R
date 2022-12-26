@@ -1,6 +1,7 @@
 test_that("ggcoef_model()", {
   skip_if_not_installed("broom.helpers")
   skip_if_not_installed("reshape")
+  skip_on_cran()
 
   data(tips, package = "reshape")
   mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
@@ -151,6 +152,7 @@ test_that("ggcoef_model()", {
 
 test_that("ggcoef_compare()", {
   skip_if_not_installed("broom.helpers")
+  skip_on_cran()
 
   # Use ggcoef_compare() for comparing several models on the same plot
   mod1 <- lm(Fertility ~ ., data = swiss)
@@ -176,6 +178,7 @@ test_that("ggcoef_compare()", {
 test_that("ggcoef_multinom()", {
   skip_if_not_installed("broom.helpers")
   skip_if_not_installed("nnet")
+  skip_on_cran()
 
   library(nnet)
   mod <- multinom(Species ~ ., data = iris)
@@ -203,6 +206,7 @@ test_that("ggcoef_multinom()", {
 
 test_that("ggcoef_model() works with tieders not returning p-values", {
   skip_if_not_installed("broom.helpers")
+  skip_on_cran()
 
   mod <- lm(Sepal.Width ~ Species, iris)
   my_tidier <- function(x, ...) {
@@ -238,6 +242,7 @@ test_that("ggcoef_compare() complete NA respecting variables order", {
 test_that("ggcoef_compare() does not produce an error with an include", {
   skip_if_not_installed("survival")
   skip_if_not_installed("broom.helpers")
+  skip_on_cran()
   m1 <- survival::coxph(
     survival::Surv(time, status) ~ prior + age,
     data = survival::veteran

@@ -1,4 +1,5 @@
 test_that("ggsurvey works correctly", {
+  skip_on_cran()
   skip_if_not_installed("survey")
   skip_if_not_installed("ggplot2")
   library(ggplot2)

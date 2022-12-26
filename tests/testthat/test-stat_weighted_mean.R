@@ -1,4 +1,5 @@
 test_that("stat_weighted_mean()", {
+  skip_on_cran()
   skip_if_not_installed("reshape")
 
   library(ggplot2)

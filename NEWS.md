@@ -1,6 +1,10 @@
 # ggstats (development version)
 
 * Support for pairwise contrasts (#14)
+* Now requires `ggplot2` version 3.4.0 or more (#15)
+* Following change in `geom_rect()`, the `size` aesthetic is now deprecated
+  in `geom_stripped_cols()` and `geom_stripped_rows()`: please use the
+  `linewidth` aesthetic instead (#15)
 
 # ggstats 0.1.1
 
