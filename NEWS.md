@@ -1,5 +1,7 @@
 # ggstats (development version)
 
+* Support for pairwise contrasts (#14)
+
 # ggstats 0.1.1
 
 * Examples relying on Internet resources have been removed (#11)

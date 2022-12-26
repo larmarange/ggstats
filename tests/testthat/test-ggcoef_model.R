@@ -253,3 +253,26 @@ test_that("ggcoef_compare() does not produce an error with an include", {
     ggcoef_compare(models, include = broom.helpers::starts_with("p"))
   )
 })
+
+test_that("ggcoef_model() works with pairwise contratst") {
+  skip_if_not_installed("broom.helpers")
+  mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
+  expect_error(
+    ggcoef_model(mod, add_pairwise_contrasts = TRUE),
+    NA
+  )
+  expect_error(
+    ggcoef_model(
+      mod,
+      add_pairwise_contrasts = TRUE,
+      pairwise_variables = dplyr::starts_with("Sp"),
+      keep_model_terms = TRUE
+    ),
+    NA
+  )
+  mod2 <- lm(Sepal.Length ~ Species, data = iris)
+  expect_error(
+    ggcoef_compare(list(mod, mod2), add_pairwise_contrasts = TRUE),
+    NA
+  )
+}

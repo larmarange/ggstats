@@ -21,6 +21,11 @@ ggcoef_model(
   no_reference_row = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  add_pairwise_contrasts = FALSE,
+  pairwise_variables = broom.helpers::all_categorical(),
+  keep_model_terms = FALSE,
+  pairwise_reverse = TRUE,
+  emmeans_args = list(),
   significance = 1 - conf.level,
   significance_labels = NULL,
   show_p_values = TRUE,
@@ -44,6 +49,11 @@ ggcoef_compare(
   no_reference_row = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  add_pairwise_contrasts = FALSE,
+  pairwise_variables = broom.helpers::all_categorical(),
+  keep_model_terms = FALSE,
+  pairwise_reverse = TRUE,
+  emmeans_args = list(),
   significance = 1 - conf.level,
   significance_labels = NULL,
   return_data = FALSE,
@@ -141,6 +151,21 @@ for those no reference row should be added, when \code{add_reference_rows = TRUE
 syntax. Use \code{-} to remove a variable. Default is \code{everything()}.
 See also \code{\link[broom.helpers:all_continuous]{all_continuous()}}, \code{\link[broom.helpers:all_categorical]{all_categorical()}}, \code{\link[broom.helpers:all_dichotomous]{all_dichotomous()}}
 and \code{\link[broom.helpers:all_interaction]{all_interaction()}}}
+
+\item{add_pairwise_contrasts}{apply \code{\link[broom.helpers:tidy_add_pairwise_contrasts]{tidy_add_pairwise_contrasts()}}?
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
+
+\item{pairwise_variables}{variables to add pairwise contrasts
+(accepts \link[dplyr:select]{tidyselect} notation)}
+
+\item{keep_model_terms}{keep original model terms for variables where
+pairwise contrasts are added? (default is \code{FALSE})}
+
+\item{pairwise_reverse}{determines whether to use \code{"pairwise"} (if \code{TRUE})
+or \code{"revpairwise"} (if \code{FALSE}), see \code{\link[emmeans:contrast]{emmeans::contrast()}}}
+
+\item{emmeans_args}{list of additional parameter to pass to
+\code{\link[emmeans:emmeans]{emmeans::emmeans()}} when computing pairwise contrasts}
 
 \item{significance}{level (between 0 and 1) below which a
 coefficient is consider to be significantly different from 0
