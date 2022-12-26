@@ -223,19 +223,16 @@ library(nnet)
 mod <- multinom(Species ~ ., data = iris)
 ggcoef_multinom(
   mod,
-  exponentiate = TRUE,
-  tidy_fun = broom.helpers::tidy_parameters
+  exponentiate = TRUE
 )
 ggcoef_multinom(
   mod,
   exponentiate = TRUE,
-  type = "faceted",
-  tidy_fun = broom.helpers::tidy_parameters
+  type = "faceted"
 )
 ggcoef_multinom(
   mod,
   type = "faceted",
-  tidy_fun = broom.helpers::tidy_parameters,
   y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
 )
 ```
