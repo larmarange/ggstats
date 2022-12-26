@@ -228,7 +228,7 @@ ggcoef_multinom(
 )
 ggcoef_multinom(
   mod,
-  exponentiate = TRUE, 
+  exponentiate = TRUE,
   type = "faceted",
   tidy_fun = broom.helpers::tidy_parameters
 )
