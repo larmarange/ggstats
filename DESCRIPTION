@@ -33,6 +33,7 @@ Suggests:
     reshape,
     rmarkdown,
     nnet,
+    parameters,
     testthat (>= 3.0.0),
     spelling,
     survey,
