@@ -1,4 +1,5 @@
 test_that("stat_cross()", {
+  skip_on_cran()
   library(ggplot2)
 
   d <- as.data.frame(Titanic)
