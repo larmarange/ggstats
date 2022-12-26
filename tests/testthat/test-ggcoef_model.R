@@ -254,7 +254,7 @@ test_that("ggcoef_compare() does not produce an error with an include", {
   )
 })
 
-test_that("ggcoef_model() works with pairwise contratst") {
+test_that("ggcoef_model() works with pairwise contratst", {
   skip_if_not_installed("broom.helpers")
   mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
   expect_error(
@@ -275,4 +275,4 @@ test_that("ggcoef_model() works with pairwise contratst") {
     ggcoef_compare(list(mod, mod2), add_pairwise_contrasts = TRUE),
     NA
   )
-}
+})
