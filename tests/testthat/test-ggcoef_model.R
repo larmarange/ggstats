@@ -281,3 +281,18 @@ test_that("ggcoef_model() works with pairwise contratst", {
     NA
   )
 })
+
+test_that("tidy_args is supported", {
+  mod <- lm(Sepal.Length ~ Sepal.Width, data = iris)
+  custom <- function(x, force = 1, ...) {
+    broom::tidy(x, ...) %>%
+      dplyr::mutate(estimate = force)
+  }
+  res <- ggcoef_model(
+    mod,
+    tidy_fun = custom,
+    tidy_args = list(force = 3),
+    return_data = TRUE
+  )
+  expect_equal(res$estimate, 3)
+})

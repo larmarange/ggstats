@@ -9,6 +9,8 @@
 #' get the produced `tibble`, apply any transformation of your own and
 #' then pass your customized `tibble` to `ggcoef_plot()`.
 #' @inheritParams broom.helpers::tidy_plus_plus
+#' @param tidy_args Additionaĺ arguments passed to
+#' [broom.helpers::tidy_plus_plus()] and to `tidy_fun`
 #' @param model a regression model object
 #' @param conf.level the confidence level to use for the confidence
 #'   interval if `conf.int = TRUE`; must be strictly greater than 0
@@ -148,6 +150,7 @@
 ggcoef_model <- function(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -174,6 +177,7 @@ ggcoef_model <- function(
   data <- ggcoef_data(
     model = model,
     tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
@@ -277,6 +281,7 @@ ggcoef_compare <- function(
   models,
   type = c("dodged", "faceted"),
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -302,6 +307,7 @@ ggcoef_compare <- function(
     X = models,
     FUN = ggcoef_data,
     tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
@@ -407,6 +413,7 @@ ggcoef_multinom <- function(
   type = c("dodged", "faceted"),
   y.level_label = NULL,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -428,6 +435,7 @@ ggcoef_multinom <- function(
   data <- ggcoef_data(
     model,
     tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
@@ -498,6 +506,7 @@ ggcoef_multinom <- function(
 ggcoef_data <- function(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -523,7 +532,7 @@ ggcoef_data <- function(
   if (length(significance) == 0)
     significance <- NULL
 
-  data <- broom.helpers::tidy_plus_plus(
+  data <- rlang::inject(broom.helpers::tidy_plus_plus(
     model = model,
     tidy_fun = tidy_fun,
     conf.int = conf.int,
@@ -544,8 +553,9 @@ ggcoef_data <- function(
     add_header_rows = FALSE,
     intercept = intercept,
     include = {{ include }},
-    keep_model = FALSE
-  )
+    keep_model = FALSE,
+    !!!tidy_args
+  ))
 
   if (!"p.value" %in% names(data)) {
     data$p.value <- NA_real_

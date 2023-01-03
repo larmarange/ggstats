@@ -10,6 +10,7 @@
 ggcoef_model(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = 0.95,
   exponentiate = FALSE,
@@ -38,6 +39,7 @@ ggcoef_compare(
   models,
   type = c("dodged", "faceted"),
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = 0.95,
   exponentiate = FALSE,
@@ -65,6 +67,7 @@ ggcoef_multinom(
   type = c("dodged", "faceted"),
   y.level_label = NULL,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = 0.95,
   exponentiate = FALSE,
@@ -119,6 +122,9 @@ ggcoef_plot(
 \item{model}{a regression model object}
 
 \item{tidy_fun}{option to specify a custom tidier function}
+
+\item{tidy_args}{Additionaĺ arguments passed to
+\code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}} and to \code{tidy_fun}}
 
 \item{conf.int}{should confidence intervals be computed? (see \code{\link[broom:reexports]{broom::tidy()}})}
 
