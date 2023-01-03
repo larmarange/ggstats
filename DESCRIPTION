@@ -21,6 +21,7 @@ Imports:
     ggplot2 (>= 3.4.0),
     lifecycle,
     magrittr,
+    rlang,
     scales,
     stats,
     tidyr
