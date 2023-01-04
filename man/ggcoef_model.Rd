@@ -123,7 +123,7 @@ ggcoef_plot(
 
 \item{tidy_fun}{option to specify a custom tidier function}
 
-\item{tidy_args}{Additionaĺ arguments passed to
+\item{tidy_args}{Additional arguments passed to
 \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}} and to \code{tidy_fun}}
 
 \item{conf.int}{should confidence intervals be computed? (see \code{\link[broom:reexports]{broom::tidy()}})}

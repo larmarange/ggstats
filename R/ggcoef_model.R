@@ -9,7 +9,7 @@
 #' get the produced `tibble`, apply any transformation of your own and
 #' then pass your customized `tibble` to `ggcoef_plot()`.
 #' @inheritParams broom.helpers::tidy_plus_plus
-#' @param tidy_args Additionaĺ arguments passed to
+#' @param tidy_args Additional arguments passed to
 #' [broom.helpers::tidy_plus_plus()] and to `tidy_fun`
 #' @param model a regression model object
 #' @param conf.level the confidence level to use for the confidence
