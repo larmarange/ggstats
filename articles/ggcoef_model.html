@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -332,17 +332,33 @@ Two types of visualizations are available: <code>"dodged"</code> and
 <span><span class="co">#&gt; iter 100 value 5.949867</span></span>
 <span><span class="co">#&gt; final  value 5.949867 </span></span>
 <span><span class="co">#&gt; stopped after 100 iterations</span></span>
-<span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span><span class="va">mod</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"faceted"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-18-2.png" width="700"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"faceted"</span>,</span>
 <span>  y.level_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"versicolor"</span> <span class="op">=</span> <span class="st">"versicolor\n(ref: setosa)"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-18-3.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -460,99 +476,113 @@ or <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus
 <code>broom.mixed</code> package required</td>
 </tr>
 <tr class="odd">
+<td align="left"><code>logitr::logitr()</code></td>
+<td align="left">Requires logitr &gt;= 0.8.0</td>
+</tr>
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/MASS/man/glm.nb.html" class="external-link">MASS::glm.nb()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/MASS/man/polr.html" class="external-link">MASS::polr()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam()</a></code></td>
 <td align="left">Use default tidier <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> for
 smooth terms only, or <code>gtsummary::tidy_gam()</code> to include
 parametric terms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>mice::mira</code></td>
 <td align="left">Limited support. If <code>mod</code> is a
 <code>mira</code> object, use
 <code>tidy_plus_plus(mod, tidy_fun = function(x, ...) mice::pool(x) %&gt;% mice::tidy(...))</code>
 </td>
 </tr>
+<tr class="even">
+<td align="left"><code>multgee::nomLORgee()</code></td>
+<td align="left">Experimental support. Use <code>tidy_multgee()</code>
+as <code>tidy_fun</code>.</td>
+</tr>
 <tr class="odd">
+<td align="left"><code>multgee::ordLORgee()</code></td>
+<td align="left">Experimental support. Use <code>tidy_multgee()</code>
+as <code>tidy_fun</code>.</td>
+</tr>
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">nnet::multinom()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>ordinal::clm()</code></td>
 <td align="left">Limited support for models with nominal
 predictors.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>ordinal::clmm()</code></td>
 <td align="left">Limited support for models with nominal
 predictors.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>parsnip::model_fit</code></td>
 <td align="left">Supported as long as the type of model and the engine
 is supported.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>plm::plm()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>rstanarm::stan_glm()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/r/stats/aov.html" class="external-link">stats::aov()</a></code></td>
 <td align="left">Reference rows are not relevant for such models.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/r/stats/nls.html" class="external-link">stats::nls()</a></code></td>
 <td align="left">Limited support</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svycoxph.html" class="external-link">survey::svycoxph()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svyglm.html" class="external-link">survey::svyglm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svyolr.html" class="external-link">survey::svyolr()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survival/man/clogit.html" class="external-link">survival::clogit()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">survival::coxph()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survival/man/survreg.html" class="external-link">survival::survreg()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>tidycmprsk::crr()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>VGAM::vglm()</code></td>
 <td align="left">Limited support. It is recommended to use
 <code>tidy_parameters()</code> as <code>tidy_fun</code>.</td>
@@ -583,7 +613,7 @@ models.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
