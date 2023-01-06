@@ -1,15 +1,15 @@
 ## Test environments
 
-* local R installation: R 4.2.1
+* local R installation: R 4.2.2
 * mac OS (on github actions): R-release
 * windows (on github actions): R-release
-* ubuntu 18.04 (on github actions): R-devel, R-release, R-oldrel-1
+* ubuntu (on github actions): R-devel, R-release, R-oldrel-1
 
 cf. https://github.com/larmarange/ggstats/actions
 
-## R CMD check results
+## revdepcheck results
 
-0 errors | 0 warnings | 0 note
+We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
-* examples using Internet resources have been removed
-* glue is now declared in DESCRIPTION
+ * We saw 0 new problems
+ * We failed to check 0 packages

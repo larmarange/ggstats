@@ -1,30 +1,30 @@
 # Platform
 
-|field    |value                                     |
-|:--------|:-----------------------------------------|
-|version  |R version 4.2.1 (2022-06-23 ucrt)         |
-|os       |Windows 10 x64 (build 22621)              |
-|system   |x86_64, mingw32                           |
-|ui       |RStudio                                   |
-|language |(EN)                                      |
-|collate  |French_France.utf8                        |
-|ctype    |French_France.utf8                        |
-|tz       |Europe/Paris                              |
-|date     |2022-11-19                                |
-|rstudio  |2022.07.2+576 Spotted Wakerobin (desktop) |
-|pandoc   |NA                                        |
+|field    |value                                    |
+|:--------|:----------------------------------------|
+|version  |R version 4.2.2 (2022-10-31 ucrt)        |
+|os       |Windows 10 x64 (build 22621)             |
+|system   |x86_64, mingw32                          |
+|ui       |RStudio                                  |
+|language |(EN)                                     |
+|collate  |French_France.utf8                       |
+|ctype    |French_France.utf8                       |
+|tz       |Indian/Mauritius                         |
+|date     |2023-01-06                               |
+|rstudio  |2022.12.0+353 Elsbeth Geranium (desktop) |
+|pandoc   |NA                                       |
 
 # Dependencies
 
 |package       |old    |new        |Δ  |
 |:-------------|:------|:----------|:--|
-|ggstats       |0.1.0  |0.1.0.9000 |*  |
+|ggstats       |0.1.1  |0.1.1.9000 |*  |
 |backports     |1.4.1  |1.4.1      |   |
 |bit           |4.0.5  |4.0.5      |   |
 |bit64         |4.0.5  |4.0.5      |   |
-|broom         |1.0.1  |1.0.1      |   |
-|broom.helpers |1.9.0  |1.9.0      |   |
-|cli           |3.4.1  |3.4.1      |   |
+|broom         |1.0.2  |1.0.2      |   |
+|broom.helpers |1.11.0 |1.11.0     |   |
+|cli           |3.5.0  |3.5.0      |   |
 |clipr         |0.8.0  |0.8.0      |   |
 |colorspace    |2.0-3  |2.0-3      |   |
 |cpp11         |0.4.3  |0.4.3      |   |
@@ -40,7 +40,7 @@
 |gtable        |0.3.1  |0.3.1      |   |
 |haven         |2.5.1  |2.5.1      |   |
 |hms           |1.1.2  |1.1.2      |   |
-|isoband       |0.2.6  |0.2.6      |   |
+|isoband       |0.2.7  |0.2.7      |   |
 |labeling      |0.4.2  |0.4.2      |   |
 |labelled      |2.10.0 |2.10.0     |   |
 |lifecycle     |1.0.3  |1.0.3      |   |
@@ -50,14 +50,14 @@
 |pkgconfig     |2.0.3  |2.0.3      |   |
 |prettyunits   |1.1.1  |1.1.1      |   |
 |progress      |1.2.2  |1.2.2      |   |
-|purrr         |0.3.5  |0.3.5      |   |
+|purrr         |1.0.0  |1.0.0      |   |
 |R6            |2.5.1  |2.5.1      |   |
 |RColorBrewer  |1.1-3  |1.1-3      |   |
 |readr         |2.1.3  |2.1.3      |   |
 |rlang         |1.0.6  |1.0.6      |   |
 |scales        |1.2.1  |1.2.1      |   |
 |stringi       |1.7.8  |1.7.8      |   |
-|stringr       |1.4.1  |1.4.1      |   |
+|stringr       |1.5.0  |1.5.0      |   |
 |tibble        |3.1.8  |3.1.8      |   |
 |tidyr         |1.2.1  |1.2.1      |   |
 |tidyselect    |1.2.0  |1.2.0      |   |
