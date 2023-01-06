@@ -1,4 +1,4 @@
-# ggstats (development version)
+# ggstats 0.2.0
 
 * Support for pairwise contrasts (#14)
 * New argument `tidy_args` in `ggcoef_*()` to pass additional arguments to
