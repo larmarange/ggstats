@@ -14,7 +14,7 @@ License: GPL-3
 URL: https://larmarange.github.io/ggstats/
 BugReports: https://github.com/larmarange/ggstats/issues
 Imports: 
-    broom.helpers,
+    broom.helpers (>= 1.11.0),
     cli,
     dplyr,
     forcats,
@@ -47,4 +47,3 @@ Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Language: en-US
 VignetteBuilder: knitr
-Remotes: larmarange/broom.helpers
