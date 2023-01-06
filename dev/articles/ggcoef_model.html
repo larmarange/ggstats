@@ -333,17 +333,33 @@ Two types of visualizations are available: <code>"dodged"</code> and
 <span><span class="co">#&gt; iter 100 value 5.949867</span></span>
 <span><span class="co">#&gt; final  value 5.949867 </span></span>
 <span><span class="co">#&gt; stopped after 100 iterations</span></span>
-<span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span><span class="va">mod</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"faceted"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-18-2.png" width="700"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ggcoef_model.html">ggcoef_multinom</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"faceted"</span>,</span>
 <span>  y.level_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"versicolor"</span> <span class="op">=</span> <span class="st">"versicolor\n(ref: setosa)"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span></span></code></pre></div>
 <p><img src="ggcoef_model_files/figure-html/unnamed-chunk-18-3.png" width="700"></p>
 </div>
 <div class="section level2">

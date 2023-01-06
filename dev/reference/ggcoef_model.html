@@ -81,6 +81,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggcoef_model</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_args <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -92,6 +93,11 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  no_reference_row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  intercept <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  add_pairwise_contrasts <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pairwise_variables <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  keep_model_terms <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pairwise_reverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  emmeans_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  significance <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">conf.level</span>,</span>
 <span>  significance_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  show_p_values <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -104,6 +110,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  <span class="va">models</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
 <span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_args <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -115,6 +122,11 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  no_reference_row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  intercept <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  add_pairwise_contrasts <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pairwise_variables <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  keep_model_terms <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pairwise_reverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  emmeans_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  significance <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">conf.level</span>,</span>
 <span>  significance_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  return_data <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -126,6 +138,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
 <span>  y.level_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
+<span>  tidy_args <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -187,6 +200,11 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <dd><p>option to specify a custom tidier function</p></dd>
 
 
+<dt>tidy_args</dt>
+<dd><p>Additional arguments passed to
+<code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus_plus.html" class="external-link">broom.helpers::tidy_plus_plus()</a></code> and to <code>tidy_fun</code></p></dd>
+
+
 <dt>conf.int</dt>
 <dd><p>should confidence intervals be computed? (see <code><a href="https://broom.tidymodels.org/reference/reexports.html" class="external-link">broom::tidy()</a></code>)</p></dd>
 
@@ -239,6 +257,31 @@ for those no reference row should be added, when <code>add_reference_rows = TRUE
 syntax. Use <code>-</code> to remove a variable. Default is <code>everything()</code>.
 See also <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous()</a></code>
 and <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
+
+
+<dt>add_pairwise_contrasts</dt>
+<dd><p>apply <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_add_pairwise_contrasts.html" class="external-link">tidy_add_pairwise_contrasts()</a></code>?
+<a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a></p></dd>
+
+
+<dt>pairwise_variables</dt>
+<dd><p>variables to add pairwise contrasts
+(accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a> notation)</p></dd>
+
+
+<dt>keep_model_terms</dt>
+<dd><p>keep original model terms for variables where
+pairwise contrasts are added? (default is <code>FALSE</code>)</p></dd>
+
+
+<dt>pairwise_reverse</dt>
+<dd><p>determines whether to use <code>"pairwise"</code> (if <code>TRUE</code>)
+or <code>"revpairwise"</code> (if <code>FALSE</code>), see <code><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">emmeans::contrast()</a></code></p></dd>
+
+
+<dt>emmeans_args</dt>
+<dd><p>list of additional parameter to pass to
+<code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans::emmeans()</a></code> when computing pairwise contrasts</p></dd>
 
 
 <dt>significance</dt>
@@ -602,14 +645,23 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-out co"><span class="r-pr">#&gt;</span> final  value 5.949867 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> stopped after 100 iterations</span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span>
 <span class="r-plt img"><img src="ggcoef_model-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span>
 <span class="r-plt img"><img src="ggcoef_model-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"faceted"</span>,</span></span>
 <span class="r-in"><span>  y.level_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"versicolor"</span> <span class="op">=</span> <span class="st">"versicolor\n(ref: setosa)"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span>
 <span class="r-plt img"><img src="ggcoef_model-21.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
