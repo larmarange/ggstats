@@ -10,17 +10,18 @@ Description: Provides suite of functions to plot regression model coefficients
     ("forest plots"). The suite also includes new statistics to compute 
     proportions, weighted mean and cross-tabulation statistics, as well as new 
     geometries to add alternative background color to a plot.
-License: GPL-3
+License: GPL (>= 3)
 URL: https://larmarange.github.io/ggstats/
 BugReports: https://github.com/larmarange/ggstats/issues
 Imports: 
-    broom.helpers,
+    broom.helpers (>= 1.11.0),
     cli,
     dplyr,
     forcats,
     ggplot2 (>= 3.4.0),
     lifecycle,
     magrittr,
+    rlang,
     scales,
     stats,
     tidyr
@@ -33,6 +34,7 @@ Suggests:
     reshape,
     rmarkdown,
     nnet,
+    parameters,
     testthat (>= 3.0.0),
     spelling,
     survey,
@@ -40,7 +42,7 @@ Suggests:
     vdiffr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Language: en-US

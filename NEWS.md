@@ -1,5 +1,8 @@
 # ggstats (development version)
 
+* Support for pairwise contrasts (#14)
+* New argument `tidy_args` in `ggcoef_*()` to pass additional arguments to
+  `broom.helpers::tidy_plus_plus()` and to `tidy_fun` (#17)
 * Now requires `ggplot2` version 3.4.0 or more (#15)
 * Following change in `geom_rect()`, the `size` aesthetic is now deprecated
   in `geom_stripped_cols()` and `geom_stripped_rows()`: please use the

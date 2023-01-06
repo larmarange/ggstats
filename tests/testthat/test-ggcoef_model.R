@@ -258,3 +258,41 @@ test_that("ggcoef_compare() does not produce an error with an include", {
     ggcoef_compare(models, include = broom.helpers::starts_with("p"))
   )
 })
+
+test_that("ggcoef_model() works with pairwise contratst", {
+  skip_if_not_installed("broom.helpers")
+  mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
+  expect_error(
+    ggcoef_model(mod, add_pairwise_contrasts = TRUE),
+    NA
+  )
+  expect_error(
+    ggcoef_model(
+      mod,
+      add_pairwise_contrasts = TRUE,
+      pairwise_variables = dplyr::starts_with("Sp"),
+      keep_model_terms = TRUE
+    ),
+    NA
+  )
+  mod2 <- lm(Sepal.Length ~ Species, data = iris)
+  expect_error(
+    ggcoef_compare(list(mod, mod2), add_pairwise_contrasts = TRUE),
+    NA
+  )
+})
+
+test_that("tidy_args is supported", {
+  mod <- lm(Sepal.Length ~ Sepal.Width, data = iris)
+  custom <- function(x, force = 1, ...) {
+    broom::tidy(x, ...) %>%
+      dplyr::mutate(estimate = force)
+  }
+  res <- ggcoef_model(
+    mod,
+    tidy_fun = custom,
+    tidy_args = list(force = 3),
+    return_data = TRUE
+  )
+  expect_equal(res$estimate, 3)
+})

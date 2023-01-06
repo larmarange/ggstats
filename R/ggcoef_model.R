@@ -9,6 +9,8 @@
 #' get the produced `tibble`, apply any transformation of your own and
 #' then pass your customized `tibble` to `ggcoef_plot()`.
 #' @inheritParams broom.helpers::tidy_plus_plus
+#' @param tidy_args Additional arguments passed to
+#' [broom.helpers::tidy_plus_plus()] and to `tidy_fun`
 #' @param model a regression model object
 #' @param conf.level the confidence level to use for the confidence
 #'   interval if `conf.int = TRUE`; must be strictly greater than 0
@@ -148,6 +150,7 @@
 ggcoef_model <- function(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -159,6 +162,11 @@ ggcoef_model <- function(
   no_reference_row  = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  add_pairwise_contrasts = FALSE,
+  pairwise_variables = broom.helpers::all_categorical(),
+  keep_model_terms = FALSE,
+  pairwise_reverse = TRUE,
+  emmeans_args = list(),
   significance = 1 - conf.level,
   significance_labels = NULL,
   show_p_values = TRUE,
@@ -169,6 +177,7 @@ ggcoef_model <- function(
   data <- ggcoef_data(
     model = model,
     tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
@@ -180,6 +189,11 @@ ggcoef_model <- function(
     no_reference_row  = {{ no_reference_row }},
     intercept = intercept,
     include = {{ include }},
+    add_pairwise_contrasts = add_pairwise_contrasts,
+    pairwise_variables = {{ pairwise_variables }},
+    keep_model_terms = keep_model_terms,
+    pairwise_reverse = pairwise_reverse,
+    emmeans_args = emmeans_args,
     significance = significance,
     significance_labels = significance_labels
   )
@@ -267,6 +281,7 @@ ggcoef_compare <- function(
   models,
   type = c("dodged", "faceted"),
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -278,6 +293,11 @@ ggcoef_compare <- function(
   no_reference_row  = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  add_pairwise_contrasts = FALSE,
+  pairwise_variables = broom.helpers::all_categorical(),
+  keep_model_terms = FALSE,
+  pairwise_reverse = TRUE,
+  emmeans_args = list(),
   significance = 1 - conf.level,
   significance_labels = NULL,
   return_data = FALSE,
@@ -287,6 +307,7 @@ ggcoef_compare <- function(
     X = models,
     FUN = ggcoef_data,
     tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
@@ -297,6 +318,11 @@ ggcoef_compare <- function(
     add_reference_rows = add_reference_rows,
     no_reference_row = {{ no_reference_row }},
     intercept = intercept,
+    add_pairwise_contrasts = add_pairwise_contrasts,
+    pairwise_variables = {{ pairwise_variables }},
+    keep_model_terms = keep_model_terms,
+    pairwise_reverse = pairwise_reverse,
+    emmeans_args = emmeans_args,
     significance = significance,
     significance_labels = significance_labels
   )
@@ -387,6 +413,7 @@ ggcoef_multinom <- function(
   type = c("dodged", "faceted"),
   y.level_label = NULL,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -408,6 +435,7 @@ ggcoef_multinom <- function(
   data <- ggcoef_data(
     model,
     tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
@@ -478,6 +506,7 @@ ggcoef_multinom <- function(
 ggcoef_data <- function(
   model,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
   conf.int = TRUE,
   conf.level = .95,
   exponentiate = FALSE,
@@ -489,6 +518,11 @@ ggcoef_data <- function(
   no_reference_row  = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  add_pairwise_contrasts = FALSE,
+  pairwise_variables = broom.helpers::all_categorical(),
+  keep_model_terms = FALSE,
+  pairwise_reverse = TRUE,
+  emmeans_args = list(),
   significance = conf.level,
   significance_labels = NULL
 ) {
@@ -498,7 +532,7 @@ ggcoef_data <- function(
   if (length(significance) == 0)
     significance <- NULL
 
-  data <- broom.helpers::tidy_plus_plus(
+  data <- rlang::inject(broom.helpers::tidy_plus_plus(
     model = model,
     tidy_fun = tidy_fun,
     conf.int = conf.int,
@@ -510,12 +544,18 @@ ggcoef_data <- function(
     categorical_terms_pattern = categorical_terms_pattern,
     add_reference_rows = add_reference_rows,
     no_reference_row = {{ no_reference_row }},
+    add_pairwise_contrasts = add_pairwise_contrasts,
+    pairwise_variables = {{ pairwise_variables }},
+    keep_model_terms = keep_model_terms,
+    pairwise_reverse = pairwise_reverse,
+    emmeans_args = emmeans_args,
     add_estimate_to_reference_rows = TRUE,
     add_header_rows = FALSE,
     intercept = intercept,
     include = {{ include }},
-    keep_model = FALSE
-  )
+    keep_model = FALSE,
+    !!!tidy_args
+  ))
 
   if (!"p.value" %in% names(data)) {
     data$p.value <- NA_real_
