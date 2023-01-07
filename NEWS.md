@@ -1,3 +1,5 @@
+# ggstats (development version)
+
 # ggstats 0.2.0
 
 * Support for pairwise contrasts (#14)
