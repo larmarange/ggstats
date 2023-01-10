@@ -79,7 +79,7 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
     ggplot2::GeomRect$draw_panel(
       data %>%
         dplyr::mutate(
-          y = plyr::round_any(.data$y, width),
+          y = round_any(.data$y, width),
           ymin = .data$y - width / 2 + nudge_y,
           ymax = .data$y + width / 2 + nudge_y,
           xmin = xfrom,
@@ -147,7 +147,7 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
     ggplot2::GeomRect$draw_panel(
       data %>%
         dplyr::mutate(
-          x = plyr::round_any(.data$x, width),
+          x = round_any(.data$x, width),
           xmin = .data$x - width / 2 + nudge_x,
           xmax = .data$x + width / 2 + nudge_x,
           ymin = yfrom,
@@ -173,3 +173,24 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
     )
   }
 )
+
+# Copied from plyr
+# Round to multiple of any number.
+#
+# @param x numeric or date-time (POSIXct) vector to round
+# @param accuracy number to round to; for POSIXct objects, a number of seconds
+# @param f rounding function: \code{\link{floor}}, \code{\link{ceiling}} or
+#  \code{\link{round}}
+round_any <- function(x, accuracy, f = round) {
+  UseMethod("round_any")
+}
+
+round_any.numeric <- function(x, accuracy, f = round) {
+  f(x / accuracy) * accuracy
+}
+
+round_any.POSIXct <- function(x, accuracy, f = round) {
+  tz <- format(x[1], "%Z")
+  xr <- round_any(as.numeric(x), accuracy, f)
+  as.POSIXct(xr, origin = "1970-01-01 00:00.00 UTC", tz = tz)
+}
