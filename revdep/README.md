@@ -9,8 +9,8 @@
 |language |(EN)                                     |
 |collate  |French_France.utf8                       |
 |ctype    |French_France.utf8                       |
-|tz       |Indian/Mauritius                         |
-|date     |2023-01-06                               |
+|tz       |Europe/Paris                             |
+|date     |2023-01-12                               |
 |rstudio  |2022.12.0+353 Elsbeth Geranium (desktop) |
 |pandoc   |NA                                       |
 
@@ -18,13 +18,13 @@
 
 |package       |old    |new        |Δ  |
 |:-------------|:------|:----------|:--|
-|ggstats       |0.1.1  |0.1.1.9000 |*  |
+|ggstats       |0.2.0  |0.2.0.9000 |*  |
 |backports     |1.4.1  |1.4.1      |   |
 |bit           |4.0.5  |4.0.5      |   |
 |bit64         |4.0.5  |4.0.5      |   |
 |broom         |1.0.2  |1.0.2      |   |
 |broom.helpers |1.11.0 |1.11.0     |   |
-|cli           |3.5.0  |3.5.0      |   |
+|cli           |3.6.0  |3.6.0      |   |
 |clipr         |0.8.0  |0.8.0      |   |
 |colorspace    |2.0-3  |2.0-3      |   |
 |cpp11         |0.4.3  |0.4.3      |   |
@@ -50,13 +50,13 @@
 |pkgconfig     |2.0.3  |2.0.3      |   |
 |prettyunits   |1.1.1  |1.1.1      |   |
 |progress      |1.2.2  |1.2.2      |   |
-|purrr         |1.0.0  |1.0.0      |   |
+|purrr         |1.0.1  |1.0.1      |   |
 |R6            |2.5.1  |2.5.1      |   |
 |RColorBrewer  |1.1-3  |1.1-3      |   |
 |readr         |2.1.3  |2.1.3      |   |
 |rlang         |1.0.6  |1.0.6      |   |
 |scales        |1.2.1  |1.2.1      |   |
-|stringi       |1.7.8  |1.7.8      |   |
+|stringi       |1.7.12 |1.7.12     |   |
 |stringr       |1.5.0  |1.5.0      |   |
 |tibble        |3.1.8  |3.1.8      |   |
 |tidyr         |1.2.1  |1.2.1      |   |
