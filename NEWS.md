@@ -1,4 +1,4 @@
-# ggstats (development version)
+# ggstats 0.2.1
 
 * Bug fix in `geom_stripped_rows()` and `geom_stripped_cols()` (#20)
 
