@@ -1,5 +1,8 @@
 # ggstats (development version)
 
+* Bug fix in `ggcoef_compare()` to preserve the order of model terms and to 
+  avoid an erreor with `add_reference_rows = FALSE` (#23)
+
 # ggstats 0.2.1
 
 * Bug fix in `geom_stripped_rows()` and `geom_stripped_cols()` (#20)
