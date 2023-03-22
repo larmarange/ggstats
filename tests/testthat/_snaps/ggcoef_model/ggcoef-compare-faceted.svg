@@ -136,7 +136,7 @@
 <polyline points='196.38,505.91 196.38,432.73 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='253.19,505.91 253.19,432.73 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='310.01,505.91 310.01,432.73 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<rect x='113.77' y='432.73' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter;' />
+<rect x='113.77' y='432.73' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #111111; fill-opacity: 0.067;' />
 <line x1='196.38' y1='505.91' x2='196.38' y2='432.73' style='stroke-width: 1.07; stroke: #7F7F7F; stroke-linecap: butt;' />
 <rect x='113.77' y='432.73' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: #B3B3B3;' />
 </g>
@@ -174,7 +174,7 @@
 <polyline points='398.45,191.27 398.45,118.09 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='455.27,191.27 455.27,118.09 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='512.08,191.27 512.08,118.09 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<rect x='315.85' y='118.09' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter;' />
+<rect x='315.85' y='118.09' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #111111; fill-opacity: 0.067;' />
 <line x1='398.45' y1='191.27' x2='398.45' y2='118.09' style='stroke-width: 1.07; stroke: #7F7F7F; stroke-linecap: butt;' />
 <rect x='315.85' y='118.09' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: #B3B3B3;' />
 </g>
@@ -254,7 +254,7 @@
 <polyline points='398.45,505.91 398.45,432.73 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='455.27,505.91 455.27,432.73 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='512.08,505.91 512.08,432.73 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<rect x='315.85' y='432.73' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter;' />
+<rect x='315.85' y='432.73' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #111111; fill-opacity: 0.067;' />
 <line x1='398.45' y1='505.91' x2='398.45' y2='432.73' style='stroke-width: 1.07; stroke: #7F7F7F; stroke-linecap: butt;' />
 <rect x='315.85' y='432.73' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: #B3B3B3;' />
 </g>
@@ -292,7 +292,7 @@
 <polyline points='600.53,191.27 600.53,118.09 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='657.34,191.27 657.34,118.09 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='714.16,191.27 714.16,118.09 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<rect x='517.92' y='118.09' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter;' />
+<rect x='517.92' y='118.09' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #111111; fill-opacity: 0.067;' />
 <line x1='600.53' y1='191.27' x2='600.53' y2='118.09' style='stroke-width: 1.07; stroke: #7F7F7F; stroke-linecap: butt;' />
 <rect x='517.92' y='118.09' width='196.60' height='73.18' style='stroke-width: 1.07; stroke: #B3B3B3;' />
 </g>

@@ -164,7 +164,7 @@
 <polyline points='366.19,466.72 366.19,397.29 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='539.80,466.72 539.80,397.29 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='713.42,466.72 713.42,397.29 ' style='stroke-width: 0.53; stroke: #DEDEDE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<rect x='113.77' y='397.29' width='600.75' height='69.42' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter;' />
+<rect x='113.77' y='397.29' width='600.75' height='69.42' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #111111; fill-opacity: 0.067;' />
 <line x1='366.19' y1='466.72' x2='366.19' y2='397.29' style='stroke-width: 1.07; stroke: #7F7F7F; stroke-linecap: butt;' />
 <polyline points='366.75,414.65 366.75,412.34 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
 <polyline points='366.75,413.49 362.87,413.49 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />

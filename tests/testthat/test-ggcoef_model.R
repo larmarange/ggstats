@@ -173,6 +173,33 @@ test_that("ggcoef_compare()", {
     "ggcoef_compare() faceted",
     ggcoef_compare(models, type = "faceted")
   )
+
+  d <- as.data.frame(Titanic)
+  m1 <- glm(Survived ~ Sex + Age, family = binomial, data = d, weights = Freq)
+  m2 <- glm(Survived ~ Sex + Age + Class, family = binomial, data = d, weights = Freq)
+  models <- list("Model 1" = m1, "Model 2" = m2)
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_compare() titanic dodged",
+    ggcoef_compare(models)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_compare() titanic faceted",
+    ggcoef_compare(models, type = "faceted")
+  )
+
+  rd <- ggcoef_compare(models, return_data = TRUE)
+  expect_equal(
+    levels(rd$label),
+    c("Male", "Female", "Child", "Adult", "1st", "2nd", "3rd", "Crew")
+  )
+
+  expect_error(
+    ggcoef_compare(models, add_reference_rows = FALSE),
+    NA
+  )
+
 })
 
 test_that("ggcoef_multinom()", {
