@@ -72,6 +72,9 @@
 <polyline points='586.69,296.81 586.69,290.91 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='586.69,293.86 331.61,293.86 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='331.61,296.81 331.61,290.91 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='497.89,355.83 497.89,349.93 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='497.89,352.88 205.83,352.88 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='205.83,355.83 205.83,349.93 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <circle cx='459.15' cy='293.86' r='3.55' style='stroke-width: 2.83; stroke: #00BA38; fill: #FFFFFF;' />
 <circle cx='351.86' cy='352.88' r='3.55' style='stroke-width: 2.83; stroke: #00BA38; fill: #FFFFFF;' />
 <rect x='117.43' y='264.35' width='597.09' height='118.04' style='stroke-width: 1.07; stroke: #B3B3B3;' />
@@ -145,7 +148,7 @@
 <text x='112.50' y='173.37' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='15.66px' lengthAdjust='spacingAndGlyphs'>Sun</text>
 <text x='112.50' y='114.34' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='53.58px' lengthAdjust='spacingAndGlyphs'>Sat (p=0.256)</text>
 <text x='112.50' y='55.32' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='50.62px' lengthAdjust='spacingAndGlyphs'>Fri (p=0.476)</text>
-<text x='112.50' y='355.91' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='23.98px' lengthAdjust='spacingAndGlyphs'>Lunch</text>
+<text x='112.50' y='355.91' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='64.35px' lengthAdjust='spacingAndGlyphs'>Lunch (p=0.408)</text>
 <text x='112.50' y='296.89' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='66.29px' lengthAdjust='spacingAndGlyphs'>Dinner (p=0.408)</text>
 <text x='112.50' y='479.43' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='59.44px' lengthAdjust='spacingAndGlyphs'>Male (p=0.366)</text>
 <text x='112.50' y='420.41' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='29.35px' lengthAdjust='spacingAndGlyphs'>Female</text>
