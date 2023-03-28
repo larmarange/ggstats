@@ -1,5 +1,11 @@
 # ggstats (development version)
 
+**New features**
+
+* New positions `position_likert()` and `position_likert_count()`
+
+**Bug fixes**
+
 * Bug fix in `ggcoef_compare()` to preserve the order of model terms and to 
   avoid an erreor with `add_reference_rows = FALSE` (#23)
 
