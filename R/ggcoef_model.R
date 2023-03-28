@@ -532,8 +532,7 @@ ggcoef_data <- function(
   significance = conf.level,
   significance_labels = NULL
 ) {
-  if (!requireNamespace("broom.helpers", quietly = TRUE))
-    cli::cli_abort("Package {.pkg broom.helpers} is required.")
+  rlang::check_installed("broom.helpers")
 
   if (length(significance) == 0)
     significance <- NULL

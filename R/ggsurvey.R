@@ -37,12 +37,7 @@ ggsurvey <- function(design = NULL, mapping = NULL, ...) {
   if (!inherits(design, "survey.design")) {
     cli::cli_abort("{.var design} should be a {.cls survey.design} object.")
   }
-  if (!requireNamespace("survey", quietly = TRUE)) {
-    cli::cli_abort("{.pkg survey} package is required.")
-  }
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    cli::cli_abort("{.pkg ggplot2} package is required.")
-  }
+  rlang::check_installed("survey")
   data <- design$variables
   data$.weights <- weights(design)
 
