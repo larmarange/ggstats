@@ -34,6 +34,9 @@ center them around (the same number of modalities are displayed on
 each side). This type of presentation is commonly used to display
 Likert-type scales.
 \code{position_likert_count()} uses counts instead of proportions.
+
+It is recommended to use \code{position_likert()} with \code{stat_prop()}
+and its \code{complete} argument (see examples).
 }
 \examples{
 library(ggplot2)
@@ -72,6 +75,24 @@ ggplot(diamonds) +
   scale_fill_brewer(palette = "PiYG", direction = -1) +
   xlab("proportion")
 
+# Missing items -------------------------------------------------------------
+# example with a level not being observed for a specific value of y
+d <- diamonds
+d <- d[!(d$cut == "Premium" & d$clarity == "I1"), ]
+d <- d[!(d$cut \%in\% c("Fair", "Good") & d$clarity == "SI2"), ]
+
+# by default, the two lowest bar are not properly centered
+ggplot(d) +
+  aes(y = clarity, fill = cut) +
+  geom_bar(position = "likert") +
+  scale_fill_brewer(palette = "PiYG")
+
+# use stat_prop() with `complete = "fill"` to fix it
+ggplot(d) +
+  aes(y = clarity, fill = cut) +
+  geom_bar(position = "likert", stat = "prop", complete = "fill") +
+  scale_fill_brewer(palette = "PiYG")
+
 # Add labels ----------------------------------------------------------------
 
 custom_label <- function(x) {
@@ -93,8 +114,9 @@ ggplot(diamonds) +
   xlab("proportion")
 
 # Do not display specific fill values ---------------------------------------
-# (but taken into account to compute proprortions)
+# (but taken into account to compute proportions)
 
+# by default, the lower bar is not properly
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = position_likert(exclude_fill_values = "Very Good")) +

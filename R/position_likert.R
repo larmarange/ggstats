@@ -8,6 +8,8 @@
 #' Likert-type scales.
 #' `position_likert_count()` uses counts instead of proportions.
 #'
+#' It is recommended to use `position_likert()` with `stat_prop()`
+#' and its `complete` argument (see examples).
 #'
 #' @param vjust Vertical adjustment for geoms that have a position
 #'   (like points or lines), not a dimension (like bars or areas). Set to
@@ -57,6 +59,24 @@
 #'   scale_fill_brewer(palette = "PiYG", direction = -1) +
 #'   xlab("proportion")
 #'
+#' # Missing items -------------------------------------------------------------
+#' # example with a level not being observed for a specific value of y
+#' d <- diamonds
+#' d <- d[!(d$cut == "Premium" & d$clarity == "I1"), ]
+#' d <- d[!(d$cut %in% c("Fair", "Good") & d$clarity == "SI2"), ]
+#'
+#' # by default, the two lowest bar are not properly centered
+#' ggplot(d) +
+#'   aes(y = clarity, fill = cut) +
+#'   geom_bar(position = "likert") +
+#'   scale_fill_brewer(palette = "PiYG")
+#'
+#' # use stat_prop() with `complete = "fill"` to fix it
+#' ggplot(d) +
+#'   aes(y = clarity, fill = cut) +
+#'   geom_bar(position = "likert", stat = "prop", complete = "fill") +
+#'   scale_fill_brewer(palette = "PiYG")
+#'
 #' # Add labels ----------------------------------------------------------------
 #'
 #' custom_label <- function(x) {
@@ -78,8 +98,9 @@
 #'   xlab("proportion")
 #'
 #' # Do not display specific fill values ---------------------------------------
-#' # (but taken into account to compute proprortions)
+#' # (but taken into account to compute proportions)
 #'
+#' # by default, the lower bar is not properly
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = position_likert(exclude_fill_values = "Very Good")) +
@@ -174,13 +195,8 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
 )
 
 pos_likert <- function(df, vjust = 1, fill = FALSE, reverse = FALSE, exclude_fill_values = NULL) {
-  if (reverse) {
-    ord <- order(-df$group)
-  }
-  else {
-    ord <- order(df$group)
-  }
-  df <- df[ord, ]
+  if (reverse)
+    df <- df[nrow(df):1, ]
 
   if (fill)
     df$y <- df$y / sum(abs(df$y), na.rm = TRUE)

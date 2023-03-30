@@ -16,6 +16,10 @@ reference:
   contents:
   - ggcoef_model
 
+- title: Plotting Likert-type items
+  contents:
+  - gglikert
+
 - title: Additional statistics for `ggplot2`
   contents:
   - starts_with("stat_")

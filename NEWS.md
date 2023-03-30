@@ -3,11 +3,12 @@
 **New features**
 
 * New positions `position_likert()` and `position_likert_count()`
+* New `complete` argument for `stat_prop()`
 
 **Bug fixes**
 
 * Bug fix in `ggcoef_compare()` to preserve the order of model terms and to 
-  avoid an erreor with `add_reference_rows = FALSE` (#23)
+  avoid an error with `add_reference_rows = FALSE` (#23)
 
 # ggstats 0.2.1
 
