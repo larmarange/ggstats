@@ -32,7 +32,7 @@
 #' @param totals_size size of total proportions
 #' @param totals_accuracy accuracy of the total proportions, see
 #' [scales::label_percent()]
-#' @param totals_fontace font face of the total proportions
+#' @param totals_fontface font face of the total proportions
 #' @param totals_include_center if the number of levels is uneven, should half
 #' of the center level be added to the total proportions?
 #' @param totals_hjust horizontal adjustment of totals labels on the x axis

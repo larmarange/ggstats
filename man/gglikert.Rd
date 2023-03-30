@@ -46,8 +46,8 @@ syntax}
 \item{sort}{should variables be sorted?}
 
 \item{sort_method}{method used to sort the variables: \code{"prop"} sort according
-to the proportion of answers higher than the centered level, \code{"mean"} considers
-answer as a score and sort according to the mean score}
+to the proportion of answers higher than the centered level, \code{"mean"}
+considers answer as a score and sort according to the mean score}
 
 \item{sort_prop_include_center}{when sorting with \code{"prop"} and if the number
 of levels is uneven, should half of the central level be taken into account
@@ -75,6 +75,8 @@ answers be added to plot?}
 \item{totals_accuracy}{accuracy of the total proportions, see
 \code{\link[scales:label_percent]{scales::label_percent()}}}
 
+\item{totals_fontface}{font face of the total proportions}
+
 \item{totals_include_center}{if the number of levels is uneven, should half
 of the center level be added to the total proportions?}
 
@@ -89,8 +91,6 @@ of the center level be added to the total proportions?}
 see \code{\link[=position_likert]{position_likert()}}}
 
 \item{width}{bar width, see \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}}
-
-\item{totals_fontace}{font face of the total proportions}
 }
 \value{
 A \code{ggplot2} plot or a \code{tibble}.
