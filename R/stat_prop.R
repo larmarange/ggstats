@@ -172,7 +172,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
           .data[[complete]],
           fill = list(count = 0)
         ) %>%
-        dplyr::mutate(group = 1:dplyr::n())
+        dplyr::mutate(group = seq_len(dplyr::n()))
     }
 
     # compute proportions by by

@@ -13,8 +13,8 @@
 #' syntax
 #' @param sort should variables be sorted?
 #' @param sort_method method used to sort the variables: `"prop"` sort according
-#' to the proportion of answers higher than the centered level, `"mean"` considers
-#' answer as a score and sort according to the mean score
+#' to the proportion of answers higher than the centered level, `"mean"`
+#' considers answer as a score and sort according to the mean score
 #' @param sort_prop_include_center when sorting with `"prop"` and if the number
 #' of levels is uneven, should half of the central level be taken into account
 #' to compute the proportion?
@@ -79,7 +79,11 @@ gglikert <- function(data,
     data$.question <- data$.question %>% forcats::fct_rev()
 
   p <- ggplot(data) +
-    aes(y = .question, fill = .answer, by = .question) +
+    aes(
+      y = .data[[".question"]],
+      fill = .data[[".answer"]],
+      by = .data[[".question"]]
+    ) +
     geom_bar(
       position = position_likert(
         reverse = reverse_likert,
@@ -135,26 +139,40 @@ gglikert <- function(data,
         )
       ) %>%
       dplyr::mutate(
-        label_lower = label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
-        label_higher = label_percent_abs(accuracy = totals_accuracy)(.data$label_higher),
+        label_lower =
+          label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
+        label_higher =
+          label_percent_abs(accuracy = totals_accuracy)(.data$label_higher),
         x_lower = -1 * max(.data$prop_lower) - totals_hjust,
         x_higher = max(.data$prop_higher) + totals_hjust
       )
     dtot <- dplyr::bind_rows(
-      dtot %>% dplyr::select(dplyr::all_of(c(".question", x = "x_lower", label = "label_lower"))),
-      dtot %>% dplyr::select(dplyr::all_of(c(".question", x = "x_higher", label = "label_higher")))
+      dtot %>%
+        dplyr::select(
+          dplyr::all_of(c(".question", x = "x_lower", label = "label_lower"))
+        ),
+      dtot %>%
+        dplyr::select(
+          dplyr::all_of(c(".question", x = "x_higher", label = "label_higher"))
+        )
     )
 
     p <- p +
       geom_text(
-        mapping = aes(y = .question, x = x, label = label, fill = NULL, by = NULL),
+        mapping = aes(
+          y = .data[[".question"]],
+          x = .data[["x"]],
+          label = .data[["label"]],
+          fill = NULL,
+          by = NULL
+        ),
         data = dtot,
         size = totals_size,
         fontface = totals_fontface
       )
   }
 
-  p <- p+
+  p <- p +
     labs(x = NULL, y = NULL, fill = NULL) +
     scale_x_continuous(labels = label_percent_abs()) +
     scale_y_discrete(labels = scales::label_wrap(y_label_wrap)) +
@@ -261,7 +279,7 @@ gglikert_data <- function(data,
   }
   m <- length(levels(x)) / 2 + 1 / 2
   x <- as.numeric(x)
-  w <- ifelse(include_center, 1/2, 0)
+  w <- ifelse(include_center, 1 / 2, 0)
   sum(as.integer(x > m), w * as.integer(x == m), na.rm = TRUE) / N
 }
 
@@ -277,7 +295,7 @@ gglikert_data <- function(data,
   }
   m <- length(levels(x)) / 2 + 1 / 2
   x <- as.numeric(x)
-  w <- ifelse(include_center, 1/2, 0)
+  w <- ifelse(include_center, 1 / 2, 0)
   sum(as.integer(x < m), w * as.integer(x == m), na.rm = TRUE) / N
 }
 

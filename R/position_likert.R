@@ -107,14 +107,30 @@
 #'   scale_x_continuous(label = label_percent_abs()) +
 #'   scale_fill_brewer(palette = "PiYG") +
 #'   xlab("proportion")
-position_likert <- function(vjust = 1, reverse = FALSE, exclude_fill_values = NULL) {
-  ggplot2::ggproto(NULL, PositionLikert, vjust = vjust, reverse = reverse, exclude_fill_values = exclude_fill_values)
+position_likert <- function(vjust = 1,
+                            reverse = FALSE,
+                            exclude_fill_values = NULL) {
+  ggplot2::ggproto(
+    NULL,
+    PositionLikert,
+    vjust = vjust,
+    reverse = reverse,
+    exclude_fill_values = exclude_fill_values
+  )
 }
 
 #' @export
 #' @rdname position_likert
-position_likert_count <- function(vjust = 1, reverse = FALSE, exclude_fill_values = NULL) {
-  ggplot2::ggproto(NULL, PositionLikertCount, vjust = vjust, reverse = reverse, exclude_fill_values = exclude_fill_values)
+position_likert_count <- function(vjust = 1,
+                                  reverse = FALSE,
+                                  exclude_fill_values = NULL) {
+  ggplot2::ggproto(
+    NULL,
+    PositionLikertCount,
+    vjust = vjust,
+    reverse = reverse,
+   exclude_fill_values = exclude_fill_values
+  )
 }
 
 #' @rdname position_likert
@@ -179,13 +195,15 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
       dplyr::mutate(
         d = purrr::map(
           .data$d,
-          function(x) {pos_likert(
-            x,
-            vjust = params$vjust,
-            fill = params$fill,
-            reverse = params$reverse,
-            exclude_fill_values = params$exclude_fill_values
-          )}
+          function(x) {
+            pos_likert(
+              x,
+              vjust = params$vjust,
+              fill = params$fill,
+              reverse = params$reverse,
+              exclude_fill_values = params$exclude_fill_values
+            )
+          }
         )
       ) %>%
       tidyr::unnest(cols = "d")
@@ -194,9 +212,13 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
   }
 )
 
-pos_likert <- function(df, vjust = 1, fill = FALSE, reverse = FALSE, exclude_fill_values = NULL) {
+pos_likert <- function(df,
+                       vjust = 1,
+                       fill = FALSE,
+                       reverse = FALSE,
+                       exclude_fill_values = NULL) {
   if (reverse)
-    df <- df[nrow(df):1, ]
+    df <- df[nrow(df):1, ] # nolint
 
   if (fill)
     df$y <- df$y / sum(abs(df$y), na.rm = TRUE)
@@ -219,7 +241,10 @@ pos_likert <- function(df, vjust = 1, fill = FALSE, reverse = FALSE, exclude_fil
   if (nrow(df) %% 2 == 0) {
     y_adjust <- df[nrow(df) / 2, ]$ymax
   } else {
-    y_adjust <- mean(c(df[nrow(df) %/% 2, ]$ymax, df[nrow(df) %/% 2 + 1, ]$ymax))
+    y_adjust <- mean(c(
+      df[nrow(df) %/% 2, ]$ymax,
+      df[nrow(df) %/% 2 + 1, ]$ymax
+    ))
   }
 
   df$y <- df$y - y_adjust
@@ -244,7 +269,8 @@ likert_var <- function(data) {
     "y"
   } else {
     cli::cli_warn(c(
-      "Stacking requires either the {.field ymin} {.emph and} {.field ymin} or the {.field y} aesthetics",
+      "Stacking requires either the {.field ymin} {.emph and} {.field ymin}",
+      "or the {.field y} aesthetics",
       "i" = "Maybe you want {.code position = \"identity\"}?"
     ))
     NULL

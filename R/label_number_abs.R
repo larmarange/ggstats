@@ -34,4 +34,3 @@ label_percent_abs <- function(..., hide_below = NULL) {
     res
   }
 }
-
