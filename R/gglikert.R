@@ -8,9 +8,15 @@
 #'
 #' You could use `gglikert_data()` to just produce the dataset to be plotted.
 #'
+#' If variable labels have been defined (see [labelled::var_label()]), they will
+#' be considered. You can also pass custom variables labels with the
+#' `variable_labels` argument.
+#'
 #' @param data a data frame
 #' @param include variables to include, accept [tidy-select][dplyr::select]
 #' syntax
+#' @param variable_labels a named list or a named vector of custom variable
+#' labels
 #' @param sort should variables be sorted?
 #' @param sort_method method used to sort the variables: `"prop"` sort according
 #' to the proportion of answers higher than the centered level, `"mean"`
@@ -47,6 +53,7 @@
 #' @export
 gglikert <- function(data,
                      include,
+                     variable_labels = NULL,
                      sort = c("none", "ascending", "descending"),
                      sort_method = c("prop", "mean"),
                      sort_prop_include_center = totals_include_center,
@@ -69,6 +76,7 @@ gglikert <- function(data,
     gglikert_data(
       data,
       {{ include }},
+      variable_labels = variable_labels,
       sort = sort,
       sort_method = sort_method,
       sort_prop_include_center = sort_prop_include_center,
@@ -192,6 +200,7 @@ gglikert <- function(data,
 #' @export
 gglikert_data <- function(data,
                           include,
+                          variable_labels = NULL,
                           sort = c("none", "ascending", "descending"),
                           sort_method = c("prop", "mean"),
                           sort_prop_include_center = TRUE,
@@ -208,8 +217,13 @@ gglikert_data <- function(data,
     arg_name = "include"
   )
 
-  data_lbls <- data %>% labelled::var_label(unlist = TRUE, null_action = "fill")
-  data_lbls <- data_lbls[variables]
+  if (is.list(variable_labels))
+    variable_labels <- unlist(variable_labels)
+  data_labels <- data %>%
+    labelled::var_label(unlist = TRUE, null_action = "fill")
+  if (!is.null(variable_labels))
+    data_labels[names(variable_labels)] <- variable_labels
+  data_labels <- data_labels[variables]
 
   data <- data %>%
     dplyr::mutate(
@@ -226,7 +240,7 @@ gglikert_data <- function(data,
       values_to = ".answer"
     )
 
-  data$.question <- data_lbls[data$.question] %>%
+  data$.question <- data_labels[data$.question] %>%
     forcats::fct_inorder()
 
   if (sort == "ascending" && sort_method == "prop")

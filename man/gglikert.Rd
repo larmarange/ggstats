@@ -8,6 +8,7 @@
 gglikert(
   data,
   include,
+  variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean"),
   sort_prop_include_center = totals_include_center,
@@ -31,6 +32,7 @@ gglikert(
 gglikert_data(
   data,
   include,
+  variable_labels = variable_labels,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean"),
   sort_prop_include_center = TRUE,
@@ -42,6 +44,9 @@ gglikert_data(
 
 \item{include}{variables to include, accept \link[dplyr:select]{tidy-select}
 syntax}
+
+\item{variable_labels}{a named list or a named vector of custom variable
+labels}
 
 \item{sort}{should variables be sorted?}
 
@@ -104,6 +109,10 @@ Combines several factor variables using the same list of ordered levels
 bar plot.
 
 You could use \code{gglikert_data()} to just produce the dataset to be plotted.
+
+If variable labels have been defined (see \code{\link[labelled:var_label]{labelled::var_label()}}), they will
+be considered. You can also pass custom variables labels with the
+\code{variable_labels} argument.
 }
 \seealso{
 \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}
