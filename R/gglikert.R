@@ -52,7 +52,7 @@
 #' @seealso [position_likert()], [stat_prop()]
 #' @export
 gglikert <- function(data,
-                     include,
+                     include = dplyr::everything(),
                      variable_labels = NULL,
                      sort = c("none", "ascending", "descending"),
                      sort_method = c("prop", "mean"),
@@ -199,7 +199,7 @@ gglikert <- function(data,
 #' @rdname gglikert
 #' @export
 gglikert_data <- function(data,
-                          include,
+                          include = dplyr::everything(),
                           variable_labels = NULL,
                           sort = c("none", "ascending", "descending"),
                           sort_method = c("prop", "mean"),
