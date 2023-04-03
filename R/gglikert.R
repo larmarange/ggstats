@@ -259,7 +259,8 @@ gglikert_data <- function(data,
         .fun = .prop_higher,
         include_center = sort_prop_include_center,
         exclude_fill_values = exclude_fill_values,
-        .na_rm = TRUE
+        .na_rm = TRUE,
+        .desc = TRUE
       )
   if (sort == "ascending" && sort_method == "mean")
     data$.question <- data$.question %>%
@@ -275,7 +276,8 @@ gglikert_data <- function(data,
       data$.answer,
       .fun = .sort_mean,
       exclude_fill_values = exclude_fill_values,
-      .na_rm = TRUE
+      .na_rm = TRUE,
+      .desc = TRUE
     )
 
   data
