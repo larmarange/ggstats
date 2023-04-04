@@ -114,6 +114,67 @@ If variable labels have been defined (see \code{\link[labelled:var_label]{labell
 be considered. You can also pass custom variables labels with the
 \code{variable_labels} argument.
 }
+\examples{
+library(ggplot2)
+library(dplyr)
+
+likert_levels <- c(
+  "Strongly disagree",
+  "Disagree",
+  "Neither agree nor disagree",
+  "Agree",
+  "Strongly agree"
+)
+set.seed(42)
+df <-
+  tibble(
+    q1 = sample(likert_levels, 150, replace = TRUE),
+    q2 = sample(likert_levels, 150, replace = TRUE, prob = 5:1),
+    q3 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
+    q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
+    q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
+    q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
+  ) \%>\%
+  mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
+
+gglikert(df)
+gglikert(df, include = q1:3)
+gglikert(df, sort = "ascending")
+gglikert(df, sort = "ascending", sort_prop_include_center = TRUE)
+gglikert(df, sort = "ascending", sort_method = "mean")
+
+gglikert(df, reverse_likert = TRUE)
+
+gglikert(df, add_totals = FALSE, add_labels = FALSE)
+gglikert(
+  df,
+  totals_include_center = TRUE,
+  totals_hjust = .25,
+  totals_size = 4.5,
+  totals_fontface = "italic",
+  totals_accuracy = .01,
+  labels_accuracy = 1,
+  labels_size = 2.5,
+  labels_hide_below = .25
+)
+
+gglikert(df, exclude_fill_values = "Neither agree nor disagree")
+
+if (require("labelled")) {
+  df \%>\%
+    set_variable_labels(
+      q1 = "First question",
+      q2 = "Second question"
+    ) \%>\%
+    gglikert(
+      variable_labels = c(
+        q4 = "a custom label",
+        q6 = "a very very very very very very very very very very long label"
+      ),
+      y_label_wrap = 25
+    )
+}
+}
 \seealso{
 \link{vignette("gglikert")}, \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}
 }

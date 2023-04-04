@@ -103,6 +103,15 @@ By default, the plot is sorted based on the proportion being higher than the cen
 gglikert(df, sort = "ascending", sort_method = "mean")
 ```
 
+### Sorting the answers
+
+You can reverse the order of the answers with `reverse_likert`.
+
+```{r}
+gglikert(df, reverse_likert = TRUE)
+```
+
+
 ### Proportion labels
 
 Proportion labels could be removed with `add_labels = FALSE`.
@@ -145,6 +154,41 @@ Or removed.
 
 ```{r}
 gglikert(df, add_totals = FALSE)
+```
+
+## Variable labels
+
+If you are using variable labels (see `labelled::set_variable_labels()`), they will be taken automatically into account by `gglikert()`.
+
+```{r}
+if (require(labelled)) {
+  df <- df %>%
+    set_variable_labels(
+      q1 = "first question",
+      q2 = "second question",
+      q3 = "this is the third question with a quite long variable label"
+    )
+}
+gglikert(df)  
+```
+
+You can also provide custom variable labels with `variable_labels`.
+
+```{r}
+gglikert(
+  df,
+  variable_labels = c(
+    q1 = "alternative label for the first question",
+    q6 = "another custom label"
+  )
+)
+```
+
+You can control how variable labels are wrapped with `y_label_wrap`.
+
+```{r}
+gglikert(df, y_label_wrap = 20)
+gglikert(df, y_label_wrap = 200)
 ```
 
 ## Removing certain values
