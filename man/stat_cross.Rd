@@ -149,4 +149,7 @@ ggplot(d) +
   labs(fill = "Standardized residuals") +
   theme_minimal()
 }
+\seealso{
+\link{vignette("stat_cross")}
+}
 \keyword{datasets}

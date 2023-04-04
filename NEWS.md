@@ -2,8 +2,9 @@
 
 **New features**
 
-* New positions `position_likert()` and `position_likert_count()`
-* New `complete` argument for `stat_prop()`
+* New function `gglikert()` (#25)
+* New positions `position_likert()` and `position_likert_count()` (#25)
+* New `complete` argument for `stat_prop()` (#25)
 
 **Bug fixes**
 

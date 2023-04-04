@@ -644,6 +644,7 @@ ggcoef_data <- function(
 #' @param facet_labeller labeller function to be used for labeling facets;
 #'   if labels are too long, you can use [ggplot2::label_wrap_gen()] (see
 #'   examples), more information in the documentation of [ggplot2::facet_grid()]
+#' @seealso [vignette("ggcoef_model")]
 #' @export
 ggcoef_plot <- function(
   data,

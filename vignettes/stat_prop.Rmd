@@ -97,4 +97,33 @@ ggplot(d) +
   )
 ```
 
+## Displaying unobserved levels
+
+With the `complete` argument, it is possible to indicate an aesthetic for those statistics should be completed for unobserved values.
+
+```{r}
+d <- diamonds %>%
+  dplyr::filter(!(cut == "Ideal" & clarity == "I1")) %>%
+  dplyr::filter(!(cut == "Very Good" & clarity == "VS2")) %>%
+  dplyr::filter(!(cut == "Premium" & clarity == "IF"))
+p <- ggplot(d) +
+  aes(x = clarity, fill = cut, by = clarity) +
+  geom_bar(position = "fill")
+p +
+  geom_text(
+    stat = "prop",
+    position = position_fill(.5)
+  )
+```
+
+Adding `complete = "fill"` will generate "0.0%" labels where relevant.
+
+```{r}
+p +
+  geom_text(
+    stat = "prop",
+    position = position_fill(.5),
+    complete = "fill"
+  )
+```
 

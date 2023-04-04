@@ -7,7 +7,7 @@
 \usage{
 gglikert(
   data,
-  include,
+  include = dplyr::everything(),
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean"),
@@ -31,8 +31,8 @@ gglikert(
 
 gglikert_data(
   data,
-  include,
-  variable_labels = variable_labels,
+  include = dplyr::everything(),
+  variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean"),
   sort_prop_include_center = TRUE,
@@ -115,5 +115,5 @@ be considered. You can also pass custom variables labels with the
 \code{variable_labels} argument.
 }
 \seealso{
-\code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}
+\link{vignette("gglikert")}, \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}
 }
