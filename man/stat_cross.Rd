@@ -150,6 +150,6 @@ ggplot(d) +
   theme_minimal()
 }
 \seealso{
-\link{vignette("stat_cross")}
+\code{vignette("stat_cross")}
 }
 \keyword{datasets}

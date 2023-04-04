@@ -176,5 +176,5 @@ if (require("labelled")) {
 }
 }
 \seealso{
-\link{vignette("gglikert")}, \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}
+\code{vignette("gglikert")}, \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}
 }

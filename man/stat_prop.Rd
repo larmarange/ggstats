@@ -151,6 +151,6 @@ p + geom_text(stat = "prop", position = position_fill(.5))
 p + geom_text(stat = "prop", position = position_fill(.5), complete = "fill")
 }
 \seealso{
-\link{vignette("stat_prop")}, \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}
+\code{vignette("stat_prop")}, \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}
 }
 \keyword{datasets}

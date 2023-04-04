@@ -49,7 +49,7 @@
 #' see [position_likert()]
 #' @param width bar width, see [ggplot2::geom_bar()]
 #' @return A `ggplot2` plot or a `tibble`.
-#' @seealso [vignette("gglikert")], [position_likert()], [stat_prop()]
+#' @seealso `vignette("gglikert")`, [position_likert()], [stat_prop()]
 #' @export
 #' @examples
 #' library(ggplot2)

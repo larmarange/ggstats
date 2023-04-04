@@ -137,6 +137,6 @@ if (requireNamespace("scales")) {
 }
 }
 \seealso{
-\link{vignette("stat_weighted_mean")}
+\code{vignette("stat_weighted_mean")}
 }
 \keyword{datasets}
