@@ -1,7 +1,7 @@
 test_that("ggcoef_model()", {
+  skip_on_cran()
   skip_if_not_installed("broom.helpers")
   skip_if_not_installed("reshape")
-  skip_on_cran()
 
   data(tips, package = "reshape")
   mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
