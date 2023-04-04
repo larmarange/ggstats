@@ -133,7 +133,7 @@ gglikert(
 
 ### Totals on each side
 
-By default, totals are added on each side of the plot. In case of an uneven number of answer levels, the central level is not taken into account for computing totals. With `totals_include_center = TRUE`, hal of the proportion of the central level will be added on each side.
+By default, totals are added on each side of the plot. In case of an uneven number of answer levels, the central level is not taken into account for computing totals. With `totals_include_center = TRUE`, half of the proportion of the central level will be added on each side.
 
 ```{r}
 gglikert(
@@ -207,7 +207,7 @@ df_dk %>%
   gglikert()
 ```
 
-Or, you could use `exclude_fill_values` to not display specfic values, but still counting them in the denominator for computing proportions.
+Or, you could use `exclude_fill_values` to not display specific values, but still counting them in the denominator for computing proportions.
 
 ```{r}
 df_dk %>% gglikert(exclude_fill_values = "Don't know")
