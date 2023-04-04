@@ -3,6 +3,9 @@ url: https://larmarange.github.io/ggstats/
 development:
   mode: auto
 
+deploy:
+  install_metadata: true
+
 template:
   params:
     bootswatch: flatly
