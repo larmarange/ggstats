@@ -90,6 +90,16 @@ test_that("gglikert)", {
   )
 
   vdiffr::expect_doppelganger(
+    "gglikert() sort median asc",
+    gglikert(df, sort = "asc", sort_method = "median")
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() sort median desc",
+    gglikert(df, sort = "desc", sort_method = "median")
+  )
+
+  vdiffr::expect_doppelganger(
     "gglikert() sort prop asc include_center",
     gglikert(df, sort = "asc", sort_prop_include_center = TRUE)
   )

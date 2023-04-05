@@ -10,7 +10,7 @@ gglikert(
   include = dplyr::everything(),
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
-  sort_method = c("prop", "mean"),
+  sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = totals_include_center,
   exclude_fill_values = NULL,
   add_labels = TRUE,
@@ -34,7 +34,7 @@ gglikert_data(
   include = dplyr::everything(),
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
-  sort_method = c("prop", "mean"),
+  sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = TRUE,
   exclude_fill_values = NULL
 )
@@ -52,7 +52,8 @@ labels}
 
 \item{sort_method}{method used to sort the variables: \code{"prop"} sort according
 to the proportion of answers higher than the centered level, \code{"mean"}
-considers answer as a score and sort according to the mean score}
+considers answer as a score and sort according to the mean score, \code{"median"}
+used the median and the majority judgement rule for tie-breaking.}
 
 \item{sort_prop_include_center}{when sorting with \code{"prop"} and if the number
 of levels is uneven, should half of the central level be taken into account

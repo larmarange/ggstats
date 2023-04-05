@@ -20,7 +20,8 @@
 #' @param sort should variables be sorted?
 #' @param sort_method method used to sort the variables: `"prop"` sort according
 #' to the proportion of answers higher than the centered level, `"mean"`
-#' considers answer as a score and sort according to the mean score
+#' considers answer as a score and sort according to the mean score, `"median"`
+#' used the median and the majority judgement rule for tie-breaking.
 #' @param sort_prop_include_center when sorting with `"prop"` and if the number
 #' of levels is uneven, should half of the central level be taken into account
 #' to compute the proportion?
@@ -115,7 +116,7 @@ gglikert <- function(data,
                      include = dplyr::everything(),
                      variable_labels = NULL,
                      sort = c("none", "ascending", "descending"),
-                     sort_method = c("prop", "mean"),
+                     sort_method = c("prop", "mean", "median"),
                      sort_prop_include_center = totals_include_center,
                      exclude_fill_values = NULL,
                      add_labels = TRUE,
@@ -262,7 +263,7 @@ gglikert_data <- function(data,
                           include = dplyr::everything(),
                           variable_labels = NULL,
                           sort = c("none", "ascending", "descending"),
-                          sort_method = c("prop", "mean"),
+                          sort_method = c("prop", "mean", "median"),
                           sort_prop_include_center = TRUE,
                           exclude_fill_values = NULL) {
   rlang::check_installed("broom.helpers")
@@ -339,6 +340,23 @@ gglikert_data <- function(data,
       .na_rm = TRUE,
       .desc = TRUE
     )
+  if (sort == "ascending" && sort_method == "median")
+    data$.question <- data$.question %>%
+    forcats::fct_reorder(
+      data$.answer,
+      .fun = .sort_median,
+      exclude_fill_values = exclude_fill_values,
+      .na_rm = TRUE
+    )
+  if (sort == "descending" && sort_method == "median")
+    data$.question <- data$.question %>%
+    forcats::fct_reorder(
+      data$.answer,
+      .fun = .sort_median,
+      exclude_fill_values = exclude_fill_values,
+      .na_rm = TRUE,
+      .desc = TRUE
+    )
 
   data
 }
@@ -382,6 +400,18 @@ gglikert_data <- function(data,
     l <- l[!l %in% exclude_fill_values]
     x <- factor(x, levels = l)
   }
-  x <- as.numeric(x)
+  x <- as.integer(x)
   mean(x, na.rm = TRUE)
+}
+
+.sort_median <- function(x, exclude_fill_values = NULL) {
+  if (!is.factor(x)) x <- factor(x)
+  if (!is.null(exclude_fill_values)) {
+    l <- levels(x)
+    l <- l[!l %in% exclude_fill_values]
+    x <- factor(x, levels = l)
+  }
+  x <- as.integer(x)
+  med <- median(x, na.rm = TRUE)
+  med + mean(x > med, na.rm = TRUE) - mean(x < med, na.rm = TRUE)
 }
