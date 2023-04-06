@@ -114,8 +114,9 @@
 #' }
 #'
 #' # Facets (do not use add_totals)
-#' df$group <- sample(c("A", "B"), 150, replace = TRUE)
-#' gglikert(df, q1:q6, add_totals = FALSE) +
+#' df_group <- df
+#' df_group$group <- sample(c("A", "B"), 150, replace = TRUE)
+#' gglikert(df_group, q1:q6, add_totals = FALSE) +
 #'   facet_wrap(vars(group))
 gglikert <- function(data,
                      include = dplyr::everything(),
@@ -417,7 +418,7 @@ gglikert_data <- function(data,
     x <- factor(x, levels = l)
   }
   x <- as.integer(x)
-  med <- median(x, na.rm = TRUE)
+  med <- stats::median(x, na.rm = TRUE)
   med + mean(x > med, na.rm = TRUE) - mean(x < med, na.rm = TRUE)
 }
 
@@ -428,7 +429,7 @@ gglikert_data <- function(data,
 #' @export
 #' @examples
 #' gglikert_stacked(df, q1:q6)
-#' gglikert_stacked(df, q1:q6, add_median_line = T)
+#' gglikert_stacked(df, q1:q6, add_median_line = TRUE)
 gglikert_stacked <- function(data,
                                   include = dplyr::everything(),
                                   variable_labels = NULL,

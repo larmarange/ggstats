@@ -46,7 +46,7 @@ gglikert_stacked(
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean", "median"),
-  sort_prop_include_center = totals_include_center,
+  sort_prop_include_center = FALSE,
   add_labels = TRUE,
   labels_size = 3.5,
   labels_accuracy = 1,
@@ -201,11 +201,12 @@ if (require("labelled")) {
 }
 
 # Facets (do not use add_totals)
-df$group <- sample(c("A", "B"), 150, replace = TRUE)
-gglikert(df, q1:q6, add_totals = FALSE) +
+df_group <- df
+df_group$group <- sample(c("A", "B"), 150, replace = TRUE)
+gglikert(df_group, q1:q6, add_totals = FALSE) +
   facet_wrap(vars(group))
 gglikert_stacked(df, q1:q6)
-gglikert_stacked(df, q1:q6, add_median_line = T)
+gglikert_stacked(df, q1:q6, add_median_line = TRUE)
 }
 \seealso{
 \code{vignette("gglikert")}, \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}
