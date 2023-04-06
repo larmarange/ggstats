@@ -41,7 +41,10 @@ test_that("gglikert)", {
       q3 = sample(likert_levels_dk, 150, replace = TRUE, prob = 1:6),
       q4 = sample(likert_levels_dk, 150, replace = TRUE, prob = 1:6),
       q5 = sample(c(likert_levels_dk, NA), 150, replace = TRUE),
-      q6 = sample(likert_levels_dk, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0, 1))
+      q6 = sample(
+        likert_levels_dk, 150,
+        replace = TRUE, prob = c(1, 0, 1, 1, 0, 1)
+      )
     ) %>%
     dplyr::mutate(dplyr::across(
       dplyr::everything(),
@@ -165,5 +168,27 @@ test_that("gglikert)", {
   vdiffr::expect_doppelganger(
     "gglikert_stacked() add_median_line",
     gglikert_stacked(df, add_median_line = TRUE)
+  )
+
+  df_group <- df
+  df_group$group1 <- sample(c("A", "B"), 150, replace = TRUE)
+  df_group$group2 <- sample(c("a", "b", "c"), 150, replace = TRUE)
+
+  vdiffr::expect_doppelganger(
+    "gglikert() facet_cols",
+    gglikert(df_group, q1:q6, facet_cols = vars(group1))
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() facet_rows",
+    gglikert(df_group, q1:q2, facet_rows = vars(group1, group2))
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() facet_rows and facet_cols",
+    gglikert(
+      df_group, q3:q6,
+      facet_cols = vars(group1), facet_rows = vars(group2)
+    )
   )
 })

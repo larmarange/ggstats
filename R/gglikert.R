@@ -21,7 +21,7 @@
 #' @param sort_method method used to sort the variables: `"prop"` sort according
 #' to the proportion of answers higher than the centered level, `"mean"`
 #' considers answer as a score and sort according to the mean score, `"median"`
-#' used the median and the majority judgement rule for tie-breaking.
+#' used the median and the majority judgment rule for tie-breaking.
 #' @param sort_prop_include_center when sorting with `"prop"` and if the number
 #' of levels is uneven, should half of the central level be taken into account
 #' to compute the proportion?
@@ -49,6 +49,9 @@
 #' @param reverse_likert if `TRUE`, will reverse the default stacking order,
 #' see [position_likert()]
 #' @param width bar width, see [ggplot2::geom_bar()]
+#' @param facet_rows,facet_cols A set of variables or expressions quoted by
+#' [ggplot2::vars()] and defining faceting groups on the rows or columns
+#' dimension (see examples)
 #' @return A `ggplot2` plot or a `tibble`.
 #' @seealso `vignette("gglikert")`, [position_likert()], [stat_prop()]
 #' @export
@@ -113,11 +116,11 @@
 #'     )
 #' }
 #'
-#' # Facets (do not use add_totals)
+#' # Facets
 #' df_group <- df
 #' df_group$group <- sample(c("A", "B"), 150, replace = TRUE)
-#' gglikert(df_group, q1:q6, add_totals = FALSE) +
-#'   facet_wrap(vars(group))
+#' gglikert(df_group, q1:q6, facet_rows = vars(group))
+#' gglikert(df_group, q1:q6, facet_cols = vars(group))
 gglikert <- function(data,
                      include = dplyr::everything(),
                      variable_labels = NULL,
@@ -138,7 +141,9 @@ gglikert <- function(data,
                      y_reverse = TRUE,
                      y_label_wrap = 50,
                      reverse_likert = FALSE,
-                     width = .9) {
+                     width = .9,
+                     facet_rows = NULL,
+                     facet_cols = NULL) {
   data <-
     gglikert_data(
       data,
@@ -190,7 +195,7 @@ gglikert <- function(data,
 
   if (add_totals) {
     dtot <- data %>%
-      dplyr::group_by(.data$.question) %>%
+      dplyr::group_by(.data$.question, !!!facet_rows, !!!facet_cols) %>%
       dplyr::summarise(
         prop_lower = .prop_lower(
           .data$.answer,
@@ -213,6 +218,7 @@ gglikert <- function(data,
           exclude_fill_values = exclude_fill_values
         )
       ) %>%
+      dplyr::group_by(!!!facet_rows, !!!facet_cols) %>%
       dplyr::mutate(
         label_lower =
           label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
@@ -224,11 +230,13 @@ gglikert <- function(data,
     dtot <- dplyr::bind_rows(
       dtot %>%
         dplyr::select(
-          dplyr::all_of(c(".question", x = "x_lower", label = "label_lower"))
+          dplyr::all_of(c(".question", x = "x_lower", label = "label_lower")),
+          dplyr::group_cols()
         ),
       dtot %>%
         dplyr::select(
-          dplyr::all_of(c(".question", x = "x_higher", label = "label_higher"))
+          dplyr::all_of(c(".question", x = "x_higher", label = "label_higher")),
+          dplyr::group_cols()
         )
     )
 
@@ -260,7 +268,7 @@ gglikert <- function(data,
   if (length(levels(data$.answer)) <= 11)
     p <- p + scale_fill_brewer(palette = "BrBG")
 
-  p
+  p + facet_grid(rows = facet_rows, cols = facet_cols)
 }
 
 #' @rdname gglikert

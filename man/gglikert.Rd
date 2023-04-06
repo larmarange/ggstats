@@ -27,7 +27,9 @@ gglikert(
   y_reverse = TRUE,
   y_label_wrap = 50,
   reverse_likert = FALSE,
-  width = 0.9
+  width = 0.9,
+  facet_rows = NULL,
+  facet_cols = NULL
 )
 
 gglikert_data(
@@ -72,7 +74,7 @@ labels}
 \item{sort_method}{method used to sort the variables: \code{"prop"} sort according
 to the proportion of answers higher than the centered level, \code{"mean"}
 considers answer as a score and sort according to the mean score, \code{"median"}
-used the median and the majority judgement rule for tie-breaking.}
+used the median and the majority judgment rule for tie-breaking.}
 
 \item{sort_prop_include_center}{when sorting with \code{"prop"} and if the number
 of levels is uneven, should half of the central level be taken into account
@@ -116,6 +118,10 @@ of the center level be added to the total proportions?}
 see \code{\link[=position_likert]{position_likert()}}}
 
 \item{width}{bar width, see \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}}
+
+\item{facet_rows, facet_cols}{A set of variables or expressions quoted by
+\code{\link[ggplot2:vars]{ggplot2::vars()}} and defining faceting groups on the rows or columns
+dimension (see examples)}
 
 \item{add_median_line}{add a vertical line at 50\%?}
 
@@ -200,11 +206,11 @@ if (require("labelled")) {
     )
 }
 
-# Facets (do not use add_totals)
+# Facets
 df_group <- df
 df_group$group <- sample(c("A", "B"), 150, replace = TRUE)
-gglikert(df_group, q1:q6, add_totals = FALSE) +
-  facet_wrap(vars(group))
+gglikert(df_group, q1:q6, facet_rows = vars(group))
+gglikert(df_group, q1:q6, facet_cols = vars(group))
 gglikert_stacked(df, q1:q6)
 gglikert_stacked(df, q1:q6, add_median_line = TRUE)
 }
