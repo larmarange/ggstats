@@ -35,7 +35,7 @@
 #' @param labels_hide_below if provided, values below will be masked, see
 #' [label_percent_abs()]
 #' @param add_totals should the total proportions of negative and positive
-#' answers be added to plot?
+#' answers be added to plot? **This option is not compatible with facets!**
 #' @param totals_size size of total proportions
 #' @param totals_accuracy accuracy of the total proportions, see
 #' [scales::label_percent()]
@@ -112,6 +112,11 @@
 #'       y_label_wrap = 25
 #'     )
 #' }
+#'
+#' # Facets (do not use add_totals)
+#' df$group <- sample(c("A", "B"), 150, replace = TRUE)
+#' gglikert(df, q1:q6, add_totals = FALSE) +
+#'   facet_wrap(vars(group))
 gglikert <- function(data,
                      include = dplyr::everything(),
                      variable_labels = NULL,
@@ -414,4 +419,92 @@ gglikert_data <- function(data,
   x <- as.integer(x)
   med <- median(x, na.rm = TRUE)
   med + mean(x > med, na.rm = TRUE) - mean(x < med, na.rm = TRUE)
+}
+
+#' @rdname gglikert
+#' @param add_median_line add a vertical line at 50%?
+#' @param reverse_fill if `TRUE`, will reverse the default stacking order,
+#' see [ggplot2::position_fill()]
+#' @export
+#' @examples
+#' gglikert_stacked(df, q1:q6)
+#' gglikert_stacked(df, q1:q6, add_median_line = T)
+gglikert_stacked <- function(data,
+                                  include = dplyr::everything(),
+                                  variable_labels = NULL,
+                                  sort = c("none", "ascending", "descending"),
+                                  sort_method = c("prop", "mean", "median"),
+                                  sort_prop_include_center = totals_include_center,
+                                  add_labels = TRUE,
+                                  labels_size = 3.5,
+                                  labels_accuracy = 1,
+                                  labels_hide_below = .05,
+                                  add_median_line = FALSE,
+                                  y_reverse = TRUE,
+                                  y_label_wrap = 50,
+                                  reverse_fill = TRUE,
+                                  width = .9) {
+  data <-
+    gglikert_data(
+      data,
+      {{ include }},
+      variable_labels = variable_labels,
+      sort = sort,
+      sort_method = sort_method,
+      sort_prop_include_center = sort_prop_include_center,
+      exclude_fill_values = NULL
+    )
+
+  if (y_reverse)
+    data$.question <- data$.question %>% forcats::fct_rev()
+
+  p <- ggplot(data) +
+    aes(
+      y = .data[[".question"]],
+      fill = .data[[".answer"]],
+      by = .data[[".question"]]
+    ) +
+    geom_bar(
+      position = position_fill(reverse = reverse_fill),
+      stat = "prop",
+      complete = "fill",
+      width = width
+    )
+
+  if (add_labels)
+    p <- p +
+    geom_text(
+      mapping = aes(
+        label = label_percent_abs(
+          hide_below = labels_hide_below,
+          accuracy = labels_accuracy
+        )(after_stat(prop))
+      ),
+      stat = "prop",
+      complete = "fill",
+      position = position_fill(
+        vjust = .5,
+        reverse = reverse_fill
+      ),
+      size = labels_size
+    )
+
+  if (add_median_line)
+    p <- p +
+      ggplot2::geom_vline(xintercept = .5)
+
+  p <- p +
+    labs(x = NULL, y = NULL, fill = NULL) +
+    scale_x_continuous(labels = label_percent_abs()) +
+    scale_y_discrete(labels = scales::label_wrap(y_label_wrap)) +
+    theme_light() +
+    theme(
+      legend.position = "bottom",
+      panel.grid.major.y = element_blank()
+    )
+
+  if (length(levels(data$.answer)) <= 11)
+    p <- p + scale_fill_brewer(palette = "BrBG")
+
+  p
 }

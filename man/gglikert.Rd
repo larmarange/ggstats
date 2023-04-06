@@ -3,6 +3,7 @@
 \name{gglikert}
 \alias{gglikert}
 \alias{gglikert_data}
+\alias{gglikert_stacked}
 \title{Plotting Likert-type items}
 \usage{
 gglikert(
@@ -37,6 +38,24 @@ gglikert_data(
   sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = TRUE,
   exclude_fill_values = NULL
+)
+
+gglikert_stacked(
+  data,
+  include = dplyr::everything(),
+  variable_labels = NULL,
+  sort = c("none", "ascending", "descending"),
+  sort_method = c("prop", "mean", "median"),
+  sort_prop_include_center = totals_include_center,
+  add_labels = TRUE,
+  labels_size = 3.5,
+  labels_accuracy = 1,
+  labels_hide_below = 0.05,
+  add_median_line = FALSE,
+  y_reverse = TRUE,
+  y_label_wrap = 50,
+  reverse_fill = TRUE,
+  width = 0.9
 )
 }
 \arguments{
@@ -74,7 +93,7 @@ see \code{\link[=position_likert]{position_likert()}}}
 \code{\link[=label_percent_abs]{label_percent_abs()}}}
 
 \item{add_totals}{should the total proportions of negative and positive
-answers be added to plot?}
+answers be added to plot? \strong{This option is not compatible with facets!}}
 
 \item{totals_size}{size of total proportions}
 
@@ -97,6 +116,11 @@ of the center level be added to the total proportions?}
 see \code{\link[=position_likert]{position_likert()}}}
 
 \item{width}{bar width, see \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}}
+
+\item{add_median_line}{add a vertical line at 50\%?}
+
+\item{reverse_fill}{if \code{TRUE}, will reverse the default stacking order,
+see \code{\link[ggplot2:position_stack]{ggplot2::position_fill()}}}
 }
 \value{
 A \code{ggplot2} plot or a \code{tibble}.
@@ -175,6 +199,13 @@ if (require("labelled")) {
       y_label_wrap = 25
     )
 }
+
+# Facets (do not use add_totals)
+df$group <- sample(c("A", "B"), 150, replace = TRUE)
+gglikert(df, q1:q6, add_totals = FALSE) +
+  facet_wrap(vars(group))
+gglikert_stacked(df, q1:q6)
+gglikert_stacked(df, q1:q6, add_median_line = T)
 }
 \seealso{
 \code{vignette("gglikert")}, \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}

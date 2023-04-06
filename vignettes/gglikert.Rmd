@@ -213,6 +213,55 @@ Or, you could use `exclude_fill_values` to not display specific values, but stil
 df_dk %>% gglikert(exclude_fill_values = "Don't know")
 ```
 
+## gglikerts() and facets
+
+You could use `gglikerts()` with facets, as long as totals are not displayed.
+
+```{r}
+df_group <- df
+df_group$group <- sample(c("A", "B"), 150, replace = TRUE)
+```
+
+```{r}
+gglikert(
+  df_group, q1:q6,
+  add_totals = FALSE,
+  labels_size = 3,
+  labels_hide_below = .1,
+  y_label_wrap = 30
+) + 
+  facet_wrap(vars(group))
+```
+
+If you indicate `add_totals = TRUE`, you will not have an error. However, displayed totals will be computed overall, and not per facet.
+
+```{r}
+gglikert(
+  df_group, q1:q6,
+  add_totals = TRUE,
+  labels_size = 3,
+  labels_hide_below = .1,
+  y_label_wrap = 30
+) + 
+  facet_wrap(vars(group))
+```
+
+
+## Stacked plot
+
+For a more classical stacked bar plot, you can use `gglikert_stacked()`.
+
+```{r}
+gglikert_stacked(df)
+gglikert_stacked(
+  df,
+  add_median_line = TRUE,
+  add_labels = FALSE
+)
+```
+
+
+
 ## Long format dataset
 
 Internally, `gglikert()` is calling `gglikert_data()` to generate a long format dataset combining all questions into two columns, `.question` and `.answer`.

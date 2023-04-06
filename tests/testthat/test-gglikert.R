@@ -156,4 +156,14 @@ test_that("gglikert)", {
         y_label_wrap = 20
       )
   )
+
+  vdiffr::expect_doppelganger(
+    "gglikert_stacked()",
+    gglikert_stacked(df)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert_stacked() add_median_line",
+    gglikert_stacked(df, add_median_line = TRUE)
+  )
 })
