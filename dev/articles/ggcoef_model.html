@@ -54,6 +54,9 @@
       <a href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a>
     </li>
     <li>
+      <a href="../articles/gglikert.html">Plot Likert-type items with `gglikert()`</a>
+    </li>
+    <li>
       <a href="../articles/stat_cross.html">Compute cross-tabulation statistics with `stat_cross()`</a>
     </li>
     <li>
@@ -145,14 +148,14 @@ used for the x-axis.</p>
 <div class="section level3">
 <h3 id="variable-labels">Variable labels<a class="anchor" aria-label="anchor" href="#variable-labels"></a>
 </h3>
-<p>You can use the <a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a> package to define variable
+<p>You can use the <a href="https://larmarange.github.io/labelled/" class="external-link">labelled</a> package to define variable
 labels. They will be automatically used by <code><a href="../reference/ggcoef_model.html">ggcoef_model()</a></code>.
 Note that variable labels should be defined before computing the
 model.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://larmarange.github.io/labelled/" class="external-link">labelled</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://larmarange.github.io/labelled/" class="external-link">labelled</a></span><span class="op">)</span></span>
 <span><span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span>
 <span>    day <span class="op">=</span> <span class="st">"Day of the week"</span>,</span>
 <span>    time <span class="op">=</span> <span class="st">"Lunch or Dinner"</span>,</span>
 <span>    total_bill <span class="op">=</span> <span class="st">"Bill's total"</span></span>
@@ -453,12 +456,12 @@ or <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><code>lme4::glmer()</code></td>
+<td align="left"><code>lme4::glmer.nb()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>lme4::glmer.nb()</code></td>
+<td align="left"><code>lme4::glmer()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>

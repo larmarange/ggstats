@@ -3,10 +3,11 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   ggcoef_model: ggcoef_model.html
+  gglikert: gglikert.html
   stat_cross: stat_cross.html
   stat_prop: stat_prop.html
   stat_weighted_mean: stat_weighted_mean.html
-last_built: 2023-03-22T15:57Z
+last_built: 2023-04-12T12:47Z
 urls:
   reference: https://larmarange.github.io/ggstats/reference
   article: https://larmarange.github.io/ggstats/articles

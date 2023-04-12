@@ -7,6 +7,9 @@
     <loc>https://larmarange.github.io/ggstats/articles/ggcoef_model.html</loc>
   </url>
   <url>
+    <loc>https://larmarange.github.io/ggstats/articles/gglikert.html</loc>
+  </url>
+  <url>
     <loc>https://larmarange.github.io/ggstats/articles/index.html</loc>
   </url>
   <url>
@@ -37,6 +40,9 @@
     <loc>https://larmarange.github.io/ggstats/reference/ggcoef_model.html</loc>
   </url>
   <url>
+    <loc>https://larmarange.github.io/ggstats/reference/gglikert.html</loc>
+  </url>
+  <url>
     <loc>https://larmarange.github.io/ggstats/reference/ggstats-package.html</loc>
   </url>
   <url>
@@ -44,6 +50,12 @@
   </url>
   <url>
     <loc>https://larmarange.github.io/ggstats/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/reference/label_number_abs.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/reference/position_likert.html</loc>
   </url>
   <url>
     <loc>https://larmarange.github.io/ggstats/reference/reexports.html</loc>
