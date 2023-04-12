@@ -20,7 +20,7 @@ produced tibble to ggcoef_plot() to generate the plot."><!-- mathjax --><script 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -36,6 +36,9 @@ produced tibble to ggcoef_plot() to generate the plot."><!-- mathjax --><script 
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a>
+    </li>
+    <li>
+      <a href="../articles/gglikert.html">Plot Likert-type items with `gglikert()`</a>
     </li>
     <li>
       <a href="../articles/stat_cross.html">Compute cross-tabulation statistics with `stat_cross()`</a>
@@ -254,7 +257,7 @@ for those no reference row should be added, when <code>add_reference_rows = TRUE
 
 <dt>include</dt>
 <dd><p>variables to include. Accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a>
-syntax. Use <code>-</code> to remove a variable. Default is <code>everything()</code>.
+syntax. Use <code>-</code> to remove a variable. Default is <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>.
 See also <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous()</a></code>
 and <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
 
@@ -462,6 +465,10 @@ plot.</p></li>
 multinomial logistic regressions performed with <code><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">nnet::multinom()</a></code>.</p></li>
 <li><p><code>ggcoef_plot()</code>: plot a tidy <code>tibble</code> of coefficients</p></li>
 </ul></div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p><code><a href="../articles/ggcoef_model.html">vignette("ggcoef_model")</a></code></p></div>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -541,7 +548,7 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-in"><span><span class="co"># before computing model</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      day <span class="op">=</span> <span class="st">"Day of the week"</span>,</span></span>
 <span class="r-in"><span>      time <span class="op">=</span> <span class="st">"Lunch or Dinner"</span>,</span></span>
 <span class="r-in"><span>      total_bill <span class="op">=</span> <span class="st">"Bill's total"</span></span></span>
@@ -645,23 +652,14 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <span class="r-out co"><span class="r-pr">#&gt;</span> final  value 5.949867 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> stopped after 100 iterations</span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span>
 <span class="r-plt img"><img src="ggcoef_model-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span>
 <span class="r-plt img"><img src="ggcoef_model-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"faceted"</span>,</span></span>
 <span class="r-in"><span>  y.level_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"versicolor"</span> <span class="op">=</span> <span class="st">"versicolor\n(ref: setosa)"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `broom::tidy()` failed to tidy the model.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_parameters()` used instead.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_parameters` to quiet these messages.</span>
 <span class="r-plt img"><img src="ggcoef_model-21.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
