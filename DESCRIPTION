@@ -30,7 +30,7 @@ Suggests:
     emmeans,
     glue,
     knitr,
-    labelled,
+    labelled (>= 2.11.0),
     reshape,
     rmarkdown,
     nnet,
@@ -44,7 +44,6 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
-Remotes: larmarange/labelled
 Config/testthat/edition: 3
 Language: en-US
 VignetteBuilder: knitr
