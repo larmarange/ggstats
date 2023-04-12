@@ -79,14 +79,19 @@
 #'   mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
 #'
 #' gglikert(df)
+#'
 #' gglikert(df, include = q1:3)
+#'
 #' gglikert(df, sort = "ascending")
+#'
 #' gglikert(df, sort = "ascending", sort_prop_include_center = TRUE)
+#'
 #' gglikert(df, sort = "ascending", sort_method = "mean")
 #'
 #' gglikert(df, reverse_likert = TRUE)
 #'
 #' gglikert(df, add_totals = FALSE, add_labels = FALSE)
+#'
 #' gglikert(
 #'   df,
 #'   totals_include_center = TRUE,
@@ -119,7 +124,9 @@
 #' # Facets
 #' df_group <- df
 #' df_group$group <- sample(c("A", "B"), 150, replace = TRUE)
+#'
 #' gglikert(df_group, q1:q6, facet_rows = vars(group))
+#'
 #' gglikert(df_group, q1:q6, facet_cols = vars(group))
 gglikert <- function(data,
                      include = dplyr::everything(),

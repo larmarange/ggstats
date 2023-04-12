@@ -132,3 +132,39 @@ ggsurvey(dw) +
 ```
 
 <img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+
+## Plot Likert-type items
+
+``` r
+library(dplyr)
+#> 
+#> Attachement du package : 'dplyr'
+#> Les objets suivants sont masqués depuis 'package:stats':
+#> 
+#>     filter, lag
+#> Les objets suivants sont masqués depuis 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+likert_levels <- c(
+  "Strongly disagree",
+  "Disagree",
+  "Neither agree nor disagree",
+  "Agree",
+  "Strongly agree"
+)
+set.seed(42)
+df <-
+  tibble(
+    q1 = sample(likert_levels, 150, replace = TRUE),
+    q2 = sample(likert_levels, 150, replace = TRUE, prob = 5:1),
+    q3 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
+    q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
+    q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
+    q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
+  ) %>%
+  mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
+
+gglikert(df)
+```
+
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />

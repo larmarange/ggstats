@@ -2,7 +2,7 @@
 
 **New features**
 
-* New function `gglikert()` (#25)
+* New functions `gglikert()`, `gglikert_stacked()` and `gglikert_data()` (#25)
 * New positions `position_likert()` and `position_likert_count()` (#25)
 * New `complete` argument for `stat_prop()` (#25)
 
