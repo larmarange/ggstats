@@ -50,6 +50,7 @@
 #'   scale_x_continuous(label = label_number_abs()) +
 #'   scale_fill_brewer(palette = "PiYG")
 #'
+#' @examplesIf interactive()
 #' # Reverse order -------------------------------------------------------------
 #'
 #' ggplot(diamonds) +

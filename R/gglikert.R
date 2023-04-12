@@ -84,6 +84,7 @@
 #'
 #' gglikert(df, sort = "ascending")
 #'
+#' @examplesIf interactive()
 #' gglikert(df, sort = "ascending", sort_prop_include_center = TRUE)
 #'
 #' gglikert(df, sort = "ascending", sort_method = "mean")
