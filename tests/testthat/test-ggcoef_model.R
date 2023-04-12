@@ -1,7 +1,7 @@
 test_that("ggcoef_model()", {
+  skip_on_cran()
   skip_if_not_installed("broom.helpers")
   skip_if_not_installed("reshape")
-  skip_on_cran()
 
   data(tips, package = "reshape")
   mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
@@ -176,7 +176,11 @@ test_that("ggcoef_compare()", {
 
   d <- as.data.frame(Titanic)
   m1 <- glm(Survived ~ Sex + Age, family = binomial, data = d, weights = Freq)
-  m2 <- glm(Survived ~ Sex + Age + Class, family = binomial, data = d, weights = Freq)
+  m2 <- glm(
+    Survived ~ Sex + Age + Class, family = binomial,
+    data = d,
+    weights = Freq
+  )
   models <- list("Model 1" = m1, "Model 2" = m2)
 
   vdiffr::expect_doppelganger(

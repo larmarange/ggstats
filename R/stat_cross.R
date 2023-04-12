@@ -28,6 +28,7 @@
 #'
 #' @export
 #' @return A `ggplot2` plot with the added statistic.
+#' @seealso `vignette("stat_cross")`
 #' @examples
 #' library(ggplot2)
 #' d <- as.data.frame(Titanic)

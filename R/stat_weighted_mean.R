@@ -13,6 +13,7 @@
 #'
 #' @inheritParams ggplot2::stat_bin
 #' @param geom Override the default connection with [ggplot2::geom_point()].
+#' @seealso `vignette("stat_weighted_mean")`
 #' @export
 #' @return A `ggplot2` plot with the added statistic.
 #' @examplesIf requireNamespace("reshape")

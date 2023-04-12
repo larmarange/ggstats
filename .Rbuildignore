@@ -13,3 +13,5 @@ tests/testthat/Rplots.pdf
 ^CRAN-SUBMISSION$
 ^revdep$
 ^LICENSE\.md$
+^doc$
+^Meta$

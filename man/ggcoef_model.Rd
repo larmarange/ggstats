@@ -437,3 +437,6 @@ ggcoef_multinom(
 }
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+\code{vignette("ggcoef_model")}
+}

@@ -3,6 +3,9 @@ url: https://larmarange.github.io/ggstats/
 development:
   mode: auto
 
+deploy:
+  install_metadata: true
+
 template:
   params:
     bootswatch: flatly
@@ -16,7 +19,11 @@ reference:
   contents:
   - ggcoef_model
 
-- title: Additional Statistics for `ggplot2`
+- title: Plotting Likert-type items
+  contents:
+  - gglikert
+
+- title: Additional statistics for `ggplot2`
   contents:
   - starts_with("stat_")
 
@@ -24,8 +31,13 @@ reference:
   contents:
   - starts_with("geom_")
 
+- title: Additional position for `ggplot2`
+  contents:
+  - starts_with("position_")
+
 - title: Utilities
   contents:
   - ggsurvey
   - signif_stars
   - augment_chisq_add_phi
+  - label_number_abs

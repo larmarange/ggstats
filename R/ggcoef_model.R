@@ -532,8 +532,7 @@ ggcoef_data <- function(
   significance = conf.level,
   significance_labels = NULL
 ) {
-  if (!requireNamespace("broom.helpers", quietly = TRUE))
-    cli::cli_abort("Package {.pkg broom.helpers} is required.")
+  rlang::check_installed("broom.helpers")
 
   if (length(significance) == 0)
     significance <- NULL
@@ -645,6 +644,7 @@ ggcoef_data <- function(
 #' @param facet_labeller labeller function to be used for labeling facets;
 #'   if labels are too long, you can use [ggplot2::label_wrap_gen()] (see
 #'   examples), more information in the documentation of [ggplot2::facet_grid()]
+#' @seealso `vignette("ggcoef_model")`
 #' @export
 ggcoef_plot <- function(
   data,

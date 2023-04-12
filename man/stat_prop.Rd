@@ -16,7 +16,8 @@ stat_prop(
   na.rm = FALSE,
   orientation = NA,
   show.legend = NA,
-  inherit.aes = TRUE
+  inherit.aes = TRUE,
+  complete = NULL
 )
 }
 \arguments{
@@ -73,6 +74,9 @@ display.}
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+
+\item{complete}{Name (character) of an aesthetic for those statistics should
+be completed for unobserved values (see example)}
 }
 \value{
 A \code{ggplot2} plot with the added statistic.
@@ -81,7 +85,8 @@ A \code{ggplot2} plot with the added statistic.
 \code{stat_prop()} is a variation of \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}} allowing to
 compute custom proportions according to the \strong{by} aesthetic defining
 the denominator (i.e. all proportions for a same value of \strong{by} will
-sum to 1). The \strong{by} aesthetic should be a factor.
+sum to 1). The \strong{by} aesthetic should be a factor. If \strong{by} is not
+specified, proportions of the total will be computed.
 }
 \section{Aesthetics}{
 
@@ -89,7 +94,7 @@ sum to 1). The \strong{by} aesthetic should be a factor.
 (required aesthetics are in bold):
 \itemize{
 \item \strong{x \emph{or} y}
-\item \strong{by} (this aesthetic should be a \strong{factor})
+\item by (this aesthetic should be a \strong{factor})
 \item group
 \item weight
 }
@@ -133,8 +138,19 @@ if (requireNamespace("scales")) {
       position = position_stack(.5)
     )
 }
+
+# displaying unobserved levels with complete
+d <- diamonds \%>\%
+  dplyr::filter(!(cut == "Ideal" & clarity == "I1")) \%>\%
+  dplyr::filter(!(cut == "Very Good" & clarity == "VS2")) \%>\%
+  dplyr::filter(!(cut == "Premium" & clarity == "IF"))
+p <- ggplot(d) +
+  aes(x = clarity, fill = cut, by = clarity) +
+  geom_bar(position = "fill")
+p + geom_text(stat = "prop", position = position_fill(.5))
+p + geom_text(stat = "prop", position = position_fill(.5), complete = "fill")
 }
 \seealso{
-\code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}
+\code{vignette("stat_prop")}, \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}
 }
 \keyword{datasets}

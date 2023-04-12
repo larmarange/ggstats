@@ -136,4 +136,7 @@ if (requireNamespace("scales")) {
     labs(y = "Survived")
 }
 }
+\seealso{
+\code{vignette("stat_weighted_mean")}
+}
 \keyword{datasets}

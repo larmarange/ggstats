@@ -30,7 +30,7 @@ Suggests:
     emmeans,
     glue,
     knitr,
-    labelled,
+    labelled (>= 2.11.0),
     reshape,
     rmarkdown,
     nnet,
