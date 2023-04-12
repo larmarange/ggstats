@@ -44,6 +44,15 @@ test_that("position_likert()", {
     p
   )
 
+  p <- ggplot(diamonds) +
+    aes(y = clarity, fill = cut) +
+    geom_bar(position = position_likert_count(reverse = TRUE))
+
+  vdiffr::expect_doppelganger(
+    "position_likert_count() reverse",
+    p
+  )
+
   custom_label <- function(x) {
     p <- scales::percent(x, accuracy = 1)
     p[x < .075] <- ""

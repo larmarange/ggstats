@@ -114,7 +114,8 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   required_aes = c("x|y"),
   default_aes = ggplot2::aes(
     x = after_stat(count), y = after_stat(count), weight = 1,
-    label = scales::percent(after_stat(prop), accuracy = .1)
+    label = scales::percent(after_stat(prop), accuracy = .1),
+    by = 1
   ),
   setup_params = function(data, params) {
     params$flipped_aes <- ggplot2::has_flipped_aes(

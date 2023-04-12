@@ -14,6 +14,13 @@ test_that("stat_prop()", {
   )
 
   vdiffr::expect_doppelganger(
+    "stat_prop() direct call",
+    ggplot(d) +
+      aes(x = Class, fill = Survived, weight = Freq, by = Class) +
+      stat_prop(geom = "bar")
+  )
+
+  vdiffr::expect_doppelganger(
     "stat_prop() titanic-facet",
     p + facet_grid(~Sex)
   )
@@ -25,6 +32,17 @@ test_that("stat_prop()", {
       geom_bar(position = "dodge") +
       geom_text(
         aes(by = Survived),
+        stat = "prop",
+        position = position_dodge(0.9), vjust = "bottom"
+      )
+  )
+
+  vdiffr::expect_doppelganger(
+    "stat_prop() titanic-dodge (not specifying by)",
+    ggplot(d) +
+      aes(x = Class, fill = Survived, weight = Freq) +
+      geom_bar(position = "dodge") +
+      geom_text(
         stat = "prop",
         position = position_dodge(0.9), vjust = "bottom"
       )
