@@ -15,15 +15,9 @@ status](https://www.r-pkg.org/badges/version/ggstats)](https://CRAN.R-project.or
 [![DOI](https://zenodo.org/badge/547360047.svg)](https://zenodo.org/badge/latestdoi/547360047)
 <!-- badges: end -->
 
-The `ggstats` package provides suite of functions to plot regression
-model coefficients (“forest plots”) using `ggplot2`..
-
-The suite also includes new statistics to compute proportions, weighted
-mean and cross-tabulation statistics, as well as new geometries to add
-alternative background color to a plot.
-
-The original versions of several functions were originally developed
-within the `{GGally}` package.
+The `ggstats` package provides new statistics, new geometries and new
+positions for `ggplot2` and a suite of functions to facilitate the
+creation of statistical plots.
 
 ## Installation & Documentation
 
