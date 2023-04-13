@@ -30,6 +30,7 @@
 #'   aes(x = day, y = total_bill) +
 #'   stat_weighted_mean()
 #'
+#' \donttest{
 #' ggplot(tips) +
 #'   aes(x = day, y = total_bill, group = 1) +
 #'   stat_weighted_mean(geom = "line")
@@ -48,6 +49,7 @@
 #'     aes(x = day, y = as.integer(smoker == "Yes"), fill = sex) +
 #'     stat_weighted_mean(geom = "bar", position = "dodge") +
 #'     scale_y_continuous(labels = scales::percent)
+#' }
 #' }
 #' @examples
 #' library(ggplot2)

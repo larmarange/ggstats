@@ -66,7 +66,7 @@ ggplot(diamonds) +
   scale_x_continuous(label = label_number_abs()) +
   scale_fill_brewer(palette = "PiYG")
 
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 # Reverse order -------------------------------------------------------------
 
 ggplot(diamonds) +
@@ -124,7 +124,7 @@ ggplot(diamonds) +
   scale_x_continuous(label = label_percent_abs()) +
   scale_fill_brewer(palette = "PiYG") +
   xlab("proportion")
-\dontshow{\}) # examplesIf}
+}
 }
 \seealso{
 See \code{\link[ggplot2:position_stack]{ggplot2::position_stack()}} and \code{\link[ggplot2:position_stack]{ggplot2::position_fill()}}

@@ -174,7 +174,7 @@ gglikert(df, include = q1:3)
 
 gglikert(df, sort = "ascending")
 
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 gglikert(df, sort = "ascending", sort_prop_include_center = TRUE)
 
 gglikert(df, sort = "ascending", sort_method = "mean")
@@ -219,7 +219,7 @@ df_group$group <- sample(c("A", "B"), 150, replace = TRUE)
 gglikert(df_group, q1:q6, facet_rows = vars(group))
 
 gglikert(df_group, q1:q6, facet_cols = vars(group))
-\dontshow{\}) # examplesIf}
+}
 gglikert_stacked(df, q1:q6)
 gglikert_stacked(df, q1:q6, add_median_line = TRUE)
 }

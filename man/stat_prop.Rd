@@ -127,7 +127,7 @@ ggplot(d) +
     stat = "prop",
     position = position_dodge(0.9), vjust = "bottom"
   )
-
+\donttest{
 if (requireNamespace("scales")) {
   ggplot(d) +
     aes(x = Class, fill = Survived, weight = Freq, by = 1) +
@@ -149,6 +149,7 @@ p <- ggplot(d) +
   geom_bar(position = "fill")
 p + geom_text(stat = "prop", position = position_fill(.5))
 p + geom_text(stat = "prop", position = position_fill(.5), complete = "fill")
+}
 }
 \seealso{
 \code{vignette("stat_prop")}, \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}

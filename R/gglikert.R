@@ -84,7 +84,7 @@
 #'
 #' gglikert(df, sort = "ascending")
 #'
-#' @examplesIf interactive()
+#' \donttest{
 #' gglikert(df, sort = "ascending", sort_prop_include_center = TRUE)
 #'
 #' gglikert(df, sort = "ascending", sort_method = "mean")
@@ -129,6 +129,7 @@
 #' gglikert(df_group, q1:q6, facet_rows = vars(group))
 #'
 #' gglikert(df_group, q1:q6, facet_cols = vars(group))
+#' }
 gglikert <- function(data,
                      include = dplyr::everything(),
                      variable_labels = NULL,

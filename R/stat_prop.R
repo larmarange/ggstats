@@ -47,7 +47,7 @@
 #'     stat = "prop",
 #'     position = position_dodge(0.9), vjust = "bottom"
 #'   )
-#'
+#' \donttest{
 #' if (requireNamespace("scales")) {
 #'   ggplot(d) +
 #'     aes(x = Class, fill = Survived, weight = Freq, by = 1) +
@@ -69,6 +69,7 @@
 #'   geom_bar(position = "fill")
 #' p + geom_text(stat = "prop", position = position_fill(.5))
 #' p + geom_text(stat = "prop", position = position_fill(.5), complete = "fill")
+#' }
 stat_prop <- function(mapping = NULL,
                       data = NULL,
                       geom = "bar",

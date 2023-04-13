@@ -117,6 +117,7 @@ ggplot(d) +
   scale_fill_steps2(breaks = c(-3, -2, 2, 3), show.limits = TRUE) +
   scale_size_area(max_size = 20)
 
+\donttest{
 # custom shape and fill colour based on phi coeffients
 ggplot(d) +
   aes(
@@ -148,6 +149,7 @@ ggplot(d) +
   facet_grid(Sex ~ .) +
   labs(fill = "Standardized residuals") +
   theme_minimal()
+}
 }
 \seealso{
 \code{vignette("stat_cross")}

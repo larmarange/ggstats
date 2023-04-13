@@ -50,7 +50,7 @@
 #'   scale_x_continuous(label = label_number_abs()) +
 #'   scale_fill_brewer(palette = "PiYG")
 #'
-#' @examplesIf interactive()
+#' \donttest{
 #' # Reverse order -------------------------------------------------------------
 #'
 #' ggplot(diamonds) +
@@ -108,6 +108,7 @@
 #'   scale_x_continuous(label = label_percent_abs()) +
 #'   scale_fill_brewer(palette = "PiYG") +
 #'   xlab("proportion")
+#' }
 position_likert <- function(vjust = 1,
                             reverse = FALSE,
                             exclude_fill_values = NULL) {
