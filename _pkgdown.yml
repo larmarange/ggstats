@@ -31,7 +31,7 @@ reference:
   contents:
   - starts_with("geom_")
 
-- title: Additional position for `ggplot2`
+- title: Additional positions for `ggplot2`
   contents:
   - starts_with("position_")
 
