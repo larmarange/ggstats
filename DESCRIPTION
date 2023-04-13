@@ -6,10 +6,9 @@ Authors@R: c(
     person("Joseph", "Larmarange", , "joseph@larmarange.net", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-7097-700X"))
   )
-Description: Provides suite of functions to plot regression model coefficients
-    ("forest plots"). The suite also includes new statistics to compute 
-    proportions, weighted mean and cross-tabulation statistics, as well as new 
-    geometries to add alternative background color to a plot.
+Description: Provides new statistics, new geometries and new positions for 
+    "ggplot2" and a suite of functions to facilitate the creation of 
+    statistical plots.
 License: GPL (>= 3)
 URL: https://larmarange.github.io/ggstats/
 BugReports: https://github.com/larmarange/ggstats/issues
