@@ -227,7 +227,7 @@ gglikert <- function(data,
           exclude_fill_values = exclude_fill_values
         )
       ) %>%
-      dplyr::group_by(!!!facet_rows, !!!facet_cols) %>%
+      dplyr::ungroup() %>%
       dplyr::mutate(
         label_lower =
           label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
@@ -235,7 +235,8 @@ gglikert <- function(data,
           label_percent_abs(accuracy = totals_accuracy)(.data$label_higher),
         x_lower = -1 * max(.data$prop_lower) - totals_hjust,
         x_higher = max(.data$prop_higher) + totals_hjust
-      )
+      ) %>%
+      dplyr::group_by(!!!facet_rows, !!!facet_cols)
     dtot <- dplyr::bind_rows(
       dtot %>%
         dplyr::select(

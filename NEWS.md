@@ -1,5 +1,9 @@
 # ggstats (development version)
 
+**Improvements**
+
+* `gglikert()` now aligns total proportions when faceting (#28)
+
 # ggstats 0.3.0
 
 **New features**
