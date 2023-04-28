@@ -41,3 +41,4 @@ reference:
   - signif_stars
   - augment_chisq_add_phi
   - label_number_abs
+  - weighted.median

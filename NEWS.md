@@ -3,6 +3,12 @@
 **Improvements**
 
 * `gglikert()` now aligns total proportions when faceting (#28)
+* new `weights` argument for `gglikert()`, `gglikert_stacked()` and 
+  `gglikert_data()` (#29)
+
+**New helpers**
+
+* `weighted.median()` and `weighted.quantile()` functions
 
 # ggstats 0.3.0
 

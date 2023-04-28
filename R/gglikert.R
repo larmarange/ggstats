@@ -15,6 +15,8 @@
 #' @param data a data frame
 #' @param include variables to include, accept [tidy-select][dplyr::select]
 #' syntax
+#' @param weights optional variable name of a weighting variable,
+#' accept [tidy-select][dplyr::select] syntax
 #' @param variable_labels a named list or a named vector of custom variable
 #' labels
 #' @param sort should variables be sorted?
@@ -132,6 +134,7 @@
 #' }
 gglikert <- function(data,
                      include = dplyr::everything(),
+                     weights = NULL,
                      variable_labels = NULL,
                      sort = c("none", "ascending", "descending"),
                      sort_method = c("prop", "mean", "median"),
@@ -157,6 +160,7 @@ gglikert <- function(data,
     gglikert_data(
       data,
       {{ include }},
+      weights = {{ weights }},
       variable_labels = variable_labels,
       sort = sort,
       sort_method = sort_method,
@@ -171,7 +175,8 @@ gglikert <- function(data,
     aes(
       y = .data[[".question"]],
       fill = .data[[".answer"]],
-      by = .data[[".question"]]
+      by = .data[[".question"]],
+      weight = .data[[".weights"]]
     ) +
     geom_bar(
       position = position_likert(
@@ -208,21 +213,25 @@ gglikert <- function(data,
       dplyr::summarise(
         prop_lower = .prop_lower(
           .data$.answer,
+          .data$.weights,
           include_center = TRUE,
           exclude_fill_values = exclude_fill_values
         ),
         prop_higher = .prop_higher(
           .data$.answer,
+          .data$.weights,
           include_center = TRUE,
           exclude_fill_values = exclude_fill_values
         ),
         label_lower = .prop_lower(
           .data$.answer,
+          .data$.weights,
           include_center = totals_include_center,
           exclude_fill_values = exclude_fill_values
         ),
         label_higher = .prop_higher(
           .data$.answer,
+          .data$.weights,
           include_center = totals_include_center,
           exclude_fill_values = exclude_fill_values
         )
@@ -257,7 +266,8 @@ gglikert <- function(data,
           x = .data[["x"]],
           label = .data[["label"]],
           fill = NULL,
-          by = NULL
+          by = NULL,
+          weight = NULL
         ),
         data = dtot,
         size = totals_size,
@@ -285,6 +295,7 @@ gglikert <- function(data,
 #' @export
 gglikert_data <- function(data,
                           include = dplyr::everything(),
+                          weights = NULL,
                           variable_labels = NULL,
                           sort = c("none", "ascending", "descending"),
                           sort_method = c("prop", "mean", "median"),
@@ -301,6 +312,20 @@ gglikert_data <- function(data,
     data = data,
     arg_name = "include"
   )
+
+  weights_var <- broom.helpers::.select_to_varnames(
+    select = {{ weights }},
+    data = data,
+    arg_name = "weights",
+    select_single = TRUE
+  )
+  if (is.null(weights_var))
+    data$.weights <- 1
+  else
+    data$.weights <- data[[weights_var]]
+
+  if (!is.numeric(data$.weights))
+    cli::cli_abort("{.arg weights} should correspond to a numerical variable.")
 
   if (is.list(variable_labels))
     variable_labels <- unlist(variable_labels)
@@ -330,55 +355,64 @@ gglikert_data <- function(data,
 
   if (sort == "ascending" && sort_method == "prop")
     data$.question <- data$.question %>%
-      forcats::fct_reorder(
+      forcats::fct_reorder2(
         data$.answer,
+        data$.weights,
         .fun = .prop_higher,
         include_center = sort_prop_include_center,
         exclude_fill_values = exclude_fill_values,
-        .na_rm = TRUE
+        .na_rm = FALSE,
+        .desc = FALSE
       )
   if (sort == "descending" && sort_method == "prop")
     data$.question <- data$.question %>%
-      forcats::fct_reorder(
+      forcats::fct_reorder2(
         data$.answer,
+        data$.weights,
         .fun = .prop_higher,
         include_center = sort_prop_include_center,
         exclude_fill_values = exclude_fill_values,
-        .na_rm = TRUE,
+        .na_rm = FALSE,
         .desc = TRUE
       )
   if (sort == "ascending" && sort_method == "mean")
     data$.question <- data$.question %>%
-    forcats::fct_reorder(
+    forcats::fct_reorder2(
       data$.answer,
+      data$.weights,
       .fun = .sort_mean,
       exclude_fill_values = exclude_fill_values,
-      .na_rm = TRUE
+      .na_rm = FALSE,
+      .desc = FALSE
     )
   if (sort == "descending" && sort_method == "mean")
     data$.question <- data$.question %>%
-    forcats::fct_reorder(
+    forcats::fct_reorder2(
       data$.answer,
+      data$.weights,
       .fun = .sort_mean,
       exclude_fill_values = exclude_fill_values,
-      .na_rm = TRUE,
+      .na_rm = FALSE,
       .desc = TRUE
     )
   if (sort == "ascending" && sort_method == "median")
     data$.question <- data$.question %>%
-    forcats::fct_reorder(
+    forcats::fct_reorder2(
       data$.answer,
+      data$.weights,
       .fun = .sort_median,
       exclude_fill_values = exclude_fill_values,
-      .na_rm = TRUE
+      .na_rm = FALSE,
+      .desc = FALSE
     )
   if (sort == "descending" && sort_method == "median")
     data$.question <- data$.question %>%
-    forcats::fct_reorder(
+    forcats::fct_reorder2(
       data$.answer,
+      data$.weights,
       .fun = .sort_median,
       exclude_fill_values = exclude_fill_values,
-      .na_rm = TRUE,
+      .na_rm = FALSE,
       .desc = TRUE
     )
 
@@ -387,8 +421,9 @@ gglikert_data <- function(data,
 
 # Compute the proportion being higher than the center
 # Option to include the centre (if yes, only half taken into account)
-.prop_higher <- function(x, include_center = TRUE, exclude_fill_values = NULL) {
-  N <- sum(!is.na(x))
+.prop_higher <- function(x, w, include_center = TRUE,
+                         exclude_fill_values = NULL) {
+  N <- sum(as.integer(!is.na(x)) * w)
   if (!is.factor(x)) x <- factor(x)
   if (!is.null(exclude_fill_values)) {
     l <- levels(x)
@@ -397,14 +432,15 @@ gglikert_data <- function(data,
   }
   m <- length(levels(x)) / 2 + 1 / 2
   x <- as.numeric(x)
-  w <- ifelse(include_center, 1 / 2, 0)
-  sum(as.integer(x > m), w * as.integer(x == m), na.rm = TRUE) / N
+  ic <- ifelse(include_center, 1 / 2, 0)
+  sum(w * as.integer(x > m), w * ic * as.integer(x == m), na.rm = TRUE) / N
 }
 
 # Compute the proportion being higher than the center
 # Option to include the centre (if yes, only half taken into account)
-.prop_lower <- function(x, include_center = TRUE, exclude_fill_values = NULL) {
-  N <- sum(!is.na(x))
+.prop_lower <- function(x, w, include_center = TRUE,
+                        exclude_fill_values = NULL) {
+  N <- sum(as.integer(!is.na(x)) * w)
   if (!is.factor(x)) x <- factor(x)
   if (!is.null(exclude_fill_values)) {
     l <- levels(x)
@@ -413,11 +449,12 @@ gglikert_data <- function(data,
   }
   m <- length(levels(x)) / 2 + 1 / 2
   x <- as.numeric(x)
-  w <- ifelse(include_center, 1 / 2, 0)
-  sum(as.integer(x < m), w * as.integer(x == m), na.rm = TRUE) / N
+  ic <- ifelse(include_center, 1 / 2, 0)
+  sum(w * as.integer(x < m), ic * w * as.integer(x == m), na.rm = TRUE) / N
 }
 
-.sort_mean <- function(x, exclude_fill_values = NULL) {
+#' @importFrom stats weighted.mean
+.sort_mean <- function(x, w, exclude_fill_values = NULL) {
   if (!is.factor(x)) x <- factor(x)
   if (!is.null(exclude_fill_values)) {
     l <- levels(x)
@@ -425,10 +462,10 @@ gglikert_data <- function(data,
     x <- factor(x, levels = l)
   }
   x <- as.integer(x)
-  mean(x, na.rm = TRUE)
+  stats::weighted.mean(x, w, na.rm = TRUE)
 }
 
-.sort_median <- function(x, exclude_fill_values = NULL) {
+.sort_median <- function(x, w, exclude_fill_values = NULL) {
   if (!is.factor(x)) x <- factor(x)
   if (!is.null(exclude_fill_values)) {
     l <- levels(x)
@@ -436,8 +473,10 @@ gglikert_data <- function(data,
     x <- factor(x, levels = l)
   }
   x <- as.integer(x)
-  med <- stats::median(x, na.rm = TRUE)
-  med + mean(x > med, na.rm = TRUE) - mean(x < med, na.rm = TRUE)
+  med <- weighted.median(x, w, na.rm = TRUE)
+  med +
+    stats::weighted.mean(x > med, w, na.rm = TRUE) -
+    stats::weighted.mean(x < med, w, na.rm = TRUE)
 }
 
 #' @rdname gglikert
@@ -449,24 +488,26 @@ gglikert_data <- function(data,
 #' gglikert_stacked(df, q1:q6)
 #' gglikert_stacked(df, q1:q6, add_median_line = TRUE)
 gglikert_stacked <- function(data,
-                                  include = dplyr::everything(),
-                                  variable_labels = NULL,
-                                  sort = c("none", "ascending", "descending"),
-                                  sort_method = c("prop", "mean", "median"),
-                                  sort_prop_include_center = FALSE,
-                                  add_labels = TRUE,
-                                  labels_size = 3.5,
-                                  labels_accuracy = 1,
-                                  labels_hide_below = .05,
-                                  add_median_line = FALSE,
-                                  y_reverse = TRUE,
-                                  y_label_wrap = 50,
-                                  reverse_fill = TRUE,
-                                  width = .9) {
+                             include = dplyr::everything(),
+                             weights = NULL,
+                             variable_labels = NULL,
+                             sort = c("none", "ascending", "descending"),
+                             sort_method = c("prop", "mean", "median"),
+                             sort_prop_include_center = FALSE,
+                             add_labels = TRUE,
+                             labels_size = 3.5,
+                             labels_accuracy = 1,
+                             labels_hide_below = .05,
+                             add_median_line = FALSE,
+                             y_reverse = TRUE,
+                             y_label_wrap = 50,
+                             reverse_fill = TRUE,
+                             width = .9) {
   data <-
     gglikert_data(
       data,
       {{ include }},
+      weights = {{ weights }},
       variable_labels = variable_labels,
       sort = sort,
       sort_method = sort_method,
@@ -481,7 +522,8 @@ gglikert_stacked <- function(data,
     aes(
       y = .data[[".question"]],
       fill = .data[[".answer"]],
-      by = .data[[".question"]]
+      by = .data[[".question"]],
+      weight = .data[[".weights"]]
     ) +
     geom_bar(
       position = position_fill(reverse = reverse_fill),
