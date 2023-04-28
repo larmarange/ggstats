@@ -9,6 +9,7 @@
 gglikert(
   data,
   include = dplyr::everything(),
+  weights = NULL,
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean", "median"),
@@ -35,6 +36,7 @@ gglikert(
 gglikert_data(
   data,
   include = dplyr::everything(),
+  weights = NULL,
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean", "median"),
@@ -45,6 +47,7 @@ gglikert_data(
 gglikert_stacked(
   data,
   include = dplyr::everything(),
+  weights = NULL,
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean", "median"),
@@ -65,6 +68,9 @@ gglikert_stacked(
 
 \item{include}{variables to include, accept \link[dplyr:select]{tidy-select}
 syntax}
+
+\item{weights}{optional variable name of a weighting variable,
+accept \link[dplyr:select]{tidy-select} syntax}
 
 \item{variable_labels}{a named list or a named vector of custom variable
 labels}
