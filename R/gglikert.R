@@ -17,6 +17,9 @@
 #' syntax
 #' @param weights optional variable name of a weighting variable,
 #' accept [tidy-select][dplyr::select] syntax
+#' @param y name of the variable to be plotted on `y` axis (relevant when
+#' `.question` is mapped to "facets, see examples),
+#' accept [tidy-select][dplyr::select] syntax
 #' @param variable_labels a named list or a named vector of custom variable
 #' labels
 #' @param sort should variables be sorted?
@@ -54,6 +57,8 @@
 #' @param facet_rows,facet_cols A set of variables or expressions quoted by
 #' [ggplot2::vars()] and defining faceting groups on the rows or columns
 #' dimension (see examples)
+#' @param facet_label_wrap number of characters per line for facet labels, see
+#' [ggplot2::label_wrap_gen()]
 #' @return A `ggplot2` plot or a `tibble`.
 #' @seealso `vignette("gglikert")`, [position_likert()], [stat_prop()]
 #' @export
@@ -131,10 +136,13 @@
 #' gglikert(df_group, q1:q6, facet_rows = vars(group))
 #'
 #' gglikert(df_group, q1:q6, facet_cols = vars(group))
+#'
+#' gglikert(df_group, q1:q6, y = "group", facet_rows = vars(.question))
 #' }
 gglikert <- function(data,
                      include = dplyr::everything(),
                      weights = NULL,
+                     y = ".question",
                      variable_labels = NULL,
                      sort = c("none", "ascending", "descending"),
                      sort_method = c("prop", "mean", "median"),
@@ -155,7 +163,8 @@ gglikert <- function(data,
                      reverse_likert = FALSE,
                      width = .9,
                      facet_rows = NULL,
-                     facet_cols = NULL) {
+                     facet_cols = NULL,
+                     facet_label_wrap = 50) {
   data <-
     gglikert_data(
       data,
@@ -168,14 +177,24 @@ gglikert <- function(data,
       exclude_fill_values = exclude_fill_values
     )
 
+  y <- broom.helpers::.select_to_varnames(
+    select = {{ y }},
+    data = data,
+    arg_name = "y",
+    select_single = TRUE
+  )
+
+  if (!is.factor(data[[y]]))
+    data[[y]] <- factor(data[[y]])
+
   if (y_reverse)
-    data$.question <- data$.question %>% forcats::fct_rev()
+    data[[y]] <- data[[y]] %>% forcats::fct_rev()
 
   p <- ggplot(data) +
     aes(
-      y = .data[[".question"]],
+      y = .data[[y]],
       fill = .data[[".answer"]],
-      by = .data[[".question"]],
+      by = .data[[y]],
       weight = .data[[".weights"]]
     ) +
     geom_bar(
@@ -209,7 +228,7 @@ gglikert <- function(data,
 
   if (add_totals) {
     dtot <- data %>%
-      dplyr::group_by(.data$.question, !!!facet_rows, !!!facet_cols) %>%
+      dplyr::group_by(.data[[y]], !!!facet_rows, !!!facet_cols) %>%
       dplyr::summarise(
         prop_lower = .prop_lower(
           .data$.answer,
@@ -249,12 +268,12 @@ gglikert <- function(data,
     dtot <- dplyr::bind_rows(
       dtot %>%
         dplyr::select(
-          dplyr::all_of(c(".question", x = "x_lower", label = "label_lower")),
+          dplyr::all_of(c(y, x = "x_lower", label = "label_lower")),
           dplyr::group_cols()
         ),
       dtot %>%
         dplyr::select(
-          dplyr::all_of(c(".question", x = "x_higher", label = "label_higher")),
+          dplyr::all_of(c(y, x = "x_higher", label = "label_higher")),
           dplyr::group_cols()
         )
     )
@@ -262,7 +281,7 @@ gglikert <- function(data,
     p <- p +
       geom_text(
         mapping = aes(
-          y = .data[[".question"]],
+          y = .data[[y]],
           x = .data[["x"]],
           label = .data[["label"]],
           fill = NULL,
@@ -288,7 +307,10 @@ gglikert <- function(data,
   if (length(levels(data$.answer)) <= 11)
     p <- p + scale_fill_brewer(palette = "BrBG")
 
-  p + facet_grid(rows = facet_rows, cols = facet_cols)
+  p + facet_grid(
+    rows = facet_rows, cols = facet_cols,
+    labeller = ggplot2::label_wrap_gen(facet_label_wrap)
+  )
 }
 
 #' @rdname gglikert
@@ -486,10 +508,17 @@ gglikert_data <- function(data,
 #' @export
 #' @examples
 #' gglikert_stacked(df, q1:q6)
-#' gglikert_stacked(df, q1:q6, add_median_line = TRUE)
+#'
+#' gglikert_stacked(df, q1:q6, add_median_line = TRUE, sort = "asc")
+#'
+#' \donttest{
+#' gglikert_stacked(df_group, q1:q6, y = "group", add_median_line = TRUE) +
+#'   facet_grid(rows = vars(.question))
+#' }
 gglikert_stacked <- function(data,
                              include = dplyr::everything(),
                              weights = NULL,
+                             y = ".question",
                              variable_labels = NULL,
                              sort = c("none", "ascending", "descending"),
                              sort_method = c("prop", "mean", "median"),
@@ -515,14 +544,24 @@ gglikert_stacked <- function(data,
       exclude_fill_values = NULL
     )
 
+  y <- broom.helpers::.select_to_varnames(
+    select = {{ y }},
+    data = data,
+    arg_name = "y",
+    select_single = TRUE
+  )
+
+  if (!is.factor(data[[y]]))
+    data[[y]] <- factor(data[[y]])
+
   if (y_reverse)
-    data$.question <- data$.question %>% forcats::fct_rev()
+    data[[y]] <- data[[y]] %>% forcats::fct_rev()
 
   p <- ggplot(data) +
     aes(
-      y = .data[[".question"]],
+      y = .data[[y]],
       fill = .data[[".answer"]],
-      by = .data[[".question"]],
+      by = .data[[y]],
       weight = .data[[".weights"]]
     ) +
     geom_bar(

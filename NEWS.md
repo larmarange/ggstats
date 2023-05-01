@@ -5,6 +5,8 @@
 * `gglikert()` now aligns total proportions when faceting (#28)
 * new `weights` argument for `gglikert()`, `gglikert_stacked()` and 
   `gglikert_data()` (#29)
+* new `y` argument for `gglikert()` and `gglikert_stacked()` (#31)
+* new `facet_label_wrap` argument for `gglikert()` (#31)
 
 **New helpers**
 

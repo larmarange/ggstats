@@ -242,6 +242,17 @@ gglikert(df_group,
                      expand = expansion(0, .2))
 ```
 
+To compare answers by subgroup, you can alternatively map `.question` to facets,
+and define a grouping variable for `y`.
+
+```{r}
+gglikert(df_group,
+         q1:q4,
+         y = "group1",
+         facet_rows = vars(.question),
+         labels_size = 3,
+         facet_label_wrap = 15)
+```
 
 
 ## Stacked plot
@@ -250,11 +261,23 @@ For a more classical stacked bar plot, you can use `gglikert_stacked()`.
 
 ```{r}
 gglikert_stacked(df)
+
 gglikert_stacked(
   df,
+  sort = "asc",
   add_median_line = TRUE,
   add_labels = FALSE
 )
+
+gglikert_stacked(
+  df_group,
+  include = q1:q4,
+  y = "group2"
+) +
+  facet_grid(
+    rows = vars(.question),
+    labeller = label_wrap_gen(15)
+  )
 ```
 
 

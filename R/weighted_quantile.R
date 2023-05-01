@@ -80,16 +80,16 @@ weighted.quantile <- function(x, w, probs = seq(0, 1, 0.25),
   Fx <- cumsum(w) / sum(w)
   if (length(x) > 1) {
     out <- switch(as.character(type),
-                  `1` = approx(Fx, x,
+                  `1` = stats::approx(Fx, x,
                                xout = probs, ties = "ordered", rule = 2,
                                method = "constant",
                                f = 1
                   ),
-                  `2` = approx(Fx, x,
+                  `2` = stats::approx(Fx, x,
                                xout = probs, ties = "ordered",
                                rule = 2, method = "constant", f = 1 / 2
                   ),
-                  `4` = approx(Fx,
+                  `4` = stats::approx(Fx,
                                x,
                                xout = probs, ties = "ordered", rule = 2,
                                method = "linear"
