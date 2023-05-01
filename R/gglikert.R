@@ -511,8 +511,10 @@ gglikert_data <- function(data,
 #'
 #' gglikert_stacked(df, q1:q6, add_median_line = TRUE, sort = "asc")
 #'
+#' \donttest{
 #' gglikert_stacked(df_group, q1:q6, y = "group", add_median_line = TRUE) +
 #'   facet_grid(rows = vars(.question))
+#' }
 gglikert_stacked <- function(data,
                              include = dplyr::everything(),
                              weights = NULL,
