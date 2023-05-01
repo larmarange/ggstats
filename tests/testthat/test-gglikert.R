@@ -191,4 +191,9 @@ test_that("gglikert)", {
       facet_cols = vars(group1), facet_rows = vars(group2)
     )
   )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() facet_rows with group on y",
+    gglikert(df_group, q1:q6, y = "group1", facet_rows = vars(.question))
+  )
 })
