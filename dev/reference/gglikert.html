@@ -79,6 +79,7 @@
 <span>  <span class="va">data</span>,</span>
 <span>  include <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  weights <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y <span class="op">=</span> <span class="st">".question"</span>,</span>
 <span>  variable_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
@@ -99,7 +100,8 @@
 <span>  reverse_likert <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">0.9</span>,</span>
 <span>  facet_rows <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  facet_cols <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  facet_cols <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  facet_label_wrap <span class="op">=</span> <span class="fl">50</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">gglikert_data</span><span class="op">(</span></span>
@@ -117,6 +119,7 @@
 <span>  <span class="va">data</span>,</span>
 <span>  include <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  weights <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y <span class="op">=</span> <span class="st">".question"</span>,</span>
 <span>  variable_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
@@ -146,6 +149,12 @@ syntax</p></dd>
 
 <dt>weights</dt>
 <dd><p>optional variable name of a weighting variable,
+accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
+
+
+<dt>y</dt>
+<dd><p>name of the variable to be plotted on <code>y</code> axis (relevant when
+<code>.question</code> is mapped to "facets, see examples),
 accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
 
 
@@ -244,6 +253,11 @@ see <code><a href="position_likert.html">position_likert()</a></code></p></dd>
 <dd><p>A set of variables or expressions quoted by
 <code><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">ggplot2::vars()</a></code> and defining faceting groups on the rows or columns
 dimension (see examples)</p></dd>
+
+
+<dt>facet_label_wrap</dt>
+<dd><p>number of characters per line for facet labels, see
+<code><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">ggplot2::label_wrap_gen()</a></code></p></dd>
 
 
 <dt>add_median_line</dt>
@@ -372,11 +386,21 @@ be considered. You can also pass custom variables labels with the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">gglikert</span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, facet_cols <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gglikert-12.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">gglikert</span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, y <span class="op">=</span> <span class="st">"group"</span>, facet_rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">.question</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gglikert-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="fu">gglikert_stacked</span><span class="op">(</span><span class="va">df</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gglikert-13.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu">gglikert_stacked</span><span class="op">(</span><span class="va">df</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, add_median_line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gglikert-14.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">gglikert_stacked</span><span class="op">(</span><span class="va">df</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, add_median_line <span class="op">=</span> <span class="cn">TRUE</span>, sort <span class="op">=</span> <span class="st">"asc"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gglikert-15.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">gglikert_stacked</span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, y <span class="op">=</span> <span class="st">"group"</span>, add_median_line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">.question</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gglikert-16.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
