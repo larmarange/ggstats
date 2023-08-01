@@ -32,6 +32,9 @@
 #' @examples
 #' mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 #' ggcoef_model(mod)
+#' ggcoef_table(mod)
+#' ggcoef_table(mod, table_stat = c("estimate", "ci"))
+#' ggcoef_table(mod, table_text_size = 5, table_witdhs = c(1, 1))
 #'
 #' \donttest{
 #' # a logistic regression example
@@ -46,6 +49,7 @@
 #'
 #' # use 'exponentiate = TRUE' to get the Odds Ratio
 #' ggcoef_model(mod_titanic, exponentiate = TRUE)
+#' ggcoef_table(mod_titanic, exponentiate = TRUE)
 #'
 #' # display intercepts
 #' ggcoef_model(mod_titanic, exponentiate = TRUE, intercept = TRUE)
@@ -602,6 +606,218 @@ ggcoef_data <- function(
     .in_order()
 
   data
+}
+
+#' @describeIn ggcoef_model a variation of [ggcoef_model()] adding a table
+#' with estimates, confidence intervals and p-values
+#' @param table_stat statistics to display in the table, use any column name
+#' returned by the tidier or `"ci"` for confidence intervals formatted
+#' according to `ci_pattern`
+#' @param table_header optional custom headers for the table
+#' @param table_text_size text size for the table
+#' @param label_estimate labeller function for estimates in the table
+#' @param ci_pattern glue pattern for confidence intervals in the table
+#' @param table_witdhs relative widths of the forest plot and the coefficients
+#' table
+#' @export
+ggcoef_table <- function(
+    model,
+    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+    tidy_args = NULL,
+    conf.int = TRUE,
+    conf.level = .95,
+    exponentiate = FALSE,
+    variable_labels = NULL,
+    term_labels = NULL,
+    interaction_sep = " * ",
+    categorical_terms_pattern = "{level}",
+    add_reference_rows = TRUE,
+    no_reference_row  = NULL,
+    intercept = FALSE,
+    include = dplyr::everything(),
+    add_pairwise_contrasts = FALSE,
+    pairwise_variables = broom.helpers::all_categorical(),
+    keep_model_terms = FALSE,
+    pairwise_reverse = TRUE,
+    emmeans_args = list(),
+    significance = 1 - conf.level,
+    significance_labels = NULL,
+    show_p_values = FALSE,
+    signif_stars = FALSE,
+    table_stat = c("estimate", "ci", "p.value"),
+    table_header = NULL,
+    table_text_size = 3,
+    label_estimate = scales::label_number(accuracy = .1),
+    ci_pattern = "{conf.low}, {conf.high}",
+    table_witdhs = c(3, 2),
+    ...
+) {
+  data <- ggcoef_data(
+    model = model,
+    tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
+    conf.int = conf.int,
+    conf.level = conf.level,
+    exponentiate = exponentiate,
+    variable_labels = variable_labels,
+    term_labels = term_labels,
+    interaction_sep = interaction_sep,
+    categorical_terms_pattern = categorical_terms_pattern,
+    add_reference_rows = add_reference_rows,
+    no_reference_row  = {{ no_reference_row }},
+    intercept = intercept,
+    include = {{ include }},
+    add_pairwise_contrasts = add_pairwise_contrasts,
+    pairwise_variables = {{ pairwise_variables }},
+    keep_model_terms = keep_model_terms,
+    pairwise_reverse = pairwise_reverse,
+    emmeans_args = emmeans_args,
+    significance = significance,
+    significance_labels = significance_labels
+  )
+
+  if (show_p_values && signif_stars)
+    data$add_to_label <- paste0(data$p_value_label, data$signif_stars)
+  if (show_p_values && !signif_stars)
+    data$add_to_label <- data$p_value_label
+  if (!show_p_values && signif_stars)
+    data$add_to_label <- data$signif_stars
+
+  if (show_p_values || signif_stars) {
+    data$label <- forcats::fct_inorder(
+      factor(
+        paste0(
+          data$label,
+          ifelse(
+            data$add_to_label == "",
+            "",
+            paste0(" (", data$add_to_label, ")")
+          )
+        )
+      )
+    )
+    data$label_light <- forcats::fct_inorder(
+      factor(
+        paste0(
+          data$label_light,
+          ifelse(
+            data$add_to_label == "",
+            "",
+            paste0(" (", data$add_to_label, ")")
+          )
+        )
+      )
+    )
+  }
+
+  args <- list(...)
+  args$data <- data
+  args$exponentiate <- exponentiate
+
+  if (!"y" %in% names(args) && !"facet_row" %in% names(args))
+    args$y <- "label_light"
+
+  if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
+    args$colour <- "var_label"
+    if (!"colour_guide" %in% names(args)) {
+      args$colour_guide <- FALSE
+    }
+  }
+
+  if (!"y" %in% names(args)) args$x <- "label"
+  if (!"facet_row" %in% names(args)) args$facet_row <- "var_label"
+  if (!"stripped_rows" %in% names(args)) args$stripped_rows <- TRUE
+  if (!"strips_odd" %in% names(args)) args$strips_odd <- "#11111111"
+  if (!"strips_even" %in% names(args)) args$strips_even <- "#00000000"
+
+  coef_plot <- do.call(ggcoef_plot, args)
+
+  if (args$stripped_rows) {
+    if (!"term" %in% names(data)) {
+      data$term <- data[[args$y]]
+    }
+    data <- data %>%
+      dplyr::mutate(.fill = dplyr::if_else(
+        as.integer(.in_order(.data$term)) %% 2L == 1,
+        args$strips_even,
+        args$strips_odd
+      ))
+  }
+
+  # building the table
+  tbl_data <- data %>%
+    dplyr::mutate(
+      estimate = label_estimate(estimate),
+      conf.low = label_estimate(conf.low),
+      conf.high = label_estimate(conf.high),
+      p.value = p_value_label
+    )
+  tbl_data$ci <- stringr::str_glue_data(tbl_data, ci_pattern)
+  tbl_data$ci[is.na(data$conf.low) & is.na(data$conf.high)] <- " "
+  tbl_data <- tbl_data %>%
+    tidyr::pivot_longer(
+      dplyr::any_of(table_stat),
+      names_to = "stat",
+      values_to = "value"
+    )
+  tbl_data$stat <- factor(tbl_data$stat, levels = table_stat)
+
+  if (!is.null(table_header) && length(table_header) != length(table_stat))
+    cli::cli_abort("{.arg table_header} should have the same length as {.arg table_stat}.") # nolint
+
+  if (is.null(table_header)) {
+    table_header <- table_stat
+    if ("estimate" %in% table_header) {
+      table_header[table_header == "estimate"] <-
+        attr(data, "coefficients_label")
+    }
+    if ("ci" %in% table_header) {
+      table_header[table_header == "ci"] <-
+        paste(scales::percent(conf.level), "CI")
+    }
+    if ("p.value" %in% table_header) {
+      table_header[table_header == "p.value"] <- "p"
+    }
+
+  }
+
+  table_plot <- ggplot2::ggplot(tbl_data) +
+    ggplot2::aes(
+      x = .data[["stat"]],
+      y = .data[[args$y]],
+      label = .data[["value"]]
+    ) +
+    ggplot2::geom_text(hjust = .5, vjust = .5, size = table_text_size) +
+    ggplot2::scale_x_discrete(position = "top", labels = table_header) +
+    ggplot2::scale_y_discrete(
+      limits = rev,
+      expand = ggplot2::expansion(mult = 0, add = .5)
+    ) +
+    ggplot2::facet_grid(
+      rows = args$facet_row,
+      scales = "free_y", space = "free_y", switch = "y"
+    ) +
+    ggplot2::theme_light() +
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_text(face = "bold", hjust = .5),
+      axis.text.y = ggplot2::element_blank(),
+      axis.title = ggplot2::element_blank(),
+      strip.text = ggplot2::element_blank(),
+      panel.grid = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_blank()
+    )
+
+  if (args$stripped_rows)
+    table_plot <- table_plot +
+    geom_stripped_rows(
+      mapping = ggplot2::aes(
+        odd = .data[[".fill"]], even = .data[[".fill"]],
+        colour = NULL, linetype = NULL
+      )
+    )
+
+  # join the plots
+  coef_plot + table_plot + patchwork::plot_layout(widths = table_witdhs)
 }
 
 #' @describeIn ggcoef_model plot a tidy `tibble` of coefficients

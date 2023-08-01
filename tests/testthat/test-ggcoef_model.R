@@ -327,3 +327,54 @@ test_that("tidy_args is supported", {
   )
   expect_equal(res$estimate, 3)
 })
+
+
+test_that("ggcoef_table()", {
+  skip_on_cran()
+  skip_if_not_installed("broom.helpers")
+  skip_if_not_installed("reshape")
+
+  data(tips, package = "reshape")
+  mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() mod simple",
+    ggcoef_table(mod_simple)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() table_stat",
+    ggcoef_table(mod_simple, table_stat = c("p.value", "ci"))
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() table_header",
+    ggcoef_table(mod_simple, table_header = c("A", "B", "C"))
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() table_text_size",
+    ggcoef_table(mod_simple, table_text_size = 5)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() label_estimate",
+    ggcoef_table(mod_simple, label_estimate = scales::label_percent(1))
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() ci_pattern",
+    ggcoef_table(mod_simple, ci_pattern = "{conf.low} to {conf.high}")
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() table_widths",
+    ggcoef_table(mod_simple, table_witdhs = c(1, 2))
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() stripped_rows",
+    ggcoef_table(mod_simple, stripped_rows = FALSE)
+  )
+
+})

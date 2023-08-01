@@ -1,5 +1,10 @@
 # ggstats (development version)
 
+**New features**
+
+* new function `ggcoef_table()` displaying a coefficient table at the right
+  of the forest plot (#32)
+
 **Improvements**
 
 * `gglikert()` now aligns total proportions when faceting (#28)
