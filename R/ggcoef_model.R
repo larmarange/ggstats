@@ -817,7 +817,7 @@ ggcoef_table <- function(
     )
 
   # join the plots
-  coef_plot + table_plot + patchwork::plot_layout(widths = table_witdhs)
+  patchwork::wrap_plots(coef_plot, table_plot, nrow = 1, widths = table_witdhs)
 }
 
 #' @describeIn ggcoef_model plot a tidy `tibble` of coefficients
