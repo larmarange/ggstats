@@ -377,4 +377,8 @@ test_that("ggcoef_table()", {
     ggcoef_table(mod_simple, stripped_rows = FALSE)
   )
 
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() show_p_values & signif_stars",
+    ggcoef_table(mod_simple, show_p_values = TRUE, signif_stars = TRUE)
+  )
 })
