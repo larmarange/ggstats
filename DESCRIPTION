@@ -20,9 +20,11 @@ Imports:
     ggplot2 (>= 3.4.0),
     lifecycle,
     magrittr,
+    patchwork,
     rlang,
     scales,
     stats,
+    stringr,
     tidyr
 Suggests:
     broom,
