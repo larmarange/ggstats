@@ -212,7 +212,33 @@ ggcoef_model(mod_simple) +
   ggplot2::theme(legend.position = "right")
 ```
 
+## Forest plot with a coefficient table
 
+`ggcoef_table()` is a variant of `ggcoef_model()` displaying a coefficient table on the right of the forest plot.
+
+```{r}
+ggcoef_table(mod_simple)
+ggcoef_table(mod_titanic, exponentiate = TRUE)
+```
+
+You can easily customize the columns to be displayed.
+
+```{r}
+ggcoef_table(
+  mod_simple,
+  table_stat = c("label", "estimate", "std.error", "ci"),
+  ci_pattern = "{conf.low} to {conf.high}",
+  table_stat_label = list(
+    estimate = scales::label_number(accuracy = .01),
+    conf.low = scales::label_number(accuracy = .1),
+    conf.high = scales::label_number(accuracy = .1),
+    std.error = scales::label_number(accuracy = .001),
+    label = toupper
+  ),
+  table_header = c("Term", "Coef.", "SE", "CI"),
+  table_witdhs = c(2, 3)
+)
+```
 
 ## Multinomial models
 
