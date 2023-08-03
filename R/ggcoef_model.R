@@ -81,7 +81,8 @@
 #'
 #' # a black and white version
 #' ggcoef_model(
-#'   mod_titanic, exponentiate = TRUE,
+#'   mod_titanic,
+#'   exponentiate = TRUE,
 #'   colour = NULL, stripped_rows = FALSE
 #' )
 #'
@@ -149,42 +150,41 @@
 #' # or with different type of contrasts
 #' # for sum contrasts, the value of the reference term is computed
 #' if (requireNamespace("emmeans")) {
-#'  mod2 <- lm(
-#'    tip ~ day + time + sex,
-#'    data = tips,
-#'    contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
+#'   mod2 <- lm(
+#'     tip ~ day + time + sex,
+#'     data = tips,
+#'     contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
 #'   )
 #'   ggcoef_model(mod2)
 #' }
 #' }
 #'
 ggcoef_model <- function(
-  model,
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = .95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row  = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  add_pairwise_contrasts = FALSE,
-  pairwise_variables = broom.helpers::all_categorical(),
-  keep_model_terms = FALSE,
-  pairwise_reverse = TRUE,
-  emmeans_args = list(),
-  significance = 1 - conf.level,
-  significance_labels = NULL,
-  show_p_values = TRUE,
-  signif_stars = TRUE,
-  return_data = FALSE,
-  ...
-) {
+    model,
+    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+    tidy_args = NULL,
+    conf.int = TRUE,
+    conf.level = .95,
+    exponentiate = FALSE,
+    variable_labels = NULL,
+    term_labels = NULL,
+    interaction_sep = " * ",
+    categorical_terms_pattern = "{level}",
+    add_reference_rows = TRUE,
+    no_reference_row = NULL,
+    intercept = FALSE,
+    include = dplyr::everything(),
+    add_pairwise_contrasts = FALSE,
+    pairwise_variables = broom.helpers::all_categorical(),
+    keep_model_terms = FALSE,
+    pairwise_reverse = TRUE,
+    emmeans_args = list(),
+    significance = 1 - conf.level,
+    significance_labels = NULL,
+    show_p_values = TRUE,
+    signif_stars = TRUE,
+    return_data = FALSE,
+    ...) {
   data <- ggcoef_data(
     model = model,
     tidy_fun = tidy_fun,
@@ -197,7 +197,7 @@ ggcoef_model <- function(
     interaction_sep = interaction_sep,
     categorical_terms_pattern = categorical_terms_pattern,
     add_reference_rows = add_reference_rows,
-    no_reference_row  = {{ no_reference_row }},
+    no_reference_row = {{ no_reference_row }},
     intercept = intercept,
     include = {{ include }},
     add_pairwise_contrasts = add_pairwise_contrasts,
@@ -209,12 +209,15 @@ ggcoef_model <- function(
     significance_labels = significance_labels
   )
 
-  if (show_p_values && signif_stars)
+  if (show_p_values && signif_stars) {
     data$add_to_label <- paste0(data$p_value_label, data$signif_stars)
-  if (show_p_values && !signif_stars)
+  }
+  if (show_p_values && !signif_stars) {
     data$add_to_label <- data$p_value_label
-  if (!show_p_values && signif_stars)
+  }
+  if (!show_p_values && signif_stars) {
     data$add_to_label <- data$signif_stars
+  }
 
   if (show_p_values || signif_stars) {
     data$label <- forcats::fct_inorder(
@@ -243,15 +246,17 @@ ggcoef_model <- function(
     )
   }
 
-  if (return_data)
+  if (return_data) {
     return(data)
+  }
 
   args <- list(...)
   args$data <- data
   args$exponentiate <- exponentiate
 
-  if (!"y" %in% names(args) && !"facet_row" %in% names(args))
+  if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
     args$y <- "label_light"
+  }
 
   if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
     args$colour <- "var_label"
@@ -288,7 +293,7 @@ ggcoef_table <- function(
     interaction_sep = " * ",
     categorical_terms_pattern = "{level}",
     add_reference_rows = TRUE,
-    no_reference_row  = NULL,
+    no_reference_row = NULL,
     intercept = FALSE,
     include = dplyr::everything(),
     add_pairwise_contrasts = FALSE,
@@ -306,8 +311,7 @@ ggcoef_table <- function(
     table_stat_label = NULL,
     ci_pattern = "{conf.low}, {conf.high}",
     table_witdhs = c(3, 2),
-    ...
-) {
+    ...) {
   data <- ggcoef_data(
     model = model,
     tidy_fun = tidy_fun,
@@ -320,7 +324,7 @@ ggcoef_table <- function(
     interaction_sep = interaction_sep,
     categorical_terms_pattern = categorical_terms_pattern,
     add_reference_rows = add_reference_rows,
-    no_reference_row  = {{ no_reference_row }},
+    no_reference_row = {{ no_reference_row }},
     intercept = intercept,
     include = {{ include }},
     add_pairwise_contrasts = add_pairwise_contrasts,
@@ -332,12 +336,15 @@ ggcoef_table <- function(
     significance_labels = significance_labels
   )
 
-  if (show_p_values && signif_stars)
+  if (show_p_values && signif_stars) {
     data$add_to_label <- paste0(data$p_value_label, data$signif_stars)
-  if (show_p_values && !signif_stars)
+  }
+  if (show_p_values && !signif_stars) {
     data$add_to_label <- data$p_value_label
-  if (!show_p_values && signif_stars)
+  }
+  if (!show_p_values && signif_stars) {
     data$add_to_label <- data$signif_stars
+  }
 
   if (show_p_values || signif_stars) {
     data$label <- forcats::fct_inorder(
@@ -370,8 +377,9 @@ ggcoef_table <- function(
   args$data <- data
   args$exponentiate <- exponentiate
 
-  if (!"y" %in% names(args) && !"facet_row" %in% names(args))
+  if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
     args$y <- "label_light"
+  }
 
   if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
     args$colour <- "var_label"
@@ -403,14 +411,18 @@ ggcoef_table <- function(
   # building the coefficient table ----
   tbl_data <- data
 
-  if (!"estimate" %in% names(table_stat_label))
+  if (!"estimate" %in% names(table_stat_label)) {
     table_stat_label$estimate <- scales::label_number(accuracy = .1)
-  if (!"conf.low" %in% names(table_stat_label))
+  }
+  if (!"conf.low" %in% names(table_stat_label)) {
     table_stat_label$conf.low <- scales::label_number(accuracy = .1)
-  if (!"conf.high" %in% names(table_stat_label))
+  }
+  if (!"conf.high" %in% names(table_stat_label)) {
     table_stat_label$conf.high <- scales::label_number(accuracy = .1)
-  if (!"p.value" %in% names(table_stat_label))
+  }
+  if (!"p.value" %in% names(table_stat_label)) {
     table_stat_label$p.value <- scales::label_pvalue(add_p = FALSE)
+  }
   for (v in names(table_stat_label)) {
     tbl_data[[v]] <- table_stat_label[[v]](tbl_data[[v]])
     tbl_data[[v]][is.na(tbl_data[[v]])] <- ""
@@ -427,8 +439,9 @@ ggcoef_table <- function(
     )
   tbl_data$stat <- factor(tbl_data$stat, levels = table_stat)
 
-  if (!is.null(table_header) && length(table_header) != length(table_stat))
-    cli::cli_abort("{.arg table_header} should have the same length as {.arg table_stat}.") # nolint
+  if (!is.null(table_header) && length(table_header) != length(table_stat)) {
+    cli::cli_abort("{.arg table_header} should have the same length as {.arg table_stat}.")
+  } # nolint
 
   if (is.null(table_header)) {
     table_header <- table_stat
@@ -443,7 +456,6 @@ ggcoef_table <- function(
     if ("p.value" %in% table_header) {
       table_header[table_header == "p.value"] <- "p"
     }
-
   }
 
   table_plot <- ggplot2::ggplot(tbl_data) +
@@ -472,14 +484,15 @@ ggcoef_table <- function(
       axis.ticks = ggplot2::element_blank()
     )
 
-  if (args$stripped_rows)
+  if (args$stripped_rows) {
     table_plot <- table_plot +
-    geom_stripped_rows(
-      mapping = ggplot2::aes(
-        odd = .data[[".fill"]], even = .data[[".fill"]],
-        colour = NULL, linetype = NULL
+      geom_stripped_rows(
+        mapping = ggplot2::aes(
+          odd = .data[[".fill"]], even = .data[[".fill"]],
+          colour = NULL, linetype = NULL
+        )
       )
-    )
+  }
 
   # join the plots
   patchwork::wrap_plots(coef_plot, table_plot, nrow = 1, widths = table_witdhs)
@@ -491,7 +504,6 @@ ggcoef_table <- function(
 #' @param models named list of models
 #' @param type a dodged plot or a faceted plot?
 #' @examples
-#'
 #' \donttest{
 #' # Use ggcoef_compare() for comparing several models on the same plot
 #' mod1 <- lm(Fertility ~ ., data = swiss)
@@ -511,31 +523,30 @@ ggcoef_table <- function(
 #' ggcoef_compare(models, dodged_width = -.9)
 #' }
 ggcoef_compare <- function(
-  models,
-  type = c("dodged", "faceted"),
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = .95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row  = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  add_pairwise_contrasts = FALSE,
-  pairwise_variables = broom.helpers::all_categorical(),
-  keep_model_terms = FALSE,
-  pairwise_reverse = TRUE,
-  emmeans_args = list(),
-  significance = 1 - conf.level,
-  significance_labels = NULL,
-  return_data = FALSE,
-  ...
-) {
+    models,
+    type = c("dodged", "faceted"),
+    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+    tidy_args = NULL,
+    conf.int = TRUE,
+    conf.level = .95,
+    exponentiate = FALSE,
+    variable_labels = NULL,
+    term_labels = NULL,
+    interaction_sep = " * ",
+    categorical_terms_pattern = "{level}",
+    add_reference_rows = TRUE,
+    no_reference_row = NULL,
+    intercept = FALSE,
+    include = dplyr::everything(),
+    add_pairwise_contrasts = FALSE,
+    pairwise_variables = broom.helpers::all_categorical(),
+    keep_model_terms = FALSE,
+    pairwise_reverse = TRUE,
+    emmeans_args = list(),
+    significance = 1 - conf.level,
+    significance_labels = NULL,
+    return_data = FALSE,
+    ...) {
   data <- lapply(
     X = models,
     FUN = ggcoef_data,
@@ -593,20 +604,22 @@ ggcoef_compare <- function(
 
   attr(data, "coefficients_label") <- coefficients_label
 
-  if (return_data)
+  if (return_data) {
     return(data)
+  }
 
   type <- match.arg(type)
 
   args <- list(...)
   args$data <- data
   args$exponentiate <- exponentiate
-  if (!"y" %in% names(args) && !"facet_row" %in% names(args))
+  if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
     args$y <- "label_light"
+  }
 
   if (type == "dodged") {
     if (!"dodged " %in% names(args)) {
-      args$dodged  <- TRUE
+      args$dodged <- TRUE
     }
     if (!"colour" %in% names(args)) {
       args$colour <- "model"
@@ -648,29 +661,28 @@ ggcoef_compare <- function(
 #' )
 #' }
 ggcoef_multinom <- function(
-  model,
-  type = c("dodged", "faceted"),
-  y.level_label = NULL,
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = .95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row  = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  significance = 1 - conf.level,
-  significance_labels = NULL,
-  show_p_values = TRUE,
-  signif_stars = TRUE,
-  return_data = FALSE,
-  ...
-) {
+    model,
+    type = c("dodged", "faceted"),
+    y.level_label = NULL,
+    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+    tidy_args = NULL,
+    conf.int = TRUE,
+    conf.level = .95,
+    exponentiate = FALSE,
+    variable_labels = NULL,
+    term_labels = NULL,
+    interaction_sep = " * ",
+    categorical_terms_pattern = "{level}",
+    add_reference_rows = TRUE,
+    no_reference_row = NULL,
+    intercept = FALSE,
+    include = dplyr::everything(),
+    significance = 1 - conf.level,
+    significance_labels = NULL,
+    show_p_values = TRUE,
+    signif_stars = TRUE,
+    return_data = FALSE,
+    ...) {
   data <- ggcoef_data(
     model,
     tidy_fun = tidy_fun,
@@ -683,7 +695,7 @@ ggcoef_multinom <- function(
     interaction_sep = interaction_sep,
     categorical_terms_pattern = categorical_terms_pattern,
     add_reference_rows = add_reference_rows,
-    no_reference_row  = {{ no_reference_row }},
+    no_reference_row = {{ no_reference_row }},
     intercept = intercept,
     include = {{ include }},
     significance = significance,
@@ -705,20 +717,22 @@ ggcoef_multinom <- function(
     data$y.level <- .in_order(data$y.level)
   }
 
-  if (return_data)
+  if (return_data) {
     return(data)
+  }
 
   type <- match.arg(type)
 
   args <- list(...)
   args$data <- data
   args$exponentiate <- exponentiate
-  if (!"y" %in% names(args) && !"facet_row" %in% names(args))
+  if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
     args$y <- "label_light"
+  }
 
   if (type == "dodged") {
     if (!"dodged " %in% names(args)) {
-      args$dodged  <- TRUE
+      args$dodged <- TRUE
     }
     if (!"colour" %in% names(args)) {
       args$colour <- "y.level"
@@ -743,32 +757,32 @@ ggcoef_multinom <- function(
 
 # not exporting ggcoef_data
 ggcoef_data <- function(
-  model,
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = .95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row  = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  add_pairwise_contrasts = FALSE,
-  pairwise_variables = broom.helpers::all_categorical(),
-  keep_model_terms = FALSE,
-  pairwise_reverse = TRUE,
-  emmeans_args = list(),
-  significance = conf.level,
-  significance_labels = NULL
-) {
+    model,
+    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+    tidy_args = NULL,
+    conf.int = TRUE,
+    conf.level = .95,
+    exponentiate = FALSE,
+    variable_labels = NULL,
+    term_labels = NULL,
+    interaction_sep = " * ",
+    categorical_terms_pattern = "{level}",
+    add_reference_rows = TRUE,
+    no_reference_row = NULL,
+    intercept = FALSE,
+    include = dplyr::everything(),
+    add_pairwise_contrasts = FALSE,
+    pairwise_variables = broom.helpers::all_categorical(),
+    keep_model_terms = FALSE,
+    pairwise_reverse = TRUE,
+    emmeans_args = list(),
+    significance = conf.level,
+    significance_labels = NULL) {
   rlang::check_installed("broom.helpers")
 
-  if (length(significance) == 0)
+  if (length(significance) == 0) {
     significance <- NULL
+  }
 
   data <- rlang::inject(broom.helpers::tidy_plus_plus(
     model = model,
@@ -801,8 +815,9 @@ ggcoef_data <- function(
   }
 
   if (!is.null(significance)) {
-    if (is.null(significance_labels))
+    if (is.null(significance_labels)) {
       significance_labels <- paste(c("p \u2264", "p >"), significance)
+    }
     data$significance <- factor(
       !is.na(data$p.value) & data$p.value <= significance,
       levels = c(TRUE, FALSE),
@@ -880,38 +895,38 @@ ggcoef_data <- function(
 #' @seealso `vignette("ggcoef_model")`
 #' @export
 ggcoef_plot <- function(
-  data,
-  x = "estimate",
-  y = "label",
-  exponentiate = FALSE,
-  point_size = 2,
-  point_stroke = 2,
-  point_fill = "white",
-  colour = NULL,
-  colour_guide = TRUE,
-  colour_lab = "",
-  colour_labels = ggplot2::waiver(),
-  shape = "significance",
-  shape_values = c(16, 21),
-  shape_guide = TRUE,
-  shape_lab = "",
-  errorbar = TRUE,
-  errorbar_height = .1,
-  errorbar_coloured = FALSE,
-  stripped_rows = TRUE,
-  strips_odd = "#11111111",
-  strips_even = "#00000000",
-  vline = TRUE,
-  vline_colour = "grey50",
-  dodged = FALSE,
-  dodged_width = .8,
-  facet_row = "var_label",
-  facet_col = NULL,
-  facet_labeller = "label_value"
-) {
+    data,
+    x = "estimate",
+    y = "label",
+    exponentiate = FALSE,
+    point_size = 2,
+    point_stroke = 2,
+    point_fill = "white",
+    colour = NULL,
+    colour_guide = TRUE,
+    colour_lab = "",
+    colour_labels = ggplot2::waiver(),
+    shape = "significance",
+    shape_values = c(16, 21),
+    shape_guide = TRUE,
+    shape_lab = "",
+    errorbar = TRUE,
+    errorbar_height = .1,
+    errorbar_coloured = FALSE,
+    stripped_rows = TRUE,
+    strips_odd = "#11111111",
+    strips_even = "#00000000",
+    vline = TRUE,
+    vline_colour = "grey50",
+    dodged = FALSE,
+    dodged_width = .8,
+    facet_row = "var_label",
+    facet_col = NULL,
+    facet_labeller = "label_value") {
   data[[y]] <- forcats::fct_rev(.in_order(data[[y]]))
-  if (!is.null(facet_row))
+  if (!is.null(facet_row)) {
     data[[facet_row]] <- .in_order(data[[facet_row]])
+  }
 
   if (stripped_rows) {
     if (!"term" %in% names(data)) {
@@ -942,15 +957,16 @@ ggcoef_plot <- function(
   }
 
   # position
-  if (dodged)
+  if (dodged) {
     position <- ggplot2::position_dodge(dodged_width)
-  else
+  } else {
     position <- ggplot2::position_identity()
+  }
 
   # plot
   p <- ggplot2::ggplot(data = data, mapping = mapping)
 
-  if (stripped_rows)
+  if (stripped_rows) {
     p <- p +
       geom_stripped_rows(
         mapping = ggplot2::aes(
@@ -958,12 +974,14 @@ ggcoef_plot <- function(
           colour = NULL, linetype = NULL
         )
       )
+  }
 
-  if (vline)
+  if (vline) {
     p <- p + ggplot2::geom_vline(
       xintercept = ifelse(exponentiate, 1, 0),
       colour = vline_colour
     )
+  }
 
   if (errorbar) {
     if (!is.null(colour) && errorbar_coloured) {
@@ -985,10 +1003,12 @@ ggcoef_plot <- function(
     }
   }
 
-  if (!is.null(facet_col) && is.character(facet_col))
+  if (!is.null(facet_col) && is.character(facet_col)) {
     facet_col <- ggplot2::vars(!!sym(facet_col))
-  if (!is.null(facet_row) && is.character(facet_row))
+  }
+  if (!is.null(facet_row) && is.character(facet_row)) {
     facet_row <- ggplot2::vars(!!sym(facet_row))
+  }
 
   p <- p +
     ggplot2::geom_point(
@@ -1054,11 +1074,13 @@ ggcoef_plot <- function(
       ggplot2::labs(shape = shape_lab)
   }
 
-  if (exponentiate)
+  if (exponentiate) {
     p <- p + ggplot2::scale_x_log10()
+  }
 
-  if (!is.null(attr(data, "coefficients_label")))
+  if (!is.null(attr(data, "coefficients_label"))) {
     p <- p + ggplot2::xlab(attr(data, "coefficients_label"))
+  }
 
   p
 }

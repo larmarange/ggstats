@@ -184,11 +184,13 @@ gglikert <- function(data,
     select_single = TRUE
   )
 
-  if (!is.factor(data[[y]]))
+  if (!is.factor(data[[y]])) {
     data[[y]] <- factor(data[[y]])
+  }
 
-  if (y_reverse)
+  if (y_reverse) {
     data[[y]] <- data[[y]] %>% forcats::fct_rev()
+  }
 
   p <- ggplot(data) +
     aes(
@@ -207,24 +209,25 @@ gglikert <- function(data,
       width = width
     )
 
-  if (add_labels)
+  if (add_labels) {
     p <- p +
-    geom_text(
-      mapping = aes(
-        label = label_percent_abs(
-          hide_below = labels_hide_below,
-          accuracy = labels_accuracy
-        )(after_stat(prop))
-      ),
-      stat = "prop",
-      complete = "fill",
-      position = position_likert(
-        vjust = .5,
-        reverse = reverse_likert,
-        exclude_fill_values = exclude_fill_values
-      ),
-      size = labels_size
-    )
+      geom_text(
+        mapping = aes(
+          label = label_percent_abs(
+            hide_below = labels_hide_below,
+            accuracy = labels_accuracy
+          )(after_stat(prop))
+        ),
+        stat = "prop",
+        complete = "fill",
+        position = position_likert(
+          vjust = .5,
+          reverse = reverse_likert,
+          exclude_fill_values = exclude_fill_values
+        ),
+        size = labels_size
+      )
+  }
 
   if (add_totals) {
     dtot <- data %>%
@@ -304,8 +307,9 @@ gglikert <- function(data,
       panel.grid.major.y = element_blank()
     )
 
-  if (length(levels(data$.answer)) <= 11)
+  if (length(levels(data$.answer)) <= 11) {
     p <- p + scale_fill_brewer(palette = "BrBG")
+  }
 
   p + facet_grid(
     rows = facet_rows, cols = facet_cols,
@@ -341,20 +345,24 @@ gglikert_data <- function(data,
     arg_name = "weights",
     select_single = TRUE
   )
-  if (is.null(weights_var))
+  if (is.null(weights_var)) {
     data$.weights <- 1
-  else
+  } else {
     data$.weights <- data[[weights_var]]
+  }
 
-  if (!is.numeric(data$.weights))
+  if (!is.numeric(data$.weights)) {
     cli::cli_abort("{.arg weights} should correspond to a numerical variable.")
+  }
 
-  if (is.list(variable_labels))
+  if (is.list(variable_labels)) {
     variable_labels <- unlist(variable_labels)
+  }
   data_labels <- data %>%
     labelled::var_label(unlist = TRUE, null_action = "fill")
-  if (!is.null(variable_labels))
+  if (!is.null(variable_labels)) {
     data_labels[names(variable_labels)] <- variable_labels
+  }
   data_labels <- data_labels[variables]
 
   data <- data %>%
@@ -375,7 +383,7 @@ gglikert_data <- function(data,
   data$.question <- data_labels[data$.question] %>%
     forcats::fct_inorder()
 
-  if (sort == "ascending" && sort_method == "prop")
+  if (sort == "ascending" && sort_method == "prop") {
     data$.question <- data$.question %>%
       forcats::fct_reorder2(
         data$.answer,
@@ -386,7 +394,8 @@ gglikert_data <- function(data,
         .na_rm = FALSE,
         .desc = FALSE
       )
-  if (sort == "descending" && sort_method == "prop")
+  }
+  if (sort == "descending" && sort_method == "prop") {
     data$.question <- data$.question %>%
       forcats::fct_reorder2(
         data$.answer,
@@ -397,46 +406,51 @@ gglikert_data <- function(data,
         .na_rm = FALSE,
         .desc = TRUE
       )
-  if (sort == "ascending" && sort_method == "mean")
+  }
+  if (sort == "ascending" && sort_method == "mean") {
     data$.question <- data$.question %>%
-    forcats::fct_reorder2(
-      data$.answer,
-      data$.weights,
-      .fun = .sort_mean,
-      exclude_fill_values = exclude_fill_values,
-      .na_rm = FALSE,
-      .desc = FALSE
-    )
-  if (sort == "descending" && sort_method == "mean")
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .sort_mean,
+        exclude_fill_values = exclude_fill_values,
+        .na_rm = FALSE,
+        .desc = FALSE
+      )
+  }
+  if (sort == "descending" && sort_method == "mean") {
     data$.question <- data$.question %>%
-    forcats::fct_reorder2(
-      data$.answer,
-      data$.weights,
-      .fun = .sort_mean,
-      exclude_fill_values = exclude_fill_values,
-      .na_rm = FALSE,
-      .desc = TRUE
-    )
-  if (sort == "ascending" && sort_method == "median")
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .sort_mean,
+        exclude_fill_values = exclude_fill_values,
+        .na_rm = FALSE,
+        .desc = TRUE
+      )
+  }
+  if (sort == "ascending" && sort_method == "median") {
     data$.question <- data$.question %>%
-    forcats::fct_reorder2(
-      data$.answer,
-      data$.weights,
-      .fun = .sort_median,
-      exclude_fill_values = exclude_fill_values,
-      .na_rm = FALSE,
-      .desc = FALSE
-    )
-  if (sort == "descending" && sort_method == "median")
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .sort_median,
+        exclude_fill_values = exclude_fill_values,
+        .na_rm = FALSE,
+        .desc = FALSE
+      )
+  }
+  if (sort == "descending" && sort_method == "median") {
     data$.question <- data$.question %>%
-    forcats::fct_reorder2(
-      data$.answer,
-      data$.weights,
-      .fun = .sort_median,
-      exclude_fill_values = exclude_fill_values,
-      .na_rm = FALSE,
-      .desc = TRUE
-    )
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .sort_median,
+        exclude_fill_values = exclude_fill_values,
+        .na_rm = FALSE,
+        .desc = TRUE
+      )
+  }
 
   data
 }
@@ -551,11 +565,13 @@ gglikert_stacked <- function(data,
     select_single = TRUE
   )
 
-  if (!is.factor(data[[y]]))
+  if (!is.factor(data[[y]])) {
     data[[y]] <- factor(data[[y]])
+  }
 
-  if (y_reverse)
+  if (y_reverse) {
     data[[y]] <- data[[y]] %>% forcats::fct_rev()
+  }
 
   p <- ggplot(data) +
     aes(
@@ -571,27 +587,29 @@ gglikert_stacked <- function(data,
       width = width
     )
 
-  if (add_labels)
+  if (add_labels) {
     p <- p +
-    geom_text(
-      mapping = aes(
-        label = label_percent_abs(
-          hide_below = labels_hide_below,
-          accuracy = labels_accuracy
-        )(after_stat(prop))
-      ),
-      stat = "prop",
-      complete = "fill",
-      position = position_fill(
-        vjust = .5,
-        reverse = reverse_fill
-      ),
-      size = labels_size
-    )
+      geom_text(
+        mapping = aes(
+          label = label_percent_abs(
+            hide_below = labels_hide_below,
+            accuracy = labels_accuracy
+          )(after_stat(prop))
+        ),
+        stat = "prop",
+        complete = "fill",
+        position = position_fill(
+          vjust = .5,
+          reverse = reverse_fill
+        ),
+        size = labels_size
+      )
+  }
 
-  if (add_median_line)
+  if (add_median_line) {
     p <- p +
       ggplot2::geom_vline(xintercept = .5)
+  }
 
   p <- p +
     labs(x = NULL, y = NULL, fill = NULL) +
@@ -603,8 +621,9 @@ gglikert_stacked <- function(data,
       panel.grid.major.y = element_blank()
     )
 
-  if (length(levels(data$.answer)) <= 11)
+  if (length(levels(data$.answer)) <= 11) {
     p <- p + scale_fill_brewer(palette = "BrBG")
+  }
 
   p
 }

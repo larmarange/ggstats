@@ -177,7 +177,8 @@ test_that("ggcoef_compare()", {
   d <- as.data.frame(Titanic)
   m1 <- glm(Survived ~ Sex + Age, family = binomial, data = d, weights = Freq)
   m2 <- glm(
-    Survived ~ Sex + Age + Class, family = binomial,
+    Survived ~ Sex + Age + Class,
+    family = binomial,
     data = d,
     weights = Freq
   )
@@ -203,7 +204,6 @@ test_that("ggcoef_compare()", {
     ggcoef_compare(models, add_reference_rows = FALSE),
     NA
   )
-
 })
 
 test_that("ggcoef_multinom()", {
@@ -404,5 +404,4 @@ test_that("ggcoef_table()", {
       table_witdhs = c(2, 3)
     )
   )
-
 })

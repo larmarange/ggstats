@@ -43,8 +43,8 @@
 #' weighted.quantile(x, w)
 weighted.median <- function(x, w, na.rm = TRUE, type = 2) {
   unname(weighted.quantile(x,
-                           probs = 0.5, w = w, na.rm = na.rm,
-                           type = type
+    probs = 0.5, w = w, na.rm = na.rm,
+    type = type
   ))
 }
 
@@ -80,20 +80,20 @@ weighted.quantile <- function(x, w, probs = seq(0, 1, 0.25),
   Fx <- cumsum(w) / sum(w)
   if (length(x) > 1) {
     out <- switch(as.character(type),
-                  `1` = stats::approx(Fx, x,
-                               xout = probs, ties = "ordered", rule = 2,
-                               method = "constant",
-                               f = 1
-                  ),
-                  `2` = stats::approx(Fx, x,
-                               xout = probs, ties = "ordered",
-                               rule = 2, method = "constant", f = 1 / 2
-                  ),
-                  `4` = stats::approx(Fx,
-                               x,
-                               xout = probs, ties = "ordered", rule = 2,
-                               method = "linear"
-                  )
+      `1` = stats::approx(Fx, x,
+        xout = probs, ties = "ordered", rule = 2,
+        method = "constant",
+        f = 1
+      ),
+      `2` = stats::approx(Fx, x,
+        xout = probs, ties = "ordered",
+        rule = 2, method = "constant", f = 1 / 2
+      ),
+      `4` = stats::approx(Fx,
+        x,
+        xout = probs, ties = "ordered", rule = 2,
+        method = "linear"
+      )
     )
     result <- out$y
   } else {

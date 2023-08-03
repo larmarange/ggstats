@@ -16,7 +16,7 @@ test_that("position_likert()", {
 
   vdiffr::expect_doppelganger(
     "position_likert() facet",
-    p + facet_grid(~price > 2500)
+    p + facet_grid(~ price > 2500)
   )
 
   p <- ggplot(diamonds) +
@@ -32,7 +32,7 @@ test_that("position_likert()", {
 
   vdiffr::expect_doppelganger(
     "position_likert_count() facet",
-    p + facet_grid(~price > 2500)
+    p + facet_grid(~ price > 2500)
   )
 
   p <- ggplot(diamonds) +

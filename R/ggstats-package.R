@@ -31,7 +31,9 @@ magrittr::`%>%`
 # from ggplot2 (but not exported by ggplot2)
 
 `%||%` <- function(a, b) {
-  if (!is.null(a))
+  if (!is.null(a)) {
     a
-  else b
+  } else {
+    b
+  }
 }

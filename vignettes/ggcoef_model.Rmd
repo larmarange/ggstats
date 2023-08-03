@@ -104,14 +104,14 @@ Several options allows you to customize term labels.
 ```{r}
 ggcoef_model(mod_titanic, exponentiate = TRUE)
 ggcoef_model(
-    mod_titanic,
-    exponentiate = TRUE,
-    show_p_values = FALSE,
-    signif_stars = FALSE,
-    add_reference_rows = FALSE,
-    categorical_terms_pattern = "{level} (ref: {reference_level})",
-    interaction_sep = " x "
-  ) +
+  mod_titanic,
+  exponentiate = TRUE,
+  show_p_values = FALSE,
+  signif_stars = FALSE,
+  add_reference_rows = FALSE,
+  categorical_terms_pattern = "{level} (ref: {reference_level})",
+  interaction_sep = " x "
+) +
   ggplot2::scale_y_discrete(labels = scales::label_wrap(15))
 ```
 
@@ -140,15 +140,18 @@ Use `no_reference_row` to indicate which variables should not have a reference r
 
 ```{r}
 ggcoef_model(
-  mod_titanic2, exponentiate = TRUE,
+  mod_titanic2,
+  exponentiate = TRUE,
   no_reference_row = "Sex"
 )
 ggcoef_model(
-  mod_titanic2, exponentiate = TRUE,
+  mod_titanic2,
+  exponentiate = TRUE,
   no_reference_row = broom.helpers::all_dichotomous()
 )
 ggcoef_model(
-  mod_titanic2, exponentiate = TRUE,
+  mod_titanic2,
+  exponentiate = TRUE,
   no_reference_row = broom.helpers::all_categorical(),
   categorical_terms_pattern = "{level}/{reference_level}"
 )

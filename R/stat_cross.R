@@ -199,11 +199,12 @@ StatCross <- ggplot2::ggproto(
 #' tab <- xtabs(Freq ~ Sex + Class, data = as.data.frame(Titanic))
 #' augment_chisq_add_phi(chisq.test(tab))
 augment_chisq_add_phi <- function(x) {
-  if (!inherits(x, "htest") && names(x$statistic) != "X-squared")
+  if (!inherits(x, "htest") && names(x$statistic) != "X-squared") {
     cli::cli_abort(paste(
       "{.arg x} should be the result of a chi-squared test",
-      "(see {.fn stats::chisq.test}).")
-    )
+      "(see {.fn stats::chisq.test})."
+    ))
+  }
 
   broom::augment(x) %>%
     dplyr::group_by(dplyr::across(1)) %>%

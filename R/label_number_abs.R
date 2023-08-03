@@ -18,8 +18,9 @@
 label_number_abs <- function(..., hide_below = NULL) {
   function(x) {
     res <- scales::label_number(...)(abs(x))
-    if (!is.null(hide_below))
+    if (!is.null(hide_below)) {
       res[abs(x) < hide_below] <- ""
+    }
     res
   }
 }
@@ -29,8 +30,9 @@ label_number_abs <- function(..., hide_below = NULL) {
 label_percent_abs <- function(..., hide_below = NULL) {
   function(x) {
     res <- scales::label_percent(...)(abs(x))
-    if (!is.null(hide_below))
+    if (!is.null(hide_below)) {
       res[abs(x) < hide_below] <- ""
+    }
     res
   }
 }

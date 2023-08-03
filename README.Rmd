@@ -59,8 +59,8 @@ ggcoef_model(mod1)
 mod2 <- step(mod1, trace = 0)
 mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
 models <- list(
-  "Full model" = mod1, 
-  "Simplified model" = mod2, 
+  "Full model" = mod1,
+  "Simplified model" = mod2,
   "With interaction" = mod3
 )
 
@@ -75,7 +75,7 @@ ggplot(as.data.frame(Titanic)) +
   aes(x = Class, fill = Survived, weight = Freq, by = Class) +
   geom_bar(position = "fill") +
   geom_text(stat = "prop", position = position_fill(.5)) +
-  facet_grid(~ Sex)
+  facet_grid(~Sex)
 ```
 
 ## Compute weighted mean
@@ -106,8 +106,8 @@ ggplot(as.data.frame(Titanic)) +
 ```{r}
 library(survey, quietly = TRUE)
 dw <- svydesign(
-  ids = ~ 1, 
-  weights = ~ Freq, 
+  ids = ~1,
+  weights = ~Freq,
   data = as.data.frame(Titanic)
 )
 ggsurvey(dw) +
