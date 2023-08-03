@@ -314,9 +314,10 @@ examples), more information in the documentation of \code{\link[ggplot2:facet_gr
 A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.
 }
 \description{
-\code{ggcoef_model()}, \code{ggcoef_multinom()} and \code{ggcoef_compare()} use
-\code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}} to obtain a \code{tibble} of the model
-coefficients, apply additional data transformation and then pass the
+\code{ggcoef_model()}, \code{ggcoef_table()}, \code{ggcoef_multinom()} and
+\code{ggcoef_compare()} use \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}}
+to obtain a \code{tibble} of the model coefficients,
+apply additional data transformation and then pass the
 produced \code{tibble} to \code{ggcoef_plot()} to generate the plot.
 }
 \details{
