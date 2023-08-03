@@ -358,8 +358,13 @@ test_that("ggcoef_table()", {
   )
 
   vdiffr::expect_doppelganger(
-    "ggcoef_table() label_estimate",
-    ggcoef_table(mod_simple, label_estimate = scales::label_percent(1))
+    "ggcoef_table() table_stat_label ",
+    ggcoef_table(
+      mod_simple,
+      table_stat_label = list(
+        estimate = scales::label_percent(.1)
+      )
+    )
   )
 
   vdiffr::expect_doppelganger(
