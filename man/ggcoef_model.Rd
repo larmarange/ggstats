@@ -117,7 +117,7 @@ ggcoef_table(
   table_text_size = 3,
   table_stat_label = list(estimate = scales::label_number(accuracy = 0.1), conf.low =
     scales::label_number(accuracy = 0.1), conf.high = scales::label_number(accuracy =
-    0.1), p.value = scales::label_pvalue()),
+    0.1), p.value = scales::label_pvalue(add_p = FALSE)),
   ci_pattern = "{conf.low}, {conf.high}",
   table_witdhs = c(3, 2),
   ...
