@@ -33,14 +33,18 @@
 #' @examples
 #' mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 #' ggcoef_model(mod)
+#'
 #' ggcoef_table(mod)
+#'
 #' ggcoef_table(mod, table_stat = c("estimate", "ci"))
+#'
 #' ggcoef_table(
 #'   mod,
 #'   table_stat_label = list(
 #'     estimate = scales::label_number(.001)
 #'   )
 #' )
+#'
 #' ggcoef_table(mod, table_text_size = 5, table_witdhs = c(1, 1))
 #'
 #' \donttest{
@@ -56,6 +60,7 @@
 #'
 #' # use 'exponentiate = TRUE' to get the Odds Ratio
 #' ggcoef_model(mod_titanic, exponentiate = TRUE)
+#'
 #' ggcoef_table(mod_titanic, exponentiate = TRUE)
 #'
 #' # display intercepts

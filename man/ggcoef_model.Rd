@@ -342,14 +342,18 @@ multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet:
 \examples{
 mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 ggcoef_model(mod)
+
 ggcoef_table(mod)
+
 ggcoef_table(mod, table_stat = c("estimate", "ci"))
+
 ggcoef_table(
   mod,
   table_stat_label = list(
     estimate = scales::label_number(.001)
   )
 )
+
 ggcoef_table(mod, table_text_size = 5, table_witdhs = c(1, 1))
 
 \donttest{
@@ -365,6 +369,7 @@ mod_titanic <- glm(
 
 # use 'exponentiate = TRUE' to get the Odds Ratio
 ggcoef_model(mod_titanic, exponentiate = TRUE)
+
 ggcoef_table(mod_titanic, exponentiate = TRUE)
 
 # display intercepts
@@ -390,7 +395,8 @@ ggcoef_model(mod_titanic, exponentiate = TRUE, significance = NULL)
 
 # a black and white version
 ggcoef_model(
-  mod_titanic, exponentiate = TRUE,
+  mod_titanic,
+  exponentiate = TRUE,
   colour = NULL, stripped_rows = FALSE
 )
 
@@ -458,16 +464,15 @@ ggcoef_model(mod_poly)
 # or with different type of contrasts
 # for sum contrasts, the value of the reference term is computed
 if (requireNamespace("emmeans")) {
- mod2 <- lm(
-   tip ~ day + time + sex,
-   data = tips,
-   contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
+  mod2 <- lm(
+    tip ~ day + time + sex,
+    data = tips,
+    contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
   )
   ggcoef_model(mod2)
 }
 }
 \dontshow{\}) # examplesIf}
-
 \donttest{
 # Use ggcoef_compare() for comparing several models on the same plot
 mod1 <- lm(Fertility ~ ., data = swiss)
