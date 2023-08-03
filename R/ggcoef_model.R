@@ -440,8 +440,8 @@ ggcoef_table <- function(
   tbl_data$stat <- factor(tbl_data$stat, levels = table_stat)
 
   if (!is.null(table_header) && length(table_header) != length(table_stat)) {
-    cli::cli_abort("{.arg table_header} should have the same length as {.arg table_stat}.")
-  } # nolint
+    cli::cli_abort("{.arg table_header} should have the same length as {.arg table_stat}.") # nolint
+  }
 
   if (is.null(table_header)) {
     table_header <- table_stat

@@ -217,8 +217,8 @@ pos_likert <- function(df,
                        reverse = FALSE,
                        exclude_fill_values = NULL) {
   if (reverse) {
-    df <- df[nrow(df):1, ]
-  } # nolint
+    df <- df[nrow(df):1, ] # nolint
+  }
 
   if (fill) {
     df$y <- df$y / sum(abs(df$y), na.rm = TRUE)
