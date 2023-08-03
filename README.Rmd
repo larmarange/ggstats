@@ -51,6 +51,7 @@ library(ggstats)
 
 mod1 <- lm(Fertility ~ ., data = swiss)
 ggcoef_model(mod1)
+ggcoef_table(mod1)
 ```
 
 ## Comparing several models

@@ -49,14 +49,20 @@ ggcoef_model(mod1)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
+``` r
+ggcoef_table(mod1)
+```
+
+<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
+
 ## Comparing several models
 
 ``` r
 mod2 <- step(mod1, trace = 0)
 mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
 models <- list(
-  "Full model" = mod1, 
-  "Simplified model" = mod2, 
+  "Full model" = mod1,
+  "Simplified model" = mod2,
   "With interaction" = mod3
 )
 
@@ -73,7 +79,7 @@ ggplot(as.data.frame(Titanic)) +
   aes(x = Class, fill = Survived, weight = Freq, by = Class) +
   geom_bar(position = "fill") +
   geom_text(stat = "prop", position = position_fill(.5)) +
-  facet_grid(~ Sex)
+  facet_grid(~Sex)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
@@ -115,8 +121,8 @@ library(survey, quietly = TRUE)
 #> 
 #>     dotchart
 dw <- svydesign(
-  ids = ~ 1, 
-  weights = ~ Freq, 
+  ids = ~1,
+  weights = ~Freq,
   data = as.data.frame(Titanic)
 )
 ggsurvey(dw) +
