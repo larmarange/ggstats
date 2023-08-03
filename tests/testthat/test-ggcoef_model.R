@@ -358,8 +358,13 @@ test_that("ggcoef_table()", {
   )
 
   vdiffr::expect_doppelganger(
-    "ggcoef_table() label_estimate",
-    ggcoef_table(mod_simple, label_estimate = scales::label_percent(1))
+    "ggcoef_table() table_stat_label ",
+    ggcoef_table(
+      mod_simple,
+      table_stat_label = list(
+        estimate = scales::label_percent(.1)
+      )
+    )
   )
 
   vdiffr::expect_doppelganger(
@@ -381,4 +386,23 @@ test_that("ggcoef_table()", {
     "ggcoef_table() show_p_values & signif_stars",
     ggcoef_table(mod_simple, show_p_values = TRUE, signif_stars = TRUE)
   )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() customized statistics",
+    ggcoef_table(
+      mod_simple,
+      table_stat = c("label", "estimate", "std.error", "ci"),
+      ci_pattern = "{conf.low} to {conf.high}",
+      table_stat_label = list(
+        estimate = scales::label_number(accuracy = .01),
+        conf.low = scales::label_number(accuracy = .1),
+        conf.high = scales::label_number(accuracy = .1),
+        std.error = scales::label_number(accuracy = .001),
+        label = toupper
+      ),
+      table_header = c("Term", "Coef.", "SE", "CI"),
+      table_witdhs = c(2, 3)
+    )
+  )
+
 })
