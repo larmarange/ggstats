@@ -115,7 +115,9 @@ ggcoef_table(
   table_stat = c("estimate", "ci", "p.value"),
   table_header = NULL,
   table_text_size = 3,
-  label_estimate = scales::label_number(accuracy = 0.1),
+  table_stat_label = list(estimate = scales::label_number(accuracy = 0.1), conf.low =
+    scales::label_number(accuracy = 0.1), conf.high = scales::label_number(accuracy =
+    0.1), p.value = scales::label_pvalue()),
   ci_pattern = "{conf.low}, {conf.high}",
   table_witdhs = c(3, 2),
   ...
@@ -239,7 +241,8 @@ according to \code{ci_pattern}}
 
 \item{table_text_size}{text size for the table}
 
-\item{label_estimate}{labeller function for estimates in the table}
+\item{table_stat_label}{named list of labeller functions for the displayed
+statistic}
 
 \item{ci_pattern}{glue pattern for confidence intervals in the table}
 

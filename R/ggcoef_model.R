@@ -615,7 +615,8 @@ ggcoef_data <- function(
 #' according to `ci_pattern`
 #' @param table_header optional custom headers for the table
 #' @param table_text_size text size for the table
-#' @param label_estimate labeller function for estimates in the table
+#' @param table_stat_label named list of labeller functions for the displayed
+#' statistic
 #' @param ci_pattern glue pattern for confidence intervals in the table
 #' @param table_witdhs relative widths of the forest plot and the coefficients
 #' table
@@ -647,7 +648,12 @@ ggcoef_table <- function(
     table_stat = c("estimate", "ci", "p.value"),
     table_header = NULL,
     table_text_size = 3,
-    label_estimate = scales::label_number(accuracy = .1),
+    table_stat_label = list(
+      estimate = scales::label_number(accuracy = .1),
+      conf.low = scales::label_number(accuracy = .1),
+      conf.high = scales::label_number(accuracy = .1),
+      p.value = scales::label_pvalue()
+    ),
     ci_pattern = "{conf.low}, {conf.high}",
     table_witdhs = c(3, 2),
     ...
@@ -745,20 +751,20 @@ ggcoef_table <- function(
   }
 
   # building the table
-  tbl_data <- data %>%
-    dplyr::mutate(
-      estimate = label_estimate(estimate),
-      conf.low = label_estimate(conf.low),
-      conf.high = label_estimate(conf.high),
-      p.value = p_value_label
-    )
+  tbl_data <- data
+  for (v in names(table_stat_label)) {
+    tbl_data[[v]] <- table_stat_label[[v]](tbl_data[[v]])
+    tbl_data[[v]][is.na(tbl_data[[v]])] <- ""
+  }
+
   tbl_data$ci <- stringr::str_glue_data(tbl_data, ci_pattern)
   tbl_data$ci[is.na(data$conf.low) & is.na(data$conf.high)] <- " "
   tbl_data <- tbl_data %>%
     tidyr::pivot_longer(
       dplyr::any_of(table_stat),
       names_to = "stat",
-      values_to = "value"
+      values_to = "value",
+      values_transform = as.character
     )
   tbl_data$stat <- factor(tbl_data$stat, levels = table_stat)
 
