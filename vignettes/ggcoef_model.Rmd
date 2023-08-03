@@ -229,9 +229,9 @@ ggcoef_table(
   table_stat = c("label", "estimate", "std.error", "ci"),
   ci_pattern = "{conf.low} to {conf.high}",
   table_stat_label = list(
-    estimate = scales::label_number(accuracy = .01),
-    conf.low = scales::label_number(accuracy = .1),
-    conf.high = scales::label_number(accuracy = .1),
+    estimate = scales::label_number(accuracy = .001),
+    conf.low = scales::label_number(accuracy = .01),
+    conf.high = scales::label_number(accuracy = .01),
     std.error = scales::label_number(accuracy = .001),
     label = toupper
   ),
