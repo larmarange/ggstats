@@ -269,8 +269,8 @@ ggcoef_model <- function(
 #' according to `ci_pattern`
 #' @param table_header optional custom headers for the table
 #' @param table_text_size text size for the table
-#' @param table_stat_label named list of labeller functions for the displayed
-#' statistic
+#' @param table_stat_label optional named list of labeller functions for the
+#' displayed statistic (see examples)
 #' @param ci_pattern glue pattern for confidence intervals in the table
 #' @param table_witdhs relative widths of the forest plot and the coefficients
 #' table

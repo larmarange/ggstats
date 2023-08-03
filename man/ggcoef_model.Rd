@@ -232,8 +232,8 @@ according to \code{ci_pattern}}
 
 \item{table_text_size}{text size for the table}
 
-\item{table_stat_label}{named list of labeller functions for the displayed
-statistic}
+\item{table_stat_label}{optional named list of labeller functions for the
+displayed statistic (see examples)}
 
 \item{ci_pattern}{glue pattern for confidence intervals in the table}
 
