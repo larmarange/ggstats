@@ -99,6 +99,7 @@ ggcoef_compare(
 ggcoef_multinom(
   model,
   type = c("dodged", "faceted"),
+  y.level = "y.level",
   y.level_label = NULL,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
   tidy_args = NULL,
@@ -243,6 +244,8 @@ table}
 \item{models}{named list of models}
 
 \item{type}{a dodged plot or a faceted plot?}
+
+\item{y.level}{name of \code{y.level} variable}
 
 \item{y.level_label}{an optional named vector for labeling \code{y.level}
 (see examples)}

@@ -649,6 +649,7 @@ ggcoef_compare <- function(
 
 #' @describeIn ggcoef_model a variation of [ggcoef_model()] adapted to
 #'   multinomial logistic regressions performed with [nnet::multinom()].
+#' @param y.level name of `y.level` variable
 #' @param y.level_label an optional named vector for labeling `y.level`
 #'   (see examples)
 #' @export
@@ -668,6 +669,7 @@ ggcoef_compare <- function(
 ggcoef_multinom <- function(
     model,
     type = c("dodged", "faceted"),
+    y.level = "y.level",
     y.level_label = NULL,
     tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
     tidy_args = NULL,
@@ -709,17 +711,17 @@ ggcoef_multinom <- function(
 
   if (!is.null(y.level_label)) {
     missing_levels <- setdiff(
-      levels(.in_order(data$y.level)),
+      levels(.in_order(data[[y.level]])),
       names(y.level_label)
     )
     names(missing_levels) <- missing_levels
-    data$y.level <- factor(
-      data$y.level,
+    data[[y.level]] <- factor(
+      data[[y.level]],
       levels = c(names(y.level_label), missing_levels),
       labels = c(y.level_label, missing_levels)
     )
   } else {
-    data$y.level <- .in_order(data$y.level)
+    data[[y.level]] <- .in_order(data[[y.level]])
   }
 
   if (return_data) {
@@ -740,14 +742,14 @@ ggcoef_multinom <- function(
       args$dodged <- TRUE
     }
     if (!"colour" %in% names(args)) {
-      args$colour <- "y.level"
+      args$colour <- y.level
     }
     if (!"errorbar_coloured" %in% names(args)) {
       args$errorbar_coloured <- TRUE
     }
   } else {
     if (!"facet_col" %in% names(args)) {
-      args$facet_col <- "y.level"
+      args$facet_col <- y.level
     }
     if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
       args$colour <- "var_label"
