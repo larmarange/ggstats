@@ -174,6 +174,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span><span class="fu">ggcoef_multinom</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
+<span>  y.level <span class="op">=</span> <span class="st">"y.level"</span>,</span>
 <span>  y.level_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  tidy_args <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -385,6 +386,10 @@ table</p></dd>
 
 <dt>type</dt>
 <dd><p>a dodged plot or a faceted plot?</p></dd>
+
+
+<dt>y.level</dt>
+<dd><p>name of <code>y.level</code> variable</p></dd>
 
 
 <dt>y.level_label</dt>
