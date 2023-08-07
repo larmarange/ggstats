@@ -1,7 +1,8 @@
 #' Plot model coefficients
 #'
-#' `ggcoef_model()`, `ggcoef_table()`, `ggcoef_multinom()` and
-#' `ggcoef_compare()` use [broom.helpers::tidy_plus_plus()]
+#' `ggcoef_model()`, `ggcoef_table()`, `ggcoef_multinom()`,
+#' `ggcoef_multicomponents()` and `ggcoef_compare()`
+#' use [broom.helpers::tidy_plus_plus()]
 #' to obtain a `tibble` of the model coefficients,
 #' apply additional data transformation and then pass the
 #' produced `tibble` to `ggcoef_plot()` to generate the plot.

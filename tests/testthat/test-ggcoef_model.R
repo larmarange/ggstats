@@ -405,3 +405,81 @@ test_that("ggcoef_table()", {
     )
   )
 })
+
+test_that("ggcoef_multicomponents()", {
+  skip_on_cran()
+  skip_if_not_installed("broom.helpers")
+  skip_if_not_installed("pscl")
+
+  library(pscl)
+  data("bioChemists", package = "pscl")
+  mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() dodged",
+    ggcoef_multicomponents(mod)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() faceted",
+    ggcoef_multicomponents(mod, type = "f")
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() table",
+    ggcoef_multicomponents(mod, type = "t")
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() table component_label",
+    ggcoef_multicomponents(
+      mod,
+      type = "t",
+      component_label = c(conditional = "Count", zero_inflated = "Zero-inflated") # nolint
+    )
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() faceted component_label",
+    ggcoef_multicomponents(
+      mod,
+      type = "f",
+      component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")  # nolint
+    )
+  )
+
+  mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() mod2 table",
+    ggcoef_multicomponents(mod2, type = "t")
+  )
+
+  skip_if_not_installed("betareg")
+  skip_if_not_installed("parameters")
+
+  library(betareg)
+  data("GasolineYield", package = "betareg")
+  m1 <- betareg(yield ~ batch + temp, data = GasolineYield)
+  m2 <- betareg(yield ~ batch + temp | temp + pressure, data = GasolineYield)
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() betareg m1 table",
+    ggcoef_multicomponents(
+      m1,
+      type = "t",
+      tidy_fun = broom.helpers::tidy_parameters,
+      tidy_args = list(component = "all")
+    )
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() betareg m2 table",
+    ggcoef_multicomponents(
+      m2,
+      type = "t",
+      tidy_fun = broom.helpers::tidy_parameters,
+      tidy_args = list(component = "all")
+    )
+  )
+})
+
