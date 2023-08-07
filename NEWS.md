@@ -4,6 +4,8 @@
 
 * new function `ggcoef_table()` displaying a coefficient table at the right
   of the forest plot (#32)
+* new function `ggcoef_multicomponents()` for multi-components models such
+  as zero-inflated Poisson or beta regressions
 * new argument `y.level` to `ggcoef_multinom()`
 
 **Improvements**

@@ -5,6 +5,7 @@
 \alias{ggcoef_table}
 \alias{ggcoef_compare}
 \alias{ggcoef_multinom}
+\alias{ggcoef_multicomponents}
 \alias{ggcoef_plot}
 \title{Plot model coefficients}
 \usage{
@@ -66,6 +67,7 @@ ggcoef_table(
   table_stat_label = NULL,
   ci_pattern = "{conf.low}, {conf.high}",
   table_witdhs = c(3, 2),
+  plot_title = NULL,
   ...
 )
 
@@ -119,6 +121,37 @@ ggcoef_multinom(
   show_p_values = TRUE,
   signif_stars = TRUE,
   return_data = FALSE,
+  ...
+)
+
+ggcoef_multicomponents(
+  model,
+  type = c("dodged", "faceted", "table"),
+  component_label = NULL,
+  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
+  conf.int = TRUE,
+  conf.level = 0.95,
+  exponentiate = FALSE,
+  variable_labels = NULL,
+  term_labels = NULL,
+  interaction_sep = " * ",
+  categorical_terms_pattern = "{level}",
+  add_reference_rows = TRUE,
+  no_reference_row = NULL,
+  intercept = FALSE,
+  include = dplyr::everything(),
+  significance = 1 - conf.level,
+  significance_labels = NULL,
+  show_p_values = TRUE,
+  signif_stars = TRUE,
+  return_data = FALSE,
+  table_stat = c("estimate", "ci", "p.value"),
+  table_header = NULL,
+  table_text_size = 3,
+  table_stat_label = NULL,
+  ci_pattern = "{conf.low}, {conf.high}",
+  table_witdhs = c(3, 2),
   ...
 )
 
@@ -241,6 +274,8 @@ displayed statistic (see examples)}
 \item{table_witdhs}{relative widths of the forest plot and the coefficients
 table}
 
+\item{plot_title}{an optional plot title}
+
 \item{models}{named list of models}
 
 \item{type}{a dodged plot or a faceted plot?}
@@ -249,6 +284,8 @@ table}
 
 \item{y.level_label}{an optional named vector for labeling \code{y.level}
 (see examples)}
+
+\item{component_label}{an optional named vector for labeling components}
 
 \item{data}{a data frame containing data to be plotted,
 typically the output of \code{ggcoef_model()}, \code{ggcoef_compare()}
@@ -338,6 +375,11 @@ plot.
 
 \item \code{ggcoef_multinom()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
 multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet::multinom()}}.
+
+\item \code{ggcoef_multicomponents()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
+multi-component models such as zero-inflated models or beta regressions.
+\code{\link[=ggcoef_multicomponents]{ggcoef_multicomponents()}} has been tested with \code{pscl::zeroinfl()},
+\code{pscl::hurdle()} and \code{betareg::betareg()}
 
 \item \code{ggcoef_plot()}: plot a tidy \code{tibble} of coefficients
 
@@ -507,6 +549,25 @@ ggcoef_multinom(
   y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
 )
 }
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("pscl")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+library(pscl)
+data("bioChemists", package = "pscl")
+mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
+ggcoef_multicomponents(mod)
+
+ggcoef_multicomponents(mod, type = "f")
+
+ggcoef_multicomponents(mod, type = "t")
+
+ggcoef_multicomponents(
+  mod,
+  type = "t",
+  component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")
+)
+
+mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
+ggcoef_multicomponents(mod2, type = "t")
 \dontshow{\}) # examplesIf}
 }
 \seealso{
