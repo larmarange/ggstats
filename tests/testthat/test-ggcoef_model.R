@@ -225,6 +225,11 @@ test_that("ggcoef_multinom()", {
   )
 
   vdiffr::expect_doppelganger(
+    "ggcoef_multinom() table",
+    ggcoef_multinom(mod, type = "table", exponentiate = TRUE)
+  )
+
+  vdiffr::expect_doppelganger(
     "ggcoef_multinom() faceted custom y level label",
     ggcoef_multinom(
       mod,
@@ -352,6 +357,10 @@ test_that("ggcoef_table()", {
     ggcoef_table(mod_simple, table_header = c("A", "B", "C"))
   )
 
+  expect_error(
+    ggcoef_table(mod_simple, table_header = c("A", "B", "C", "D"))
+  )
+
   vdiffr::expect_doppelganger(
     "ggcoef_table() table_text_size",
     ggcoef_table(mod_simple, table_text_size = 5)
@@ -385,6 +394,16 @@ test_that("ggcoef_table()", {
   vdiffr::expect_doppelganger(
     "ggcoef_table() show_p_values & signif_stars",
     ggcoef_table(mod_simple, show_p_values = TRUE, signif_stars = TRUE)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() show_p_values only",
+    ggcoef_table(mod_simple, show_p_values = TRUE, signif_stars = FALSE)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_table() signif_stars only",
+    ggcoef_table(mod_simple, show_p_values = FALSE, signif_stars = TRUE)
   )
 
   vdiffr::expect_doppelganger(
@@ -430,6 +449,11 @@ test_that("ggcoef_multicomponents()", {
     ggcoef_multicomponents(mod, type = "t")
   )
 
+  expect_s3_class(
+    ggcoef_multicomponents(mod, type = "t", return_data = T),
+    "tbl"
+  )
+
   vdiffr::expect_doppelganger(
     "ggcoef_multicomponents() table component_label",
     ggcoef_multicomponents(
@@ -445,6 +469,26 @@ test_that("ggcoef_multicomponents()", {
       mod,
       type = "f",
       component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")  # nolint
+    )
+  )
+
+  # message if unfound values for component_label
+  expect_message(
+    ggcoef_multicomponents(
+      mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "t",
+      component_label = c(c = "Count", zi = "Zero-inflated")
+    )
+  )
+
+  # error if unnamed values for component_label
+  expect_error(
+    ggcoef_multicomponents(
+      mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "t",
+      component_label = c("Count", zi = "Zero-inflated")
     )
   )
 
@@ -480,6 +524,18 @@ test_that("ggcoef_multicomponents()", {
       tidy_fun = broom.helpers::tidy_parameters,
       tidy_args = list(component = "all")
     )
+  )
+
+  modlm <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() linear model table",
+    ggcoef_multicomponents(modlm, type = "t")
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() linear model faceted",
+    ggcoef_multicomponents(modlm, type = "f")
   )
 })
 

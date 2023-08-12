@@ -886,6 +886,7 @@ ggcoef_multi_d_f <- function(
     significance_labels = significance_labels
   )
 
+  if (!component_col %in% names(data)) data[[component_col]] <- " "
   data[[component_col]] <- .in_order(data[[component_col]])
   if (!is.null(component_label)) {
     if (
@@ -1007,7 +1008,7 @@ ggcoef_multi_t <- function(
     significance_labels = significance_labels
   )
 
-  if (!component_col %in% names(data)) data[[component_col]] <- ""
+  if (!component_col %in% names(data)) data[[component_col]] <- " "
 
   data[[component_col]] <- .in_order(data[[component_col]])
 
