@@ -100,8 +100,7 @@ ggcoef_compare(
 
 ggcoef_multinom(
   model,
-  type = c("dodged", "faceted"),
-  y.level = "y.level",
+  type = c("dodged", "faceted", "table"),
   y.level_label = NULL,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
   tidy_args = NULL,
@@ -127,6 +126,7 @@ ggcoef_multinom(
 ggcoef_multicomponents(
   model,
   type = c("dodged", "faceted", "table"),
+  component_col = "component",
   component_label = NULL,
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
   tidy_args = NULL,
@@ -143,8 +143,6 @@ ggcoef_multicomponents(
   include = dplyr::everything(),
   significance = 1 - conf.level,
   significance_labels = NULL,
-  show_p_values = TRUE,
-  signif_stars = TRUE,
   return_data = FALSE,
   table_stat = c("estimate", "ci", "p.value"),
   table_header = NULL,
@@ -278,12 +276,12 @@ table}
 
 \item{models}{named list of models}
 
-\item{type}{a dodged plot or a faceted plot?}
-
-\item{y.level}{name of \code{y.level} variable}
+\item{type}{a dodged plot, a faceted plot or multiple table plots?}
 
 \item{y.level_label}{an optional named vector for labeling \code{y.level}
 (see examples)}
+
+\item{component_col}{name of the component column}
 
 \item{component_label}{an optional named vector for labeling components}
 
@@ -354,8 +352,9 @@ examples), more information in the documentation of \code{\link[ggplot2:facet_gr
 A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.
 }
 \description{
-\code{ggcoef_model()}, \code{ggcoef_table()}, \code{ggcoef_multinom()} and
-\code{ggcoef_compare()} use \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}}
+\code{ggcoef_model()}, \code{ggcoef_table()}, \code{ggcoef_multinom()},
+\code{ggcoef_multicomponents()} and \code{ggcoef_compare()}
+use \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}}
 to obtain a \code{tibble} of the model coefficients,
 apply additional data transformation and then pass the
 produced \code{tibble} to \code{ggcoef_plot()} to generate the plot.
