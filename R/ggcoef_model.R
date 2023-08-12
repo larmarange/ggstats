@@ -891,7 +891,7 @@ ggcoef_multi_d_f <- function(
   if (!is.null(component_label)) {
     if (
       is.null(names(component_label)) ||
-      any(names(component_label) == "")
+        any(names(component_label) == "")
     ) {
       cli::cli_abort(
         "All elements of {.arg {component_label_arg}} should be named."

@@ -450,7 +450,7 @@ test_that("ggcoef_multicomponents()", {
   )
 
   expect_s3_class(
-    ggcoef_multicomponents(mod, type = "t", return_data = T),
+    ggcoef_multicomponents(mod, type = "t", return_data = TRUE),
     "tbl"
   )
 
@@ -538,4 +538,3 @@ test_that("ggcoef_multicomponents()", {
     ggcoef_multicomponents(modlm, type = "f")
   )
 })
-
