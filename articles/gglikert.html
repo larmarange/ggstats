@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -328,30 +328,73 @@ computing proportions.</p>
 <span><span class="va">df_group</span><span class="op">$</span><span class="va">group1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>, <span class="fl">150</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">df_group</span><span class="op">$</span><span class="va">group2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="fl">150</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, facet_cols <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df_group</span>,</span>
+<span>  <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>,</span>
+<span>  facet_cols <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span>,</span>
+<span>  labels_size <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="gglikert_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q2</span>, facet_rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df_group</span>,</span>
+<span>  <span class="va">q1</span><span class="op">:</span><span class="va">q2</span>,</span>
+<span>  facet_rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>,</span>
+<span>  labels_size <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="gglikert_files/figure-html/unnamed-chunk-20-2.png" width="700"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q3</span><span class="op">:</span><span class="va">q6</span>, facet_cols <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span>, facet_rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df_group</span>,</span>
+<span>  <span class="va">q3</span><span class="op">:</span><span class="va">q6</span>,</span>
+<span>  facet_cols <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span>,</span>
+<span>  facet_rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">group2</span><span class="op">)</span>,</span>
+<span>  labels_size <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    labels <span class="op">=</span> <span class="fu"><a href="../reference/label_number_abs.html">label_percent_abs</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="gglikert_files/figure-html/unnamed-chunk-20-3.png" width="700"></p>
+<p>To compare answers by subgroup, you can alternatively map
+<code>.question</code> to facets, and define a grouping variable for
+<code>y</code>.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df_group</span>,</span>
+<span>  <span class="va">q1</span><span class="op">:</span><span class="va">q4</span>,</span>
+<span>  y <span class="op">=</span> <span class="st">"group1"</span>,</span>
+<span>  facet_rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">.question</span><span class="op">)</span>,</span>
+<span>  labels_size <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  facet_label_wrap <span class="op">=</span> <span class="fl">15</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="gglikert_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="stacked-plot">Stacked plot<a class="anchor" aria-label="anchor" href="#stacked-plot"></a>
 </h2>
 <p>For a more classical stacked bar plot, you can use
 <code><a href="../reference/gglikert.html">gglikert_stacked()</a></code>.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert_stacked</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gglikert_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert_stacked</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert_stacked</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
+<p><img src="gglikert_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/gglikert.html">gglikert_stacked</a></span><span class="op">(</span></span>
 <span>  <span class="va">df</span>,</span>
+<span>  sort <span class="op">=</span> <span class="st">"asc"</span>,</span>
 <span>  add_median_line <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  add_labels <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="gglikert_files/figure-html/unnamed-chunk-21-2.png" width="700"></p>
+<p><img src="gglikert_files/figure-html/unnamed-chunk-22-2.png" width="700"></p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/gglikert.html">gglikert_stacked</a></span><span class="op">(</span></span>
+<span>  <span class="va">df_group</span>,</span>
+<span>  include <span class="op">=</span> <span class="va">q1</span><span class="op">:</span><span class="va">q4</span>,</span>
+<span>  y <span class="op">=</span> <span class="st">"group2"</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span></span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">.question</span><span class="op">)</span>,</span>
+<span>    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_wrap_gen</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p><img src="gglikert_files/figure-html/unnamed-chunk-22-3.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="long-format-dataset">Long format dataset<a class="anchor" aria-label="anchor" href="#long-format-dataset"></a>
@@ -360,25 +403,36 @@ computing proportions.</p>
 <code><a href="../reference/gglikert.html">gglikert_data()</a></code> to generate a long format dataset combining
 all questions into two columns, <code>.question</code> and
 <code>.answer</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/gglikert.html">gglikert_data</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 2</span></span></span>
-<span><span class="co">#&gt;   .question                                                   .answer          </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                                       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> first question                                              Strongly disagree</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> second question                                             Disagree         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> this is the third question with a quite long variable label Agree            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> q4                                                          Disagree         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> q5                                                          Strongly agree   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> q6                                                          Strongly disagree</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span></span>
+<span><span class="co">#&gt;   .weights .question                                                   .answer  </span></span>
+<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                                       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>        1 first question                                              Strongly…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>        1 second question                                             Disagree </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>        1 this is the third question with a quite long variable label Agree    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>        1 q4                                                          Disagree </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>        1 q5                                                          Strongly…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>        1 q6                                                          Strongly…</span></span></code></pre></div>
 <p>Such dataset could be useful for other types of plot, for example for
 a classic stacked bar plot.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="../reference/gglikert.html">gglikert_data</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">.question</span>, fill <span class="op">=</span> <span class="va">.answer</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gglikert_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
+<p><img src="gglikert_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="weighted-data">Weighted data<a class="anchor" aria-label="anchor" href="#weighted-data"></a>
+</h2>
+<p><code><a href="../reference/gglikert.html">gglikert()</a></code>, <code><a href="../reference/gglikert.html">gglikert_stacked()</a></code> and
+<code><a href="../reference/gglikert.html">gglikert_data()</a></code> accepts a <code>weights</code> argument,
+allowing to specify statistical weights.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span><span class="op">$</span><span class="va">sampling_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/gglikert.html">gglikert</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q4</span>, weights <span class="op">=</span> <span class="va">sampling_weights</span><span class="op">)</span></span></code></pre></div>
+<p><img src="gglikert_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a>

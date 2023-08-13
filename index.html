@@ -12,10 +12,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Extension to ggplot2 for Plotting Stats">
-<meta property="og:description" content='Provides suite of functions to plot regression model coefficients
-    ("forest plots"). The suite also includes new statistics to compute 
-    proportions, weighted mean and cross-tabulation statistics, as well as new 
-    geometries to add alternative background color to a plot.'>
+<meta property="og:description" content='Provides new statistics, new geometries and new positions for 
+    "ggplot2" and a suite of functions to facilitate the creation of 
+    statistical plots.'>
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -36,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -98,9 +97,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The <code>ggstats</code> package provides suite of functions to plot regression model coefficients (“forest plots”) using <code>ggplot2</code>..</p>
-<p>The suite also includes new statistics to compute proportions, weighted mean and cross-tabulation statistics, as well as new geometries to add alternative background color to a plot.</p>
-<p>The original versions of several functions were originally developed within the <a href="https://ggobi.github.io/ggally/" class="external-link">GGally</a> package.</p>
+<p>The <code>ggstats</code> package provides new statistics, new geometries and new positions for <code>ggplot2</code> and a suite of functions to facilitate the creation of statistical plots.</p>
 <div class="section level2">
 <h2 id="installation--documentation">Installation &amp; Documentation<a class="anchor" aria-label="anchor" href="#installation--documentation"></a>
 </h2>
@@ -122,16 +119,19 @@
 <span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/ggcoef_model.html">ggcoef_model</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/ggcoef_model.html">ggcoef_table</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-2.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="comparing-several-models">Comparing several models<a class="anchor" aria-label="anchor" href="#comparing-several-models"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/step.html" class="external-link">step</a></span><span class="op">(</span><span class="va">mod1</span>, trace <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Fertility</span> <span class="op">~</span> <span class="va">Agriculture</span> <span class="op">+</span> <span class="va">Education</span> <span class="op">*</span> <span class="va">Catholic</span>, data <span class="op">=</span> <span class="va">swiss</span><span class="op">)</span></span>
 <span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Full model"</span> <span class="op">=</span> <span class="va">mod1</span>, </span>
-<span>  <span class="st">"Simplified model"</span> <span class="op">=</span> <span class="va">mod2</span>, </span>
+<span>  <span class="st">"Full model"</span> <span class="op">=</span> <span class="va">mod1</span>,</span>
+<span>  <span class="st">"Simplified model"</span> <span class="op">=</span> <span class="va">mod2</span>,</span>
 <span>  <span class="st">"With interaction"</span> <span class="op">=</span> <span class="va">mod3</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -141,19 +141,19 @@
 <div class="section level2">
 <h2 id="compute-custom-proportions">Compute custom proportions<a class="anchor" aria-label="anchor" href="#compute-custom-proportions"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, fill <span class="op">=</span> <span class="va">Survived</span>, weight <span class="op">=</span> <span class="va">Freq</span>, by <span class="op">=</span> <span class="va">Class</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"prop"</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_fill</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Sex</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span><span class="op">~</span><span class="va">Sex</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="compute-weighted-mean">Compute weighted mean<a class="anchor" aria-label="anchor" href="#compute-weighted-mean"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tips</span>, package <span class="op">=</span> <span class="st">"reshape"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">tips</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">total_bill</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span> <span class="op">+</span></span>
@@ -164,7 +164,7 @@
 <div class="section level2">
 <h2 id="compute-cross-tabulation-statistics">Compute cross-tabulation statistics<a class="anchor" aria-label="anchor" href="#compute-cross-tabulation-statistics"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="va">Class</span>, y <span class="op">=</span> <span class="va">Survived</span>, weight <span class="op">=</span> <span class="va">Freq</span>,</span>
@@ -178,7 +178,7 @@
 <div class="section level2">
 <h2 id="plot-survey-objects-taking-into-account-weights">Plot survey objects taking into account weights<a class="anchor" aria-label="anchor" href="#plot-survey-objects-taking-into-account-weights"></a>
 </h2>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://r-survey.r-forge.r-project.org/survey/" class="external-link">survey</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attachement du package : 'survey'</span></span>
@@ -186,8 +186,8 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     dotchart</span></span>
 <span><span class="va">dw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survey/man/svydesign.html" class="external-link">svydesign</a></span><span class="op">(</span></span>
-<span>  ids <span class="op">=</span> <span class="op">~</span> <span class="fl">1</span>, </span>
-<span>  weights <span class="op">=</span> <span class="op">~</span> <span class="va">Freq</span>, </span>
+<span>  ids <span class="op">=</span> <span class="op">~</span><span class="fl">1</span>,</span>
+<span>  weights <span class="op">=</span> <span class="op">~</span><span class="va">Freq</span>,</span>
 <span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/ggsurvey.html">ggsurvey</a></span><span class="op">(</span><span class="va">dw</span><span class="op">)</span> <span class="op">+</span></span>
@@ -199,7 +199,7 @@
 <div class="section level2">
 <h2 id="plot-likert-type-items">Plot Likert-type items<a class="anchor" aria-label="anchor" href="#plot-likert-type-items"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attachement du package : 'dplyr'</span></span>
