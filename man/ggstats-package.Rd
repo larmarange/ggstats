@@ -12,6 +12,7 @@ Provides new statistics, new geometries and new positions for "ggplot2" and a su
 Useful links:
 \itemize{
   \item \url{https://larmarange.github.io/ggstats/}
+  \item \url{https://github.com/larmarange/ggstats}
   \item Report bugs at \url{https://github.com/larmarange/ggstats/issues}
 }
 
