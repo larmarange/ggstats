@@ -752,6 +752,7 @@ ggcoef_multinom <- function(
 #' @param component_label an optional named vector for labeling components
 #' @export
 #' @examplesIf requireNamespace("pscl")
+#' \donttest{
 #' library(pscl)
 #' data("bioChemists", package = "pscl")
 #' mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
@@ -769,6 +770,7 @@ ggcoef_multinom <- function(
 #'
 #' mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
 #' ggcoef_multicomponents(mod2, type = "t")
+#' }
 ggcoef_multicomponents <- function(
     model,
     type = c("dodged", "faceted", "table"),

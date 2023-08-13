@@ -554,6 +554,7 @@ ggcoef_multinom(
 }
 \dontshow{\}) # examplesIf}
 \dontshow{if (requireNamespace("pscl")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 library(pscl)
 data("bioChemists", package = "pscl")
 mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
@@ -571,6 +572,7 @@ ggcoef_multicomponents(
 
 mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
 ggcoef_multicomponents(mod2, type = "t")
+}
 \dontshow{\}) # examplesIf}
 }
 \seealso{
