@@ -212,7 +212,12 @@ test_that("ggcoef_multinom()", {
   skip_on_cran()
 
   library(nnet)
-  mod <- multinom(Species ~ ., data = iris)
+  hec <- as.data.frame(HairEyeColor)
+  mod <- multinom(
+    Hair ~ Eye + Sex,
+    data = hec,
+    weights = hec$Freq
+  )
 
   vdiffr::expect_doppelganger(
     "ggcoef_multinom() dodged",
@@ -234,7 +239,8 @@ test_that("ggcoef_multinom()", {
     ggcoef_multinom(
       mod,
       type = "faceted",
-      y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
+      y.level_label = c("Brown" = "Brown\n(ref: Black)"),
+      exponentiate = TRUE
     )
   )
 })
@@ -436,21 +442,34 @@ test_that("ggcoef_multicomponents()", {
 
   vdiffr::expect_doppelganger(
     "ggcoef_multicomponents() dodged",
-    ggcoef_multicomponents(mod)
+    ggcoef_multicomponents(mod, tidy_fun = broom.helpers::tidy_zeroinfl)
   )
 
   vdiffr::expect_doppelganger(
     "ggcoef_multicomponents() faceted",
-    ggcoef_multicomponents(mod, type = "f")
+    ggcoef_multicomponents(
+      mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "f"
+    )
   )
 
   vdiffr::expect_doppelganger(
     "ggcoef_multicomponents() table",
-    ggcoef_multicomponents(mod, type = "t")
+    ggcoef_multicomponents(
+      mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "t"
+    )
   )
 
   expect_s3_class(
-    ggcoef_multicomponents(mod, type = "t", return_data = TRUE),
+    ggcoef_multicomponents(
+      mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "t",
+      return_data = TRUE
+    ),
     "tbl"
   )
 
@@ -458,6 +477,7 @@ test_that("ggcoef_multicomponents()", {
     "ggcoef_multicomponents() table component_label",
     ggcoef_multicomponents(
       mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
       type = "t",
       component_label = c(conditional = "Count", zero_inflated = "Zero-inflated") # nolint
     )
@@ -467,6 +487,7 @@ test_that("ggcoef_multicomponents()", {
     "ggcoef_multicomponents() faceted component_label",
     ggcoef_multicomponents(
       mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
       type = "f",
       component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")  # nolint
     )
@@ -495,7 +516,11 @@ test_that("ggcoef_multicomponents()", {
   mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
   vdiffr::expect_doppelganger(
     "ggcoef_multicomponents() mod2 table",
-    ggcoef_multicomponents(mod2, type = "t")
+    ggcoef_multicomponents(
+      mod2,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "t"
+    )
   )
 
   skip_if_not_installed("betareg")
