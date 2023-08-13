@@ -7,7 +7,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0001-7097-700X"))
   )
 Description: Provides new statistics, new geometries and new positions for 
-    "ggplot2" and a suite of functions to facilitate the creation of 
+    'ggplot2' and a suite of functions to facilitate the creation of 
     statistical plots.
 License: GPL (>= 3)
 URL: https://larmarange.github.io/ggstats/, https://github.com/larmarange/ggstats
