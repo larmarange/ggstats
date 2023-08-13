@@ -13,7 +13,7 @@ License: GPL (>= 3)
 URL: https://larmarange.github.io/ggstats/
 BugReports: https://github.com/larmarange/ggstats/issues
 Imports: 
-    broom.helpers (>= 1.11.0),
+    broom.helpers (>= 1.14.0),
     cli,
     dplyr,
     forcats,
@@ -21,12 +21,14 @@ Imports:
     lifecycle,
     magrittr,
     patchwork,
+    purrr,
     rlang,
     scales,
     stats,
     stringr,
     tidyr
 Suggests:
+    betareg,
     broom,
     emmeans,
     glue,
@@ -36,6 +38,7 @@ Suggests:
     rmarkdown,
     nnet,
     parameters,
+    pscl,
     testthat (>= 3.0.0),
     spelling,
     survey,
