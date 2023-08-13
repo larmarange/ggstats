@@ -245,11 +245,16 @@ ggcoef_table(
 
 ## Multinomial models
 
-For multinomial models, simply use `ggcoef_multinom()`. Two types of visualizations are available: `"dodged"` and `"faceted"`.
+For multinomial models, simply use `ggcoef_multinom()`. Three types of visualizations are available: `"dodged"`, `"faceted"` and `"table"`.
 
 ```{r}
 library(nnet)
-mod <- multinom(Species ~ ., data = iris)
+hec <- as.data.frame(HairEyeColor)
+mod <- multinom(
+  Hair ~ Eye + Sex,
+  data = hec,
+  weights = hec$Freq
+)
 ggcoef_multinom(
   mod,
   exponentiate = TRUE
@@ -259,17 +264,53 @@ ggcoef_multinom(
   exponentiate = TRUE,
   type = "faceted"
 )
+```
+
+```{r, fig.height=9, fig.width=6}
+ggcoef_multinom(
+  mod,
+  exponentiate = TRUE,
+  type = "table"
+)
+```
+
+You can use `y.level_label` to customize the label of each level.
+
+```{r}
 ggcoef_multinom(
   mod,
   type = "faceted",
-  y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
+  y.level_label = c("Brown" = "Brown\n(ref: Black)"),
+  exponentiate = TRUE
+)
+```
+
+## Multi-components models
+
+Multi-components models such as zero-inflated Poisson or beta regression generate a set of terms for each of their components. You can use `ggcoef_multicomponents()` which is similar to `ggcoef_multinom()`.
+
+```{r}
+library(pscl)
+data("bioChemists", package = "pscl")
+mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
+
+ggcoef_multicomponents(mod)
+ggcoef_multicomponents(mod, type = "f")
+```
+
+```{r, fig.height=7, fig.width=6}
+ggcoef_multicomponents(mod, type = "t")
+ggcoef_multicomponents(
+  mod,
+  type = "t",
+  component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")
 )
 ```
 
 
 ## Comparing several models
 
-You can easily compare several models with `ggcoef_compare()`.
+You can easily compare several models with `ggcoef_compare()`. To be noted, `ggcoef_compare()` is not compatible with multinomial or multi-components models.
 
 ```{r}
 mod1 <- lm(Fertility ~ ., data = swiss)

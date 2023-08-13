@@ -703,9 +703,13 @@ ggcoef_multinom <- function(
     include = dplyr::everything(),
     significance = 1 - conf.level,
     significance_labels = NULL,
-    show_p_values = TRUE,
-    signif_stars = TRUE,
     return_data = FALSE,
+    table_stat = c("estimate", "ci", "p.value"),
+    table_header = NULL,
+    table_text_size = 3,
+    table_stat_label = NULL,
+    ci_pattern = "{conf.low}, {conf.high}",
+    table_witdhs = c(3, 2),
     ...) {
   type <- match.arg(type)
   attr(model, "component_label_arg") <- "y.level_label"
@@ -730,6 +734,12 @@ ggcoef_multinom <- function(
     significance = significance,
     significance_labels = significance_labels,
     return_data = return_data,
+    table_stat = table_stat,
+    table_header = table_header,
+    table_text_size = table_text_size,
+    table_stat_label = table_stat_label,
+    ci_pattern = ci_pattern,
+    table_witdhs = table_witdhs,
     ...
   )
 }

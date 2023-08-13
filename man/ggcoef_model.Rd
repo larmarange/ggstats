@@ -117,9 +117,13 @@ ggcoef_multinom(
   include = dplyr::everything(),
   significance = 1 - conf.level,
   significance_labels = NULL,
-  show_p_values = TRUE,
-  signif_stars = TRUE,
   return_data = FALSE,
+  table_stat = c("estimate", "ci", "p.value"),
+  table_header = NULL,
+  table_text_size = 3,
+  table_stat_label = NULL,
+  ci_pattern = "{conf.low}, {conf.high}",
+  table_witdhs = c(3, 2),
   ...
 )
 
