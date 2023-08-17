@@ -6,7 +6,7 @@
 \alias{ggstats-package}
 \title{ggstats: Extension to 'ggplot2' for Plotting Stats}
 \description{
-Provides new statistics, new geometries and new positions for "ggplot2" and a suite of functions to facilitate the creation of statistical plots.
+Provides new statistics, new geometries and new positions for 'ggplot2' and a suite of functions to facilitate the creation of statistical plots.
 }
 \seealso{
 Useful links:

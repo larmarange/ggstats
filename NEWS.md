@@ -1,5 +1,10 @@
 # ggstats (development version)
 
+**Bug fixes**
+
+* fix in `ggcoef_multicomponents()` when `type = "table"` and
+  `exponentiate = TRUE`
+
 # ggstats 0.4.0
 
 **New features**

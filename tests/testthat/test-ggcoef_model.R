@@ -455,11 +455,31 @@ test_that("ggcoef_multicomponents()", {
   )
 
   vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() faceted exponentiated",
+    ggcoef_multicomponents(
+      mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "f",
+      exponentiate = TRUE
+    )
+  )
+
+  vdiffr::expect_doppelganger(
     "ggcoef_multicomponents() table",
     ggcoef_multicomponents(
       mod,
       tidy_fun = broom.helpers::tidy_zeroinfl,
       type = "t"
+    )
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_multicomponents() table exponentiated",
+    ggcoef_multicomponents(
+      mod,
+      tidy_fun = broom.helpers::tidy_zeroinfl,
+      type = "t",
+      exponentiate = TRUE
     )
   )
 
