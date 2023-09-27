@@ -18,10 +18,12 @@ gglikert(
   exclude_fill_values = NULL,
   add_labels = TRUE,
   labels_size = 3.5,
+  labels_color = "black",
   labels_accuracy = 1,
   labels_hide_below = 0.05,
   add_totals = TRUE,
   totals_size = labels_size,
+  totals_color = "black",
   totals_accuracy = labels_accuracy,
   totals_fontface = "bold",
   totals_include_center = FALSE,
@@ -57,6 +59,7 @@ gglikert_stacked(
   sort_prop_include_center = FALSE,
   add_labels = TRUE,
   labels_size = 3.5,
+  labels_color = "black",
   labels_accuracy = 1,
   labels_hide_below = 0.05,
   add_median_line = FALSE,
@@ -101,6 +104,8 @@ see \code{\link[=position_likert]{position_likert()}}}
 
 \item{labels_size}{size of the percentage labels}
 
+\item{labels_color}{color of the percentage labels}
+
 \item{labels_accuracy}{accuracy of the percentages, see
 \code{\link[scales:label_percent]{scales::label_percent()}}}
 
@@ -110,7 +115,9 @@ see \code{\link[=position_likert]{position_likert()}}}
 \item{add_totals}{should the total proportions of negative and positive
 answers be added to plot? \strong{This option is not compatible with facets!}}
 
-\item{totals_size}{size of total proportions}
+\item{totals_size}{size of the total proportions}
+
+\item{totals_color}{color of the total proportions}
 
 \item{totals_accuracy}{accuracy of the total proportions, see
 \code{\link[scales:label_percent]{scales::label_percent()}}}

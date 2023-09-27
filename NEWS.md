@@ -1,5 +1,10 @@
 # ggstats (development version)
 
+**Improvements**
+
+* New options `labels_color` and `totals_color` in `gglikert()` and
+  `gglikert_stacked()` (#43)
+
 **Bug fixes**
 
 * fix in `ggcoef_multicomponents()` when `type = "table"` and
