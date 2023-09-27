@@ -139,6 +139,11 @@ test_that("gglikert)", {
   )
 
   vdiffr::expect_doppelganger(
+    "gglikert() colors",
+    gglikert(df, labels_color = "red", totals_color = "blue")
+  )
+
+  vdiffr::expect_doppelganger(
     "gglikert() reverse",
     gglikert(df, y_reverse = TRUE, reverse_likert = TRUE)
   )
@@ -168,6 +173,11 @@ test_that("gglikert)", {
   vdiffr::expect_doppelganger(
     "gglikert_stacked() add_median_line",
     gglikert_stacked(df, add_median_line = TRUE)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert_stacked() labels_color",
+    gglikert_stacked(df, labels_color = "red")
   )
 
   df_group <- df

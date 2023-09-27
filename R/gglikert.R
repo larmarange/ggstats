@@ -35,13 +35,15 @@
 #' see [position_likert()]
 #' @param add_labels should percentage labels be added to the plot?
 #' @param labels_size size of the percentage labels
+#' @param labels_color color of the percentage labels
 #' @param labels_accuracy accuracy of the percentages, see
 #' [scales::label_percent()]
 #' @param labels_hide_below if provided, values below will be masked, see
 #' [label_percent_abs()]
 #' @param add_totals should the total proportions of negative and positive
 #' answers be added to plot? **This option is not compatible with facets!**
-#' @param totals_size size of total proportions
+#' @param totals_size size of the total proportions
+#' @param totals_color color of the total proportions
 #' @param totals_accuracy accuracy of the total proportions, see
 #' [scales::label_percent()]
 #' @param totals_fontface font face of the total proportions
@@ -150,10 +152,12 @@ gglikert <- function(data,
                      exclude_fill_values = NULL,
                      add_labels = TRUE,
                      labels_size = 3.5,
+                     labels_color = "black",
                      labels_accuracy = 1,
                      labels_hide_below = .05,
                      add_totals = TRUE,
                      totals_size = labels_size,
+                     totals_color = "black",
                      totals_accuracy = labels_accuracy,
                      totals_fontface = "bold",
                      totals_include_center = FALSE,
@@ -225,7 +229,8 @@ gglikert <- function(data,
           reverse = reverse_likert,
           exclude_fill_values = exclude_fill_values
         ),
-        size = labels_size
+        size = labels_size,
+        color = labels_color
       )
   }
 
@@ -293,6 +298,7 @@ gglikert <- function(data,
         ),
         data = dtot,
         size = totals_size,
+        color = totals_color,
         fontface = totals_fontface
       )
   }
@@ -539,6 +545,7 @@ gglikert_stacked <- function(data,
                              sort_prop_include_center = FALSE,
                              add_labels = TRUE,
                              labels_size = 3.5,
+                             labels_color = "black",
                              labels_accuracy = 1,
                              labels_hide_below = .05,
                              add_median_line = FALSE,
@@ -602,7 +609,8 @@ gglikert_stacked <- function(data,
           vjust = .5,
           reverse = reverse_fill
         ),
-        size = labels_size
+        size = labels_size,
+        color = labels_color
       )
   }
 

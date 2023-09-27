@@ -114,7 +114,6 @@ You can reverse the order of the answers with `reverse_likert`.
 gglikert(df, reverse_likert = TRUE)
 ```
 
-
 ### Proportion labels
 
 Proportion labels could be removed with `add_labels = FALSE`.
@@ -130,7 +129,8 @@ gglikert(
   df,
   labels_size = 3,
   labels_accuracy = .1,
-  labels_hide_below = .2
+  labels_hide_below = .2,
+  labels_color = "white"
 )
 ```
 
@@ -150,7 +150,13 @@ gglikert(
 Totals could be customized.
 
 ```{r}
-gglikert(df, totals_size = 4, totals_fontface = "italic", totals_hjust = .20)
+gglikert(
+  df,
+  totals_size = 4,
+  totals_color = "blue",
+  totals_fontface = "italic",
+  totals_hjust = .20
+)
 ```
 
 Or removed.
@@ -247,8 +253,7 @@ gglikert(df_group,
   )
 ```
 
-To compare answers by subgroup, you can alternatively map `.question` to facets,
-and define a grouping variable for `y`.
+To compare answers by subgroup, you can alternatively map `.question` to facets, and define a grouping variable for `y`.
 
 ```{r}
 gglikert(df_group,
@@ -259,7 +264,6 @@ gglikert(df_group,
   facet_label_wrap = 15
 )
 ```
-
 
 ## Stacked plot
 
@@ -286,8 +290,6 @@ gglikert_stacked(
   )
 ```
 
-
-
 ## Long format dataset
 
 Internally, `gglikert()` is calling `gglikert_data()` to generate a long format dataset combining all questions into two columns, `.question` and `.answer`.
@@ -307,14 +309,12 @@ ggplot(gglikert_data(df)) +
 
 ## Weighted data
 
-`gglikert()`, `gglikert_stacked()` and `gglikert_data()` accepts a `weights`
-argument, allowing to specify statistical weights.
+`gglikert()`, `gglikert_stacked()` and `gglikert_data()` accepts a `weights` argument, allowing to specify statistical weights.
 
 ```{r}
 df$sampling_weights <- runif(nrow(df))
 gglikert(df, q1:q4, weights = sampling_weights)
 ```
-
 
 ## See also
 
