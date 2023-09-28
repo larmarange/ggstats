@@ -37,6 +37,8 @@
 #'
 #' ggcoef_table(mod)
 #'
+#'
+#' \donttest{
 #' ggcoef_table(mod, table_stat = c("estimate", "ci"))
 #'
 #' ggcoef_table(
@@ -48,7 +50,6 @@
 #'
 #' ggcoef_table(mod, table_text_size = 5, table_witdhs = c(1, 1))
 #'
-#' \donttest{
 #' # a logistic regression example
 #' d_titanic <- as.data.frame(Titanic)
 #' d_titanic$Survived <- factor(d_titanic$Survived, c("No", "Yes"))
