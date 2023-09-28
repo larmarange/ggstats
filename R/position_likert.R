@@ -3,7 +3,7 @@
 #' `r lifecycle::badge("experimental")`
 #'
 #' `position_likert()` stacks proportion bars on top of each other and
-#' center them around (the same number of modalities are displayed on
+#' center them around zero (the same number of modalities are displayed on
 #' each side). This type of presentation is commonly used to display
 #' Likert-type scales.
 #' `position_likert_count()` uses counts instead of proportions.
@@ -101,7 +101,6 @@
 #' # Do not display specific fill values ---------------------------------------
 #' # (but taken into account to compute proportions)
 #'
-#' # by default, the lower bar is not properly
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = position_likert(exclude_fill_values = "Very Good")) +
