@@ -10,7 +10,7 @@
 |collate  |French_France.utf8                              |
 |ctype    |French_France.utf8                              |
 |tz       |Europe/Paris                                    |
-|date     |2023-08-13                                      |
+|date     |2023-09-28                                      |
 |rstudio  |2023.06.0+421 Mountain Hydrangea (desktop)      |
 |pandoc   |3.1.1 @ C:\PROGRA~1\Quarto\bin\tools\pandoc.exe |
 
@@ -18,7 +18,7 @@
 
 |package       |old    |new        |Δ  |
 |:-------------|:------|:----------|:--|
-|ggstats       |0.3.0  |0.3.0.9000 |*  |
+|ggstats       |0.4.0  |0.4.0.9000 |*  |
 |backports     |1.4.1  |1.4.1      |   |
 |bit           |4.0.5  |4.0.5      |   |
 |bit64         |4.0.5  |4.0.5      |   |
@@ -29,27 +29,27 @@
 |colorspace    |2.1-0  |2.1-0      |   |
 |cpp11         |0.4.6  |0.4.6      |   |
 |crayon        |1.5.2  |1.5.2      |   |
-|dplyr         |1.1.2  |1.1.2      |   |
+|dplyr         |1.1.3  |1.1.3      |   |
 |ellipsis      |0.3.2  |0.3.2      |   |
 |fansi         |1.0.4  |1.0.4      |   |
 |farver        |2.1.1  |2.1.1      |   |
 |forcats       |1.0.0  |1.0.0      |   |
 |generics      |0.1.3  |0.1.3      |   |
-|ggplot2       |3.4.2  |3.4.2      |   |
+|ggplot2       |3.4.3  |3.4.3      |   |
 |glue          |1.6.2  |1.6.2      |   |
-|gtable        |0.3.3  |0.3.3      |   |
+|gtable        |0.3.4  |0.3.4      |   |
 |haven         |2.5.3  |2.5.3      |   |
 |hms           |1.1.3  |1.1.3      |   |
 |isoband       |0.2.7  |0.2.7      |   |
-|labeling      |0.4.2  |0.4.2      |   |
+|labeling      |0.4.3  |0.4.3      |   |
 |labelled      |2.12.0 |2.12.0     |   |
 |lifecycle     |1.0.3  |1.0.3      |   |
 |magrittr      |2.0.3  |2.0.3      |   |
 |munsell       |0.5.0  |0.5.0      |   |
-|patchwork     |NA     |1.1.2      |*  |
+|patchwork     |1.1.3  |1.1.3      |   |
 |pillar        |1.9.0  |1.9.0      |   |
 |pkgconfig     |2.0.3  |2.0.3      |   |
-|prettyunits   |1.1.1  |1.1.1      |   |
+|prettyunits   |1.2.0  |1.2.0      |   |
 |progress      |1.2.2  |1.2.2      |   |
 |purrr         |1.0.2  |1.0.2      |   |
 |R6            |2.5.1  |2.5.1      |   |
@@ -67,7 +67,7 @@
 |vctrs         |0.6.3  |0.6.3      |   |
 |viridisLite   |0.4.2  |0.4.2      |   |
 |vroom         |1.6.3  |1.6.3      |   |
-|withr         |2.5.0  |2.5.0      |   |
+|withr         |2.5.1  |2.5.1      |   |
 
 # Revdeps
 
