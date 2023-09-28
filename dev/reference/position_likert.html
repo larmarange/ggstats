@@ -103,7 +103,7 @@ account for computing proportions)</p></dd>
     <div id="details">
     <h2>Details</h2>
     <p><code>position_likert()</code> stacks proportion bars on top of each other and
-center them around (the same number of modalities are displayed on
+center them around zero (the same number of modalities are displayed on
 each side). This type of presentation is commonly used to display
 Likert-type scales.
 <code>position_likert_count()</code> uses counts instead of proportions.</p>
@@ -203,7 +203,6 @@ and its <code>complete</code> argument (see examples).</p>
 <span class="r-in"><span><span class="co"># Do not display specific fill values ---------------------------------------</span></span></span>
 <span class="r-in"><span><span class="co"># (but taken into account to compute proportions)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># by default, the lower bar is not properly</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">clarity</span>, fill <span class="op">=</span> <span class="va">cut</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu">position_likert</span><span class="op">(</span>exclude_fill_values <span class="op">=</span> <span class="st">"Very Good"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
