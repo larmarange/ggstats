@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -87,10 +87,12 @@
 <span>  exclude_fill_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  add_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>  labels_color <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  totals_size <span class="op">=</span> <span class="va">labels_size</span>,</span>
+<span>  totals_color <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>  totals_accuracy <span class="op">=</span> <span class="va">labels_accuracy</span>,</span>
 <span>  totals_fontface <span class="op">=</span> <span class="st">"bold"</span>,</span>
 <span>  totals_include_center <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -126,6 +128,7 @@
 <span>  sort_prop_include_center <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  add_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>  labels_color <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_median_line <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -194,6 +197,10 @@ see <code><a href="position_likert.html">position_likert()</a></code></p></dd>
 <dd><p>size of the percentage labels</p></dd>
 
 
+<dt>labels_color</dt>
+<dd><p>color of the percentage labels</p></dd>
+
+
 <dt>labels_accuracy</dt>
 <dd><p>accuracy of the percentages, see
 <code><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">scales::label_percent()</a></code></p></dd>
@@ -210,7 +217,11 @@ answers be added to plot? <strong>This option is not compatible with facets!</st
 
 
 <dt>totals_size</dt>
-<dd><p>size of total proportions</p></dd>
+<dd><p>size of the total proportions</p></dd>
+
+
+<dt>totals_color</dt>
+<dd><p>color of the total proportions</p></dd>
 
 
 <dt>totals_accuracy</dt>
