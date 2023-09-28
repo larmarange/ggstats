@@ -208,7 +208,7 @@ gglikert <- function(data,
         reverse = reverse_likert,
         exclude_fill_values = exclude_fill_values
       ),
-      stat = "prop",
+      stat = StatProp,
       complete = "fill",
       width = width
     )
@@ -222,7 +222,7 @@ gglikert <- function(data,
             accuracy = labels_accuracy
           )(after_stat(prop))
         ),
-        stat = "prop",
+        stat = StatProp,
         complete = "fill",
         position = position_likert(
           vjust = .5,
@@ -589,7 +589,7 @@ gglikert_stacked <- function(data,
     ) +
     geom_bar(
       position = position_fill(reverse = reverse_fill),
-      stat = "prop",
+      stat = StatProp,
       complete = "fill",
       width = width
     )
@@ -603,7 +603,7 @@ gglikert_stacked <- function(data,
             accuracy = labels_accuracy
           )(after_stat(prop))
         ),
-        stat = "prop",
+        stat = StatProp,
         complete = "fill",
         position = position_fill(
           vjust = .5,
