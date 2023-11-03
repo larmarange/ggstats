@@ -23,7 +23,9 @@
 #'   \item{count}{number of points in bin}
 #'   \item{prop}{computed proportion}
 #' }
-#' @seealso `vignette("stat_prop")`, [ggplot2::stat_count()]
+#' @seealso `vignette("stat_prop")`, [ggplot2::stat_count()]. For an alternative
+#' approach, see
+#' <https://github.com/tidyverse/ggplot2/issues/5505#issuecomment-1791324008>.
 #'
 #' @import ggplot2
 #' @return A `ggplot2` plot with the added statistic.
