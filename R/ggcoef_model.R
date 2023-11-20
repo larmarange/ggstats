@@ -1152,13 +1152,7 @@ ggcoef_data <- function(
 
   if (!is.null(significance)) {
     if (is.null(significance_labels)) {
-      # test if \u2264 could be safely used
-      test_unicode <- purrr::quietly(function() {plot(0, main = "\u2264")})
-      if (length(test_unicode()$warnings) == 0) {
-        significance_labels <- paste(c("p \u2264", "p >"), significance)
-      } else {
-        significance_labels <- paste(c("p <=", "p >"), significance)
-      }
+      significance_labels <- paste(c("p <=", "p >"), significance)
     }
     data$significance <- factor(
       !is.na(data$p.value) & data$p.value <= significance,

@@ -2,8 +2,8 @@
 
 **Bug fixes**
 
-* fix in `ggcoef_model()` and other similar functions when Unicode character
-  'less or equal' is not handled by the system
+* fix in `ggcoef_model()` and other similar functions:
+  Unicode character removed in significance labels (#49)
 
 # ggstats 0.5.0
 
