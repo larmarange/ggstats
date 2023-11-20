@@ -3,7 +3,7 @@
 **Bug fixes**
 
 * fix in `ggcoef_model()` and other similar functions when Unicode character
-  'less or equal' is not handle by the system
+  'less or equal' is not handled by the system
 
 # ggstats 0.5.0
 
