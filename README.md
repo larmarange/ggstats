@@ -47,13 +47,13 @@ mod1 <- lm(Fertility ~ ., data = swiss)
 ggcoef_model(mod1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" /><img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
 
 ``` r
 ggcoef_table(mod1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-3.png" width="100%" /><img src="man/figures/README-unnamed-chunk-4-4.png" width="100%" />
 
 ## Comparing several models
 
@@ -69,7 +69,7 @@ models <- list(
 ggcoef_compare(models, type = "faceted")
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" /><img src="man/figures/README-unnamed-chunk-5-2.png" width="100%" />
 
 ## Compute custom proportions
 
