@@ -593,17 +593,14 @@ multi-component models such as zero-inflated models or beta regressions.
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">~</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Species</span>, data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcoef_model-1.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_table</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-3.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-4.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_table</span><span class="op">(</span><span class="va">mod</span>, table_stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"estimate"</span>, <span class="st">"ci"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-5.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_table</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
@@ -611,12 +608,10 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>    estimate <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">label_number</a></span><span class="op">(</span><span class="fl">.001</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-7.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-8.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_table</span><span class="op">(</span><span class="va">mod</span>, table_text_size <span class="op">=</span> <span class="fl">5</span>, table_witdhs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-9.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-10.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># a logistic regression example</span></span></span>
 <span class="r-in"><span><span class="va">d_titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span></span>
@@ -630,17 +625,14 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># use 'exponentiate = TRUE' to get the Odds Ratio</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-11.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-12.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_table</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-13.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-14.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display intercepts</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, intercept <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-15.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-16.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># customize terms labels</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
@@ -655,17 +647,15 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for <span style="color: #00BB00;">y</span> is already present.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span>
-<span class="r-plt img"><img src="ggcoef_model-17.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-18.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display only a subset of terms</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Age"</span>, <span class="st">"Class"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-19.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-20.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># do not change points' shape based on significance</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_titanic</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, significance <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-21.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># a black and white version</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
@@ -673,8 +663,7 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>  colour <span class="op">=</span> <span class="cn">NULL</span>, stripped_rows <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-22.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-23.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show dichotomous terms on one row</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
@@ -685,16 +674,14 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>    <span class="st">"{ifelse(dichotomous, paste0(level, ' / ', reference_level), level)}"</span>,</span></span>
 <span class="r-in"><span>  show_p_values <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-24.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-25.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tips</span>, package <span class="op">=</span> <span class="st">"reshape"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mod_simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_simple</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-26.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-27.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># custom variable labels</span></span></span>
 <span class="r-in"><span><span class="co"># you can use the labelled package to define variable labels</span></span></span>
@@ -709,8 +696,7 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>  <span class="va">mod_labelled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">tip</span> <span class="op">~</span> <span class="va">day</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">total_bill</span>, data <span class="op">=</span> <span class="va">tips_labelled</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_labelled</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-28.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-29.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># you can provide custom variable labels with 'variable_labels'</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
@@ -721,8 +707,7 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>    total_bill <span class="op">=</span> <span class="st">"Total of the bill"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-30.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-31.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-16.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># if labels are too long, you can use 'facet_labeller' to wrap them</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod_simple</span>,</span></span>
@@ -733,13 +718,11 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  facet_labeller <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_wrap_gen</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-32.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-33.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-17.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># do not display variable facets but add colour guide</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_simple</span>, facet_row <span class="op">=</span> <span class="cn">NULL</span>, colour_guide <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-34.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-35.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-18.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># works also with with polynomial terms</span></span></span>
 <span class="r-in"><span><span class="va">mod_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span></span></span>
@@ -747,8 +730,7 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">tips</span>,</span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod_poly</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-36.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-37.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># or with different type of contrasts</span></span></span>
 <span class="r-in"><span><span class="co"># for sum contrasts, the value of the reference term is computed</span></span></span>
@@ -761,8 +743,7 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>  <span class="fu">ggcoef_model</span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: emmeans</span>
-<span class="r-plt img"><img src="ggcoef_model-38.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-39.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Use ggcoef_compare() for comparing several models on the same plot</span></span></span>
@@ -776,23 +757,20 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-40.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-41.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-21.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-42.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-43.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-22.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># you can reverse the vertical position of the point by using a negative</span></span></span>
 <span class="r-in"><span><span class="co"># value for dodged_width (but it will produce some warnings)</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, dodged_width <span class="op">=</span> <span class="op">-</span><span class="fl">.9</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-44.png" alt="" width="700" height="433"></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals</span>
-<span class="r-plt img"><img src="ggcoef_model-45.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-23.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
@@ -813,18 +791,15 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-out co"><span class="r-pr">#&gt;</span> final  value 5.949867 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> stopped after 100 iterations</span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-46.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-47.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-24.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-48.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-49.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-25.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_multinom</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"faceted"</span>,</span></span>
 <span class="r-in"><span>  y.level_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"versicolor"</span> <span class="op">=</span> <span class="st">"versicolor\n(ref: setosa)"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggcoef_model-50.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-51.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-26.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/atahk/pscl" class="external-link">pscl</a></span><span class="op">)</span></span></span>
@@ -840,22 +815,19 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">&lt;zeroinfl&gt;</span> model detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_zeroinfl()` used instead.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_zeroinfl` to quiet these messages.</span>
-<span class="r-plt img"><img src="ggcoef_model-52.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-53.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-27.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_multicomponents</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">&lt;zeroinfl&gt;</span> model detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_zeroinfl()` used instead.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_zeroinfl` to quiet these messages.</span>
-<span class="r-plt img"><img src="ggcoef_model-54.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-55.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-28.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_multicomponents</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"t"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">&lt;zeroinfl&gt;</span> model detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_zeroinfl()` used instead.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_zeroinfl` to quiet these messages.</span>
-<span class="r-plt img"><img src="ggcoef_model-56.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-57.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-29.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_multicomponents</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
@@ -865,16 +837,14 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">&lt;zeroinfl&gt;</span> model detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_zeroinfl()` used instead.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_zeroinfl` to quiet these messages.</span>
-<span class="r-plt img"><img src="ggcoef_model-58.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-59.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-30.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pscl/man/zeroinfl.html" class="external-link">zeroinfl</a></span><span class="op">(</span><span class="va">art</span> <span class="op">~</span> <span class="va">fem</span> <span class="op">+</span> <span class="va">mar</span> <span class="op">|</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">bioChemists</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoef_multicomponents</span><span class="op">(</span><span class="va">mod2</span>, type <span class="op">=</span> <span class="st">"t"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">&lt;zeroinfl&gt;</span> model detected.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> `tidy_zeroinfl()` used instead.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Add `tidy_fun = broom.helpers::tidy_zeroinfl` to quiet these messages.</span>
-<span class="r-plt img"><img src="ggcoef_model-60.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="ggcoef_model-61.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-31.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
