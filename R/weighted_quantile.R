@@ -35,6 +35,7 @@
 #' `weighted.quantile()` is `type = 4`.
 #' @source These functions are adapted from their homonyms developed by Adrian
 #' Baddeley in the `spatstat` package.
+#' @returns A numeric vector.
 #' @export
 #' @examples
 #' x <- 1:20

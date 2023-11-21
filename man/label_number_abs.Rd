@@ -16,6 +16,10 @@ label_percent_abs(..., hide_below = NULL)
 \item{hide_below}{if provided, values below \code{hide_below} will be masked
 (i.e. an empty string \code{""} will be returned)}
 }
+\value{
+A "labelling" function, , i.e. a function that takes a vector and
+returns a character vector of same length giving a label for each input value.
+}
 \description{
 Label absolute values
 }

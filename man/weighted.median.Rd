@@ -27,6 +27,9 @@ The only valid choices are type=1, 2 or 4. See Details.}
 \item{probs}{probabilities for which the quantiles should be computed, a
 numeric vector of values between 0 and 1}
 }
+\value{
+A numeric vector.
+}
 \description{
 Compute the median or quantiles a set of numbers which have weights
 associated with them.
