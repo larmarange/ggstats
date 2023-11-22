@@ -160,13 +160,13 @@
 <text x='93.27' y='401.90' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='23.98px' lengthAdjust='spacingAndGlyphs'>Lunch</text>
 <text x='93.27' y='337.84' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='25.92px' lengthAdjust='spacingAndGlyphs'>Dinner</text>
 <text x='197.72' y='523.56' text-anchor='middle' style='font-size: 11.00px; font-weight: bold; font-family: sans;' textLength='22.63px' lengthAdjust='spacingAndGlyphs'>Beta</text>
-<rect x='132.10' y='536.80' width='131.23' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='143.06' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='151.70' cy='550.92' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
-<rect x='203.05' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='211.69' cy='550.92' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
-<text x='165.82' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='31.74px' lengthAdjust='spacingAndGlyphs'>p ≤ 0.05</text>
-<text x='225.80' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
+<rect x='129.38' y='536.80' width='136.69' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='140.34' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='148.98' cy='550.92' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
+<rect x='205.77' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='214.41' cy='550.92' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
+<text x='163.10' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
+<text x='228.53' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
 </g>
 <defs>
   <clipPath id='cpMzAyLjczfDcxNC41MnwyMi43OHw1NzAuNTI='>

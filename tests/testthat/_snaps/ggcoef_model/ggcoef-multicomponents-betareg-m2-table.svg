@@ -174,13 +174,13 @@
 <text x='79.09' y='83.60' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>2</text>
 <text x='79.09' y='68.81' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>1</text>
 <text x='267.42' y='249.69' text-anchor='middle' style='font-size: 11.00px; font-weight: bold; font-family: sans;' textLength='22.63px' lengthAdjust='spacingAndGlyphs'>Beta</text>
-<rect x='201.80' y='262.93' width='131.23' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='212.76' y='268.41' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='221.40' cy='277.05' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
-<rect x='272.74' y='268.41' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='281.38' cy='277.05' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
-<text x='235.52' y='280.08' style='font-size: 8.80px; font-family: sans;' textLength='31.74px' lengthAdjust='spacingAndGlyphs'>p ≤ 0.05</text>
-<text x='295.50' y='280.08' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
+<rect x='199.08' y='262.93' width='136.69' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='210.04' y='268.41' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='218.68' cy='277.05' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
+<rect x='275.47' y='268.41' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='284.11' cy='277.05' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
+<text x='232.79' y='280.08' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
+<text x='298.23' y='280.08' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
 <text x='10.96' y='37.35' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='33.03px' lengthAdjust='spacingAndGlyphs'>mean</text>
 </g>
 <defs>
@@ -380,13 +380,13 @@
 <text x='362.39' y='511.42' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>0.4</text>
 <text x='427.81' y='511.42' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>0.5</text>
 <text x='267.42' y='523.56' text-anchor='middle' style='font-size: 11.00px; font-weight: bold; font-family: sans;' textLength='22.63px' lengthAdjust='spacingAndGlyphs'>Beta</text>
-<rect x='201.80' y='536.80' width='131.23' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='212.76' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='221.40' cy='550.92' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
-<rect x='272.74' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='281.38' cy='550.92' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
-<text x='235.52' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='31.74px' lengthAdjust='spacingAndGlyphs'>p ≤ 0.05</text>
-<text x='295.50' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
+<rect x='199.08' y='536.80' width='136.69' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='210.04' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='218.68' cy='550.92' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
+<rect x='275.47' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='284.11' cy='550.92' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
+<text x='232.79' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
+<text x='298.23' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
 <text x='10.96' y='311.22' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='52.83px' lengthAdjust='spacingAndGlyphs'>precision</text>
 </g>
 <defs>
