@@ -18,7 +18,8 @@ label_percent_abs(..., hide_below = NULL)
 }
 \value{
 A "labelling" function, , i.e. a function that takes a vector and
-returns a character vector of same length giving a label for each input value.
+returns a character vector of same length giving a label for each input
+value.
 }
 \description{
 Label absolute values

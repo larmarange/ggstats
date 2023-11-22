@@ -5,7 +5,8 @@
 #' @param hide_below if provided, values below `hide_below` will be masked
 #' (i.e. an empty string `""` will be returned)
 #' @returns A "labelling" function, , i.e. a function that takes a vector and
-#' returns a character vector of same length giving a label for each input value.
+#' returns a character vector of same length giving a label for each input
+#' value.
 #' @seealso [scales::label_number()], [scales::label_percent()]
 #' @export
 #' @examples
