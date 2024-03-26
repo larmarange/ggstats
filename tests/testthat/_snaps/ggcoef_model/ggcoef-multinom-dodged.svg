@@ -142,29 +142,29 @@
 <text x='74.10' y='433.21' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='29.35px' lengthAdjust='spacingAndGlyphs'>Female</text>
 <text x='74.10' y='360.13' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='19.08px' lengthAdjust='spacingAndGlyphs'>Male</text>
 <text x='396.77' y='489.84' text-anchor='middle' style='font-size: 11.00px; font-weight: bold; font-family: sans;' textLength='16.51px' lengthAdjust='spacingAndGlyphs'>OR</text>
-<rect x='328.43' y='503.08' width='136.69' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='339.39' y='508.56' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='348.03' cy='517.20' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
-<rect x='404.82' y='508.56' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='413.46' cy='517.20' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
-<text x='362.15' y='520.23' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
-<text x='427.58' y='520.23' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
-<rect x='317.13' y='542.28' width='159.28' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='328.09' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='328.09' y='547.76' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #F8766D;' />
-<line x1='329.82' y1='556.40' x2='343.65' y2='556.40' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
-<circle cx='336.73' cy='556.40' r='3.55' style='stroke-width: 2.83; stroke: #F8766D; fill: #F8766D;' />
-<rect x='381.28' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='381.28' y='547.76' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #00BA38;' />
-<line x1='383.01' y1='556.40' x2='396.83' y2='556.40' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
-<circle cx='389.92' cy='556.40' r='3.55' style='stroke-width: 2.83; stroke: #00BA38; fill: #00BA38;' />
-<rect x='425.67' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='425.67' y='547.76' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #619CFF;' />
-<line x1='427.39' y1='556.40' x2='441.22' y2='556.40' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
-<circle cx='434.31' cy='556.40' r='3.55' style='stroke-width: 2.83; stroke: #619CFF; fill: #619CFF;' />
-<text x='350.85' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='24.95px' lengthAdjust='spacingAndGlyphs'>Brown</text>
-<text x='404.04' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='16.15px' lengthAdjust='spacingAndGlyphs'>Red</text>
-<text x='448.42' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='22.51px' lengthAdjust='spacingAndGlyphs'>Blond</text>
+<rect x='317.13' y='503.08' width='159.28' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='328.09' y='508.56' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='328.09' y='508.56' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #F8766D;' />
+<line x1='329.82' y1='517.20' x2='343.65' y2='517.20' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<circle cx='336.73' cy='517.20' r='3.55' style='stroke-width: 2.83; stroke: #F8766D; fill: #F8766D;' />
+<rect x='381.28' y='508.56' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='381.28' y='508.56' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #00BA38;' />
+<line x1='383.01' y1='517.20' x2='396.83' y2='517.20' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
+<circle cx='389.92' cy='517.20' r='3.55' style='stroke-width: 2.83; stroke: #00BA38; fill: #00BA38;' />
+<rect x='425.67' y='508.56' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='425.67' y='508.56' width='17.28' height='17.28' style='stroke-width: 0.75; stroke: none; fill: #619CFF;' />
+<line x1='427.39' y1='517.20' x2='441.22' y2='517.20' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<circle cx='434.31' cy='517.20' r='3.55' style='stroke-width: 2.83; stroke: #619CFF; fill: #619CFF;' />
+<text x='350.85' y='520.23' style='font-size: 8.80px; font-family: sans;' textLength='24.95px' lengthAdjust='spacingAndGlyphs'>Brown</text>
+<text x='404.04' y='520.23' style='font-size: 8.80px; font-family: sans;' textLength='16.15px' lengthAdjust='spacingAndGlyphs'>Red</text>
+<text x='448.42' y='520.23' style='font-size: 8.80px; font-family: sans;' textLength='22.51px' lengthAdjust='spacingAndGlyphs'>Blond</text>
+<rect x='328.43' y='542.28' width='136.69' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='339.39' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='348.03' cy='556.40' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
+<rect x='404.82' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='413.46' cy='556.40' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
+<text x='362.15' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
+<text x='427.58' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
 <text x='79.03' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='157.05px' lengthAdjust='spacingAndGlyphs'>ggcoef_multinom() dodged</text>
 </g>
 </svg>

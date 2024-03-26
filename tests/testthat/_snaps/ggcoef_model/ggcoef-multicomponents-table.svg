@@ -370,7 +370,6 @@
 <text x='311.23' y='523.56' text-anchor='middle' style='font-size: 11.00px; font-weight: bold; font-family: sans;' textLength='22.63px' lengthAdjust='spacingAndGlyphs'>Beta</text>
 <rect x='242.89' y='536.80' width='136.69' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='253.84' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='262.48' cy='550.92' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
 <rect x='319.28' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <circle cx='327.92' cy='550.92' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
 <text x='276.60' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
