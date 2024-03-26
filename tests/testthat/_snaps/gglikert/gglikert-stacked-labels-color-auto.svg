@@ -92,7 +92,6 @@
 <text x='401.02' y='74.18' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>12%</text>
 <text x='497.81' y='74.18' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>19%</text>
 <text x='619.84' y='74.18' text-anchor='middle' style='font-size: 9.96px; fill: #FFFFFF; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>20%</text>
-<line x1='367.36' y1='518.51' x2='367.36' y2='22.78' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <rect x='20.20' y='22.78' width='694.32' height='495.72' style='stroke-width: 1.07; stroke: #B3B3B3;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
@@ -134,6 +133,6 @@
 <text x='337.89' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='104.69px' lengthAdjust='spacingAndGlyphs'>Neither agree nor disagree</text>
 <text x='470.82' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='23.49px' lengthAdjust='spacingAndGlyphs'>Agree</text>
 <text x='522.54' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='57.24px' lengthAdjust='spacingAndGlyphs'>Strongly agree</text>
-<text x='20.20' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='208.41px' lengthAdjust='spacingAndGlyphs'>gglikert_stacked() add_median_line</text>
+<text x='20.20' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='207.67px' lengthAdjust='spacingAndGlyphs'>gglikert_stacked() labels_color auto</text>
 </g>
 </svg>

@@ -52,17 +52,17 @@
 <text x='315.81' y='428.99' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>17%</text>
 <text x='369.88' y='428.99' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>11%</text>
 <text x='447.83' y='428.99' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>30%</text>
-<text x='574.83' y='428.99' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>37%</text>
-<text x='163.67' y='274.07' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>39%</text>
+<text x='574.83' y='428.99' text-anchor='middle' style='font-size: 9.96px; fill: #FFFFFF; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>37%</text>
+<text x='163.67' y='274.07' text-anchor='middle' style='font-size: 9.96px; fill: #FFFFFF; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>39%</text>
 <text x='291.92' y='274.07' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>29%</text>
 <text x='369.88' y='274.07' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>13%</text>
 <text x='416.40' y='274.07' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>12%</text>
-<text x='452.86' y='274.07' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='14.39px' lengthAdjust='spacingAndGlyphs'>7%</text>
-<text x='203.90' y='119.16' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>23%</text>
+<text x='452.86' y='274.07' text-anchor='middle' style='font-size: 9.96px; fill: #FFFFFF; font-family: sans;' textLength='14.39px' lengthAdjust='spacingAndGlyphs'>7%</text>
+<text x='203.90' y='119.16' text-anchor='middle' style='font-size: 9.96px; fill: #FFFFFF; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>23%</text>
 <text x='296.95' y='119.16' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>27%</text>
 <text x='369.88' y='119.16' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>12%</text>
 <text x='427.71' y='119.16' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>19%</text>
-<text x='500.64' y='119.16' text-anchor='middle' style='font-size: 9.96px; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>20%</text>
+<text x='500.64' y='119.16' text-anchor='middle' style='font-size: 9.96px; fill: #FFFFFF; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>20%</text>
 <text x='51.76' y='428.99' text-anchor='middle' style='font-size: 9.96px; font-weight: bold; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>21%</text>
 <text x='51.76' y='274.07' text-anchor='middle' style='font-size: 9.96px; font-weight: bold; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>68%</text>
 <text x='51.76' y='119.16' text-anchor='middle' style='font-size: 9.96px; font-weight: bold; font-family: sans;' textLength='19.93px' lengthAdjust='spacingAndGlyphs'>49%</text>
@@ -84,22 +84,22 @@
 <polyline points='17.46,425.56 20.20,425.56 ' style='stroke-width: 0.53; stroke: #B3B3B3; stroke-linecap: butt;' />
 <polyline points='17.46,270.65 20.20,270.65 ' style='stroke-width: 0.53; stroke: #B3B3B3; stroke-linecap: butt;' />
 <polyline points='17.46,115.73 20.20,115.73 ' style='stroke-width: 0.53; stroke: #B3B3B3; stroke-linecap: butt;' />
-<rect x='146.72' y='542.28' width='441.29' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='157.68' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='158.38' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A6611A;' />
-<rect x='254.41' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='255.12' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #DFC27D;' />
-<rect x='317.87' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='318.58' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #F5F5F5;' />
-<rect x='450.80' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='451.51' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #80CDC1;' />
-<rect x='502.52' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<rect x='503.23' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #018571;' />
-<text x='180.44' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='68.49px' lengthAdjust='spacingAndGlyphs'>Strongly disagree</text>
-<text x='277.17' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='35.22px' lengthAdjust='spacingAndGlyphs'>Disagree</text>
-<text x='340.63' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='104.69px' lengthAdjust='spacingAndGlyphs'>Neither agree nor disagree</text>
-<text x='473.56' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='23.49px' lengthAdjust='spacingAndGlyphs'>Agree</text>
-<text x='525.28' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='57.24px' lengthAdjust='spacingAndGlyphs'>Strongly agree</text>
+<rect x='149.46' y='542.28' width='435.81' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='154.94' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='155.65' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A6611A;' />
+<rect x='251.67' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='252.38' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #DFC27D;' />
+<rect x='315.13' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='315.84' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #F5F5F5;' />
+<rect x='448.06' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='448.77' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #80CDC1;' />
+<rect x='499.78' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='500.49' y='548.47' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #018571;' />
+<text x='177.70' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='68.49px' lengthAdjust='spacingAndGlyphs'>Strongly disagree</text>
+<text x='274.43' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='35.22px' lengthAdjust='spacingAndGlyphs'>Disagree</text>
+<text x='337.89' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='104.69px' lengthAdjust='spacingAndGlyphs'>Neither agree nor disagree</text>
+<text x='470.82' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='23.49px' lengthAdjust='spacingAndGlyphs'>Agree</text>
+<text x='522.54' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='57.24px' lengthAdjust='spacingAndGlyphs'>Strongly agree</text>
 <text x='20.20' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='157.02px' lengthAdjust='spacingAndGlyphs'>gglikert() include and width</text>
 </g>
 </svg>
