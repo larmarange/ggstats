@@ -42,3 +42,4 @@ reference:
   - augment_chisq_add_phi
   - label_number_abs
   - weighted.median
+  - round_any
