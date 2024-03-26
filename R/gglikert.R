@@ -13,13 +13,13 @@
 #' `variable_labels` argument.
 #'
 #' @param data a data frame
-#' @param include variables to include, accept [tidy-select][dplyr::select]
+#' @param include variables to include, accepts [tidy-select][dplyr::select]
 #' syntax
 #' @param weights optional variable name of a weighting variable,
-#' accept [tidy-select][dplyr::select] syntax
+#' accepts [tidy-select][dplyr::select] syntax
 #' @param y name of the variable to be plotted on `y` axis (relevant when
 #' `.question` is mapped to "facets, see examples),
-#' accept [tidy-select][dplyr::select] syntax
+#' accepts [tidy-select][dplyr::select] syntax
 #' @param variable_labels a named list or a named vector of custom variable
 #' labels
 #' @param sort should the factor defined by `factor_to_sort` be sorted according
@@ -34,7 +34,8 @@
 #' to compute the proportion?
 #' @param factor_to_sort name of the factor column to sort if `sort` is not
 #' equal to `"none"`; by default the list of questions passed to `include`;
-#' should be one factor column of the tibble returned by `gglikert_data()`
+#' should be one factor column of the tibble returned by `gglikert_data()`;
+#' accepts [tidy-select][dplyr::select] syntax
 #' @param exclude_fill_values Vector of values that should not be displayed
 #' (but still taken into account for computing proportions),
 #' see [position_likert()]
@@ -185,7 +186,7 @@ gglikert <- function(data,
       sort = sort,
       sort_method = sort_method,
       sort_prop_include_center = sort_prop_include_center,
-      factor_to_sort = factor_to_sort,
+      factor_to_sort = {{ factor_to_sort }},
       exclude_fill_values = exclude_fill_values
     )
 
@@ -373,6 +374,13 @@ gglikert_data <- function(data,
     select = {{ include }},
     data = data,
     arg_name = "include"
+  )
+
+  factor_to_sort <- broom.helpers::.select_to_varnames(
+    select = {{ factor_to_sort }},
+    data = data,
+    arg_name = "factor_to_sort",
+    select_single = TRUE
   )
 
   weights_var <- broom.helpers::.select_to_varnames(
@@ -593,7 +601,7 @@ gglikert_stacked <- function(data,
       sort = sort,
       sort_method = sort_method,
       sort_prop_include_center = sort_prop_include_center,
-      factor_to_sort = factor_to_sort,
+      factor_to_sort = {{ factor_to_sort }},
       exclude_fill_values = NULL
     )
 

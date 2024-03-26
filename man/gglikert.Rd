@@ -75,15 +75,15 @@ gglikert_stacked(
 \arguments{
 \item{data}{a data frame}
 
-\item{include}{variables to include, accept \link[dplyr:select]{tidy-select}
+\item{include}{variables to include, accepts \link[dplyr:select]{tidy-select}
 syntax}
 
 \item{weights}{optional variable name of a weighting variable,
-accept \link[dplyr:select]{tidy-select} syntax}
+accepts \link[dplyr:select]{tidy-select} syntax}
 
 \item{y}{name of the variable to be plotted on \code{y} axis (relevant when
 \code{.question} is mapped to "facets, see examples),
-accept \link[dplyr:select]{tidy-select} syntax}
+accepts \link[dplyr:select]{tidy-select} syntax}
 
 \item{variable_labels}{a named list or a named vector of custom variable
 labels}
@@ -103,7 +103,8 @@ to compute the proportion?}
 
 \item{factor_to_sort}{name of the factor column to sort if \code{sort} is not
 equal to \code{"none"}; by default the list of questions passed to \code{include};
-should be one factor column of the tibble returned by \code{gglikert_data()}}
+should be one factor column of the tibble returned by \code{gglikert_data()};
+accepts \link[dplyr:select]{tidy-select} syntax}
 
 \item{exclude_fill_values}{Vector of values that should not be displayed
 (but still taken into account for computing proportions),
