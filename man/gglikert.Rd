@@ -18,7 +18,7 @@ gglikert(
   exclude_fill_values = NULL,
   add_labels = TRUE,
   labels_size = 3.5,
-  labels_color = "black",
+  labels_color = "auto",
   labels_accuracy = 1,
   labels_hide_below = 0.05,
   add_totals = TRUE,
@@ -59,7 +59,7 @@ gglikert_stacked(
   sort_prop_include_center = FALSE,
   add_labels = TRUE,
   labels_size = 3.5,
-  labels_color = "black",
+  labels_color = "auto",
   labels_accuracy = 1,
   labels_hide_below = 0.05,
   add_median_line = FALSE,
@@ -104,7 +104,8 @@ see \code{\link[=position_likert]{position_likert()}}}
 
 \item{labels_size}{size of the percentage labels}
 
-\item{labels_color}{color of the percentage labels}
+\item{labels_color}{color of the percentage labels (\code{"auto"} to use
+\code{hex_bw()} to determine a font color based on background color)}
 
 \item{labels_accuracy}{accuracy of the percentages, see
 \code{\link[scales:label_percent]{scales::label_percent()}}}
