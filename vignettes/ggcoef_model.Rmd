@@ -17,6 +17,11 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(ggstats)
+if (
+  !broom.helpers::.assert_package("emmeans", boolean = TRUE)
+) {
+  knitr::opts_chunk$set(eval = FALSE)
+}
 ```
 
 The purpose of `ggcoef_model()` is to quickly plot the coefficients of a model. It is an updated and improved version of `GGally::ggcoef()` based on `broom.helpers::tidy_plus_plus()`. For displaying a nicely formatted table of the same models, look at `gtsummary::tbl_regression()`.
