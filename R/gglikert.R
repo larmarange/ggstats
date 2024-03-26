@@ -376,13 +376,6 @@ gglikert_data <- function(data,
     arg_name = "include"
   )
 
-  factor_to_sort <- broom.helpers::.select_to_varnames(
-    select = {{ factor_to_sort }},
-    data = data,
-    arg_name = "factor_to_sort",
-    select_single = TRUE
-  )
-
   weights_var <- broom.helpers::.select_to_varnames(
     select = {{ weights }},
     data = data,
@@ -426,6 +419,13 @@ gglikert_data <- function(data,
 
   data$.question <- data_labels[data$.question] %>%
     forcats::fct_inorder()
+
+  factor_to_sort <- broom.helpers::.select_to_varnames(
+    select = {{ factor_to_sort }},
+    data = data,
+    arg_name = "factor_to_sort",
+    select_single = TRUE
+  )
 
   if (sort == "ascending" && sort_method == "prop") {
     data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
