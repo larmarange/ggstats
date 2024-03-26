@@ -15,6 +15,7 @@ gglikert(
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = totals_include_center,
+  factor_to_sort = ".question",
   exclude_fill_values = NULL,
   add_labels = TRUE,
   labels_size = 3.5,
@@ -45,6 +46,7 @@ gglikert_data(
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = TRUE,
+  factor_to_sort = ".question",
   exclude_fill_values = NULL
 )
 
@@ -57,6 +59,7 @@ gglikert_stacked(
   sort = c("none", "ascending", "descending"),
   sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = FALSE,
+  factor_to_sort = ".question",
   add_labels = TRUE,
   labels_size = 3.5,
   labels_color = "auto",
@@ -85,7 +88,9 @@ accept \link[dplyr:select]{tidy-select} syntax}
 \item{variable_labels}{a named list or a named vector of custom variable
 labels}
 
-\item{sort}{should variables be sorted?}
+\item{sort}{should the factor defined by \code{factor_to_sort} be sorted according
+to the answers (see \code{sort_method})? One of "none" (default), "ascending" or
+"descending"}
 
 \item{sort_method}{method used to sort the variables: \code{"prop"} sort according
 to the proportion of answers higher than the centered level, \code{"mean"}
@@ -95,6 +100,10 @@ used the median and the majority judgment rule for tie-breaking.}
 \item{sort_prop_include_center}{when sorting with \code{"prop"} and if the number
 of levels is uneven, should half of the central level be taken into account
 to compute the proportion?}
+
+\item{factor_to_sort}{name of the factor column to sort if \code{sort} is not
+equal to \code{"none"}; by default the list of questions passed to \code{include};
+should be one factor column of the tibble returned by \code{gglikert_data()}}
 
 \item{exclude_fill_values}{Vector of values that should not be displayed
 (but still taken into account for computing proportions),

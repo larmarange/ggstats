@@ -22,7 +22,9 @@
 #' accept [tidy-select][dplyr::select] syntax
 #' @param variable_labels a named list or a named vector of custom variable
 #' labels
-#' @param sort should variables be sorted?
+#' @param sort should the factor defined by `factor_to_sort` be sorted according
+#' to the answers (see `sort_method`)? One of "none" (default), "ascending" or
+#' "descending"
 #' @param sort_method method used to sort the variables: `"prop"` sort according
 #' to the proportion of answers higher than the centered level, `"mean"`
 #' considers answer as a score and sort according to the mean score, `"median"`
@@ -30,6 +32,9 @@
 #' @param sort_prop_include_center when sorting with `"prop"` and if the number
 #' of levels is uneven, should half of the central level be taken into account
 #' to compute the proportion?
+#' @param factor_to_sort name of the factor column to sort if `sort` is not
+#' equal to `"none"`; by default the list of questions passed to `include`;
+#' should be one factor column of the tibble returned by `gglikert_data()`
 #' @param exclude_fill_values Vector of values that should not be displayed
 #' (but still taken into account for computing proportions),
 #' see [position_likert()]
@@ -150,6 +155,7 @@ gglikert <- function(data,
                      sort = c("none", "ascending", "descending"),
                      sort_method = c("prop", "mean", "median"),
                      sort_prop_include_center = totals_include_center,
+                     factor_to_sort = ".question",
                      exclude_fill_values = NULL,
                      add_labels = TRUE,
                      labels_size = 3.5,
@@ -179,6 +185,7 @@ gglikert <- function(data,
       sort = sort,
       sort_method = sort_method,
       sort_prop_include_center = sort_prop_include_center,
+      factor_to_sort = factor_to_sort,
       exclude_fill_values = exclude_fill_values
     )
 
@@ -354,6 +361,7 @@ gglikert_data <- function(data,
                           sort = c("none", "ascending", "descending"),
                           sort_method = c("prop", "mean", "median"),
                           sort_prop_include_center = TRUE,
+                          factor_to_sort = ".question",
                           exclude_fill_values = NULL) {
   rlang::check_installed("broom.helpers")
   rlang::check_installed("labelled")
@@ -412,7 +420,7 @@ gglikert_data <- function(data,
     forcats::fct_inorder()
 
   if (sort == "ascending" && sort_method == "prop") {
-    data$.question <- data$.question %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -424,7 +432,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "prop") {
-    data$.question <- data$.question %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -436,7 +444,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "mean") {
-    data$.question <- data$.question %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -447,7 +455,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "mean") {
-    data$.question <- data$.question %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -458,7 +466,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "median") {
-    data$.question <- data$.question %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -469,7 +477,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "median") {
-    data$.question <- data$.question %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -565,6 +573,7 @@ gglikert_stacked <- function(data,
                              sort = c("none", "ascending", "descending"),
                              sort_method = c("prop", "mean", "median"),
                              sort_prop_include_center = FALSE,
+                             factor_to_sort = ".question",
                              add_labels = TRUE,
                              labels_size = 3.5,
                              labels_color = "auto",
@@ -584,6 +593,7 @@ gglikert_stacked <- function(data,
       sort = sort,
       sort_method = sort_method,
       sort_prop_include_center = sort_prop_include_center,
+      factor_to_sort = factor_to_sort,
       exclude_fill_values = NULL
     )
 
