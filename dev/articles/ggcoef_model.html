@@ -404,13 +404,13 @@ regression generate a set of terms for each of their components. You can
 use <code><a href="../reference/ggcoef_model.html">ggcoef_multicomponents()</a></code> which is similar to
 <code><a href="../reference/ggcoef_model.html">ggcoef_multinom()</a></code>.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/atahk/pscl" class="external-link">pscl</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Classes and Methods for R developed in the</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atahk/pscl" class="external-link">pscl</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Classes and Methods for R originally developed in the</span></span>
 <span><span class="co">#&gt; Political Science Computational Laboratory</span></span>
 <span><span class="co">#&gt; Department of Political Science</span></span>
-<span><span class="co">#&gt; Stanford University</span></span>
-<span><span class="co">#&gt; Simon Jackman</span></span>
-<span><span class="co">#&gt; hurdle and zeroinfl functions by Achim Zeileis</span></span>
+<span><span class="co">#&gt; Stanford University (2002-2015),</span></span>
+<span><span class="co">#&gt; by and under the direction of Simon Jackman.</span></span>
+<span><span class="co">#&gt; hurdle and zeroinfl functions by Achim Zeileis.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bioChemists"</span>, package <span class="op">=</span> <span class="st">"pscl"</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pscl/man/zeroinfl.html" class="external-link">zeroinfl</a></span><span class="op">(</span><span class="va">art</span> <span class="op">~</span> <span class="va">fem</span> <span class="op">*</span> <span class="va">mar</span> <span class="op">|</span> <span class="va">fem</span> <span class="op">+</span> <span class="va">mar</span>, data <span class="op">=</span> <span class="va">bioChemists</span><span class="op">)</span></span>
 <span></span>
