@@ -20,12 +20,13 @@ hex_bw <- function(hex_code) {
     ) %>%
     unlist() %>%
     matrix(ncol = length(hex_code), byrow = FALSE) %>%
-    sweep(., MARGIN = 1, STATS = c(0.2126, 0.7152, 0.0722), FUN = `*`) %>%
-    apply(., MARGIN = 2, FUN = sum)
+    sweep(MARGIN = 1, STATS = c(0.2126, 0.7152, 0.0722), FUN = `*`) %>%
+    apply(MARGIN = 2, FUN = sum)
 
-  bw <- ifelse(rgb_conv > 0.2, # 0.179 in the original code
-               "#000000",
-               "#ffffff"
+  bw <- ifelse(
+    rgb_conv > 0.2, # 0.179 in the original code
+    "#000000",
+    "#ffffff"
   )
 
   bw[is.na(hex_code)] <- "#ffffff"
