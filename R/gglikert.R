@@ -35,7 +35,8 @@
 #' see [position_likert()]
 #' @param add_labels should percentage labels be added to the plot?
 #' @param labels_size size of the percentage labels
-#' @param labels_color color of the percentage labels
+#' @param labels_color color of the percentage labels (`"auto"` to use
+#' `hex_bw()` to determine a font color based on background color)
 #' @param labels_accuracy accuracy of the percentages, see
 #' [scales::label_percent()]
 #' @param labels_hide_below if provided, values below will be masked, see
@@ -152,7 +153,7 @@ gglikert <- function(data,
                      exclude_fill_values = NULL,
                      add_labels = TRUE,
                      labels_size = 3.5,
-                     labels_color = "black",
+                     labels_color = "auto",
                      labels_accuracy = 1,
                      labels_hide_below = .05,
                      add_totals = TRUE,
@@ -213,7 +214,28 @@ gglikert <- function(data,
       width = width
     )
 
-  if (add_labels) {
+  if (add_labels && labels_color == "auto") {
+    p <- p +
+      geom_text(
+        mapping = aes(
+          label = label_percent_abs(
+            hide_below = labels_hide_below,
+            accuracy = labels_accuracy
+          )(after_stat(prop)),
+          color = after_scale(hex_bw(.data$fill))
+        ),
+        stat = StatProp,
+        complete = "fill",
+        position = position_likert(
+          vjust = .5,
+          reverse = reverse_likert,
+          exclude_fill_values = exclude_fill_values
+        ),
+        size = labels_size
+      )
+  }
+
+  if (add_labels && labels_color != "auto") {
     p <- p +
       geom_text(
         mapping = aes(
@@ -545,7 +567,7 @@ gglikert_stacked <- function(data,
                              sort_prop_include_center = FALSE,
                              add_labels = TRUE,
                              labels_size = 3.5,
-                             labels_color = "black",
+                             labels_color = "auto",
                              labels_accuracy = 1,
                              labels_hide_below = .05,
                              add_median_line = FALSE,
@@ -594,7 +616,27 @@ gglikert_stacked <- function(data,
       width = width
     )
 
-  if (add_labels) {
+  if (add_labels && labels_color == "auto") {
+    p <- p +
+      geom_text(
+        mapping = aes(
+          label = label_percent_abs(
+            hide_below = labels_hide_below,
+            accuracy = labels_accuracy
+          )(after_stat(prop)),
+          color = after_scale(hex_bw(.data$fill))
+        ),
+        stat = StatProp,
+        complete = "fill",
+        position = position_fill(
+          vjust = .5,
+          reverse = reverse_fill
+        ),
+        size = labels_size
+      )
+  }
+
+  if (add_labels && labels_color != "auto") {
     p <- p +
       geom_text(
         mapping = aes(
