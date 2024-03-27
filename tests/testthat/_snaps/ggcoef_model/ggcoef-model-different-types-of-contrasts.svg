@@ -155,7 +155,6 @@
 <text x='415.97' y='529.04' text-anchor='middle' style='font-size: 11.00px; font-weight: bold; font-family: sans;' textLength='22.63px' lengthAdjust='spacingAndGlyphs'>Beta</text>
 <rect x='347.63' y='542.28' width='136.69' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='358.59' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='367.23' cy='556.40' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
 <rect x='424.03' y='547.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <circle cx='432.67' cy='556.40' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
 <text x='381.35' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>

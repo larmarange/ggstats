@@ -384,7 +384,6 @@
 <rect x='210.04' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <circle cx='218.68' cy='550.92' r='3.55' style='stroke-width: 2.83; stroke: none; fill: #000000;' />
 <rect x='275.47' y='542.28' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='284.11' cy='550.92' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
 <text x='232.79' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
 <text x='298.23' y='553.95' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
 <text x='10.96' y='311.22' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='52.83px' lengthAdjust='spacingAndGlyphs'>precision</text>

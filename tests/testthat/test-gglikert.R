@@ -1,4 +1,4 @@
-test_that("gglikert)", {
+test_that("gglikert()", {
   skip_on_cran()
   skip_if_not_installed("labelled")
   skip_if_not_installed("ggplot2")
@@ -176,8 +176,18 @@ test_that("gglikert)", {
   )
 
   vdiffr::expect_doppelganger(
-    "gglikert_stacked() labels_color",
+    "gglikert_stacked() labels_color red",
     gglikert_stacked(df, labels_color = "red")
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert_stacked() labels_color auto",
+    gglikert_stacked(df, labels_color = "auto")
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert_stacked() labels_color black",
+    gglikert_stacked(df, labels_color = "black")
   )
 
   df_group <- df
@@ -206,4 +216,11 @@ test_that("gglikert)", {
     "gglikert() facet_rows with group on y",
     gglikert(df_group, q1:q6, y = "group1", facet_rows = vars(.question))
   )
+})
+
+test_that("hex_bw()", {
+  expect_equal(hex_bw("#FFFFFF"), "#000000")
+  expect_equal(hex_bw("#BBBBBB"), "#000000")
+  expect_equal(hex_bw("#000000"), "#ffffff")
+  expect_equal(hex_bw("#444444"), "#ffffff")
 })

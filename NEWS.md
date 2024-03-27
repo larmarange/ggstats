@@ -2,6 +2,13 @@
 
 # ggstats 0.5.1
 
+**Improvements**
+
+* new function `hex_bw()` to identify a suitable font color given a background
+  color (#57)
+* new default value `"auto"` for `labels_color` argument in `gglikert()` and
+  `gglikert_stacked()` (using `hex_bw()`) (#57)
+
 **Bug fixes**
 
 * fix in `ggcoef_model()` and other similar functions:
@@ -11,7 +18,7 @@
 
 **Improvements**
 
-* New options `labels_color` and `totals_color` in `gglikert()` and
+* new options `labels_color` and `totals_color` in `gglikert()` and
   `gglikert_stacked()` (#43)
 
 **Bug fixes**
