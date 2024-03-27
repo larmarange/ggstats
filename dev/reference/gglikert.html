@@ -84,10 +84,11 @@
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
 <span>  sort_prop_include_center <span class="op">=</span> <span class="va">totals_include_center</span>,</span>
+<span>  factor_to_sort <span class="op">=</span> <span class="st">".question"</span>,</span>
 <span>  exclude_fill_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  add_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
-<span>  labels_color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -114,6 +115,7 @@
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
 <span>  sort_prop_include_center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  factor_to_sort <span class="op">=</span> <span class="st">".question"</span>,</span>
 <span>  exclude_fill_values <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -126,9 +128,10 @@
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
 <span>  sort_prop_include_center <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  factor_to_sort <span class="op">=</span> <span class="st">".question"</span>,</span>
 <span>  add_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
-<span>  labels_color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_median_line <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -146,19 +149,19 @@
 
 
 <dt>include</dt>
-<dd><p>variables to include, accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a>
+<dd><p>variables to include, accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a>
 syntax</p></dd>
 
 
 <dt>weights</dt>
 <dd><p>optional variable name of a weighting variable,
-accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
+accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
 
 
 <dt>y</dt>
 <dd><p>name of the variable to be plotted on <code>y</code> axis (relevant when
 <code>.question</code> is mapped to "facets, see examples),
-accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
+accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
 
 
 <dt>variable_labels</dt>
@@ -167,7 +170,9 @@ labels</p></dd>
 
 
 <dt>sort</dt>
-<dd><p>should variables be sorted?</p></dd>
+<dd><p>should the factor defined by <code>factor_to_sort</code> be sorted according
+to the answers (see <code>sort_method</code>)? One of "none" (default), "ascending" or
+"descending"</p></dd>
 
 
 <dt>sort_method</dt>
@@ -181,6 +186,13 @@ used the median and the majority judgment rule for tie-breaking.</p></dd>
 <dd><p>when sorting with <code>"prop"</code> and if the number
 of levels is uneven, should half of the central level be taken into account
 to compute the proportion?</p></dd>
+
+
+<dt>factor_to_sort</dt>
+<dd><p>name of the factor column to sort if <code>sort</code> is not
+equal to <code>"none"</code>; by default the list of questions passed to <code>include</code>;
+should be one factor column of the tibble returned by <code>gglikert_data()</code>;
+accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
 
 
 <dt>exclude_fill_values</dt>
@@ -198,7 +210,8 @@ see <code><a href="position_likert.html">position_likert()</a></code></p></dd>
 
 
 <dt>labels_color</dt>
-<dd><p>color of the percentage labels</p></dd>
+<dd><p>color of the percentage labels (<code>"auto"</code> to use
+<code><a href="hex_bw.html">hex_bw()</a></code> to determine a font color based on background color)</p></dd>
 
 
 <dt>labels_accuracy</dt>
