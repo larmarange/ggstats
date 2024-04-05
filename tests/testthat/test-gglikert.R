@@ -225,6 +225,7 @@ test_that("gglikert()", {
     "gglikert() with data_fun",
     gglikert(df_group, q1:q6, data_fun = f)
   )
+  expect_error(gglikert(df_group, data_fun = "text"))
 })
 
 test_that("hex_bw()", {
