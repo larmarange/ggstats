@@ -17,6 +17,7 @@ gglikert(
   sort_prop_include_center = totals_include_center,
   factor_to_sort = ".question",
   exclude_fill_values = NULL,
+  data_fun = NULL,
   add_labels = TRUE,
   labels_size = 3.5,
   labels_color = "auto",
@@ -47,7 +48,8 @@ gglikert_data(
   sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = TRUE,
   factor_to_sort = ".question",
-  exclude_fill_values = NULL
+  exclude_fill_values = NULL,
+  data_fun = NULL
 )
 
 gglikert_stacked(
@@ -60,6 +62,7 @@ gglikert_stacked(
   sort_method = c("prop", "mean", "median"),
   sort_prop_include_center = FALSE,
   factor_to_sort = ".question",
+  data_fun = NULL,
   add_labels = TRUE,
   labels_size = 3.5,
   labels_color = "auto",
@@ -109,6 +112,9 @@ accepts \link[dplyr:select]{tidy-select} syntax}
 \item{exclude_fill_values}{Vector of values that should not be displayed
 (but still taken into account for computing proportions),
 see \code{\link[=position_likert]{position_likert()}}}
+
+\item{data_fun}{for advanced usage, custom function to be applied to the
+generated dataset at the end of \code{gglikert_data()}}
 
 \item{add_labels}{should percentage labels be added to the plot?}
 
@@ -255,6 +261,13 @@ gglikert(df_group, q1:q6, facet_rows = vars(group))
 gglikert(df_group, q1:q6, facet_cols = vars(group))
 
 gglikert(df_group, q1:q6, y = "group", facet_rows = vars(.question))
+
+# Custom function to be applied on data
+f <- function(d) {
+  d$.question <- forcats::fct_relevel(d$.question, "q5", "q2")
+  d
+}
+gglikert(df, include = q1:q6, data_fun = f)
 }
 gglikert_stacked(df, q1:q6)
 

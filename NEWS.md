@@ -6,6 +6,8 @@
   color (#57)
 * new default value `"auto"` for `labels_color` argument in `gglikert()` and
   `gglikert_stacked()` (using `hex_bw()`) (#57)
+* new argument `data_fun` for `gglikert()`, `gglikert_data()` and
+  `gglikert_stacked()` (#60)
 
 # ggstats 0.5.1
 

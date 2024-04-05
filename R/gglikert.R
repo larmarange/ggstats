@@ -39,6 +39,8 @@
 #' @param exclude_fill_values Vector of values that should not be displayed
 #' (but still taken into account for computing proportions),
 #' see [position_likert()]
+#' @param data_fun for advanced usage, custom function to be applied to the
+#' generated dataset at the end of `gglikert_data()`
 #' @param add_labels should percentage labels be added to the plot?
 #' @param labels_size size of the percentage labels
 #' @param labels_color color of the percentage labels (`"auto"` to use
@@ -147,6 +149,13 @@
 #' gglikert(df_group, q1:q6, facet_cols = vars(group))
 #'
 #' gglikert(df_group, q1:q6, y = "group", facet_rows = vars(.question))
+#'
+#' # Custom function to be applied on data
+#' f <- function(d) {
+#'   d$.question <- forcats::fct_relevel(d$.question, "q5", "q2")
+#'   d
+#' }
+#' gglikert(df, include = q1:q6, data_fun = f)
 #' }
 gglikert <- function(data,
                      include = dplyr::everything(),
@@ -158,6 +167,7 @@ gglikert <- function(data,
                      sort_prop_include_center = totals_include_center,
                      factor_to_sort = ".question",
                      exclude_fill_values = NULL,
+                     data_fun = NULL,
                      add_labels = TRUE,
                      labels_size = 3.5,
                      labels_color = "auto",
@@ -187,7 +197,8 @@ gglikert <- function(data,
       sort_method = sort_method,
       sort_prop_include_center = sort_prop_include_center,
       factor_to_sort = {{ factor_to_sort }},
-      exclude_fill_values = exclude_fill_values
+      exclude_fill_values = exclude_fill_values,
+      data_fun = data_fun
     )
 
   y <- broom.helpers::.select_to_varnames(
@@ -363,7 +374,8 @@ gglikert_data <- function(data,
                           sort_method = c("prop", "mean", "median"),
                           sort_prop_include_center = TRUE,
                           factor_to_sort = ".question",
-                          exclude_fill_values = NULL) {
+                          exclude_fill_values = NULL,
+                          data_fun = NULL) {
   rlang::check_installed("broom.helpers")
   rlang::check_installed("labelled")
 
@@ -496,6 +508,12 @@ gglikert_data <- function(data,
       )
   }
 
+  if (!is.null(data_fun)) {
+    if (!is.function(data_fun))
+      cli::cli_abort("{arg data_fun} should be a function.")
+    data <- data_fun(data)
+  }
+
   data
 }
 
@@ -582,6 +600,7 @@ gglikert_stacked <- function(data,
                              sort_method = c("prop", "mean", "median"),
                              sort_prop_include_center = FALSE,
                              factor_to_sort = ".question",
+                             data_fun = NULL,
                              add_labels = TRUE,
                              labels_size = 3.5,
                              labels_color = "auto",
@@ -602,7 +621,8 @@ gglikert_stacked <- function(data,
       sort_method = sort_method,
       sort_prop_include_center = sort_prop_include_center,
       factor_to_sort = {{ factor_to_sort }},
-      exclude_fill_values = NULL
+      exclude_fill_values = NULL,
+      data_fun = data_fun
     )
 
   y <- broom.helpers::.select_to_varnames(
