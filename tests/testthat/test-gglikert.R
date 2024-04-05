@@ -216,6 +216,15 @@ test_that("gglikert()", {
     "gglikert() facet_rows with group on y",
     gglikert(df_group, q1:q6, y = "group1", facet_rows = vars(.question))
   )
+
+  f <- function(d) {
+    d$.question <- forcats::fct_relevel(d$.question, "q5", "q2")
+    d
+  }
+  vdiffr::expect_doppelganger(
+    "gglikert() with data_fun",
+    gglikert(df_group, q1:q6, data_fun = f)
+  )
 })
 
 test_that("hex_bw()", {
