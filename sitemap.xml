@@ -52,6 +52,9 @@
     <loc>https://larmarange.github.io/ggstats/reference/ggsurvey.html</loc>
   </url>
   <url>
+    <loc>https://larmarange.github.io/ggstats/reference/hex_bw.html</loc>
+  </url>
+  <url>
     <loc>https://larmarange.github.io/ggstats/reference/index.html</loc>
   </url>
   <url>
@@ -62,6 +65,9 @@
   </url>
   <url>
     <loc>https://larmarange.github.io/ggstats/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://larmarange.github.io/ggstats/reference/round_any.html</loc>
   </url>
   <url>
     <loc>https://larmarange.github.io/ggstats/reference/signif_stars.html</loc>

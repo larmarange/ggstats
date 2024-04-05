@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -84,10 +84,12 @@
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
 <span>  sort_prop_include_center <span class="op">=</span> <span class="va">totals_include_center</span>,</span>
+<span>  factor_to_sort <span class="op">=</span> <span class="st">".question"</span>,</span>
 <span>  exclude_fill_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  data_fun <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  add_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
-<span>  labels_color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -114,7 +116,9 @@
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
 <span>  sort_prop_include_center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  exclude_fill_values <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  factor_to_sort <span class="op">=</span> <span class="st">".question"</span>,</span>
+<span>  exclude_fill_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  data_fun <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">gglikert_stacked</span><span class="op">(</span></span>
@@ -126,9 +130,11 @@
 <span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
 <span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
 <span>  sort_prop_include_center <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  factor_to_sort <span class="op">=</span> <span class="st">".question"</span>,</span>
+<span>  data_fun <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  add_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
-<span>  labels_color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_median_line <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -146,19 +152,19 @@
 
 
 <dt>include</dt>
-<dd><p>variables to include, accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a>
+<dd><p>variables to include, accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a>
 syntax</p></dd>
 
 
 <dt>weights</dt>
 <dd><p>optional variable name of a weighting variable,
-accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
+accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
 
 
 <dt>y</dt>
 <dd><p>name of the variable to be plotted on <code>y</code> axis (relevant when
 <code>.question</code> is mapped to "facets, see examples),
-accept <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
+accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
 
 
 <dt>variable_labels</dt>
@@ -167,7 +173,9 @@ labels</p></dd>
 
 
 <dt>sort</dt>
-<dd><p>should variables be sorted?</p></dd>
+<dd><p>should the factor defined by <code>factor_to_sort</code> be sorted according
+to the answers (see <code>sort_method</code>)? One of "none" (default), "ascending" or
+"descending"</p></dd>
 
 
 <dt>sort_method</dt>
@@ -183,10 +191,22 @@ of levels is uneven, should half of the central level be taken into account
 to compute the proportion?</p></dd>
 
 
+<dt>factor_to_sort</dt>
+<dd><p>name of the factor column to sort if <code>sort</code> is not
+equal to <code>"none"</code>; by default the list of questions passed to <code>include</code>;
+should be one factor column of the tibble returned by <code>gglikert_data()</code>;
+accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidy-select</a> syntax</p></dd>
+
+
 <dt>exclude_fill_values</dt>
 <dd><p>Vector of values that should not be displayed
 (but still taken into account for computing proportions),
 see <code><a href="position_likert.html">position_likert()</a></code></p></dd>
+
+
+<dt>data_fun</dt>
+<dd><p>for advanced usage, custom function to be applied to the
+generated dataset at the end of <code>gglikert_data()</code></p></dd>
 
 
 <dt>add_labels</dt>
@@ -198,7 +218,8 @@ see <code><a href="position_likert.html">position_likert()</a></code></p></dd>
 
 
 <dt>labels_color</dt>
-<dd><p>color of the percentage labels</p></dd>
+<dd><p>color of the percentage labels (<code>"auto"</code> to use
+<code><a href="hex_bw.html">hex_bw()</a></code> to determine a font color based on background color)</p></dd>
 
 
 <dt>labels_accuracy</dt>
@@ -400,17 +421,25 @@ be considered. You can also pass custom variables labels with the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">gglikert</span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, y <span class="op">=</span> <span class="st">"group"</span>, facet_rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">.question</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gglikert-13.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Custom function to be applied on data</span></span></span>
+<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">d</span><span class="op">$</span><span class="va">.question</span> <span class="op">&lt;-</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html" class="external-link">fct_relevel</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">.question</span>, <span class="st">"q5"</span>, <span class="st">"q2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">d</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="fu">gglikert</span><span class="op">(</span><span class="va">df</span>, include <span class="op">=</span> <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, data_fun <span class="op">=</span> <span class="va">f</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gglikert-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="fu">gglikert_stacked</span><span class="op">(</span><span class="va">df</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gglikert-14.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gglikert-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">gglikert_stacked</span><span class="op">(</span><span class="va">df</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, add_median_line <span class="op">=</span> <span class="cn">TRUE</span>, sort <span class="op">=</span> <span class="st">"asc"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gglikert-15.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gglikert-16.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">gglikert_stacked</span><span class="op">(</span><span class="va">df_group</span>, <span class="va">q1</span><span class="op">:</span><span class="va">q6</span>, y <span class="op">=</span> <span class="st">"group"</span>, add_median_line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">.question</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="gglikert-16.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="gglikert-17.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
