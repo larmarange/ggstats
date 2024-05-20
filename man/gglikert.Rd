@@ -13,10 +13,11 @@ gglikert(
   y = ".question",
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
-  sort_method = c("prop", "mean", "median"),
+  sort_method = c("prop", "prop_lower", "mean", "median"),
   sort_prop_include_center = totals_include_center,
   factor_to_sort = ".question",
   exclude_fill_values = NULL,
+  cutoff = NULL,
   data_fun = NULL,
   add_labels = TRUE,
   labels_size = 3.5,
@@ -45,10 +46,11 @@ gglikert_data(
   weights = NULL,
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
-  sort_method = c("prop", "mean", "median"),
+  sort_method = c("prop", "prop_lower", "mean", "median"),
   sort_prop_include_center = TRUE,
   factor_to_sort = ".question",
   exclude_fill_values = NULL,
+  cutoff = NULL,
   data_fun = NULL
 )
 
@@ -59,7 +61,7 @@ gglikert_stacked(
   y = ".question",
   variable_labels = NULL,
   sort = c("none", "ascending", "descending"),
-  sort_method = c("prop", "mean", "median"),
+  sort_method = c("prop", "prop_lower", "mean", "median"),
   sort_prop_include_center = FALSE,
   factor_to_sort = ".question",
   data_fun = NULL,
@@ -96,7 +98,8 @@ to the answers (see \code{sort_method})? One of "none" (default), "ascending" or
 "descending"}
 
 \item{sort_method}{method used to sort the variables: \code{"prop"} sort according
-to the proportion of answers higher than the centered level, \code{"mean"}
+to the proportion of answers higher than the centered level, \code{"prop_lower"}
+according to the proportion lower than the centered level,  \code{"mean"}
 considers answer as a score and sort according to the mean score, \code{"median"}
 used the median and the majority judgment rule for tie-breaking.}
 
@@ -112,6 +115,14 @@ accepts \link[dplyr:select]{tidy-select} syntax}
 \item{exclude_fill_values}{Vector of values that should not be displayed
 (but still taken into account for computing proportions),
 see \code{\link[=position_likert]{position_likert()}}}
+
+\item{cutoff}{number of modalities to be displayed negatively (i.e. on the
+left of the x axis or the bottom of the y axis), could be a decimal value:
+\code{2} to display negatively the two first modalities, \code{2.5} to display
+negatively the two first modalities and half of the third, \code{2.2} to display
+negatively the two first modalities and a fifth of the third (see examples).
+By default (\code{NULL}), it will be equal to the number of modalities divided
+by 2, i.e. it will be centered.}
 
 \item{data_fun}{for advanced usage, custom function to be applied to the
 generated dataset at the end of \code{gglikert_data()}}
@@ -210,7 +221,8 @@ df <-
 
 gglikert(df)
 
-gglikert(df, include = q1:3)
+gglikert(df, include = q1:3) +
+  scale_fill_likert(pal = scales::brewer_pal(palette = "PRGn"))
 
 gglikert(df, sort = "ascending")
 

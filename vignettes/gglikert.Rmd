@@ -200,6 +200,24 @@ gglikert(df, y_label_wrap = 20)
 gglikert(df, y_label_wrap = 200)
 ```
 
+## Custom center
+
+By default, Likert plots will be centered, i.e. displaying the same number of modalities on each side on the graph. When the number of modalities is odd, half of the "central" modality is displayed negatively et half positively.
+
+It is possible to control where to center the graph, using the `cutoff` argument, representting the number of modalities to be displayed negatively: `2` to display the two fist modalities negatively and the others positively; `2.25` to display the two first modalities and a quarter of the third negatively.
+
+```{r}
+gglikert(df, cutoff = 0)
+gglikert(df, cutoff = 1)
+gglikert(df, cutoff = 1.25)
+gglikert(df, cutoff = 1.75)
+gglikert(df, cutoff = 2)
+gglikert(df, cutoff = NULL)
+gglikert(df, cutoff = 4)
+gglikert(df, cutoff = 5)
+```
+
+
 ## Removing certain values
 
 Sometimes, the dataset could contain certain values that you should not be displayed.

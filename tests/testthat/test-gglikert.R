@@ -83,6 +83,16 @@ test_that("gglikert()", {
   )
 
   vdiffr::expect_doppelganger(
+    "gglikert() sort prop_lower asc",
+    gglikert(df, sort = "asc", sort_method = "prop_lower")
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() sort prop_lower desc",
+    gglikert(df, sort = "desc", sort_method = "prop_lower")
+  )
+
+  vdiffr::expect_doppelganger(
     "gglikert() sort mean asc",
     gglikert(df, sort = "asc", sort_method = "mean")
   )
@@ -163,6 +173,26 @@ test_that("gglikert()", {
         ),
         y_label_wrap = 20
       )
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() cutoff 0",
+    gglikert(df, cutoff = 0)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() cutoff 1",
+    gglikert(df, cutoff = 1)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() cutoff 1.5",
+    gglikert(df, cutoff = 1.5)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() cutoff 5",
+    gglikert(df, cutoff = 5)
   )
 
   vdiffr::expect_doppelganger(

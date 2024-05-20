@@ -26,7 +26,8 @@
 #' to the answers (see `sort_method`)? One of "none" (default), "ascending" or
 #' "descending"
 #' @param sort_method method used to sort the variables: `"prop"` sort according
-#' to the proportion of answers higher than the centered level, `"mean"`
+#' to the proportion of answers higher than the centered level, `"prop_lower"`
+#' according to the proportion lower than the centered level,  `"mean"`
 #' considers answer as a score and sort according to the mean score, `"median"`
 #' used the median and the majority judgment rule for tie-breaking.
 #' @param sort_prop_include_center when sorting with `"prop"` and if the number
@@ -39,6 +40,13 @@
 #' @param exclude_fill_values Vector of values that should not be displayed
 #' (but still taken into account for computing proportions),
 #' see [position_likert()]
+#' @param cutoff number of modalities to be displayed negatively (i.e. on the
+#' left of the x axis or the bottom of the y axis), could be a decimal value:
+#' `2` to display negatively the two first modalities, `2.5` to display
+#' negatively the two first modalities and half of the third, `2.2` to display
+#' negatively the two first modalities and a fifth of the third (see examples).
+#' By default (`NULL`), it will be equal to the number of modalities divided
+#' by 2, i.e. it will be centered.
 #' @param data_fun for advanced usage, custom function to be applied to the
 #' generated dataset at the end of `gglikert_data()`
 #' @param add_labels should percentage labels be added to the plot?
@@ -98,7 +106,8 @@
 #'
 #' gglikert(df)
 #'
-#' gglikert(df, include = q1:3)
+#' gglikert(df, include = q1:3) +
+#'   scale_fill_likert(pal = scales::brewer_pal(palette = "PRGn"))
 #'
 #' gglikert(df, sort = "ascending")
 #'
@@ -163,10 +172,11 @@ gglikert <- function(data,
                      y = ".question",
                      variable_labels = NULL,
                      sort = c("none", "ascending", "descending"),
-                     sort_method = c("prop", "mean", "median"),
+                     sort_method = c("prop", "prop_lower", "mean", "median"),
                      sort_prop_include_center = totals_include_center,
                      factor_to_sort = ".question",
                      exclude_fill_values = NULL,
+                     cutoff = NULL,
                      data_fun = NULL,
                      add_labels = TRUE,
                      labels_size = 3.5,
@@ -198,6 +208,7 @@ gglikert <- function(data,
       sort_prop_include_center = sort_prop_include_center,
       factor_to_sort = {{ factor_to_sort }},
       exclude_fill_values = exclude_fill_values,
+      cutoff = cutoff,
       data_fun = data_fun
     )
 
@@ -226,7 +237,8 @@ gglikert <- function(data,
     geom_bar(
       position = position_likert(
         reverse = reverse_likert,
-        exclude_fill_values = exclude_fill_values
+        exclude_fill_values = exclude_fill_values,
+        cutoff = cutoff
       ),
       stat = StatProp,
       complete = "fill",
@@ -248,7 +260,8 @@ gglikert <- function(data,
         position = position_likert(
           vjust = .5,
           reverse = reverse_likert,
-          exclude_fill_values = exclude_fill_values
+          exclude_fill_values = exclude_fill_values,
+          cutoff = cutoff
         ),
         size = labels_size
       )
@@ -268,7 +281,8 @@ gglikert <- function(data,
         position = position_likert(
           vjust = .5,
           reverse = reverse_likert,
-          exclude_fill_values = exclude_fill_values
+          exclude_fill_values = exclude_fill_values,
+          cutoff = cutoff
         ),
         size = labels_size,
         color = labels_color
@@ -283,25 +297,29 @@ gglikert <- function(data,
           .data$.answer,
           .data$.weights,
           include_center = TRUE,
-          exclude_fill_values = exclude_fill_values
+          exclude_fill_values = exclude_fill_values,
+          cutoff = cutoff
         ),
         prop_higher = .prop_higher(
           .data$.answer,
           .data$.weights,
           include_center = TRUE,
-          exclude_fill_values = exclude_fill_values
+          exclude_fill_values = exclude_fill_values,
+          cutoff = cutoff
         ),
         label_lower = .prop_lower(
           .data$.answer,
           .data$.weights,
           include_center = totals_include_center,
-          exclude_fill_values = exclude_fill_values
+          exclude_fill_values = exclude_fill_values,
+          cutoff = cutoff
         ),
         label_higher = .prop_higher(
           .data$.answer,
           .data$.weights,
           include_center = totals_include_center,
-          exclude_fill_values = exclude_fill_values
+          exclude_fill_values = exclude_fill_values,
+          cutoff = cutoff
         )
       ) %>%
       dplyr::ungroup() %>%
@@ -352,11 +370,8 @@ gglikert <- function(data,
     theme(
       legend.position = "bottom",
       panel.grid.major.y = element_blank()
-    )
-
-  if (length(levels(data$.answer)) <= 11) {
-    p <- p + scale_fill_brewer(palette = "BrBG")
-  }
+    ) +
+    scale_fill_likert(cutoff = cutoff)
 
   p + facet_grid(
     rows = facet_rows, cols = facet_cols,
@@ -371,10 +386,13 @@ gglikert_data <- function(data,
                           weights = NULL,
                           variable_labels = NULL,
                           sort = c("none", "ascending", "descending"),
-                          sort_method = c("prop", "mean", "median"),
+                          sort_method = c(
+                            "prop", "prop_lower", "mean", "median"
+                          ),
                           sort_prop_include_center = TRUE,
                           factor_to_sort = ".question",
                           exclude_fill_values = NULL,
+                          cutoff = NULL,
                           data_fun = NULL) {
   rlang::check_installed("broom.helpers")
   rlang::check_installed("labelled")
@@ -447,6 +465,7 @@ gglikert_data <- function(data,
         .fun = .prop_higher,
         include_center = sort_prop_include_center,
         exclude_fill_values = exclude_fill_values,
+        cutoff = cutoff,
         .na_rm = FALSE,
         .desc = FALSE
       )
@@ -459,6 +478,33 @@ gglikert_data <- function(data,
         .fun = .prop_higher,
         include_center = sort_prop_include_center,
         exclude_fill_values = exclude_fill_values,
+        cutoff = cutoff,
+        .na_rm = FALSE,
+        .desc = TRUE
+      )
+  }
+  if (sort == "ascending" && sort_method == "prop_lower") {
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .prop_lower,
+        include_center = sort_prop_include_center,
+        exclude_fill_values = exclude_fill_values,
+        cutoff = cutoff,
+        .na_rm = FALSE,
+        .desc = FALSE
+      )
+  }
+  if (sort == "descending" && sort_method == "prop_lower") {
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .prop_lower,
+        include_center = sort_prop_include_center,
+        exclude_fill_values = exclude_fill_values,
+        cutoff = cutoff,
         .na_rm = FALSE,
         .desc = TRUE
       )
@@ -520,7 +566,8 @@ gglikert_data <- function(data,
 # Compute the proportion being higher than the center
 # Option to include the centre (if yes, only half taken into account)
 .prop_higher <- function(x, w, include_center = TRUE,
-                         exclude_fill_values = NULL) {
+                         exclude_fill_values = NULL,
+                         cutoff = NULL) {
   N <- sum(as.integer(!is.na(x)) * w)
   if (!is.factor(x)) x <- factor(x)
   if (!is.null(exclude_fill_values)) {
@@ -528,16 +575,21 @@ gglikert_data <- function(data,
     l <- l[!l %in% exclude_fill_values]
     x <- factor(x, levels = l)
   }
-  m <- length(levels(x)) / 2 + 1 / 2
+  if (is.null(cutoff)) cutoff <- length(levels(x)) / 2
   x <- as.numeric(x)
-  ic <- ifelse(include_center, 1 / 2, 0)
-  sum(w * as.integer(x > m), w * ic * as.integer(x == m), na.rm = TRUE) / N
+  m <- ceiling(cutoff)
+  sum(
+    w * as.integer(x >= cutoff + 1),
+    include_center * w * (x == m) * (m - cutoff),
+    na.rm = TRUE
+  ) / N
 }
 
 # Compute the proportion being higher than the center
 # Option to include the centre (if yes, only half taken into account)
 .prop_lower <- function(x, w, include_center = TRUE,
-                        exclude_fill_values = NULL) {
+                        exclude_fill_values = NULL,
+                        cutoff = NULL) {
   N <- sum(as.integer(!is.na(x)) * w)
   if (!is.factor(x)) x <- factor(x)
   if (!is.null(exclude_fill_values)) {
@@ -545,10 +597,14 @@ gglikert_data <- function(data,
     l <- l[!l %in% exclude_fill_values]
     x <- factor(x, levels = l)
   }
-  m <- length(levels(x)) / 2 + 1 / 2
+  if (is.null(cutoff)) cutoff <- length(levels(x)) / 2
   x <- as.numeric(x)
-  ic <- ifelse(include_center, 1 / 2, 0)
-  sum(w * as.integer(x < m), ic * w * as.integer(x == m), na.rm = TRUE) / N
+  m <- ceiling(cutoff)
+  sum(
+    w * as.integer(x <= cutoff),
+    include_center * w * (x == m) * (cutoff %% 1),
+    na.rm = TRUE
+  ) / N
 }
 
 #' @importFrom stats weighted.mean
@@ -597,7 +653,9 @@ gglikert_stacked <- function(data,
                              y = ".question",
                              variable_labels = NULL,
                              sort = c("none", "ascending", "descending"),
-                             sort_method = c("prop", "mean", "median"),
+                             sort_method = c(
+                               "prop", "prop_lower", "mean", "median"
+                             ),
                              sort_prop_include_center = FALSE,
                              factor_to_sort = ".question",
                              data_fun = NULL,
@@ -707,11 +765,8 @@ gglikert_stacked <- function(data,
     theme(
       legend.position = "bottom",
       panel.grid.major.y = element_blank()
-    )
-
-  if (length(levels(data$.answer)) <= 11) {
-    p <- p + scale_fill_brewer(palette = "BrBG")
-  }
+    ) +
+    scale_fill_extended()
 
   p
 }

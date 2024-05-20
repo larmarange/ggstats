@@ -20,6 +20,13 @@
 #' @param exclude_fill_values Vector of values from the variable associated with
 #'   the `fill` aesthetic that should not be displayed (but still taken into
 #'   account for computing proportions)
+#' @param cutoff number of modalities to be displayed negatively (i.e. on the
+#' left of the x axis or the bottom of the y axis), could be a decimal value:
+#' `2` to display negatively the two first modalities, `2.5` to display
+#' negatively the two first modalities and half of the third, `2.2` to display
+#' negatively the two first modalities and a fifth of the third (see examples).
+#' By default (`NULL`), it will be equal to the number of modalities divided
+#' by 2, i.e. it will be centered.
 #' @seealso See [ggplot2::position_stack()] and [ggplot2::position_fill()]
 #' @export
 #' @examples
@@ -29,26 +36,25 @@
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = "fill") +
 #'   scale_x_continuous(label = scales::label_percent()) +
-#'   scale_fill_brewer(palette = "PiYG") +
 #'   xlab("proportion")
 #'
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = "likert") +
 #'   scale_x_continuous(label = label_percent_abs()) +
-#'   scale_fill_brewer(palette = "PiYG") +
+#'   scale_fill_likert() +
 #'   xlab("proportion")
 #'
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = "stack") +
-#'   scale_fill_brewer(palette = "PiYG")
+#'   scale_fill_likert(pal = scales::brewer_pal(palette = "PiYG"))
 #'
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = "likert_count") +
 #'   scale_x_continuous(label = label_number_abs()) +
-#'   scale_fill_brewer(palette = "PiYG")
+#'   scale_fill_likert()
 #'
 #' \donttest{
 #' # Reverse order -------------------------------------------------------------
@@ -57,7 +63,23 @@
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = position_likert(reverse = TRUE)) +
 #'   scale_x_continuous(label = label_percent_abs()) +
-#'   scale_fill_brewer(palette = "PiYG", direction = -1) +
+#'   scale_fill_likert() +
+#'   xlab("proportion")
+#'
+#' # Custom center -------------------------------------------------------------
+#'
+#' ggplot(diamonds) +
+#'   aes(y = clarity, fill = cut) +
+#'   geom_bar(position = position_likert(cutoff = 1)) +
+#'   scale_x_continuous(label = label_percent_abs()) +
+#'   scale_fill_likert(cutoff = 1) +
+#'   xlab("proportion")
+#'
+#' ggplot(diamonds) +
+#'   aes(y = clarity, fill = cut) +
+#'   geom_bar(position = position_likert(cutoff = 3.75)) +
+#'   scale_x_continuous(label = label_percent_abs()) +
+#'   scale_fill_likert(cutoff = 3.75) +
 #'   xlab("proportion")
 #'
 #' # Missing items -------------------------------------------------------------
@@ -70,13 +92,13 @@
 #' ggplot(d) +
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = "likert") +
-#'   scale_fill_brewer(palette = "PiYG")
+#'   scale_fill_likert()
 #'
 #' # use stat_prop() with `complete = "fill"` to fix it
 #' ggplot(d) +
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = "likert", stat = "prop", complete = "fill") +
-#'   scale_fill_brewer(palette = "PiYG")
+#'   scale_fill_likert()
 #'
 #' # Add labels ----------------------------------------------------------------
 #'
@@ -95,7 +117,7 @@
 #'     position = position_likert(vjust = .5)
 #'   ) +
 #'   scale_x_continuous(label = label_percent_abs()) +
-#'   scale_fill_brewer(palette = "PiYG", direction = -1) +
+#'   scale_fill_likert() +
 #'   xlab("proportion")
 #'
 #' # Do not display specific fill values ---------------------------------------
@@ -105,18 +127,20 @@
 #'   aes(y = clarity, fill = cut) +
 #'   geom_bar(position = position_likert(exclude_fill_values = "Very Good")) +
 #'   scale_x_continuous(label = label_percent_abs()) +
-#'   scale_fill_brewer(palette = "PiYG") +
+#'   scale_fill_likert() +
 #'   xlab("proportion")
 #' }
 position_likert <- function(vjust = 1,
                             reverse = FALSE,
-                            exclude_fill_values = NULL) {
+                            exclude_fill_values = NULL,
+                            cutoff = NULL) {
   ggplot2::ggproto(
     NULL,
     PositionLikert,
     vjust = vjust,
     reverse = reverse,
-    exclude_fill_values = exclude_fill_values
+    exclude_fill_values = exclude_fill_values,
+    cutoff = cutoff
   )
 }
 
@@ -124,13 +148,15 @@ position_likert <- function(vjust = 1,
 #' @rdname position_likert
 position_likert_count <- function(vjust = 1,
                                   reverse = FALSE,
-                                  exclude_fill_values = NULL) {
+                                  exclude_fill_values = NULL,
+                                  cutoff = NULL) {
   ggplot2::ggproto(
     NULL,
     PositionLikertCount,
     vjust = vjust,
     reverse = reverse,
-    exclude_fill_values = exclude_fill_values
+    exclude_fill_values = exclude_fill_values,
+    cutoff = cutoff
   )
 }
 
@@ -143,6 +169,7 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
   vjust = 1,
   fill = TRUE,
   exclude_fill_values = NULL,
+  cutoff = NULL,
   reverse = FALSE,
   setup_params = function(self, data) {
     flipped_aes <- ggplot2::has_flipped_aes(data)
@@ -153,6 +180,7 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
       vjust = self$vjust,
       reverse = self$reverse,
       exclude_fill_values = self$exclude_fill_values,
+      cutoff = self$cutoff,
       flipped_aes = flipped_aes
     )
   },
@@ -199,7 +227,8 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
               vjust = params$vjust,
               fill = params$fill,
               reverse = params$reverse,
-              exclude_fill_values = params$exclude_fill_values
+              exclude_fill_values = params$exclude_fill_values,
+              cutoff = params$cutoff
             )
           }
         )
@@ -214,7 +243,8 @@ pos_likert <- function(df,
                        vjust = 1,
                        fill = FALSE,
                        reverse = FALSE,
-                       exclude_fill_values = NULL) {
+                       exclude_fill_values = NULL,
+                       cutoff = NULL) {
   if (reverse) {
     df <- df[nrow(df):1, ] # nolint
   }
@@ -238,13 +268,22 @@ pos_likert <- function(df,
   df$y <- (1 - vjust) * df$ymin + vjust * df$ymax
 
   # Now, we have to center the results
-  if (nrow(df) %% 2 == 0) {
-    y_adjust <- df[nrow(df) / 2, ]$ymax
+  if (is.null(cutoff))
+    cutoff <- nrow(df) / 2
+  if (cutoff < 0)
+    cli::cli_abort("{.arg cutoff} cannot be negative.")
+  if (cutoff > nrow(df))
+    cli::cli_abort(
+      "{.arg cutoff} cannot be higher than the number of modalities."
+    )
+  if (cutoff == nrow(df)) {
+    y_adjust <- df$ymax[cutoff]
+  } else if (cutoff < 1) {
+    y_adjust <- cutoff * df$ymax[1]
   } else {
-    y_adjust <- mean(c(
-      df[nrow(df) %/% 2, ]$ymax,
-      df[nrow(df) %/% 2 + 1, ]$ymax
-    ))
+    y_adjust <-
+      df$ymax[cutoff %/% 1] +
+      cutoff %% 1 * (df$ymax[cutoff %/% 1 + 1] - df$ymax[cutoff %/% 1])
   }
 
   df$y <- df$y - y_adjust
