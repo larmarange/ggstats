@@ -83,6 +83,16 @@ test_that("gglikert()", {
   )
 
   vdiffr::expect_doppelganger(
+    "gglikert() sort prop_lower asc",
+    gglikert(df, sort = "asc", sort_method = "prop_lower")
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() sort prop_lower desc",
+    gglikert(df, sort = "desc", sort_method = "prop_lower")
+  )
+
+  vdiffr::expect_doppelganger(
     "gglikert() sort mean asc",
     gglikert(df, sort = "asc", sort_method = "mean")
   )

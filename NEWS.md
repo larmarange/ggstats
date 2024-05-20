@@ -14,7 +14,8 @@
 * new argument `cutoff` for `gglikert()`, `position_likert()` and
   `scale_fill_likert()` (#64)
 * new helper `pal_extender()` and corresponding `scale_fill_extender()` and
-  `scale_colour_extender`
+  `scale_colour_extender()`
+* new sorting option `"prop_lower"` for `gglikert()` (#62)
 
 # ggstats 0.5.1
 

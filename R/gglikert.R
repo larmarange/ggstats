@@ -26,7 +26,8 @@
 #' to the answers (see `sort_method`)? One of "none" (default), "ascending" or
 #' "descending"
 #' @param sort_method method used to sort the variables: `"prop"` sort according
-#' to the proportion of answers higher than the centered level, `"mean"`
+#' to the proportion of answers higher than the centered level, `"prop_lower"`
+#' according to the proportion lower than the centered level,  `"mean"`
 #' considers answer as a score and sort according to the mean score, `"median"`
 #' used the median and the majority judgment rule for tie-breaking.
 #' @param sort_prop_include_center when sorting with `"prop"` and if the number
@@ -171,7 +172,7 @@ gglikert <- function(data,
                      y = ".question",
                      variable_labels = NULL,
                      sort = c("none", "ascending", "descending"),
-                     sort_method = c("prop", "mean", "median"),
+                     sort_method = c("prop", "prop_lower", "mean", "median"),
                      sort_prop_include_center = totals_include_center,
                      factor_to_sort = ".question",
                      exclude_fill_values = NULL,
@@ -385,7 +386,9 @@ gglikert_data <- function(data,
                           weights = NULL,
                           variable_labels = NULL,
                           sort = c("none", "ascending", "descending"),
-                          sort_method = c("prop", "mean", "median"),
+                          sort_method = c(
+                            "prop", "prop_lower", "mean", "median"
+                          ),
                           sort_prop_include_center = TRUE,
                           factor_to_sort = ".question",
                           exclude_fill_values = NULL,
@@ -473,6 +476,32 @@ gglikert_data <- function(data,
         data$.answer,
         data$.weights,
         .fun = .prop_higher,
+        include_center = sort_prop_include_center,
+        exclude_fill_values = exclude_fill_values,
+        cutoff = cutoff,
+        .na_rm = FALSE,
+        .desc = TRUE
+      )
+  }
+  if (sort == "ascending" && sort_method == "prop_lower") {
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .prop_lower,
+        include_center = sort_prop_include_center,
+        exclude_fill_values = exclude_fill_values,
+        cutoff = cutoff,
+        .na_rm = FALSE,
+        .desc = FALSE
+      )
+  }
+  if (sort == "descending" && sort_method == "prop_lower") {
+    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+      forcats::fct_reorder2(
+        data$.answer,
+        data$.weights,
+        .fun = .prop_lower,
         include_center = sort_prop_include_center,
         exclude_fill_values = exclude_fill_values,
         cutoff = cutoff,
@@ -624,7 +653,9 @@ gglikert_stacked <- function(data,
                              y = ".question",
                              variable_labels = NULL,
                              sort = c("none", "ascending", "descending"),
-                             sort_method = c("prop", "mean", "median"),
+                             sort_method = c(
+                               "prop", "prop_lower", "mean", "median"
+                             ),
                              sort_prop_include_center = FALSE,
                              factor_to_sort = ".question",
                              data_fun = NULL,
