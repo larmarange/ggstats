@@ -35,6 +35,10 @@ reference:
   contents:
   - starts_with("position_")
 
+- title: Additional scales for `ggplot2`
+  contents:
+  - starts_with("scales_")
+
 - title: Utilities
   contents:
   - ggsurvey
@@ -44,3 +48,4 @@ reference:
   - weighted.median
   - round_any
   - hex_bw
+  - pal_extender
