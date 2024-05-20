@@ -105,7 +105,8 @@
 #'
 #' gglikert(df)
 #'
-#' gglikert(df, include = q1:3)
+#' gglikert(df, include = q1:3) +
+#'   scale_fill_likert(pal = scales::brewer_pal(palette = "PRGn"))
 #'
 #' gglikert(df, sort = "ascending")
 #'
@@ -368,11 +369,8 @@ gglikert <- function(data,
     theme(
       legend.position = "bottom",
       panel.grid.major.y = element_blank()
-    )
-
-  if (length(levels(data$.answer)) <= 11) {
-    p <- p + scale_fill_brewer(palette = "BrBG")
-  }
+    ) +
+    scale_fill_likert(cutoff = cutoff)
 
   p + facet_grid(
     rows = facet_rows, cols = facet_cols,
@@ -736,11 +734,8 @@ gglikert_stacked <- function(data,
     theme(
       legend.position = "bottom",
       panel.grid.major.y = element_blank()
-    )
-
-  if (length(levels(data$.answer)) <= 11) {
-    p <- p + scale_fill_brewer(palette = "BrBG")
-  }
+    ) +
+    scale_fill_extended()
 
   p
 }

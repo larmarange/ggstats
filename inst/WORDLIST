@@ -1,6 +1,7 @@
 Baddeley
 CMD
 Codecov
+Colour
 DOI
 GGally
 Lifecycle
@@ -9,12 +10,15 @@ ORCID
 POSIXct
 behaviour
 colour
+colours
 dev
+geom's
 geoms
 ggplot
-htest
+ggproto
 labeller
 labelling
 resid
 th
 tibble
+unmapped
