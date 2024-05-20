@@ -10,6 +10,11 @@
   `gglikert_stacked()` (using `hex_bw()`) (#57)
 * new argument `data_fun` for `gglikert()`, `gglikert_data()` and
   `gglikert_stacked()` (#60)
+* new scale `scale_fill_likert()`
+* new argument `cutoff` for `gglikert()`, `position_likert()` and
+  `scale_fill_likert()` (#64)
+* new helper `pal_extender()` and corresponding `scale_fill_extender()` and
+  `scale_colour_extender`
 
 # ggstats 0.5.1
 
