@@ -166,6 +166,26 @@ test_that("gglikert()", {
   )
 
   vdiffr::expect_doppelganger(
+    "gglikert() cutoff 0",
+    gglikert(df, cutoff = 0)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() cutoff 1",
+    gglikert(df, cutoff = 1)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() cutoff 1.5",
+    gglikert(df, cutoff = 1.5)
+  )
+
+  vdiffr::expect_doppelganger(
+    "gglikert() cutoff 5",
+    gglikert(df, cutoff = 5)
+  )
+
+  vdiffr::expect_doppelganger(
     "gglikert_stacked()",
     gglikert_stacked(df)
   )
