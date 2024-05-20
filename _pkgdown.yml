@@ -37,7 +37,7 @@ reference:
 
 - title: Additional scales for `ggplot2`
   contents:
-  - starts_with("scales_")
+  - starts_with("scale_")
 
 - title: Utilities
   contents:
