@@ -63,26 +63,25 @@ ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = "fill") +
   scale_x_continuous(label = scales::label_percent()) +
-  scale_fill_brewer(palette = "PiYG") +
   xlab("proportion")
 
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = "likert") +
   scale_x_continuous(label = label_percent_abs()) +
-  scale_fill_brewer(palette = "PiYG") +
+  scale_fill_likert() +
   xlab("proportion")
 
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = "stack") +
-  scale_fill_brewer(palette = "PiYG")
+  scale_fill_likert(pal = scales::brewer_pal(palette = "PiYG"))
 
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = "likert_count") +
   scale_x_continuous(label = label_number_abs()) +
-  scale_fill_brewer(palette = "PiYG")
+  scale_fill_likert()
 
 \donttest{
 # Reverse order -------------------------------------------------------------
@@ -91,7 +90,7 @@ ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = position_likert(reverse = TRUE)) +
   scale_x_continuous(label = label_percent_abs()) +
-  scale_fill_brewer(palette = "PiYG", direction = -1) +
+  scale_fill_likert() +
   xlab("proportion")
 
 # Custom center -------------------------------------------------------------
@@ -100,14 +99,14 @@ ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = position_likert(cutoff = 1)) +
   scale_x_continuous(label = label_percent_abs()) +
-  scale_fill_brewer(palette = "PiYG", direction = -1) +
+  scale_fill_likert(cutoff = 1) +
   xlab("proportion")
 
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = position_likert(cutoff = 3.75)) +
   scale_x_continuous(label = label_percent_abs()) +
-  scale_fill_brewer(palette = "PiYG", direction = -1) +
+  scale_fill_likert(cutoff = 3.75) +
   xlab("proportion")
 
 # Missing items -------------------------------------------------------------
@@ -120,13 +119,13 @@ d <- d[!(d$cut \%in\% c("Fair", "Good") & d$clarity == "SI2"), ]
 ggplot(d) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = "likert") +
-  scale_fill_brewer(palette = "PiYG")
+  scale_fill_likert()
 
 # use stat_prop() with `complete = "fill"` to fix it
 ggplot(d) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = "likert", stat = "prop", complete = "fill") +
-  scale_fill_brewer(palette = "PiYG")
+  scale_fill_likert()
 
 # Add labels ----------------------------------------------------------------
 
@@ -145,7 +144,7 @@ ggplot(diamonds) +
     position = position_likert(vjust = .5)
   ) +
   scale_x_continuous(label = label_percent_abs()) +
-  scale_fill_brewer(palette = "PiYG", direction = -1) +
+  scale_fill_likert() +
   xlab("proportion")
 
 # Do not display specific fill values ---------------------------------------
@@ -155,7 +154,7 @@ ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = position_likert(exclude_fill_values = "Very Good")) +
   scale_x_continuous(label = label_percent_abs()) +
-  scale_fill_brewer(palette = "PiYG") +
+  scale_fill_likert() +
   xlab("proportion")
 }
 }

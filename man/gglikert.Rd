@@ -220,7 +220,8 @@ df <-
 
 gglikert(df)
 
-gglikert(df, include = q1:3)
+gglikert(df, include = q1:3) +
+  scale_fill_likert(pal = scales::brewer_pal(palette = "PRGn"))
 
 gglikert(df, sort = "ascending")
 
