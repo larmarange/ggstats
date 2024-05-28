@@ -1,4 +1,6 @@
 url: https://larmarange.github.io/ggstats/
+template:
+  bootstrap: 5
 
 development:
   mode: auto
