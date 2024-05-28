@@ -8,10 +8,6 @@ development:
 deploy:
   install_metadata: true
 
-template:
-  params:
-    bootswatch: flatly
-
 authors:
   Joseph Larmarange:
     href: "http://joseph.larmarange.net/"
