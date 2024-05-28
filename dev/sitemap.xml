@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://larmarange.github.io/ggstats/LICENSE.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/articles/ggcoef_model.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/articles/ggcoef_model.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/articles/gglikert.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/articles/gglikert.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/articles/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/articles/stat_cross.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/articles/stat_cross.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/articles/stat_prop.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/articles/stat_prop.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/articles/stat_weighted_mean.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/articles/stat_weighted_mean.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/authors.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/authors.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/news/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/news/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/augment_chisq_add_phi.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/augment_chisq_add_phi.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/geom_stripped_rows.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/geom_stripped_rows.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/ggcoef_model.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/ggcoef_model.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/gglikert.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/gglikert.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/ggstats-package.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/ggstats-package.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/ggsurvey.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/ggsurvey.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/hex_bw.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/hex_bw.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/index.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/label_number_abs.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/label_number_abs.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/pal_extender.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/pal_extender.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/position_likert.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/position_likert.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/reexports.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/reexports.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/round_any.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/round_any.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/scale_fill_likert.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/scale_fill_likert.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/signif_stars.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/signif_stars.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/stat_cross.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/stat_cross.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/stat_prop.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/stat_prop.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/stat_weighted_mean.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/stat_weighted_mean.html</loc>
   </url>
   <url>
-    <loc>https://larmarange.github.io/ggstats/reference/weighted.median.html</loc>
+    <loc>https://larmarange.github.io/ggstats/dev/reference/weighted.median.html</loc>
   </url>
 </urlset>
