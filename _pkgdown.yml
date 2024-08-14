@@ -40,6 +40,7 @@ reference:
 - title: Utilities
   contents:
   - ggsurvey
+  - symmetric_limits
   - signif_stars
   - augment_chisq_add_phi
   - label_number_abs
