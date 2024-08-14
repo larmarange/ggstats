@@ -217,6 +217,15 @@ gglikert(df, cutoff = 4)
 gglikert(df, cutoff = 5)
 ```
 
+## Symmetric x-axis
+
+Simply specify `symmetric = TRUE`.
+
+```{r}
+gglikert(df, cutoff = 1)
+gglikert(df, cutoff = 1, symmetric = TRUE)
+```
+
 
 ## Removing certain values
 
