@@ -186,6 +186,11 @@ test_that("gglikert()", {
   )
 
   vdiffr::expect_doppelganger(
+    "gglikert() cutoff 1 symmetric",
+    gglikert(df, cutoff = 1, symmetric = TRUE)
+  )
+
+  vdiffr::expect_doppelganger(
     "gglikert() cutoff 1.5",
     gglikert(df, cutoff = 1.5)
   )

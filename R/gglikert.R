@@ -76,6 +76,7 @@
 #' dimension (see examples)
 #' @param facet_label_wrap number of characters per line for facet labels, see
 #' [ggplot2::label_wrap_gen()]
+#' @param symmetric should the x-axis be symmetric?
 #' @return A `ggplot2` plot or a `tibble`.
 #' @seealso `vignette("gglikert")`, [position_likert()], [stat_prop()]
 #' @export
@@ -163,6 +164,14 @@
 #'   d
 #' }
 #' gglikert(df, include = q1:q6, data_fun = f)
+#'
+#' # Custom center
+#' gglikert(df, cutoff = 2)
+#'
+#' gglikert(df, cutoff = 1)
+#'
+#' gglikert(df, cutoff = 1, symmetric = TRUE)
+#'
 #' }
 gglikert <- function(data,
                      include = dplyr::everything(),
@@ -194,7 +203,8 @@ gglikert <- function(data,
                      width = .9,
                      facet_rows = NULL,
                      facet_cols = NULL,
-                     facet_label_wrap = 50) {
+                     facet_label_wrap = 50,
+                     symmetric = FALSE) {
   data <-
     gglikert_data(
       data,
@@ -326,8 +336,16 @@ gglikert <- function(data,
           label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
         label_higher =
           label_percent_abs(accuracy = totals_accuracy)(.data$label_higher),
-        x_lower = -1 * max(.data$prop_lower) - totals_hjust,
-        x_higher = max(.data$prop_higher) + totals_hjust
+        x_lower = dplyr::if_else(
+          symmetric,
+          -1 * max(.data$prop_lower, .data$prop_higher) - totals_hjust,
+          -1 * max(.data$prop_lower) - totals_hjust
+        ),
+        x_higher = dplyr::if_else(
+          symmetric,
+          max(.data$prop_higher, .data$prop_lower) + totals_hjust,
+          max(.data$prop_higher) + totals_hjust
+        )
       ) %>%
       dplyr::group_by(!!!facet_rows, !!!facet_cols)
     dtot <- dplyr::bind_rows(
@@ -360,9 +378,19 @@ gglikert <- function(data,
       )
   }
 
+  if (symmetric) {
+    p <- p +
+      scale_x_continuous(
+        labels = label_percent_abs(),
+        limits = symmetric_limits
+      )
+  } else {
+    p <- p +
+      scale_x_continuous(labels = label_percent_abs())
+  }
+
   p <- p +
     labs(x = NULL, y = NULL, fill = NULL) +
-    scale_x_continuous(labels = label_percent_abs()) +
     scale_y_discrete(labels = scales::label_wrap(y_label_wrap)) +
     theme_light() +
     theme(

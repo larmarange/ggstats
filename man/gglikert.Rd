@@ -37,7 +37,8 @@ gglikert(
   width = 0.9,
   facet_rows = NULL,
   facet_cols = NULL,
-  facet_label_wrap = 50
+  facet_label_wrap = 50,
+  symmetric = FALSE
 )
 
 gglikert_data(
@@ -174,6 +175,8 @@ dimension (see examples)}
 \item{facet_label_wrap}{number of characters per line for facet labels, see
 \code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}}}
 
+\item{symmetric}{should the x-axis be symmetric?}
+
 \item{add_median_line}{add a vertical line at 50\%?}
 
 \item{reverse_fill}{if \code{TRUE}, will reverse the default stacking order,
@@ -278,6 +281,14 @@ f <- function(d) {
   d
 }
 gglikert(df, include = q1:q6, data_fun = f)
+
+# Custom center
+gglikert(df, cutoff = 2)
+
+gglikert(df, cutoff = 1)
+
+gglikert(df, cutoff = 1, symmetric = TRUE)
+
 }
 gglikert_stacked(df, q1:q6)
 
