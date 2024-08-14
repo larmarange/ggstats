@@ -23,7 +23,7 @@
 #' last_plot() +
 #'   scale_x_continuous(limits = symmetric_limits) +
 #'   scale_y_continuous(limits = symmetric_limits)
-symmetric_limits <- function (x) {
+symmetric_limits <- function(x) {
   max <- max(abs(x))
   c(-max, max)
 }
