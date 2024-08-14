@@ -9,3 +9,14 @@ test_that("signif_stars() works", {
     c("", "*", "*", "**", "***")
   )
 })
+
+test_that("symmetric_limits() works", {
+  expect_equal(
+    symmetric_limits(c(-1, 5)),
+    c(-5, 5)
+  )
+  expect_equal(
+    symmetric_limits(c(-8, 5)),
+    c(-8, 8)
+  )
+})
