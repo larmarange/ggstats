@@ -8,7 +8,7 @@
 * new helper `pal_extender()` and corresponding `scale_fill_extender()` and
   `scale_colour_extender()`
 * new sorting option `"prop_lower"` for `gglikert()` (#62)
-* new helper `symmetric_limits()` to make a scle symmetric (#66)
+* new helper `symmetric_limits()` to make a scale symmetric (#66)
 * new argument `symmetric` for `gglikert()` (#66)
 
 # ggstats 0.6.0
