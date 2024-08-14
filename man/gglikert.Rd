@@ -183,13 +183,11 @@ see \code{\link[ggplot2:position_stack]{ggplot2::position_fill()}}}
 A \code{ggplot2} plot or a \code{tibble}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-}
-\details{
 Combines several factor variables using the same list of ordered levels
 (e.g. Likert-type scales) into a unique data frame and generates a centered
 bar plot.
-
+}
+\details{
 You could use \code{gglikert_data()} to just produce the dataset to be plotted.
 
 If variable labels have been defined (see \code{\link[labelled:var_label]{labelled::var_label()}}), they will

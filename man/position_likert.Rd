@@ -44,15 +44,13 @@ By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-}
-\details{
 \code{position_likert()} stacks proportion bars on top of each other and
 center them around zero (the same number of categories are displayed on
 each side). This type of presentation is commonly used to display
 Likert-type scales.
 \code{position_likert_count()} uses counts instead of proportions.
-
+}
+\details{
 It is recommended to use \code{position_likert()} with \code{stat_prop()}
 and its \code{complete} argument (see examples).
 }

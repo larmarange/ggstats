@@ -1,7 +1,5 @@
 #' Plotting Likert-type items
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' Combines several factor variables using the same list of ordered levels
 #' (e.g. Likert-type scales) into a unique data frame and generates a centered
 #' bar plot.

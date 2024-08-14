@@ -1,7 +1,5 @@
 #' Stack objects on top of each another and center them around 0
 #'
-#' `r lifecycle::badge("experimental")`
-#'
 #' `position_likert()` stacks proportion bars on top of each other and
 #' center them around zero (the same number of categories are displayed on
 #' each side). This type of presentation is commonly used to display
