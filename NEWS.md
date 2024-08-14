@@ -9,6 +9,7 @@
   `scale_colour_extender()`
 * new sorting option `"prop_lower"` for `gglikert()` (#62)
 * new helper `symmetric_limits()` to make a scle symmetric (#66)
+* new argument `symmetric` for `gglikert()` (#66)
 
 # ggstats 0.6.0
 
