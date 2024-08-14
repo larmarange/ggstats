@@ -35,12 +35,12 @@ This is useful if you're rotating both the plot and legend.}
 the \code{fill} aesthetic that should not be displayed (but still taken into
 account for computing proportions)}
 
-\item{cutoff}{number of modalities to be displayed negatively (i.e. on the
+\item{cutoff}{number of categories to be displayed negatively (i.e. on the
 left of the x axis or the bottom of the y axis), could be a decimal value:
-\code{2} to display negatively the two first modalities, \code{2.5} to display
-negatively the two first modalities and half of the third, \code{2.2} to display
-negatively the two first modalities and a fifth of the third (see examples).
-By default (\code{NULL}), it will be equal to the number of modalities divided
+\code{2} to display negatively the two first categories, \code{2.5} to display
+negatively the two first categories and half of the third, \code{2.2} to display
+negatively the two first categories and a fifth of the third (see examples).
+By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
 }
 \description{
@@ -48,7 +48,7 @@ by 2, i.e. it will be centered.}
 }
 \details{
 \code{position_likert()} stacks proportion bars on top of each other and
-center them around zero (the same number of modalities are displayed on
+center them around zero (the same number of categories are displayed on
 each side). This type of presentation is commonly used to display
 Likert-type scales.
 \code{position_likert_count()} uses counts instead of proportions.

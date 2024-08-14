@@ -26,7 +26,7 @@ limits, breaks, labels and so forth.}
 \item{pal}{A palette function taking a number of colours as entry and
 returning a list of colours (see examples), ideally a diverging palette}
 
-\item{cutoff}{Number of modalities displayed negatively (see
+\item{cutoff}{Number of categories displayed negatively (see
 \code{\link[=position_likert]{position_likert()}}) and therefore changing the center of the colour scale
 (see examples).}
 

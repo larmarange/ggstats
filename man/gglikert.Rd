@@ -116,12 +116,12 @@ accepts \link[dplyr:select]{tidy-select} syntax}
 (but still taken into account for computing proportions),
 see \code{\link[=position_likert]{position_likert()}}}
 
-\item{cutoff}{number of modalities to be displayed negatively (i.e. on the
+\item{cutoff}{number of categories to be displayed negatively (i.e. on the
 left of the x axis or the bottom of the y axis), could be a decimal value:
-\code{2} to display negatively the two first modalities, \code{2.5} to display
-negatively the two first modalities and half of the third, \code{2.2} to display
-negatively the two first modalities and a fifth of the third (see examples).
-By default (\code{NULL}), it will be equal to the number of modalities divided
+\code{2} to display negatively the two first categories, \code{2.5} to display
+negatively the two first categories and half of the third, \code{2.2} to display
+negatively the two first categories and a fifth of the third (see examples).
+By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
 
 \item{data_fun}{for advanced usage, custom function to be applied to the

@@ -3,7 +3,7 @@
 #' `r lifecycle::badge("experimental")`
 #'
 #' `position_likert()` stacks proportion bars on top of each other and
-#' center them around zero (the same number of modalities are displayed on
+#' center them around zero (the same number of categories are displayed on
 #' each side). This type of presentation is commonly used to display
 #' Likert-type scales.
 #' `position_likert_count()` uses counts instead of proportions.
@@ -20,12 +20,12 @@
 #' @param exclude_fill_values Vector of values from the variable associated with
 #'   the `fill` aesthetic that should not be displayed (but still taken into
 #'   account for computing proportions)
-#' @param cutoff number of modalities to be displayed negatively (i.e. on the
+#' @param cutoff number of categories to be displayed negatively (i.e. on the
 #' left of the x axis or the bottom of the y axis), could be a decimal value:
-#' `2` to display negatively the two first modalities, `2.5` to display
-#' negatively the two first modalities and half of the third, `2.2` to display
-#' negatively the two first modalities and a fifth of the third (see examples).
-#' By default (`NULL`), it will be equal to the number of modalities divided
+#' `2` to display negatively the two first categories, `2.5` to display
+#' negatively the two first categories and half of the third, `2.2` to display
+#' negatively the two first categories and a fifth of the third (see examples).
+#' By default (`NULL`), it will be equal to the number of categories divided
 #' by 2, i.e. it will be centered.
 #' @seealso See [ggplot2::position_stack()] and [ggplot2::position_fill()]
 #' @export
@@ -274,7 +274,7 @@ pos_likert <- function(df,
     cli::cli_abort("{.arg cutoff} cannot be negative.")
   if (cutoff > nrow(df))
     cli::cli_abort(
-      "{.arg cutoff} cannot be higher than the number of modalities."
+      "{.arg cutoff} cannot be higher than the number of categories."
     )
   if (cutoff == nrow(df)) {
     y_adjust <- df$ymax[cutoff]

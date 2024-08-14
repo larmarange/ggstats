@@ -11,7 +11,7 @@
 #' limits, breaks, labels and so forth.
 #' @param pal A palette function taking a number of colours as entry and
 #' returning a list of colours (see examples), ideally a diverging palette
-#' @param cutoff Number of modalities displayed negatively (see
+#' @param cutoff Number of categories displayed negatively (see
 #' [position_likert()]) and therefore changing the center of the colour scale
 #' (see examples).
 #' @param aesthetics Character string or vector of character strings listing

@@ -40,12 +40,12 @@
 #' @param exclude_fill_values Vector of values that should not be displayed
 #' (but still taken into account for computing proportions),
 #' see [position_likert()]
-#' @param cutoff number of modalities to be displayed negatively (i.e. on the
+#' @param cutoff number of categories to be displayed negatively (i.e. on the
 #' left of the x axis or the bottom of the y axis), could be a decimal value:
-#' `2` to display negatively the two first modalities, `2.5` to display
-#' negatively the two first modalities and half of the third, `2.2` to display
-#' negatively the two first modalities and a fifth of the third (see examples).
-#' By default (`NULL`), it will be equal to the number of modalities divided
+#' `2` to display negatively the two first categories, `2.5` to display
+#' negatively the two first categories and half of the third, `2.2` to display
+#' negatively the two first categories and a fifth of the third (see examples).
+#' By default (`NULL`), it will be equal to the number of categories divided
 #' by 2, i.e. it will be centered.
 #' @param data_fun for advanced usage, custom function to be applied to the
 #' generated dataset at the end of `gglikert_data()`
