@@ -222,6 +222,11 @@ if (requireNamespace("scales")) {
     )
 }
 
+ggplot(d) +
+aes(y = Class, fill = Survived, weight = Freq) +
+  geom_bar_prop() +
+  geom_text_prop()
+
 # displaying unobserved levels with complete
 d <- diamonds \%>\%
   dplyr::filter(!(cut == "Ideal" & clarity == "I1")) \%>\%
@@ -233,11 +238,6 @@ p <- ggplot(d) +
 p + geom_text(stat = "prop", position = position_fill(.5))
 p + geom_text(stat = "prop", position = position_fill(.5), complete = "fill")
 }
-
-ggplot(d) +
-aes(y = Class, fill = Survived, weight = Freq) +
-  geom_bar_prop() +
-  geom_text_prop()
 }
 \seealso{
 \code{vignette("stat_prop")}, \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}. For an alternative
