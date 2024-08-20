@@ -212,17 +212,17 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
 #' @export
 #' @rdname stat_prop
 stat_prop2 <- function(mapping = NULL,
-                      data = NULL,
-                      geom = "bar",
-                      position = "fill",
-                      ...,
-                      width = NULL,
-                      na.rm = FALSE,
-                      orientation = NA,
-                      show.legend = NA,
-                      inherit.aes = TRUE,
-                      complete = NULL,
-                      default_by = "total") {
+                       data = NULL,
+                       geom = "bar",
+                       position = "fill",
+                       ...,
+                       width = NULL,
+                       na.rm = FALSE,
+                       orientation = NA,
+                       show.legend = NA,
+                       inherit.aes = TRUE,
+                       complete = NULL,
+                       default_by = "total") {
   params <- list(
     na.rm = na.rm,
     orientation = orientation,
