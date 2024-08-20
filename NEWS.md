@@ -15,6 +15,10 @@
 * new helper `symmetric_limits()` to make a scale symmetric (#66)
 * new argument `symmetric` for `gglikert()` (#66)
 * new argument `default_by` for `stat_prop()` (#69)
+* `stat_prop2()`, a variation of `stat_prop()`, with different default
+  aesthetics (#69)
+* new geometries: `geom_bar_diverging()`, `geom_bar_likert()` and
+  `geom_bar_pyramid()` (#69)
 
 # ggstats 0.6.0
 

@@ -4,9 +4,26 @@
 \name{stat_prop}
 \alias{stat_prop}
 \alias{StatProp}
+\alias{stat_prop2}
+\alias{StatProp2}
 \title{Compute proportions according to custom denominator}
 \usage{
 stat_prop(
+  mapping = NULL,
+  data = NULL,
+  geom = "bar",
+  position = "fill",
+  ...,
+  width = NULL,
+  na.rm = FALSE,
+  orientation = NA,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  complete = NULL,
+  default_by = "total"
+)
+
+stat_prop2(
   mapping = NULL,
   data = NULL,
   geom = "bar",
@@ -124,6 +141,11 @@ compute custom proportions according to the \strong{by} aesthetic defining
 the denominator (i.e. all proportions for a same value of \strong{by} will
 sum to 1). If the \strong{by} aesthetic is not specified, denominators will be
 determined according to the \code{default_by} argument.
+}
+\details{
+\code{stat_prop()} and \code{stat_prop2()} are identical except in terms of default
+aesthetic for \strong{x} / \strong{y} axis (\code{after_stat(count)} for \code{stat_prop()} and
+\code{after_stat(prop)} for \code{stat_prop2()})
 }
 \section{Aesthetics}{
 

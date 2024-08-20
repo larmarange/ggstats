@@ -6,6 +6,10 @@
 #' sum to 1). If the **by** aesthetic is not specified, denominators will be
 #' determined according to the `default_by` argument.
 #'
+#' `stat_prop()` and `stat_prop2()` are identical except in terms of default
+#' aesthetic for **x** / **y** axis (`after_stat(count)` for `stat_prop()` and
+#' `after_stat(prop)` for `stat_prop2()`)
+#'
 #' @inheritParams ggplot2::stat_count
 #' @param geom Override the default connection with [ggplot2::geom_bar()].
 #' @param complete Name (character) of an aesthetic for those statistics should
@@ -179,7 +183,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     names(panel)[which(names(panel) == "weight")] <- "count"
     panel$count[is.na(panel$count)] <- 0
 
-    if (!is.null(complete)) {
+    if (!is.null(complete) && complete %in% names(panel)) {
       panel <- panel %>% dplyr::select(-dplyr::all_of("group"))
       cols <- names(panel)
       cols <- cols[!cols %in% c("count", complete)]
@@ -203,4 +207,61 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
 
     ggplot2::flip_data(panel, flipped_aes)
   }
+)
+
+#' @export
+#' @rdname stat_prop
+stat_prop2 <- function(mapping = NULL,
+                      data = NULL,
+                      geom = "bar",
+                      position = "fill",
+                      ...,
+                      width = NULL,
+                      na.rm = FALSE,
+                      orientation = NA,
+                      show.legend = NA,
+                      inherit.aes = TRUE,
+                      complete = NULL,
+                      default_by = "total") {
+  params <- list(
+    na.rm = na.rm,
+    orientation = orientation,
+    width = width,
+    complete = complete,
+    default_by = default_by,
+    ...
+  )
+  if (!is.null(params$y)) {
+    cli::cli_abort(
+      "{.fn stat_prop} must not be used with a {.arg y} aesthetic.",
+      call. = FALSE
+    )
+  }
+
+  layer(
+    data = data,
+    mapping = mapping,
+    stat = StatProp2,
+    geom = geom,
+    position = position,
+    show.legend = show.legend,
+    inherit.aes = inherit.aes,
+    params = params
+  )
+}
+
+#' @rdname stat_prop
+#' @format NULL
+#' @usage NULL
+#' @export
+StatProp2 <- ggplot2::ggproto(
+  "StatProp2",
+  StatProp,
+  default_aes = ggplot2::aes(
+    x = after_stat(prop),
+    y = after_stat(prop),
+    weight = 1,
+    label = scales::percent(after_stat(prop), accuracy = .1),
+    by = 1
+  )
 )
