@@ -21,17 +21,17 @@ test_that("position_likert()", {
 
   p <- ggplot(diamonds) +
     aes(y = clarity, fill = cut) +
-    geom_bar(position = "likert_count") +
+    geom_bar(position = "diverging") +
     scale_x_continuous(label = label_number_abs()) +
     scale_fill_brewer(palette = "PiYG")
 
   vdiffr::expect_doppelganger(
-    "position_likert_count() base",
+    "position_diverging() base",
     p
   )
 
   vdiffr::expect_doppelganger(
-    "position_likert_count() facet",
+    "position_diverging() facet",
     p + facet_grid(~ price > 2500)
   )
 

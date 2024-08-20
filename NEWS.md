@@ -1,5 +1,9 @@
 # ggstats (development version)
 
+**Minor breaking change**
+
+* `position_likert_count()` has been renamed as `position_diverging()`
+
 **Improvements**
 
 * new scale `scale_fill_likert()`
