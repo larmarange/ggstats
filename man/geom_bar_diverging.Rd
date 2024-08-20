@@ -65,7 +65,10 @@ geom_bar_pyramid(
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}}
 
-\item{complete}{Name of an aesthetic determining denominators by default,
+\item{complete}{An aesthetic for those unobserved values should be completed,
+see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
+
+\item{default_by}{Name of an aesthetic determining denominators by default,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
 \item{vjust}{Vertical adjustment for geoms that have a position

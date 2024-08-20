@@ -19,7 +19,7 @@
 #' @param ... Other arguments passed on to [`ggplot2::geom_bar()`]
 #' @param complete An aesthetic for those unobserved values should be completed,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
-#' @param complete Name of an aesthetic determining denominators by default,
+#' @param default_by Name of an aesthetic determining denominators by default,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @inheritParams position_likert
 #' @param width Bar width.
