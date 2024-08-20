@@ -22,7 +22,7 @@
 #' @param complete Name of an aesthetic determining denominators by default,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @inheritParams position_likert
-#' @param default_aes Default aesthetics.
+#' @param width Bar width.
 #' @export
 #' @examples
 #' library(ggplot2)
@@ -61,7 +61,8 @@ geom_bar_diverging <- function(mapping = NULL,
                                vjust = 1,
                                reverse = FALSE,
                                exclude_fill_values = NULL,
-                               cutoff = NULL) {
+                               cutoff = NULL,
+                               width = NULL) {
 
   args <- list(...)
   if (stat %in% c("prop", "prop2")) {
@@ -92,7 +93,8 @@ geom_bar_likert <- function(mapping = NULL,
                             vjust = 1,
                             reverse = FALSE,
                             exclude_fill_values = NULL,
-                            cutoff = NULL) {
+                            cutoff = NULL,
+                            width = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_bar_diverging, args)
@@ -114,7 +116,8 @@ geom_bar_pyramid <- function(mapping = NULL,
                              vjust = 1,
                              reverse = FALSE,
                              exclude_fill_values = NULL,
-                             cutoff = NULL) {
+                             cutoff = NULL,
+                             width = 1) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_bar_diverging, args)

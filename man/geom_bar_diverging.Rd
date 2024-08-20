@@ -18,7 +18,8 @@ geom_bar_diverging(
   vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL
+  cutoff = NULL,
+  width = NULL
 )
 
 geom_bar_likert(
@@ -33,7 +34,8 @@ geom_bar_likert(
   vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL
+  cutoff = NULL,
+  width = NULL
 )
 
 geom_bar_pyramid(
@@ -48,7 +50,8 @@ geom_bar_pyramid(
   vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL
+  cutoff = NULL,
+  width = 1
 )
 }
 \arguments{
@@ -85,7 +88,7 @@ negatively the two first categories and a fifth of the third (see examples).
 By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
 
-\item{default_aes}{Default aesthetics.}
+\item{width}{Bar width.}
 }
 \description{
 These geometries are similar to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} but provides
