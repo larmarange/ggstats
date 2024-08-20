@@ -17,7 +17,8 @@ stat_prop(
   orientation = NA,
   show.legend = NA,
   inherit.aes = TRUE,
-  complete = NULL
+  complete = NULL,
+  default_by = "total"
 )
 }
 \arguments{
@@ -107,7 +108,12 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{complete}{Name (character) of an aesthetic for those statistics should
-be completed for unobserved values (see example)}
+be completed for unobserved values (see example).}
+
+\item{default_by}{If the \strong{by} aesthetic is not available, name of another
+aesthetic that will be used to determine the denominators (e.g. \code{"fill"}),
+or \code{NULL} or \code{"total"} to compute proportions of the total. To be noted,
+\code{default_by = "x"} works both for vertical and horizontal bars.}
 }
 \value{
 A \code{ggplot2} plot with the added statistic.
@@ -116,8 +122,8 @@ A \code{ggplot2} plot with the added statistic.
 \code{stat_prop()} is a variation of \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}} allowing to
 compute custom proportions according to the \strong{by} aesthetic defining
 the denominator (i.e. all proportions for a same value of \strong{by} will
-sum to 1). If \strong{by} is not
-specified, proportions of the total will be computed.
+sum to 1). If the \strong{by} aesthetic is not specified, denominators will be
+determined according to the \code{default_by} argument.
 }
 \section{Aesthetics}{
 

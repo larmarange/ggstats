@@ -3,13 +3,17 @@
 #' `stat_prop()` is a variation of [ggplot2::stat_count()] allowing to
 #' compute custom proportions according to the **by** aesthetic defining
 #' the denominator (i.e. all proportions for a same value of **by** will
-#' sum to 1). If **by** is not
-#' specified, proportions of the total will be computed.
+#' sum to 1). If the **by** aesthetic is not specified, denominators will be
+#' determined according to the `default_by` argument.
 #'
 #' @inheritParams ggplot2::stat_count
 #' @param geom Override the default connection with [ggplot2::geom_bar()].
 #' @param complete Name (character) of an aesthetic for those statistics should
-#'   be completed for unobserved values (see example)
+#'   be completed for unobserved values (see example).
+#' @param default_by If the **by** aesthetic is not available, name of another
+#' aesthetic that will be used to determine the denominators (e.g. `"fill"`),
+#' or `NULL` or `"total"` to compute proportions of the total. To be noted,
+#' `default_by = "x"` works both for vertical and horizontal bars.
 #' @section Aesthetics:
 #' `stat_prop()` understands the following aesthetics
 #' (required aesthetics are in bold):
@@ -82,12 +86,14 @@ stat_prop <- function(mapping = NULL,
                       orientation = NA,
                       show.legend = NA,
                       inherit.aes = TRUE,
-                      complete = NULL) {
+                      complete = NULL,
+                      default_by = "total") {
   params <- list(
     na.rm = na.rm,
     orientation = orientation,
     width = width,
     complete = complete,
+    default_by = default_by,
     ...
   )
   if (!is.null(params$y)) {
@@ -116,7 +122,9 @@ stat_prop <- function(mapping = NULL,
 StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   required_aes = c("x|y"),
   default_aes = ggplot2::aes(
-    x = after_stat(count), y = after_stat(count), weight = 1,
+    x = after_stat(count),
+    y = after_stat(count),
+    weight = 1,
     label = scales::percent(after_stat(prop), accuracy = .1),
     by = 1
   ),
@@ -145,9 +153,20 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   },
   extra_params = c("na.rm"),
   compute_panel = function(self, data, scales,
-                           width = NULL, flipped_aes = FALSE, complete = NULL) {
+                           width = NULL, flipped_aes = FALSE,
+                           complete = NULL, default_by = "total") {
     data <- ggplot2::flip_data(data, flipped_aes)
     data$weight <- data$weight %||% rep(1, nrow(data))
+
+    if (default_by == "y") default_by <- "x"
+    if (
+      is.null(data[["by"]]) &&
+      !is.null(default_by) &&
+      !is.null(data[[default_by]])
+    ) {
+      data$by <- data[[default_by]]
+    }
+
     data$by <- data$by %||% rep(1, nrow(data))
     width <- width %||% (ggplot2::resolution(data$x) * 0.9)
 
