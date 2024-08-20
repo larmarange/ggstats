@@ -161,8 +161,8 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     if (default_by == "y") default_by <- "x"
     if (
       is.null(data[["by"]]) &&
-      !is.null(default_by) &&
-      !is.null(data[[default_by]])
+        !is.null(default_by) &&
+        !is.null(data[[default_by]])
     ) {
       data$by <- data[[default_by]]
     }
