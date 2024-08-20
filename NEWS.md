@@ -19,6 +19,7 @@
   aesthetics (#69)
 * new geometries: `geom_bar_diverging()`, `geom_bar_likert()` and
   `geom_bar_pyramid()` (#69)
+* new geometries: `geom_bar_prop()` and `geom_text_prop()` (#69)
 
 # ggstats 0.6.0
 

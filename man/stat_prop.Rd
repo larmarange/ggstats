@@ -6,6 +6,8 @@
 \alias{StatProp}
 \alias{stat_prop2}
 \alias{StatProp2}
+\alias{geom_bar_prop}
+\alias{geom_text_prop}
 \title{Compute proportions according to custom denominator}
 \usage{
 stat_prop(
@@ -36,6 +38,26 @@ stat_prop2(
   inherit.aes = TRUE,
   complete = NULL,
   default_by = "total"
+)
+
+geom_bar_prop(
+  mapping = NULL,
+  data = NULL,
+  stat = "prop2",
+  position = position_stack(),
+  ...,
+  complete = NULL,
+  default_by = "x"
+)
+
+geom_text_prop(
+  mapping = NULL,
+  data = NULL,
+  stat = "prop2",
+  position = position_stack(0.5),
+  ...,
+  complete = NULL,
+  default_by = "x"
 )
 }
 \arguments{
@@ -209,6 +231,11 @@ p <- ggplot(d) +
 p + geom_text(stat = "prop", position = position_fill(.5))
 p + geom_text(stat = "prop", position = position_fill(.5), complete = "fill")
 }
+
+ggplot(d) +
+aes(y = Class, fill = Survived, weight = Freq) +
+  geom_bar_prop() +
+  geom_text_prop()
 }
 \seealso{
 \code{vignette("stat_prop")}, \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}}. For an alternative

@@ -80,6 +80,12 @@
 #' p + geom_text(stat = "prop", position = position_fill(.5))
 #' p + geom_text(stat = "prop", position = position_fill(.5), complete = "fill")
 #' }
+#'
+#' ggplot(d) +
+#' aes(y = Class, fill = Survived, weight = Freq) +
+#'   geom_bar_prop() +
+#'   geom_text_prop()
+
 stat_prop <- function(mapping = NULL,
                       data = NULL,
                       geom = "bar",
@@ -265,3 +271,49 @@ StatProp2 <- ggplot2::ggproto(
     by = 1
   )
 )
+
+#' @rdname stat_prop
+#' @export
+geom_bar_prop <- function(mapping = NULL,
+                          data = NULL,
+                          stat = "prop2",
+                          position = position_stack(),
+                          ...,
+                          complete = NULL,
+                          default_by = "x") {
+
+  args <- list(...)
+  if (stat %in% c("prop", "prop2")) {
+    args$complete <- complete
+    args$default_by <- default_by
+  }
+
+  args$mapping <- mapping
+  args$data <- data
+  args$stat <- stat
+  args$position <- position
+  do.call(ggplot2::geom_bar, args)
+}
+
+#' @rdname stat_prop
+#' @export
+geom_text_prop <- function(mapping = NULL,
+                          data = NULL,
+                          stat = "prop2",
+                          position = position_stack(0.5),
+                          ...,
+                          complete = NULL,
+                          default_by = "x") {
+
+  args <- list(...)
+  if (stat %in% c("prop", "prop2")) {
+    args$complete <- complete
+    args$default_by <- default_by
+  }
+
+  args$mapping <- mapping
+  args$data <- data
+  args$stat <- stat
+  args$position <- position
+  do.call(ggplot2::geom_text, args)
+}

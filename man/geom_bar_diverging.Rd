@@ -10,12 +10,11 @@ geom_bar_diverging(
   mapping = NULL,
   data = NULL,
   stat = "prop",
-  position = position_diverging(reverse = reverse, exclude_fill_values =
+  position = position_diverging(vjust = vjust, reverse = reverse, exclude_fill_values =
     exclude_fill_values, cutoff = cutoff),
   ...,
   complete = "fill",
   default_by = "total",
-  vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -31,7 +30,6 @@ geom_bar_likert(
   ...,
   complete = "fill",
   default_by = "x",
-  vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -47,7 +45,6 @@ geom_bar_pyramid(
   ...,
   complete = "fill",
   default_by = "fill",
-  vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -70,11 +67,6 @@ see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
 \item{default_by}{Name of an aesthetic determining denominators by default,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
-
-\item{vjust}{Vertical adjustment for geoms that have a position
-(like points or lines), not a dimension (like bars or areas). Set to
-\code{0} to align with the bottom, \code{0.5} for the middle,
-and \code{1} (the default) for the top.}
 
 \item{reverse}{If \code{TRUE}, will reverse the default stacking order.
 This is useful if you're rotating both the plot and legend.}
