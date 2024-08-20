@@ -4,6 +4,9 @@
 \alias{geom_bar_diverging}
 \alias{geom_bar_likert}
 \alias{geom_bar_pyramid}
+\alias{geom_text_diverging}
+\alias{geom_text_likert}
+\alias{geom_text_pyramid}
 \title{Geometries for diverging bar plots}
 \usage{
 geom_bar_diverging(
@@ -15,6 +18,7 @@ geom_bar_diverging(
   ...,
   complete = "fill",
   default_by = "total",
+  height = "count",
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -30,6 +34,7 @@ geom_bar_likert(
   ...,
   complete = "fill",
   default_by = "x",
+  height = "prop",
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -39,12 +44,64 @@ geom_bar_likert(
 geom_bar_pyramid(
   mapping = NULL,
   data = NULL,
-  stat = "prop2",
+  stat = "prop",
   position = position_diverging(reverse = reverse, exclude_fill_values =
     exclude_fill_values, cutoff = cutoff),
   ...,
-  complete = "fill",
+  complete = NULL,
   default_by = "fill",
+  height = "prop",
+  reverse = FALSE,
+  exclude_fill_values = NULL,
+  cutoff = NULL,
+  width = 1
+)
+
+geom_text_diverging(
+  mapping = NULL,
+  data = NULL,
+  stat = "prop",
+  position = position_diverging(vjust = 0.5, reverse = reverse, exclude_fill_values =
+    exclude_fill_values, cutoff = cutoff),
+  ...,
+  complete = "fill",
+  default_by = "total",
+  height = "count",
+  height_labeller = label_number_abs(),
+  reverse = FALSE,
+  exclude_fill_values = NULL,
+  cutoff = NULL,
+  width = NULL
+)
+
+geom_text_likert(
+  mapping = NULL,
+  data = NULL,
+  stat = "prop",
+  position = position_likert(vjust = 0.5, reverse = reverse, exclude_fill_values =
+    exclude_fill_values, cutoff = cutoff),
+  ...,
+  complete = "fill",
+  default_by = "x",
+  height = "prop",
+  height_labeller = label_percent_abs(accuracy = 1),
+  reverse = FALSE,
+  exclude_fill_values = NULL,
+  cutoff = NULL,
+  width = NULL
+)
+
+geom_text_pyramid(
+  mapping = NULL,
+  data = NULL,
+  stat = "prop",
+  position = position_diverging(vjust = 0.5, reverse = reverse, exclude_fill_values =
+    exclude_fill_values, cutoff = cutoff),
+  ...,
+  complete = NULL,
+  default_by = "fill",
+  height = "prop",
+  height_labeller = label_percent_abs(accuracy = 1),
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -68,6 +125,9 @@ see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 \item{default_by}{Name of an aesthetic determining denominators by default,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
+\item{height}{Statistic used, by default, to determine the height/width,
+see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
+
 \item{reverse}{If \code{TRUE}, will reverse the default stacking order.
 This is useful if you're rotating both the plot and legend.}
 
@@ -84,6 +144,9 @@ By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
 
 \item{width}{Bar width.}
+
+\item{height_labeller}{Labeller function to format proportions,
+see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 }
 \description{
 These geometries are similar to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} but provides
@@ -104,24 +167,27 @@ aesthetics.
 \examples{
 library(ggplot2)
 ggplot(diamonds) +
-  aes(y = clarity, fill = cut) +
+  aes(x = clarity, fill = cut) +
   geom_bar_diverging()
 
 ggplot(diamonds) +
-  aes(y = clarity, fill = cut) +
-  geom_bar_diverging(cutoff = 1)
+  aes(x = clarity, fill = cut) +
+  geom_bar_diverging(cutoff = 4)
 
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
-  geom_bar_likert()
+  geom_bar_likert() +
+  geom_text_likert(aes(color = after_scale(hex_bw(.data$fill))))
 
 d <- Titanic |> as.data.frame()
 
 ggplot(d) +
   aes(y = Class, fill = Sex, weight = Freq) +
-  geom_bar_diverging()
+  geom_bar_diverging() +
+  geom_text_diverging()
 
 ggplot(d) +
   aes(y = Class, fill = Sex, weight = Freq) +
-  geom_bar_pyramid()
+  geom_bar_pyramid() +
+  geom_text_pyramid()
 }

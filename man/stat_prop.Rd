@@ -4,8 +4,6 @@
 \name{stat_prop}
 \alias{stat_prop}
 \alias{StatProp}
-\alias{stat_prop2}
-\alias{StatProp2}
 \alias{geom_bar_prop}
 \alias{geom_text_prop}
 \title{Compute proportions according to custom denominator}
@@ -22,42 +20,32 @@ stat_prop(
   show.legend = NA,
   inherit.aes = TRUE,
   complete = NULL,
-  default_by = "total"
-)
-
-stat_prop2(
-  mapping = NULL,
-  data = NULL,
-  geom = "bar",
-  position = "fill",
-  ...,
-  width = NULL,
-  na.rm = FALSE,
-  orientation = NA,
-  show.legend = NA,
-  inherit.aes = TRUE,
-  complete = NULL,
-  default_by = "total"
+  default_by = "total",
+  height = c("count", "prop"),
+  height_labeller = scales::label_percent(accuracy = 0.1)
 )
 
 geom_bar_prop(
   mapping = NULL,
   data = NULL,
-  stat = "prop2",
+  stat = "prop",
   position = position_stack(),
   ...,
   complete = NULL,
-  default_by = "x"
+  default_by = "x",
+  height = "prop"
 )
 
 geom_text_prop(
   mapping = NULL,
   data = NULL,
-  stat = "prop2",
+  stat = "prop",
   position = position_stack(0.5),
   ...,
   complete = NULL,
-  default_by = "x"
+  default_by = "x",
+  height = "prop",
+  height_labeller = scales::label_percent(accuracy = 0.1)
 )
 }
 \arguments{
@@ -154,6 +142,13 @@ aesthetic that will be used to determine the denominators (e.g. \code{"fill"}),
 or \code{NULL} or \code{"total"} to compute proportions of the total. To be noted,
 \code{default_by = "x"} works both for vertical and horizontal bars.}
 
+\item{height}{Which statistic (\code{"count"} or \code{"prop"}) should be used, by
+default, for determining the height/width of the geometry (accessible
+through \code{after_stat(height)})?}
+
+\item{height_labeller}{Labeller function to format heights and populate
+\code{after_stat(labelled_height)}.}
+
 \item{stat}{The statistical transformation to use on the data for this layer.}
 }
 \value{
@@ -166,11 +161,6 @@ the denominator (i.e. all proportions for a same value of \strong{by} will
 sum to 1). If the \strong{by} aesthetic is not specified, denominators will be
 determined according to the \code{default_by} argument.
 }
-\details{
-\code{stat_prop()} and \code{stat_prop2()} are identical except in terms of default
-aesthetic for \strong{x} / \strong{y} axis (\code{after_stat(count)} for \code{stat_prop()} and
-\code{after_stat(prop)} for \code{stat_prop2()})
-}
 \section{Aesthetics}{
 
 \code{stat_prop()} understands the following aesthetics
@@ -178,7 +168,6 @@ aesthetic for \strong{x} / \strong{y} axis (\code{after_stat(count)} for \code{s
 \itemize{
 \item \strong{x \emph{or} y}
 \item by
-\item group
 \item weight
 }
 }
@@ -186,8 +175,11 @@ aesthetic for \strong{x} / \strong{y} axis (\code{after_stat(count)} for \code{s
 \section{Computed variables}{
 
 \describe{
-\item{count}{number of points in bin}
-\item{prop}{computed proportion}
+\item{\code{after_stat(count)}}{number of points in bin}
+\item{\code{after_stat(prop)}}{computed proportion}
+\item{\code{after_stat(height)}}{counts or proportions, according to \code{height}}
+\item{\code{after_stat(labelled_height)}}{formatted heights, according to
+\code{height_labeller}}
 }
 }
 

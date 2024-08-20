@@ -21,32 +21,39 @@
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @param default_by Name of an aesthetic determining denominators by default,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
+#' @param height Statistic used, by default, to determine the height/width,
+#' see [`stat_prop()`]. Passed only if `stat = "prop"`.
+#' @param height_labeller Labeller function to format proportions,
+#' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @inheritParams position_likert
 #' @param width Bar width.
 #' @export
 #' @examples
 #' library(ggplot2)
 #' ggplot(diamonds) +
-#'   aes(y = clarity, fill = cut) +
+#'   aes(x = clarity, fill = cut) +
 #'   geom_bar_diverging()
 #'
 #' ggplot(diamonds) +
-#'   aes(y = clarity, fill = cut) +
-#'   geom_bar_diverging(cutoff = 1)
+#'   aes(x = clarity, fill = cut) +
+#'   geom_bar_diverging(cutoff = 4)
 #'
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
-#'   geom_bar_likert()
+#'   geom_bar_likert() +
+#'   geom_text_likert(aes(color = after_scale(hex_bw(.data$fill))))
 #'
 #' d <- Titanic |> as.data.frame()
 #'
 #' ggplot(d) +
 #'   aes(y = Class, fill = Sex, weight = Freq) +
-#'   geom_bar_diverging()
+#'   geom_bar_diverging() +
+#'   geom_text_diverging()
 #'
 #' ggplot(d) +
 #'   aes(y = Class, fill = Sex, weight = Freq) +
-#'   geom_bar_pyramid()
+#'   geom_bar_pyramid() +
+#'   geom_text_pyramid()
 geom_bar_diverging <- function(mapping = NULL,
                                data = NULL,
                                stat = "prop",
@@ -58,15 +65,17 @@ geom_bar_diverging <- function(mapping = NULL,
                                ...,
                                complete = "fill",
                                default_by = "total",
+                               height = "count",
                                reverse = FALSE,
                                exclude_fill_values = NULL,
                                cutoff = NULL,
                                width = NULL) {
 
   args <- list(...)
-  if (stat %in% c("prop", "prop2")) {
+  if (stat == "prop") {
     args$complete <- complete
     args$default_by <- default_by
+    args$height <- height
   }
 
   args$mapping <- mapping
@@ -89,6 +98,7 @@ geom_bar_likert <- function(mapping = NULL,
                             ...,
                             complete = "fill",
                             default_by = "x",
+                            height = "prop",
                             reverse = FALSE,
                             exclude_fill_values = NULL,
                             cutoff = NULL,
@@ -102,15 +112,16 @@ geom_bar_likert <- function(mapping = NULL,
 #' @export
 geom_bar_pyramid <- function(mapping = NULL,
                              data = NULL,
-                             stat = "prop2",
+                             stat = "prop",
                              position = position_diverging(
                                reverse = reverse,
                                exclude_fill_values = exclude_fill_values,
                                cutoff = cutoff
                              ),
                              ...,
-                             complete = "fill",
+                             complete = NULL,
                              default_by = "fill",
+                             height = "prop",
                              reverse = FALSE,
                              exclude_fill_values = NULL,
                              cutoff = NULL,
@@ -118,4 +129,90 @@ geom_bar_pyramid <- function(mapping = NULL,
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_bar_diverging, args)
+}
+
+#' @rdname geom_bar_diverging
+#' @export
+geom_text_diverging <- function(mapping = NULL,
+                                data = NULL,
+                                stat = "prop",
+                                position = position_diverging(
+                                  vjust = 0.5,
+                                  reverse = reverse,
+                                  exclude_fill_values = exclude_fill_values,
+                                  cutoff = cutoff
+                                ),
+                                ...,
+                                complete = "fill",
+                                default_by = "total",
+                                height = "count",
+                                height_labeller = label_number_abs(),
+                                reverse = FALSE,
+                                exclude_fill_values = NULL,
+                                cutoff = NULL,
+                                width = NULL) {
+
+  args <- list(...)
+  if (stat == "prop") {
+    args$complete <- complete
+    args$default_by <- default_by
+    args$height <- height
+    args$height_labeller <- height_labeller
+  }
+
+  args$mapping <- mapping
+  args$data <- data
+  args$stat <- stat
+  args$position <- position
+  do.call(ggplot2::geom_text, args)
+}
+
+#' @rdname geom_bar_diverging
+#' @export
+geom_text_likert <- function(mapping = NULL,
+                             data = NULL,
+                             stat = "prop",
+                             position = position_likert(
+                               vjust = 0.5,
+                               reverse = reverse,
+                               exclude_fill_values = exclude_fill_values,
+                               cutoff = cutoff
+                             ),
+                             ...,
+                             complete = "fill",
+                             default_by = "x",
+                             height = "prop",
+                             height_labeller = label_percent_abs(accuracy = 1),
+                             reverse = FALSE,
+                             exclude_fill_values = NULL,
+                             cutoff = NULL,
+                             width = NULL) {
+
+  args <- c(as.list(environment()), list(...))
+  do.call(geom_text_diverging, args)
+}
+
+#' @rdname geom_bar_diverging
+#' @export
+geom_text_pyramid <- function(mapping = NULL,
+                              data = NULL,
+                              stat = "prop",
+                              position = position_diverging(
+                                vjust = 0.5,
+                                reverse = reverse,
+                                exclude_fill_values = exclude_fill_values,
+                                cutoff = cutoff
+                              ),
+                              ...,
+                              complete = NULL,
+                              default_by = "fill",
+                              height = "prop",
+                              height_labeller = label_percent_abs(accuracy = 1),
+                              reverse = FALSE,
+                              exclude_fill_values = NULL,
+                              cutoff = NULL,
+                              width = 1) {
+
+  args <- c(as.list(environment()), list(...))
+  do.call(geom_text_diverging, args)
 }

@@ -14,11 +14,11 @@
 * new sorting option `"prop_lower"` for `gglikert()` (#62)
 * new helper `symmetric_limits()` to make a scale symmetric (#66)
 * new argument `symmetric` for `gglikert()` (#66)
-* new argument `default_by` for `stat_prop()` (#69)
-* `stat_prop2()`, a variation of `stat_prop()`, with different default
-  aesthetics (#69)
-* new geometries: `geom_bar_diverging()`, `geom_bar_likert()` and
-  `geom_bar_pyramid()` (#69)
+* new arguments `default_by`, `height` and `height_labeller` for `stat_prop()`
+  (#69)
+* new geometries: `geom_bar_diverging()`, `geom_bar_likert()`,
+  `geom_bar_pyramid()` and `geom_text_diverging()`, `geom_text_likert()`,
+  `geom_text_pyramid()`(#69)
 * new geometries: `geom_bar_prop()` and `geom_text_prop()` (#69)
 
 # ggstats 0.6.0

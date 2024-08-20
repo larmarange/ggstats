@@ -6,10 +6,6 @@
 #' sum to 1). If the **by** aesthetic is not specified, denominators will be
 #' determined according to the `default_by` argument.
 #'
-#' `stat_prop()` and `stat_prop2()` are identical except in terms of default
-#' aesthetic for **x** / **y** axis (`after_stat(count)` for `stat_prop()` and
-#' `after_stat(prop)` for `stat_prop2()`)
-#'
 #' @inheritParams ggplot2::stat_count
 #' @param geom Override the default connection with [ggplot2::geom_bar()].
 #' @param complete Name (character) of an aesthetic for those statistics should
@@ -18,18 +14,26 @@
 #' aesthetic that will be used to determine the denominators (e.g. `"fill"`),
 #' or `NULL` or `"total"` to compute proportions of the total. To be noted,
 #' `default_by = "x"` works both for vertical and horizontal bars.
+#' @param height Which statistic (`"count"` or `"prop"`) should be used, by
+#' default, for determining the height/width of the geometry (accessible
+#' through `after_stat(height)`)?
+#' @param height_labeller Labeller function to format heights and populate
+#' `after_stat(labelled_height)`.
+#'
 #' @section Aesthetics:
 #' `stat_prop()` understands the following aesthetics
 #' (required aesthetics are in bold):
 #'
 #' - **x *or* y**
 #' - by
-#' - group
 #' - weight
 #' @section Computed variables:
 #' \describe{
-#'   \item{count}{number of points in bin}
-#'   \item{prop}{computed proportion}
+#'   \item{`after_stat(count)`}{number of points in bin}
+#'   \item{`after_stat(prop)`}{computed proportion}
+#'   \item{`after_stat(height)`}{counts or proportions, according to `height`}
+#'   \item{`after_stat(labelled_height)`}{formatted heights, according to
+#'     `height_labeller`}
 #' }
 #' @seealso `vignette("stat_prop")`, [ggplot2::stat_count()]. For an alternative
 #' approach, see
@@ -97,13 +101,17 @@ stat_prop <- function(mapping = NULL,
                       show.legend = NA,
                       inherit.aes = TRUE,
                       complete = NULL,
-                      default_by = "total") {
+                      default_by = "total",
+                      height = c("count", "prop"),
+                      height_labeller = scales::label_percent(accuracy = .1)) {
   params <- list(
     na.rm = na.rm,
     orientation = orientation,
     width = width,
     complete = complete,
     default_by = default_by,
+    height = height,
+    height_labeller = height_labeller,
     ...
   )
   if (!is.null(params$y)) {
@@ -132,10 +140,10 @@ stat_prop <- function(mapping = NULL,
 StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   required_aes = c("x|y"),
   default_aes = ggplot2::aes(
-    x = after_stat(count),
-    y = after_stat(count),
+    x = after_stat(height),
+    y = after_stat(height),
     weight = 1,
-    label = scales::percent(after_stat(prop), accuracy = .1),
+    label = after_stat(labelled_height),
     by = 1
   ),
   setup_params = function(data, params) {
@@ -163,8 +171,14 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   },
   extra_params = c("na.rm"),
   compute_panel = function(self, data, scales,
-                           width = NULL, flipped_aes = FALSE,
-                           complete = NULL, default_by = "total") {
+                           width = NULL,
+                           flipped_aes = FALSE,
+                           complete = NULL,
+                           default_by = "total",
+                           height = c("count", "prop"),
+                           height_labeller =
+                             scales::label_percent(accuracy = .1)) {
+    height <- match.arg(height)
     data <- ggplot2::flip_data(data, flipped_aes)
     data$weight <- data$weight %||% rep(1, nrow(data))
 
@@ -208,6 +222,8 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
       sum(abs(x))
     }
     panel$prop <- panel$count / ave(panel$count, panel$by, FUN = sum_abs)
+    panel$height <- panel[[height]]
+    panel$labelled_height <- height_labeller(panel$height)
     panel$width <- width
     panel$flipped_aes <- flipped_aes
 
@@ -215,78 +231,23 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   }
 )
 
-#' @export
-#' @rdname stat_prop
-stat_prop2 <- function(mapping = NULL,
-                       data = NULL,
-                       geom = "bar",
-                       position = "fill",
-                       ...,
-                       width = NULL,
-                       na.rm = FALSE,
-                       orientation = NA,
-                       show.legend = NA,
-                       inherit.aes = TRUE,
-                       complete = NULL,
-                       default_by = "total") {
-  params <- list(
-    na.rm = na.rm,
-    orientation = orientation,
-    width = width,
-    complete = complete,
-    default_by = default_by,
-    ...
-  )
-  if (!is.null(params$y)) {
-    cli::cli_abort(
-      "{.fn stat_prop} must not be used with a {.arg y} aesthetic.",
-      call. = FALSE
-    )
-  }
-
-  layer(
-    data = data,
-    mapping = mapping,
-    stat = StatProp2,
-    geom = geom,
-    position = position,
-    show.legend = show.legend,
-    inherit.aes = inherit.aes,
-    params = params
-  )
-}
-
-#' @rdname stat_prop
-#' @format NULL
-#' @usage NULL
-#' @export
-StatProp2 <- ggplot2::ggproto(
-  "StatProp2",
-  StatProp,
-  default_aes = ggplot2::aes(
-    x = after_stat(prop),
-    y = after_stat(prop),
-    weight = 1,
-    label = scales::percent(after_stat(prop), accuracy = .1),
-    by = 1
-  )
-)
-
 #' @rdname stat_prop
 #' @param stat The statistical transformation to use on the data for this layer.
 #' @export
 geom_bar_prop <- function(mapping = NULL,
                           data = NULL,
-                          stat = "prop2",
+                          stat = "prop",
                           position = position_stack(),
                           ...,
                           complete = NULL,
-                          default_by = "x") {
+                          default_by = "x",
+                          height = "prop") {
 
   args <- list(...)
-  if (stat %in% c("prop", "prop2")) {
+  if (stat == "prop") {
     args$complete <- complete
     args$default_by <- default_by
+    args$height <- height
   }
 
   args$mapping <- mapping
@@ -300,16 +261,21 @@ geom_bar_prop <- function(mapping = NULL,
 #' @export
 geom_text_prop <- function(mapping = NULL,
                            data = NULL,
-                           stat = "prop2",
+                           stat = "prop",
                            position = position_stack(0.5),
                            ...,
                            complete = NULL,
-                           default_by = "x") {
+                           default_by = "x",
+                           height = "prop",
+                           height_labeller =
+                             scales::label_percent(accuracy = .1)) {
 
   args <- list(...)
-  if (stat %in% c("prop", "prop2")) {
+  if (stat == "prop") {
     args$complete <- complete
     args$default_by <- default_by
+    args$height <- height
+    args$height_labeller <- height_labeller
   }
 
   args$mapping <- mapping
