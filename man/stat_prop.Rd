@@ -116,7 +116,7 @@ A \code{ggplot2} plot with the added statistic.
 \code{stat_prop()} is a variation of \code{\link[ggplot2:geom_bar]{ggplot2::stat_count()}} allowing to
 compute custom proportions according to the \strong{by} aesthetic defining
 the denominator (i.e. all proportions for a same value of \strong{by} will
-sum to 1). The \strong{by} aesthetic should be a factor. If \strong{by} is not
+sum to 1). If \strong{by} is not
 specified, proportions of the total will be computed.
 }
 \section{Aesthetics}{
@@ -125,7 +125,7 @@ specified, proportions of the total will be computed.
 (required aesthetics are in bold):
 \itemize{
 \item \strong{x \emph{or} y}
-\item by (this aesthetic should be a \strong{factor})
+\item by
 \item group
 \item weight
 }

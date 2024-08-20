@@ -3,7 +3,7 @@
 #' `stat_prop()` is a variation of [ggplot2::stat_count()] allowing to
 #' compute custom proportions according to the **by** aesthetic defining
 #' the denominator (i.e. all proportions for a same value of **by** will
-#' sum to 1). The **by** aesthetic should be a factor. If **by** is not
+#' sum to 1). If **by** is not
 #' specified, proportions of the total will be computed.
 #'
 #' @inheritParams ggplot2::stat_count
@@ -15,7 +15,7 @@
 #' (required aesthetics are in bold):
 #'
 #' - **x *or* y**
-#' - by (this aesthetic should be a **factor**)
+#' - by
 #' - group
 #' - weight
 #' @section Computed variables:
@@ -141,13 +141,6 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
         call. = FALSE
       )
     }
-    # there is an unresolved bug when by is a character vector. To be explored.
-    if (is.character(data$by)) {
-      cli::cli_abort(
-        "The {.arg by} aesthetic should be a factor instead of a character.",
-        call. = FALSE
-      )
-    }
     params
   },
   extra_params = c("na.rm"),
@@ -157,6 +150,8 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     data$weight <- data$weight %||% rep(1, nrow(data))
     data$by <- data$by %||% rep(1, nrow(data))
     width <- width %||% (ggplot2::resolution(data$x) * 0.9)
+
+    if (is.character(data$by)) data$by <- factor(data$by)
 
     # sum weights for each combination of by and aesthetics
     # the use of . allows to consider all aesthetics defined in data
