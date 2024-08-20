@@ -76,6 +76,8 @@ geom_bar_diverging <- function(mapping = NULL,
   do.call(ggplot2::geom_bar, args)
 }
 
+#' @rdname geom_bar_diverging
+#' @export
 geom_bar_likert <- function(mapping = NULL,
                             data = NULL,
                             stat = "prop",
@@ -96,6 +98,8 @@ geom_bar_likert <- function(mapping = NULL,
   do.call(geom_bar_diverging, args)
 }
 
+#' @rdname geom_bar_diverging
+#' @export
 geom_bar_pyramid <- function(mapping = NULL,
                              data = NULL,
                              stat = "prop2",

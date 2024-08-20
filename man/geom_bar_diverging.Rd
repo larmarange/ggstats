@@ -2,6 +2,8 @@
 % Please edit documentation in R/geom_bar_diverging.R
 \name{geom_bar_diverging}
 \alias{geom_bar_diverging}
+\alias{geom_bar_likert}
+\alias{geom_bar_pyramid}
 \title{Geometries for diverging bar plots}
 \usage{
 geom_bar_diverging(
@@ -13,6 +15,36 @@ geom_bar_diverging(
   ...,
   complete = "fill",
   default_by = "total",
+  vjust = 1,
+  reverse = FALSE,
+  exclude_fill_values = NULL,
+  cutoff = NULL
+)
+
+geom_bar_likert(
+  mapping = NULL,
+  data = NULL,
+  stat = "prop",
+  position = position_likert(reverse = reverse, exclude_fill_values =
+    exclude_fill_values, cutoff = cutoff),
+  ...,
+  complete = "fill",
+  default_by = "x",
+  vjust = 1,
+  reverse = FALSE,
+  exclude_fill_values = NULL,
+  cutoff = NULL
+)
+
+geom_bar_pyramid(
+  mapping = NULL,
+  data = NULL,
+  stat = "prop2",
+  position = position_diverging(reverse = reverse, exclude_fill_values =
+    exclude_fill_values, cutoff = cutoff),
+  ...,
+  complete = "fill",
+  default_by = "fill",
   vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
