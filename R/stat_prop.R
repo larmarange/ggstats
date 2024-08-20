@@ -273,6 +273,7 @@ StatProp2 <- ggplot2::ggproto(
 )
 
 #' @rdname stat_prop
+#' @param stat The statistical transformation to use on the data for this layer.
 #' @export
 geom_bar_prop <- function(mapping = NULL,
                           data = NULL,

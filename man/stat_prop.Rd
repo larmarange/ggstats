@@ -153,6 +153,8 @@ be completed for unobserved values (see example).}
 aesthetic that will be used to determine the denominators (e.g. \code{"fill"}),
 or \code{NULL} or \code{"total"} to compute proportions of the total. To be noted,
 \code{default_by = "x"} works both for vertical and horizontal bars.}
+
+\item{stat}{The statistical transformation to use on the data for this layer.}
 }
 \value{
 A \code{ggplot2} plot with the added statistic.
