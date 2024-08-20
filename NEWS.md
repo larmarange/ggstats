@@ -2,7 +2,7 @@
 
 **Minor breaking change**
 
-* `position_likert_count()` has been renamed as `position_diverging()`
+* `position_likert_count()` has been renamed as `position_diverging()` (#69)
 
 **Improvements**
 
