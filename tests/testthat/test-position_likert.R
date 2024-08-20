@@ -46,10 +46,10 @@ test_that("position_likert()", {
 
   p <- ggplot(diamonds) +
     aes(y = clarity, fill = cut) +
-    geom_bar(position = position_likert_count(reverse = TRUE))
+    geom_bar(position = position_diverging(reverse = TRUE))
 
   vdiffr::expect_doppelganger(
-    "position_likert_count() reverse",
+    "position_diverging() reverse",
     p
   )
 
