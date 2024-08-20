@@ -298,12 +298,12 @@ geom_bar_prop <- function(mapping = NULL,
 #' @rdname stat_prop
 #' @export
 geom_text_prop <- function(mapping = NULL,
-                          data = NULL,
-                          stat = "prop2",
-                          position = position_stack(0.5),
-                          ...,
-                          complete = NULL,
-                          default_by = "x") {
+                           data = NULL,
+                           stat = "prop2",
+                           position = position_stack(0.5),
+                           ...,
+                           complete = NULL,
+                           default_by = "x") {
 
   args <- list(...)
   if (stat %in% c("prop", "prop2")) {

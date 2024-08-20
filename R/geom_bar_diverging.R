@@ -51,7 +51,6 @@ geom_bar_diverging <- function(mapping = NULL,
                                data = NULL,
                                stat = "prop",
                                position = position_diverging(
-                                 vjust = vjust,
                                  reverse = reverse,
                                  exclude_fill_values = exclude_fill_values,
                                  cutoff = cutoff
