@@ -128,7 +128,7 @@ see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 \item{default_by}{Name of an aesthetic determining denominators by default,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
-\item{height}{Statistic used, by default, to determine the labels,
+\item{height}{Statistic used, by default, to determine the height/width,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
 \item{reverse}{If \code{TRUE}, will reverse the default stacking order.
@@ -147,6 +147,9 @@ By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
 
 \item{width}{Bar width.}
+
+\item{labels}{Statistic used, by default, to determine the labels,
+see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
 \item{labeller}{Labeller function to format labels,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}

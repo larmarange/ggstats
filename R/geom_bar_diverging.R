@@ -24,7 +24,7 @@
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @param height Statistic used, by default, to determine the height/width,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
-#' @param height Statistic used, by default, to determine the labels,
+#' @param labels Statistic used, by default, to determine the labels,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @param labeller Labeller function to format labels,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
