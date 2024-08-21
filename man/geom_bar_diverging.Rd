@@ -49,7 +49,7 @@ geom_bar_pyramid(
     exclude_fill_values, cutoff = cutoff),
   ...,
   complete = NULL,
-  default_by = "fill",
+  default_by = "total",
   height = "prop",
   reverse = FALSE,
   exclude_fill_values = NULL,
@@ -67,7 +67,8 @@ geom_text_diverging(
   complete = "fill",
   default_by = "total",
   height = "count",
-  height_labeller = label_number_abs(),
+  labels = "count",
+  labeller = label_number_abs(),
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -84,7 +85,8 @@ geom_text_likert(
   complete = "fill",
   default_by = "x",
   height = "prop",
-  height_labeller = label_percent_abs(accuracy = 1),
+  labels = "prop",
+  labeller = label_percent_abs(accuracy = 1),
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -99,9 +101,10 @@ geom_text_pyramid(
     exclude_fill_values, cutoff = cutoff),
   ...,
   complete = NULL,
-  default_by = "fill",
+  default_by = "total",
   height = "prop",
-  height_labeller = label_percent_abs(accuracy = 1),
+  labels = "prop",
+  labeller = label_percent_abs(accuracy = 1),
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
@@ -125,7 +128,7 @@ see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 \item{default_by}{Name of an aesthetic determining denominators by default,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
-\item{height}{Statistic used, by default, to determine the height/width,
+\item{height}{Statistic used, by default, to determine the labels,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
 \item{reverse}{If \code{TRUE}, will reverse the default stacking order.
@@ -145,7 +148,7 @@ by 2, i.e. it will be centered.}
 
 \item{width}{Bar width.}
 
-\item{height_labeller}{Labeller function to format proportions,
+\item{labeller}{Labeller function to format labels,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 }
 \description{
@@ -156,13 +159,14 @@ different set of default values.
 \itemize{
 \item \code{geom_bar_diverging()} is designed for stacked diverging bar plots, using
 \code{\link[=position_diverging]{position_diverging()}}.
-\item \code{geom_bar_diverging()} is designed for Likert-type items. Using
+\item \code{geom_bar_likert()} is designed for Likert-type items. Using
 \code{position_likert()} (each bar sums to 100\%).
-\item \code{geom_bar_pyramid()} is adapted for population pyramid plots when a factor
-with two levels is mapped to the \strong{fill} aesthetics. The proportions are,
-here by default, computed separately for each value of the \strong{fill}
-aesthetics.
+\item \code{geom_bar_pyramid()} is similar to \code{geom_bar_diverging()} but uses
+proportions of the total instead of counts.
 }
+
+To add labels on the bar plots, simply use \code{geom_text_diverging()},
+\code{geom_text_likert()}, or \code{geom_text_pyramid()}.
 }
 \examples{
 library(ggplot2)

@@ -17,8 +17,11 @@
 #' @param height Which statistic (`"count"` or `"prop"`) should be used, by
 #' default, for determining the height/width of the geometry (accessible
 #' through `after_stat(height)`)?
-#' @param height_labeller Labeller function to format heights and populate
-#' `after_stat(labelled_height)`.
+#' @param labels Which statistic (`"prop"` or `"count"`) should be used, by
+#' default, for generating formatted labels (accessible through
+#' `after_stat(labels)`)?
+#' @param labeller Labeller function to format labels and populate
+#' `after_stat(labels)`.
 #'
 #' @section Aesthetics:
 #' `stat_prop()` understands the following aesthetics
@@ -32,8 +35,8 @@
 #'   \item{`after_stat(count)`}{number of points in bin}
 #'   \item{`after_stat(prop)`}{computed proportion}
 #'   \item{`after_stat(height)`}{counts or proportions, according to `height`}
-#'   \item{`after_stat(labelled_height)`}{formatted heights, according to
-#'     `height_labeller`}
+#'   \item{`after_stat(labels)`}{formatted heights, according to `labels` and
+#'     `labeller`}
 #' }
 #' @seealso `vignette("stat_prop")`, [ggplot2::stat_count()]. For an alternative
 #' approach, see
@@ -103,7 +106,8 @@ stat_prop <- function(mapping = NULL,
                       complete = NULL,
                       default_by = "total",
                       height = c("count", "prop"),
-                      height_labeller = scales::label_percent(accuracy = .1)) {
+                      labels = c("prop", "count"),
+                      labeller = scales::label_percent(accuracy = .1)) {
   params <- list(
     na.rm = na.rm,
     orientation = orientation,
@@ -111,7 +115,8 @@ stat_prop <- function(mapping = NULL,
     complete = complete,
     default_by = default_by,
     height = height,
-    height_labeller = height_labeller,
+    labels = labels,
+    labeller = labeller,
     ...
   )
   if (!is.null(params$y)) {
@@ -143,7 +148,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     x = after_stat(height),
     y = after_stat(height),
     weight = 1,
-    label = after_stat(labelled_height),
+    label = after_stat(labels),
     by = 1
   ),
   setup_params = function(data, params) {
@@ -176,9 +181,11 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
                            complete = NULL,
                            default_by = "total",
                            height = c("count", "prop"),
-                           height_labeller =
+                           labels = c("prop", "count"),
+                           labeller =
                              scales::label_percent(accuracy = .1)) {
     height <- match.arg(height)
+    labels <- match.arg(labels)
     data <- ggplot2::flip_data(data, flipped_aes)
     data$weight <- data$weight %||% rep(1, nrow(data))
 
@@ -223,7 +230,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     }
     panel$prop <- panel$count / ave(panel$count, panel$by, FUN = sum_abs)
     panel$height <- panel[[height]]
-    panel$labelled_height <- height_labeller(panel$height)
+    panel$labels <- labeller(panel[[labels]])
     panel$width <- width
     panel$flipped_aes <- flipped_aes
 
@@ -267,7 +274,8 @@ geom_text_prop <- function(mapping = NULL,
                            complete = NULL,
                            default_by = "x",
                            height = "prop",
-                           height_labeller =
+                           labels = "prop",
+                           labeller =
                              scales::label_percent(accuracy = .1)) {
 
   args <- list(...)
@@ -275,7 +283,8 @@ geom_text_prop <- function(mapping = NULL,
     args$complete <- complete
     args$default_by <- default_by
     args$height <- height
-    args$height_labeller <- height_labeller
+    args$labels <- labels
+    args$labeller <- labeller
   }
 
   args$mapping <- mapping

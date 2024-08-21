@@ -22,7 +22,8 @@ stat_prop(
   complete = NULL,
   default_by = "total",
   height = c("count", "prop"),
-  height_labeller = scales::label_percent(accuracy = 0.1)
+  labels = c("prop", "count"),
+  labeller = scales::label_percent(accuracy = 0.1)
 )
 
 geom_bar_prop(
@@ -45,7 +46,8 @@ geom_text_prop(
   complete = NULL,
   default_by = "x",
   height = "prop",
-  height_labeller = scales::label_percent(accuracy = 0.1)
+  labels = "prop",
+  labeller = scales::label_percent(accuracy = 0.1)
 )
 }
 \arguments{
@@ -146,8 +148,12 @@ or \code{NULL} or \code{"total"} to compute proportions of the total. To be note
 default, for determining the height/width of the geometry (accessible
 through \code{after_stat(height)})?}
 
-\item{height_labeller}{Labeller function to format heights and populate
-\code{after_stat(labelled_height)}.}
+\item{labels}{Which statistic (\code{"prop"} or \code{"count"}) should be used, by
+default, for generating formatted labels (accessible through
+\code{after_stat(labels)})?}
+
+\item{labeller}{Labeller function to format labels and populate
+\code{after_stat(labels)}.}
 
 \item{stat}{The statistical transformation to use on the data for this layer.}
 }
@@ -178,8 +184,8 @@ determined according to the \code{default_by} argument.
 \item{\code{after_stat(count)}}{number of points in bin}
 \item{\code{after_stat(prop)}}{computed proportion}
 \item{\code{after_stat(height)}}{counts or proportions, according to \code{height}}
-\item{\code{after_stat(labelled_height)}}{formatted heights, according to
-\code{height_labeller}}
+\item{\code{after_stat(labels)}}{formatted heights, according to \code{labels} and
+\code{labeller}}
 }
 }
 

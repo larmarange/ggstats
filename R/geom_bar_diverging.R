@@ -5,12 +5,13 @@
 #'
 #' - `geom_bar_diverging()` is designed for stacked diverging bar plots, using
 #'   [`position_diverging()`].
-#' - `geom_bar_diverging()` is designed for Likert-type items. Using
+#' - `geom_bar_likert()` is designed for Likert-type items. Using
 #'   `position_likert()` (each bar sums to 100%).
-#' - `geom_bar_pyramid()` is adapted for population pyramid plots when a factor
-#'   with two levels is mapped to the **fill** aesthetics. The proportions are,
-#'   here by default, computed separately for each value of the **fill**
-#'   aesthetics.
+#' - `geom_bar_pyramid()` is similar to `geom_bar_diverging()` but uses
+#'   proportions of the total instead of counts.
+#'
+#' To add labels on the bar plots, simply use `geom_text_diverging()`,
+#' `geom_text_likert()`, or `geom_text_pyramid()`.
 #'
 #' @param mapping Optional set of aesthetic mappings.
 #' @param data The data to be displayed in this layers.
@@ -23,7 +24,9 @@
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @param height Statistic used, by default, to determine the height/width,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
-#' @param height_labeller Labeller function to format proportions,
+#' @param height Statistic used, by default, to determine the labels,
+#' see [`stat_prop()`]. Passed only if `stat = "prop"`.
+#' @param labeller Labeller function to format labels,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @inheritParams position_likert
 #' @param width Bar width.
@@ -120,7 +123,7 @@ geom_bar_pyramid <- function(mapping = NULL,
                              ),
                              ...,
                              complete = NULL,
-                             default_by = "fill",
+                             default_by = "total",
                              height = "prop",
                              reverse = FALSE,
                              exclude_fill_values = NULL,
@@ -146,7 +149,8 @@ geom_text_diverging <- function(mapping = NULL,
                                 complete = "fill",
                                 default_by = "total",
                                 height = "count",
-                                height_labeller = label_number_abs(),
+                                labels = "count",
+                                labeller = label_number_abs(),
                                 reverse = FALSE,
                                 exclude_fill_values = NULL,
                                 cutoff = NULL,
@@ -157,7 +161,8 @@ geom_text_diverging <- function(mapping = NULL,
     args$complete <- complete
     args$default_by <- default_by
     args$height <- height
-    args$height_labeller <- height_labeller
+    args$labels <- labels
+    args$labeller <- labeller
   }
 
   args$mapping <- mapping
@@ -182,7 +187,8 @@ geom_text_likert <- function(mapping = NULL,
                              complete = "fill",
                              default_by = "x",
                              height = "prop",
-                             height_labeller = label_percent_abs(accuracy = 1),
+                             labels = "prop",
+                             labeller = label_percent_abs(accuracy = 1),
                              reverse = FALSE,
                              exclude_fill_values = NULL,
                              cutoff = NULL,
@@ -205,9 +211,10 @@ geom_text_pyramid <- function(mapping = NULL,
                               ),
                               ...,
                               complete = NULL,
-                              default_by = "fill",
+                              default_by = "total",
                               height = "prop",
-                              height_labeller = label_percent_abs(accuracy = 1),
+                              labels = "prop",
+                              labeller = label_percent_abs(accuracy = 1),
                               reverse = FALSE,
                               exclude_fill_values = NULL,
                               cutoff = NULL,
