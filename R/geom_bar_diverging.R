@@ -29,7 +29,6 @@
 #' @param labeller Labeller function to format labels,
 #' see [`stat_prop()`]. Passed only if `stat = "prop"`.
 #' @inheritParams position_likert
-#' @param width Bar width.
 #' @export
 #' @examples
 #' library(ggplot2)
@@ -71,8 +70,7 @@ geom_bar_diverging <- function(mapping = NULL,
                                height = "count",
                                reverse = FALSE,
                                exclude_fill_values = NULL,
-                               cutoff = NULL,
-                               width = NULL) {
+                               cutoff = NULL) {
 
   args <- list(...)
   if (stat == "prop") {
@@ -104,8 +102,7 @@ geom_bar_likert <- function(mapping = NULL,
                             height = "prop",
                             reverse = FALSE,
                             exclude_fill_values = NULL,
-                            cutoff = NULL,
-                            width = NULL) {
+                            cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_bar_diverging, args)
@@ -127,8 +124,7 @@ geom_bar_pyramid <- function(mapping = NULL,
                              height = "prop",
                              reverse = FALSE,
                              exclude_fill_values = NULL,
-                             cutoff = NULL,
-                             width = 1) {
+                             cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_bar_diverging, args)
@@ -153,8 +149,7 @@ geom_text_diverging <- function(mapping = NULL,
                                 labeller = label_number_abs(),
                                 reverse = FALSE,
                                 exclude_fill_values = NULL,
-                                cutoff = NULL,
-                                width = NULL) {
+                                cutoff = NULL) {
 
   args <- list(...)
   if (stat == "prop") {
@@ -191,8 +186,7 @@ geom_text_likert <- function(mapping = NULL,
                              labeller = label_percent_abs(accuracy = 1),
                              reverse = FALSE,
                              exclude_fill_values = NULL,
-                             cutoff = NULL,
-                             width = NULL) {
+                             cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_text_diverging, args)
@@ -217,8 +211,7 @@ geom_text_pyramid <- function(mapping = NULL,
                               labeller = label_percent_abs(accuracy = 1),
                               reverse = FALSE,
                               exclude_fill_values = NULL,
-                              cutoff = NULL,
-                              width = 1) {
+                              cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_text_diverging, args)

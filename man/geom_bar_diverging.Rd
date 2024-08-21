@@ -21,8 +21,7 @@ geom_bar_diverging(
   height = "count",
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL,
-  width = NULL
+  cutoff = NULL
 )
 
 geom_bar_likert(
@@ -37,8 +36,7 @@ geom_bar_likert(
   height = "prop",
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL,
-  width = NULL
+  cutoff = NULL
 )
 
 geom_bar_pyramid(
@@ -53,8 +51,7 @@ geom_bar_pyramid(
   height = "prop",
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL,
-  width = 1
+  cutoff = NULL
 )
 
 geom_text_diverging(
@@ -71,8 +68,7 @@ geom_text_diverging(
   labeller = label_number_abs(),
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL,
-  width = NULL
+  cutoff = NULL
 )
 
 geom_text_likert(
@@ -89,8 +85,7 @@ geom_text_likert(
   labeller = label_percent_abs(accuracy = 1),
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL,
-  width = NULL
+  cutoff = NULL
 )
 
 geom_text_pyramid(
@@ -107,8 +102,7 @@ geom_text_pyramid(
   labeller = label_percent_abs(accuracy = 1),
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL,
-  width = 1
+  cutoff = NULL
 )
 }
 \arguments{
@@ -145,8 +139,6 @@ negatively the two first categories and half of the third, \code{2.2} to display
 negatively the two first categories and a fifth of the third (see examples).
 By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
-
-\item{width}{Bar width.}
 
 \item{labels}{Statistic used, by default, to determine the labels,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
