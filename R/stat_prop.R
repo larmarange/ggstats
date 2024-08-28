@@ -78,8 +78,8 @@
 #'
 #' ggplot(d) +
 #' aes(y = Class, fill = Survived, weight = Freq) +
-#'   geom_bar_prop() +
-#'   geom_text_prop()
+#'   geom_prop_bar() +
+#'   geom_prop_text()
 #'
 #' # displaying unobserved levels with complete
 #' d <- diamonds %>%
@@ -241,7 +241,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
 #' @rdname stat_prop
 #' @param stat The statistical transformation to use on the data for this layer.
 #' @export
-geom_bar_prop <- function(mapping = NULL,
+geom_prop_bar <- function(mapping = NULL,
                           data = NULL,
                           stat = "prop",
                           position = position_stack(),
@@ -266,7 +266,7 @@ geom_bar_prop <- function(mapping = NULL,
 
 #' @rdname stat_prop
 #' @export
-geom_text_prop <- function(mapping = NULL,
+geom_prop_text <- function(mapping = NULL,
                            data = NULL,
                            stat = "prop",
                            position = position_stack(0.5),

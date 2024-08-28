@@ -4,8 +4,8 @@
 \name{stat_prop}
 \alias{stat_prop}
 \alias{StatProp}
-\alias{geom_bar_prop}
-\alias{geom_text_prop}
+\alias{geom_prop_bar}
+\alias{geom_prop_text}
 \title{Compute proportions according to custom denominator}
 \usage{
 stat_prop(
@@ -26,7 +26,7 @@ stat_prop(
   labeller = scales::label_percent(accuracy = 0.1)
 )
 
-geom_bar_prop(
+geom_prop_bar(
   mapping = NULL,
   data = NULL,
   stat = "prop",
@@ -37,7 +37,7 @@ geom_bar_prop(
   height = "prop"
 )
 
-geom_text_prop(
+geom_prop_text(
   mapping = NULL,
   data = NULL,
   stat = "prop",
@@ -222,8 +222,8 @@ if (requireNamespace("scales")) {
 
 ggplot(d) +
 aes(y = Class, fill = Survived, weight = Freq) +
-  geom_bar_prop() +
-  geom_text_prop()
+  geom_prop_bar() +
+  geom_prop_text()
 
 # displaying unobserved levels with complete
 d <- diamonds \%>\%

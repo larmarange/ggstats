@@ -16,10 +16,10 @@
 * new argument `symmetric` for `gglikert()` (#66)
 * new arguments `default_by`, `height`, `labels` and `labeller` for
   `stat_prop()` (#69)
-* new geometries: `geom_bar_diverging()`, `geom_bar_likert()`,
-  `geom_bar_pyramid()` and `geom_text_diverging()`, `geom_text_likert()`,
-  `geom_text_pyramid()` (#69)
-* new geometries: `geom_bar_prop()` and `geom_text_prop()` (#69)
+* new geometries: `geom_diverging()`, `geom_likert()`,
+  `geom_pyramid()` and `geom_diverging_text()`, `geom_likert_text()`,
+  `geom_pyramid_text()` (#69)
+* new geometries: `geom_prop_bar()` and `geom_prop_text()` (#69)
 
 # ggstats 0.6.0
 

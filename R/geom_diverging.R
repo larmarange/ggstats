@@ -3,15 +3,15 @@
 #' These geometries are similar to [`ggplot2::geom_bar()`] but provides
 #' different set of default values.
 #'
-#' - `geom_bar_diverging()` is designed for stacked diverging bar plots, using
+#' - `geom_diverging()` is designed for stacked diverging bar plots, using
 #'   [`position_diverging()`].
-#' - `geom_bar_likert()` is designed for Likert-type items. Using
+#' - `geom_likert()` is designed for Likert-type items. Using
 #'   `position_likert()` (each bar sums to 100%).
-#' - `geom_bar_pyramid()` is similar to `geom_bar_diverging()` but uses
+#' - `geom_pyramid()` is similar to `geom_diverging()` but uses
 #'   proportions of the total instead of counts.
 #'
-#' To add labels on the bar plots, simply use `geom_text_diverging()`,
-#' `geom_text_likert()`, or `geom_text_pyramid()`.
+#' To add labels on the bar plots, simply use `geom_diverging_text()`,
+#' `geom_likert_text()`, or `geom_pyramid_text()`.
 #'
 #' @param mapping Optional set of aesthetic mappings.
 #' @param data The data to be displayed in this layers.
@@ -34,29 +34,29 @@
 #' library(ggplot2)
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
-#'   geom_bar_diverging()
+#'   geom_diverging()
 #'
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
-#'   geom_bar_diverging(cutoff = 4)
+#'   geom_diverging(cutoff = 4)
 #'
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
-#'   geom_bar_likert() +
-#'   geom_text_likert(aes(color = after_scale(hex_bw(.data$fill))))
+#'   geom_likert() +
+#'   geom_likert_text(aes(color = after_scale(hex_bw(.data$fill))))
 #'
 #' d <- Titanic |> as.data.frame()
 #'
 #' ggplot(d) +
 #'   aes(y = Class, fill = Sex, weight = Freq) +
-#'   geom_bar_diverging() +
-#'   geom_text_diverging()
+#'   geom_diverging() +
+#'   geom_diverging_text()
 #'
 #' ggplot(d) +
 #'   aes(y = Class, fill = Sex, weight = Freq) +
-#'   geom_bar_pyramid() +
-#'   geom_text_pyramid()
-geom_bar_diverging <- function(mapping = NULL,
+#'   geom_pyramid() +
+#'   geom_pyramid_text()
+geom_diverging <- function(mapping = NULL,
                                data = NULL,
                                stat = "prop",
                                position = position_diverging(
@@ -86,9 +86,9 @@ geom_bar_diverging <- function(mapping = NULL,
   do.call(ggplot2::geom_bar, args)
 }
 
-#' @rdname geom_bar_diverging
+#' @rdname geom_diverging
 #' @export
-geom_bar_likert <- function(mapping = NULL,
+geom_likert <- function(mapping = NULL,
                             data = NULL,
                             stat = "prop",
                             position = position_likert(
@@ -105,12 +105,12 @@ geom_bar_likert <- function(mapping = NULL,
                             cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
-  do.call(geom_bar_diverging, args)
+  do.call(geom_diverging, args)
 }
 
-#' @rdname geom_bar_diverging
+#' @rdname geom_diverging
 #' @export
-geom_bar_pyramid <- function(mapping = NULL,
+geom_pyramid <- function(mapping = NULL,
                              data = NULL,
                              stat = "prop",
                              position = position_diverging(
@@ -127,12 +127,12 @@ geom_bar_pyramid <- function(mapping = NULL,
                              cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
-  do.call(geom_bar_diverging, args)
+  do.call(geom_diverging, args)
 }
 
-#' @rdname geom_bar_diverging
+#' @rdname geom_diverging
 #' @export
-geom_text_diverging <- function(mapping = NULL,
+geom_diverging_text <- function(mapping = NULL,
                                 data = NULL,
                                 stat = "prop",
                                 position = position_diverging(
@@ -167,9 +167,9 @@ geom_text_diverging <- function(mapping = NULL,
   do.call(ggplot2::geom_text, args)
 }
 
-#' @rdname geom_bar_diverging
+#' @rdname geom_diverging
 #' @export
-geom_text_likert <- function(mapping = NULL,
+geom_likert_text <- function(mapping = NULL,
                              data = NULL,
                              stat = "prop",
                              position = position_likert(
@@ -189,12 +189,12 @@ geom_text_likert <- function(mapping = NULL,
                              cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
-  do.call(geom_text_diverging, args)
+  do.call(geom_diverging_text, args)
 }
 
-#' @rdname geom_bar_diverging
+#' @rdname geom_diverging
 #' @export
-geom_text_pyramid <- function(mapping = NULL,
+geom_pyramid_text <- function(mapping = NULL,
                               data = NULL,
                               stat = "prop",
                               position = position_diverging(
@@ -214,5 +214,5 @@ geom_text_pyramid <- function(mapping = NULL,
                               cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
-  do.call(geom_text_diverging, args)
+  do.call(geom_diverging_text, args)
 }
