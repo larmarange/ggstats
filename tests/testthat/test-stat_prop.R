@@ -113,3 +113,22 @@ test_that("stat_prop() works with default_by", {
     geom_bar(stat = "prop", default_by = "x")
   vdiffr::expect_doppelganger("stat_prop() default_by x horizontal", p)
 })
+
+test_that("geom_prop_bar() & geom_prop_text()", {
+  d <- as.data.frame(Titanic)
+  p <- ggplot(d) +
+    aes(y = Class, fill = Survived, weight = Freq) +
+    geom_prop_bar() +
+    geom_prop_text()
+  vdiffr::expect_doppelganger("geom_prop_bar() & geom_prop_text()", p)
+
+  p <- ggplot(d) +
+    aes(x = Class, fill = Survived, weight = Freq) +
+    geom_prop_bar(height = "count") +
+    geom_prop_text(
+      height = "count",
+      labels = "count",
+      labeller = scales::number
+    )
+  vdiffr::expect_doppelganger("geom_prop_bar() & geom_prop_text() - count", p)
+})
