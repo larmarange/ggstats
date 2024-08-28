@@ -57,20 +57,20 @@
 #'   geom_pyramid() +
 #'   geom_pyramid_text()
 geom_diverging <- function(mapping = NULL,
-                               data = NULL,
-                               stat = "prop",
-                               position = position_diverging(
-                                 reverse = reverse,
-                                 exclude_fill_values = exclude_fill_values,
-                                 cutoff = cutoff
-                               ),
-                               ...,
-                               complete = "fill",
-                               default_by = "total",
-                               height = "count",
-                               reverse = FALSE,
-                               exclude_fill_values = NULL,
-                               cutoff = NULL) {
+                           data = NULL,
+                           stat = "prop",
+                           position = position_diverging(
+                             reverse = reverse,
+                             exclude_fill_values = exclude_fill_values,
+                             cutoff = cutoff
+                           ),
+                           ...,
+                           complete = "fill",
+                           default_by = "total",
+                           height = "count",
+                           reverse = FALSE,
+                           exclude_fill_values = NULL,
+                           cutoff = NULL) {
 
   args <- list(...)
   if (stat == "prop") {
@@ -89,20 +89,20 @@ geom_diverging <- function(mapping = NULL,
 #' @rdname geom_diverging
 #' @export
 geom_likert <- function(mapping = NULL,
-                            data = NULL,
-                            stat = "prop",
-                            position = position_likert(
-                              reverse = reverse,
-                              exclude_fill_values = exclude_fill_values,
-                              cutoff = cutoff
-                            ),
-                            ...,
-                            complete = "fill",
-                            default_by = "x",
-                            height = "prop",
-                            reverse = FALSE,
-                            exclude_fill_values = NULL,
-                            cutoff = NULL) {
+                        data = NULL,
+                        stat = "prop",
+                        position = position_likert(
+                          reverse = reverse,
+                          exclude_fill_values = exclude_fill_values,
+                          cutoff = cutoff
+                        ),
+                        ...,
+                        complete = "fill",
+                        default_by = "x",
+                        height = "prop",
+                        reverse = FALSE,
+                        exclude_fill_values = NULL,
+                        cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_diverging, args)
@@ -111,20 +111,20 @@ geom_likert <- function(mapping = NULL,
 #' @rdname geom_diverging
 #' @export
 geom_pyramid <- function(mapping = NULL,
-                             data = NULL,
-                             stat = "prop",
-                             position = position_diverging(
-                               reverse = reverse,
-                               exclude_fill_values = exclude_fill_values,
-                               cutoff = cutoff
-                             ),
-                             ...,
-                             complete = NULL,
-                             default_by = "total",
-                             height = "prop",
-                             reverse = FALSE,
-                             exclude_fill_values = NULL,
-                             cutoff = NULL) {
+                         data = NULL,
+                         stat = "prop",
+                         position = position_diverging(
+                           reverse = reverse,
+                           exclude_fill_values = exclude_fill_values,
+                           cutoff = cutoff
+                         ),
+                         ...,
+                         complete = NULL,
+                         default_by = "total",
+                         height = "prop",
+                         reverse = FALSE,
+                         exclude_fill_values = NULL,
+                         cutoff = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_diverging, args)
