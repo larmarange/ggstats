@@ -41,13 +41,14 @@ geom_prop_text(
   mapping = NULL,
   data = NULL,
   stat = "prop",
-  position = position_stack(0.5),
+  position = position_stack(vjust),
   ...,
   complete = NULL,
   default_by = "x",
   height = "prop",
   labels = "prop",
-  labeller = scales::label_percent(accuracy = 0.1)
+  labeller = scales::label_percent(accuracy = 0.1),
+  vjust = 0.5
 )
 }
 \arguments{
@@ -156,6 +157,10 @@ default, for generating formatted labels (accessible through
 \code{after_stat(labels)}.}
 
 \item{stat}{The statistical transformation to use on the data for this layer.}
+
+\item{vjust}{Vertical/Horizontal adjustment for the position. Set to 0 to
+align with the bottom/left, 0.5 (the default) for the middle, and 1 for the
+top/right.}
 }
 \value{
 A \code{ggplot2} plot with the added statistic.

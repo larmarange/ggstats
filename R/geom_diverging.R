@@ -136,7 +136,7 @@ geom_diverging_text <- function(mapping = NULL,
                                 data = NULL,
                                 stat = "prop",
                                 position = position_diverging(
-                                  vjust = 0.5,
+                                  vjust = vjust,
                                   reverse = reverse,
                                   exclude_fill_values = exclude_fill_values,
                                   cutoff = cutoff
@@ -149,7 +149,8 @@ geom_diverging_text <- function(mapping = NULL,
                                 labeller = label_number_abs(),
                                 reverse = FALSE,
                                 exclude_fill_values = NULL,
-                                cutoff = NULL) {
+                                cutoff = NULL,
+                                vjust = 0.5) {
 
   args <- list(...)
   if (stat == "prop") {
@@ -173,7 +174,7 @@ geom_likert_text <- function(mapping = NULL,
                              data = NULL,
                              stat = "prop",
                              position = position_likert(
-                               vjust = 0.5,
+                               vjust = vjust,
                                reverse = reverse,
                                exclude_fill_values = exclude_fill_values,
                                cutoff = cutoff
@@ -186,7 +187,8 @@ geom_likert_text <- function(mapping = NULL,
                              labeller = label_percent_abs(accuracy = 1),
                              reverse = FALSE,
                              exclude_fill_values = NULL,
-                             cutoff = NULL) {
+                             cutoff = NULL,
+                             vjust = 0.5) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_diverging_text, args)
@@ -198,7 +200,7 @@ geom_pyramid_text <- function(mapping = NULL,
                               data = NULL,
                               stat = "prop",
                               position = position_diverging(
-                                vjust = 0.5,
+                                vjust = vjust,
                                 reverse = reverse,
                                 exclude_fill_values = exclude_fill_values,
                                 cutoff = cutoff
@@ -211,7 +213,8 @@ geom_pyramid_text <- function(mapping = NULL,
                               labeller = label_percent_abs(accuracy = 1),
                               reverse = FALSE,
                               exclude_fill_values = NULL,
-                              cutoff = NULL) {
+                              cutoff = NULL,
+                              vjust = 0.5) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_diverging_text, args)

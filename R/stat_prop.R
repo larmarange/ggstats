@@ -265,18 +265,22 @@ geom_prop_bar <- function(mapping = NULL,
 }
 
 #' @rdname stat_prop
+#' @param vjust Vertical/Horizontal adjustment for the position. Set to 0 to
+#' align with the bottom/left, 0.5 (the default) for the middle, and 1 for the
+#' top/right.
 #' @export
 geom_prop_text <- function(mapping = NULL,
                            data = NULL,
                            stat = "prop",
-                           position = position_stack(0.5),
+                           position = position_stack(vjust),
                            ...,
                            complete = NULL,
                            default_by = "x",
                            height = "prop",
                            labels = "prop",
                            labeller =
-                             scales::label_percent(accuracy = .1)) {
+                             scales::label_percent(accuracy = .1),
+                           vjust = 0.5) {
 
   args <- list(...)
   if (stat == "prop") {

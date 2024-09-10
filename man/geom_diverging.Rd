@@ -58,7 +58,7 @@ geom_diverging_text(
   mapping = NULL,
   data = NULL,
   stat = "prop",
-  position = position_diverging(vjust = 0.5, reverse = reverse, exclude_fill_values =
+  position = position_diverging(vjust = vjust, reverse = reverse, exclude_fill_values =
     exclude_fill_values, cutoff = cutoff),
   ...,
   complete = "fill",
@@ -68,14 +68,15 @@ geom_diverging_text(
   labeller = label_number_abs(),
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL
+  cutoff = NULL,
+  vjust = 0.5
 )
 
 geom_likert_text(
   mapping = NULL,
   data = NULL,
   stat = "prop",
-  position = position_likert(vjust = 0.5, reverse = reverse, exclude_fill_values =
+  position = position_likert(vjust = vjust, reverse = reverse, exclude_fill_values =
     exclude_fill_values, cutoff = cutoff),
   ...,
   complete = "fill",
@@ -85,14 +86,15 @@ geom_likert_text(
   labeller = label_percent_abs(accuracy = 1),
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL
+  cutoff = NULL,
+  vjust = 0.5
 )
 
 geom_pyramid_text(
   mapping = NULL,
   data = NULL,
   stat = "prop",
-  position = position_diverging(vjust = 0.5, reverse = reverse, exclude_fill_values =
+  position = position_diverging(vjust = vjust, reverse = reverse, exclude_fill_values =
     exclude_fill_values, cutoff = cutoff),
   ...,
   complete = NULL,
@@ -102,7 +104,8 @@ geom_pyramid_text(
   labeller = label_percent_abs(accuracy = 1),
   reverse = FALSE,
   exclude_fill_values = NULL,
-  cutoff = NULL
+  cutoff = NULL,
+  vjust = 0.5
 )
 }
 \arguments{
@@ -145,6 +148,11 @@ see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 
 \item{labeller}{Labeller function to format labels,
 see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
+
+\item{vjust}{Vertical adjustment for geoms that have a position
+(like points or lines), not a dimension (like bars or areas). Set to
+\code{0} to align with the bottom, \code{0.5} for the middle,
+and \code{1} (the default) for the top.}
 }
 \description{
 These geometries are similar to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} but provides
