@@ -187,7 +187,9 @@ determined according to the \code{default_by} argument.
 
 \describe{
 \item{\code{after_stat(count)}}{number of points in bin}
-\item{\code{after_stat(prop)}}{computed proportion}
+\item{\code{after_stat(denominator)}}{denominator for the proportions}
+\item{\code{after_stat(prop)}}{computed proportion, i.e.
+\code{after_stat(count)}/\code{after_stat(denominator)}}
 \item{\code{after_stat(height)}}{counts or proportions, according to \code{height}}
 \item{\code{after_stat(labels)}}{formatted heights, according to \code{labels} and
 \code{labeller}}

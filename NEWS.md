@@ -16,6 +16,8 @@
 * new argument `symmetric` for `gglikert()` (#66)
 * new arguments `default_by`, `height`, `labels` and `labeller` for
   `stat_prop()` (#69)
+* new returned statistics for `stat_prop()`: `after_stat(denominator)`,
+  `after_stat(height)` and `after_stat(labels)`
 * new geometries: `geom_diverging()`, `geom_likert()`,
   `geom_pyramid()` and `geom_diverging_text()`, `geom_likert_text()`,
   `geom_pyramid_text()` (#69)

@@ -33,7 +33,9 @@
 #' @section Computed variables:
 #' \describe{
 #'   \item{`after_stat(count)`}{number of points in bin}
-#'   \item{`after_stat(prop)`}{computed proportion}
+#'   \item{`after_stat(denominator)`}{denominator for the proportions}
+#'   \item{`after_stat(prop)`}{computed proportion, i.e.
+#'     `after_stat(count)`/`after_stat(denominator)`}
 #'   \item{`after_stat(height)`}{counts or proportions, according to `height`}
 #'   \item{`after_stat(labels)`}{formatted heights, according to `labels` and
 #'     `labeller`}
@@ -228,7 +230,8 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     sum_abs <- function(x) {
       sum(abs(x))
     }
-    panel$prop <- panel$count / ave(panel$count, panel$by, FUN = sum_abs)
+    panel$denominator <- ave(panel$count, panel$by, FUN = sum_abs)
+    panel$prop <- panel$count / panel$denominator
     panel$height <- panel[[height]]
     panel$labels <- labeller(panel[[labels]])
     panel$width <- width
