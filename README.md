@@ -9,7 +9,7 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/larmarange/ggstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/larmarange/ggstats/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/larmarange/ggstats/branch/main/graph/badge.svg)](https://app.codecov.io/gh/larmarange/ggstats?branch=main)
+coverage](https://codecov.io/gh/larmarange/ggstats/graph/badge.svg)](https://app.codecov.io/gh/larmarange/ggstats)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ggstats)](https://CRAN.R-project.org/package=ggstats)
 [![DOI](https://zenodo.org/badge/547360047.svg)](https://zenodo.org/badge/latestdoi/547360047)
