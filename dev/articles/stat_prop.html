@@ -34,7 +34,8 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
+<li><a class="dropdown-item" href="../articles/geom_diverging.html">Geometries for diverging bar plots</a></li>
+    <li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
     <li><a class="dropdown-item" href="../articles/gglikert.html">Plot Likert-type items with `gglikert()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_cross.html">Compute cross-tabulation statistics with `stat_cross()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_prop.html">Compute custom proportions with `stat_prop()`</a></li>
@@ -196,6 +197,48 @@ where relevant.</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="stat_prop_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
+<div class="section level2">
+<h2 id="using-geom_prop_bar-and-geom_prop_text">Using <code>geom_prop_bar()</code> and
+<code>geom_prop_text()</code><a class="anchor" aria-label="anchor" href="#using-geom_prop_bar-and-geom_prop_text"></a>
+</h2>
+<p>The dedicated geometries <code><a href="../reference/stat_prop.html">geom_prop_bar()</a></code> and
+<code><a href="../reference/stat_prop.html">geom_prop_text()</a></code> could be used for quick and easy
+proportional bar plots. They use by default <code><a href="../reference/stat_prop.html">stat_prop()</a></code>
+with relevant default values. For example, proportions are computed by
+<strong>x</strong> or <strong>y</strong> if the <code>by</code>
+aesthetic is not specified. It allows to generate a quick proportional
+bar plot.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">clarity</span>, fill <span class="op">=</span> <span class="va">cut</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/stat_prop.html">geom_prop_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/stat_prop.html">geom_prop_text</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p>You can specify a <code>by</code> aesthetic. For example, to
+reproduce the comparison of the two distributions presented earlier.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, fill <span class="op">=</span> <span class="va">Sex</span>, weight <span class="op">=</span> <span class="va">Freq</span>, by <span class="op">=</span> <span class="va">Sex</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/stat_prop.html">geom_prop_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/stat_prop.html">geom_prop_text</a></span><span class="op">(</span></span>
+<span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.9</span><span class="op">)</span>,</span>
+<span>    vjust <span class="op">=</span> <span class="op">-</span> <span class="fl">0.5</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span><span class="op">)</span></span></code></pre></div>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p>You can also display counts instead of proportions.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">clarity</span>, fill <span class="op">=</span> <span class="va">cut</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/stat_prop.html">geom_prop_bar</a></span><span class="op">(</span>height <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/stat_prop.html">geom_prop_text</a></span><span class="op">(</span></span>
+<span>    height <span class="op">=</span> <span class="st">"count"</span>,</span>
+<span>    labels <span class="op">=</span> <span class="st">"count"</span>,</span>
+<span>    labeller <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/number.html" class="external-link">number</a></span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+</div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
@@ -207,7 +250,7 @@ where relevant.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

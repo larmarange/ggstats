@@ -18,7 +18,8 @@
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/geom_diverging.html">Geometries for diverging bar plots</a></li>
+    <li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
     <li><a class="dropdown-item" href="../articles/gglikert.html">Plot Likert-type items with `gglikert()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_cross.html">Compute cross-tabulation statistics with `stat_cross()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_prop.html">Compute custom proportions with `stat_prop()`</a></li>
@@ -42,7 +43,10 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ggstats-development-version">ggstats (development version)<a class="anchor" aria-label="anchor" href="#ggstats-development-version"></a></h2>
-<p><strong>Improvements</strong></p>
+<p><strong>Minor breaking change</strong></p>
+<ul><li>
+<code>position_likert_count()</code> has been renamed as <code><a href="../reference/position_likert.html">position_diverging()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
+</ul><p><strong>Improvements</strong></p>
 <ul><li>new scale <code><a href="../reference/scale_fill_likert.html">scale_fill_likert()</a></code>
 </li>
 <li>new argument <code>cutoff</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code>, <code><a href="../reference/position_likert.html">position_likert()</a></code> and <code><a href="../reference/scale_fill_likert.html">scale_fill_likert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/64" class="external-link">#64</a>)</li>
@@ -51,6 +55,11 @@
 <li>new sorting option <code>"prop_lower"</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/62" class="external-link">#62</a>)</li>
 <li>new helper <code><a href="../reference/symmetric_limits.html">symmetric_limits()</a></code> to make a scale symmetric (<a href="https://github.com/larmarange/ggstats/issues/66" class="external-link">#66</a>)</li>
 <li>new argument <code>symmetric</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/66" class="external-link">#66</a>)</li>
+<li>new arguments <code>default_by</code>, <code>height</code>, <code>labels</code> and <code>labeller</code> for <code><a href="../reference/stat_prop.html">stat_prop()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
+<li>new returned statistics for <code><a href="../reference/stat_prop.html">stat_prop()</a></code>: <code>after_stat(denominator)</code>, <code>after_stat(height)</code> and <code>after_stat(labels)</code>
+</li>
+<li>new geometries: <code><a href="../reference/geom_diverging.html">geom_diverging()</a></code>, <code><a href="../reference/geom_diverging.html">geom_likert()</a></code>, <code><a href="../reference/geom_diverging.html">geom_pyramid()</a></code> and <code><a href="../reference/geom_diverging.html">geom_diverging_text()</a></code>, <code><a href="../reference/geom_diverging.html">geom_likert_text()</a></code>, <code><a href="../reference/geom_diverging.html">geom_pyramid_text()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
+<li>new geometries: <code><a href="../reference/stat_prop.html">geom_prop_bar()</a></code> and <code><a href="../reference/stat_prop.html">geom_prop_text()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.0" id="ggstats-060">ggstats 0.6.0<a class="anchor" aria-label="anchor" href="#ggstats-060"></a></h2><p class="text-muted">CRAN release: 2024-04-05</p>
@@ -94,7 +103,7 @@
 <h2 class="pkg-version" data-toc-text="0.3.0" id="ggstats-030">ggstats 0.3.0<a class="anchor" aria-label="anchor" href="#ggstats-030"></a></h2><p class="text-muted">CRAN release: 2023-04-12</p>
 <p><strong>New features</strong></p>
 <ul><li>New functions <code><a href="../reference/gglikert.html">gglikert()</a></code>, <code><a href="../reference/gglikert.html">gglikert_stacked()</a></code> and <code><a href="../reference/gglikert.html">gglikert_data()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/25" class="external-link">#25</a>)</li>
-<li>New positions <code><a href="../reference/position_likert.html">position_likert()</a></code> and <code><a href="../reference/position_likert.html">position_likert_count()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/25" class="external-link">#25</a>)</li>
+<li>New positions <code><a href="../reference/position_likert.html">position_likert()</a></code> and <code>position_likert_count()</code> (<a href="https://github.com/larmarange/ggstats/issues/25" class="external-link">#25</a>)</li>
 <li>New <code>complete</code> argument for <code><a href="../reference/stat_prop.html">stat_prop()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/25" class="external-link">#25</a>)</li>
 </ul><p><strong>Bug fixes</strong></p>
 <ul><li>Bug fix in <code><a href="../reference/ggcoef_model.html">ggcoef_compare()</a></code> to preserve the order of model terms and to avoid an error with <code>add_reference_rows = FALSE</code> (<a href="https://github.com/larmarange/ggstats/issues/23" class="external-link">#23</a>)</li>
@@ -131,7 +140,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

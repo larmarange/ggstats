@@ -28,7 +28,8 @@ produced tibble to ggcoef_plot() to generate the plot."><meta name="robots" cont
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/geom_diverging.html">Geometries for diverging bar plots</a></li>
+    <li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
     <li><a class="dropdown-item" href="../articles/gglikert.html">Plot Likert-type items with `gglikert()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_cross.html">Compute cross-tabulation statistics with `stat_cross()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_prop.html">Compute custom proportions with `stat_prop()`</a></li>
@@ -251,7 +252,8 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 
 
 <dt id="arg-tidy-fun">tidy_fun<a class="anchor" aria-label="anchor" href="#arg-tidy-fun"></a></dt>
-<dd><p>option to specify a custom tidier function</p></dd>
+<dd><p>(<code>function</code>)<br>
+Option to specify a custom tidier function.</p></dd>
 
 
 <dt id="arg-tidy-args">tidy_args<a class="anchor" aria-label="anchor" href="#arg-tidy-args"></a></dt>
@@ -260,7 +262,8 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 
 
 <dt id="arg-conf-int">conf.int<a class="anchor" aria-label="anchor" href="#arg-conf-int"></a></dt>
-<dd><p>should confidence intervals be computed? (see <code><a href="https://broom.tidymodels.org/reference/reexports.html" class="external-link">broom::tidy()</a></code>)</p></dd>
+<dd><p>(<code>logical</code>)<br>
+Should confidence intervals be computed? (see <code><a href="https://broom.tidymodels.org/reference/reexports.html" class="external-link">broom::tidy()</a></code>)</p></dd>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
@@ -276,66 +279,75 @@ be used for x-axis</p></dd>
 
 
 <dt id="arg-variable-labels">variable_labels<a class="anchor" aria-label="anchor" href="#arg-variable-labels"></a></dt>
-<dd><p>a named list or a named vector of custom variable labels</p></dd>
+<dd><p>(<code>formula-list-selector</code>)<br>
+A named list or a named vector of custom variable labels.</p></dd>
 
 
 <dt id="arg-term-labels">term_labels<a class="anchor" aria-label="anchor" href="#arg-term-labels"></a></dt>
-<dd><p>a named list or a named vector of custom term labels</p></dd>
+<dd><p>(<code>list</code> or <code>vector</code>)<br>
+A named list or a named vector of custom term labels.</p></dd>
 
 
 <dt id="arg-interaction-sep">interaction_sep<a class="anchor" aria-label="anchor" href="#arg-interaction-sep"></a></dt>
-<dd><p>separator for interaction terms</p></dd>
+<dd><p>(<code>string</code>)<br>
+Separator for interaction terms.</p></dd>
 
 
 <dt id="arg-categorical-terms-pattern">categorical_terms_pattern<a class="anchor" aria-label="anchor" href="#arg-categorical-terms-pattern"></a></dt>
-<dd><p>a <a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue pattern</a> for
-labels of categorical terms with treatment or sum contrasts
-(see <code><a href="https://larmarange.github.io/broom.helpers/reference/model_list_terms_levels.html" class="external-link">model_list_terms_levels()</a></code>)</p></dd>
+<dd><p>(<code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue pattern</a></code>)<br>
+A <a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue pattern</a> for labels of categorical terms with treatment
+or sum contrasts (see <code><a href="https://larmarange.github.io/broom.helpers/reference/model_list_terms_levels.html" class="external-link">model_list_terms_levels()</a></code>).</p></dd>
 
 
 <dt id="arg-add-reference-rows">add_reference_rows<a class="anchor" aria-label="anchor" href="#arg-add-reference-rows"></a></dt>
-<dd><p>should reference rows be added?</p></dd>
+<dd><p>(<code>logical</code>)<br>
+Should reference rows be added?</p></dd>
 
 
 <dt id="arg-no-reference-row">no_reference_row<a class="anchor" aria-label="anchor" href="#arg-no-reference-row"></a></dt>
-<dd><p>variables (accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a> notation)
-for those no reference row should be added, when <code>add_reference_rows = TRUE</code></p></dd>
+<dd><p>(<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>)<br>
+Variables for those no reference row should be added,
+when <code>add_reference_rows = TRUE</code>.</p></dd>
 
 
 <dt id="arg-intercept">intercept<a class="anchor" aria-label="anchor" href="#arg-intercept"></a></dt>
-<dd><p>should the intercept(s) be included?</p></dd>
+<dd><p>(<code>logical</code>)<br>
+Should the intercept(s) be included?</p></dd>
 
 
 <dt id="arg-include">include<a class="anchor" aria-label="anchor" href="#arg-include"></a></dt>
-<dd><p>variables to include. Accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a>
-syntax. Use <code>-</code> to remove a variable. Default is <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>.
+<dd><p>(<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>)<br>
+Variables to include. Default is <code><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything()</a></code>.
 See also <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_continuous()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_categorical()</a></code>, <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_dichotomous()</a></code>
-and <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_interaction()</a></code></p></dd>
+and <code><a href="https://larmarange.github.io/broom.helpers/reference/select_helpers.html" class="external-link">all_interaction()</a></code>.</p></dd>
 
 
 <dt id="arg-add-pairwise-contrasts">add_pairwise_contrasts<a class="anchor" aria-label="anchor" href="#arg-add-pairwise-contrasts"></a></dt>
-<dd><p>apply <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_add_pairwise_contrasts.html" class="external-link">tidy_add_pairwise_contrasts()</a></code>?
-<a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a></p></dd>
+<dd><p>(<code>logical</code>)<br>
+Apply <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_add_pairwise_contrasts.html" class="external-link">tidy_add_pairwise_contrasts()</a></code>?</p></dd>
 
 
 <dt id="arg-pairwise-variables">pairwise_variables<a class="anchor" aria-label="anchor" href="#arg-pairwise-variables"></a></dt>
-<dd><p>variables to add pairwise contrasts
-(accepts <a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">tidyselect</a> notation)</p></dd>
+<dd><p>(<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>)<br>
+Variables to add pairwise contrasts.</p></dd>
 
 
 <dt id="arg-keep-model-terms">keep_model_terms<a class="anchor" aria-label="anchor" href="#arg-keep-model-terms"></a></dt>
-<dd><p>keep original model terms for variables where
+<dd><p>(<code>logical</code>)<br>
+Keep original model terms for variables where
 pairwise contrasts are added? (default is <code>FALSE</code>)</p></dd>
 
 
 <dt id="arg-pairwise-reverse">pairwise_reverse<a class="anchor" aria-label="anchor" href="#arg-pairwise-reverse"></a></dt>
-<dd><p>determines whether to use <code>"pairwise"</code> (if <code>TRUE</code>)
-or <code>"revpairwise"</code> (if <code>FALSE</code>), see <code><a href="https://rvlenth.github.io/emmeans/reference/contrast.html" class="external-link">emmeans::contrast()</a></code></p></dd>
+<dd><p>(<code>logical</code>)<br>
+Determines whether to use <code>"pairwise"</code> (if <code>TRUE</code>)
+or <code>"revpairwise"</code> (if <code>FALSE</code>), see <code><a href="https://rvlenth.github.io/emmeans/reference/contrast.html" class="external-link">emmeans::contrast()</a></code>.</p></dd>
 
 
 <dt id="arg-emmeans-args">emmeans_args<a class="anchor" aria-label="anchor" href="#arg-emmeans-args"></a></dt>
-<dd><p>list of additional parameter to pass to
-<code><a href="https://rvlenth.github.io/emmeans/reference/emmeans.html" class="external-link">emmeans::emmeans()</a></code> when computing pairwise contrasts</p></dd>
+<dd><p>(<code>list</code>)<br>
+List of additional parameter to pass to
+<code><a href="https://rvlenth.github.io/emmeans/reference/emmeans.html" class="external-link">emmeans::emmeans()</a></code> when computing pairwise contrasts.</p></dd>
 
 
 <dt id="arg-significance">significance<a class="anchor" aria-label="anchor" href="#arg-significance"></a></dt>
@@ -557,7 +569,7 @@ multinomial logistic regressions performed with <code><a href="https://rdrr.io/p
 <li><p><code>ggcoef_multicomponents()</code>: a variation of <code>ggcoef_model()</code> adapted to
 multi-component models such as zero-inflated models or beta regressions.
 <code>ggcoef_multicomponents()</code> has been tested with <code><a href="https://rdrr.io/pkg/pscl/man/zeroinfl.html" class="external-link">pscl::zeroinfl()</a></code>,
-<code><a href="https://rdrr.io/pkg/pscl/man/hurdle.html" class="external-link">pscl::hurdle()</a></code> and <code><a href="https://betareg.R-Forge.R-project.org/man/betareg.html" class="external-link">betareg::betareg()</a></code></p></li>
+<code><a href="https://rdrr.io/pkg/pscl/man/hurdle.html" class="external-link">pscl::hurdle()</a></code> and <code><a href="https://rdrr.io/pkg/betareg/man/betareg.html" class="external-link">betareg::betareg()</a></code></p></li>
 <li><p><code>ggcoef_plot()</code>: plot a tidy <code>tibble</code> of coefficients</p></li>
 </ul></div>
     <div class="section level2">
@@ -834,7 +846,7 @@ multi-component models such as zero-inflated models or beta regressions.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

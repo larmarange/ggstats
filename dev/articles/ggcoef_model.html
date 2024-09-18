@@ -34,7 +34,8 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
+<li><a class="dropdown-item" href="../articles/geom_diverging.html">Geometries for diverging bar plots</a></li>
+    <li><a class="dropdown-item" href="../articles/ggcoef_model.html">Plot model coefficients with `ggcoef_model()`</a></li>
     <li><a class="dropdown-item" href="../articles/gglikert.html">Plot Likert-type items with `gglikert()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_cross.html">Compute cross-tabulation statistics with `stat_cross()`</a></li>
     <li><a class="dropdown-item" href="../articles/stat_prop.html">Compute custom proportions with `stat_prop()`</a></li>
@@ -456,7 +457,7 @@ or <code><a href="https://larmarange.github.io/broom.helpers/reference/tidy_plus
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code><a href="https://betareg.R-Forge.R-project.org/man/betareg.html" class="external-link">betareg::betareg()</a></code></td>
+<td align="left"><code><a href="https://rdrr.io/pkg/betareg/man/betareg.html" class="external-link">betareg::betareg()</a></code></td>
 <td align="left">Use <code>tidy_parameters()</code> as
 <code>tidy_fun</code> with <code>component</code> argument to control
 with coefficients to return. <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> does not support
@@ -468,177 +469,173 @@ the <code>exponentiate</code> argument for betareg models, use
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>biglmm::bigglm()</code></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
 <td align="left"><code>brms::brm()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>cmprsk::crr()</code></td>
 <td align="left">Limited support. It is recommended to use
 <code>tidycmprsk::crr()</code> instead.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>fixest::feglm()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>fixest::femlm()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>fixest::feNmlm()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>fixest::feols()</code></td>
 <td align="left">May fail with R &lt;= 4.0.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>gam::gam()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>geepack::geeglm()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>glmmTMB::glmmTMB()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>lavaan::lavaan()</code></td>
 <td align="left">Limited support for categorical variables</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>lfe::felm()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>lme4::glmer.nb()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>lme4::glmer()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>lme4::lmer()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>logitr::logitr()</code></td>
 <td align="left">Requires logitr &gt;= 0.8.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/MASS/man/glm.nb.html" class="external-link">MASS::glm.nb()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/MASS/man/polr.html" class="external-link">MASS::polr()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam()</a></code></td>
 <td align="left">Use default tidier <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy()</a></code> for
 smooth terms only, or <code>gtsummary::tidy_gam()</code> to include
 parametric terms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>mice::mira</code></td>
 <td align="left">Limited support. If <code>mod</code> is a
 <code>mira</code> object, use
 <code>tidy_fun = function(x, ...) {mice::pool(x) %&gt;% mice::tidy(...)}</code>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>mmrm::mmrm()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>multgee::nomLORgee()</code></td>
 <td align="left">Experimental support. Use <code>tidy_multgee()</code>
 as <code>tidy_fun</code>.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>multgee::ordLORgee()</code></td>
 <td align="left">Experimental support. Use <code>tidy_multgee()</code>
 as <code>tidy_fun</code>.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">nnet::multinom()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>ordinal::clm()</code></td>
 <td align="left">Limited support for models with nominal
 predictors.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>ordinal::clmm()</code></td>
 <td align="left">Limited support for models with nominal
 predictors.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>parsnip::model_fit</code></td>
 <td align="left">Supported as long as the type of model and the engine
 is supported.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>plm::plm()</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/pscl/man/hurdle.html" class="external-link">pscl::hurdle()</a></code></td>
 <td align="left">Use <code>tidy_zeroinfl()</code> as
 <code>tidy_fun</code>.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/pscl/man/zeroinfl.html" class="external-link">pscl::zeroinfl()</a></code></td>
 <td align="left">Use <code>tidy_zeroinfl()</code> as
 <code>tidy_fun</code>.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>rstanarm::stan_glm()</code></td>
 <td align="left">
 <code>broom.mixed</code> package required</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/r/stats/aov.html" class="external-link">stats::aov()</a></code></td>
 <td align="left">Reference rows are not relevant for such models.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/r/stats/nls.html" class="external-link">stats::nls()</a></code></td>
 <td align="left">Limited support</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svycoxph.html" class="external-link">survey::svycoxph()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svyglm.html" class="external-link">survey::svyglm()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code><a href="https://rdrr.io/pkg/survey/man/svyolr.html" class="external-link">survey::svyolr()</a></code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code><a href="https://rdrr.io/pkg/survival/man/cch.html" class="external-link">survival::cch()</a></code></td>
 <td align="left">
 <code>Experimental support.                                                                                                                                                                                                    | |</code>survival::clogit()<code>|                                                                                                                                                                                                                          | |</code>survival::coxph()<code>|                                                                                                                                                                                                                          | |</code>survival::survreg()<code>|                                                                                                                                                                                                                          | |</code>tidycmprsk::crr()<code>|                                                                                                                                                                                                                          | |</code>VGAM::vglm()<code>|Limited support. It is recommended to use</code>tidy_parameters()<code>as</code>tidy_fun`.</td>
@@ -661,7 +658,7 @@ models.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
