@@ -194,6 +194,6 @@
 <text x='672.44' y='302.97' style='font-size: 8.80px; font-family: sans;' textLength='42.08px' lengthAdjust='spacingAndGlyphs'>Very Good</text>
 <text x='672.44' y='320.25' style='font-size: 8.80px; font-family: sans;' textLength='35.21px' lengthAdjust='spacingAndGlyphs'>Premium</text>
 <text x='672.44' y='337.53' style='font-size: 8.80px; font-family: sans;' textLength='19.08px' lengthAdjust='spacingAndGlyphs'>Ideal</text>
-<text x='45.51' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='161.43px' lengthAdjust='spacingAndGlyphs'>position_likert_count() facet</text>
+<text x='45.51' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='147.49px' lengthAdjust='spacingAndGlyphs'>position_diverging() facet</text>
 </g>
 </svg>

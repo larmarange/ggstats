@@ -127,3 +127,42 @@ p +
   )
 ```
 
+## Using `geom_prop_bar()` and `geom_prop_text()`
+
+The dedicated geometries `geom_prop_bar()` and `geom_prop_text()` could be used for quick and easy proportional bar plots. They use by default `stat_prop()` with relevant default values. For example, proportions are computed by **x** or **y** if the `by` aesthetic is not specified. It allows to generate a quick proportional bar plot.
+
+```{r}
+ggplot(diamonds) +
+  aes(y = clarity, fill = cut) +
+  geom_prop_bar() +
+  geom_prop_text()
+```
+
+
+You can specify a `by` aesthetic. For example, to reproduce the comparison of the two distributions presented earlier.
+
+```{r}
+d <- as.data.frame(Titanic)
+ggplot(d) +
+  aes(x = Class, fill = Sex, weight = Freq, by = Sex) +
+  geom_prop_bar(position = "dodge") +
+  geom_prop_text(
+    position = position_dodge(width = .9),
+    vjust = - 0.5
+  ) +
+  scale_y_continuous(labels = scales::percent)
+```
+
+
+You can also display counts instead of proportions.
+
+```{r}
+ggplot(diamonds) +
+  aes(x = clarity, fill = cut) +
+  geom_prop_bar(height = "count") +
+  geom_prop_text(
+    height = "count",
+    labels = "count",
+    labeller = scales::number
+  )
+```

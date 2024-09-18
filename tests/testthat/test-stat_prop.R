@@ -73,3 +73,62 @@ test_that("stat_prop() works with an y aesthetic", {
 
   vdiffr::expect_doppelganger("stat_prop() y-aes", p)
 })
+
+test_that("stat_prop() works with a character by", {
+  library(ggplot2)
+  skip_on_cran()
+
+  d <- as.data.frame(Titanic)
+  p <- ggplot(d) +
+    aes(y = Class, fill = Survived, weight = Freq, by = as.character(Class)) +
+    geom_bar(position = "fill") +
+    geom_text(stat = "prop", position = position_fill(.5))
+
+  vdiffr::expect_doppelganger("stat_prop() by-character", p)
+})
+
+test_that("stat_prop() works with default_by", {
+  library(ggplot2)
+  skip_on_cran()
+
+  d <- as.data.frame(Titanic)
+
+  p <- ggplot(d) +
+    aes(x = Class, fill = Survived, weight = Freq, y = after_stat(prop)) +
+    geom_bar(stat = "prop")
+  vdiffr::expect_doppelganger("stat_prop() default_by none", p)
+
+  p <- ggplot(d) +
+    aes(x = Class, fill = Survived, weight = Freq, y = after_stat(prop)) +
+    geom_bar(stat = "prop", default_by = "fill")
+  vdiffr::expect_doppelganger("stat_prop() default_by fill", p)
+
+  p <- ggplot(d) +
+    aes(x = Class, fill = Survived, weight = Freq, y = after_stat(prop)) +
+    geom_bar(stat = "prop", default_by = "x")
+  vdiffr::expect_doppelganger("stat_prop() default_by x", p)
+
+  p <- ggplot(d) +
+    aes(y = Class, fill = Survived, weight = Freq, x = after_stat(prop)) +
+    geom_bar(stat = "prop", default_by = "x")
+  vdiffr::expect_doppelganger("stat_prop() default_by x horizontal", p)
+})
+
+test_that("geom_prop_bar() & geom_prop_text()", {
+  d <- as.data.frame(Titanic)
+  p <- ggplot(d) +
+    aes(y = Class, fill = Survived, weight = Freq) +
+    geom_prop_bar() +
+    geom_prop_text()
+  vdiffr::expect_doppelganger("geom_prop_bar() & geom_prop_text()", p)
+
+  p <- ggplot(d) +
+    aes(x = Class, fill = Survived, weight = Freq) +
+    geom_prop_bar(height = "count") +
+    geom_prop_text(
+      height = "count",
+      labels = "count",
+      labeller = scales::number
+    )
+  vdiffr::expect_doppelganger("geom_prop_bar() & geom_prop_text() - count", p)
+})

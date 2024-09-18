@@ -74,6 +74,6 @@
 <rect x='672.42' y='292.32' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #00BFC4;' />
 <text x='694.47' y='286.00' style='font-size: 8.80px; font-family: sans;' textLength='11.25px' lengthAdjust='spacingAndGlyphs'>No</text>
 <text x='694.47' y='303.28' style='font-size: 8.80px; font-family: sans;' textLength='15.17px' lengthAdjust='spacingAndGlyphs'>Yes</text>
-<text x='43.54' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='99.79px' lengthAdjust='spacingAndGlyphs'>stat_prop() y-aes</text>
+<text x='43.54' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='140.88px' lengthAdjust='spacingAndGlyphs'>stat_prop() by-character</text>
 </g>
 </svg>

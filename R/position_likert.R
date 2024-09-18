@@ -1,10 +1,11 @@
 #' Stack objects on top of each another and center them around 0
 #'
-#' `position_likert()` stacks proportion bars on top of each other and
+#' `position_diverging()` stacks bars on top of each other and
 #' center them around zero (the same number of categories are displayed on
-#' each side). This type of presentation is commonly used to display
-#' Likert-type scales.
-#' `position_likert_count()` uses counts instead of proportions.
+#' each side).
+#' `position_likert()` uses proportions instead of counts. This type of
+#' presentation is commonly used to display Likert-type scales.
+#'
 #'
 #' It is recommended to use `position_likert()` with `stat_prop()`
 #' and its `complete` argument (see examples).
@@ -50,7 +51,7 @@
 #'
 #' ggplot(diamonds) +
 #'   aes(y = clarity, fill = cut) +
-#'   geom_bar(position = "likert_count") +
+#'   geom_bar(position = "diverging") +
 #'   scale_x_continuous(label = label_number_abs()) +
 #'   scale_fill_likert()
 #'
@@ -144,13 +145,13 @@ position_likert <- function(vjust = 1,
 
 #' @export
 #' @rdname position_likert
-position_likert_count <- function(vjust = 1,
-                                  reverse = FALSE,
-                                  exclude_fill_values = NULL,
-                                  cutoff = NULL) {
+position_diverging <- function(vjust = 1,
+                               reverse = FALSE,
+                               exclude_fill_values = NULL,
+                               cutoff = NULL) {
   ggplot2::ggproto(
     NULL,
-    PositionLikertCount,
+    PositionDiverging,
     vjust = vjust,
     reverse = reverse,
     exclude_fill_values = exclude_fill_values,
@@ -295,7 +296,7 @@ pos_likert <- function(df,
 #' @format NULL
 #' @usage NULL
 #' @export
-PositionLikertCount <- ggproto("PositionLikertCount", PositionLikert,
+PositionDiverging <- ggproto("PositionDiverging", PositionLikert,
   fill = FALSE
 )
 

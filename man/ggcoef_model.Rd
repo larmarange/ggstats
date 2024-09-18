@@ -191,12 +191,14 @@ ggcoef_plot(
 \arguments{
 \item{model}{a regression model object}
 
-\item{tidy_fun}{option to specify a custom tidier function}
+\item{tidy_fun}{(\code{function})\cr
+Option to specify a custom tidier function.}
 
 \item{tidy_args}{Additional arguments passed to
 \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}} and to \code{tidy_fun}}
 
-\item{conf.int}{should confidence intervals be computed? (see \code{\link[broom:reexports]{broom::tidy()}})}
+\item{conf.int}{(\code{logical})\cr
+Should confidence intervals be computed? (see \code{\link[broom:reexports]{broom::tidy()}})}
 
 \item{conf.level}{the confidence level to use for the confidence
 interval if \code{conf.int = TRUE}; must be strictly greater than 0
@@ -206,42 +208,51 @@ percent confidence interval}
 \item{exponentiate}{if \code{TRUE} a logarithmic scale will
 be used for x-axis}
 
-\item{variable_labels}{a named list or a named vector of custom variable labels}
+\item{variable_labels}{(\code{\link[gtsummary:syntax]{formula-list-selector}})\cr
+A named list or a named vector of custom variable labels.}
 
-\item{term_labels}{a named list or a named vector of custom term labels}
+\item{term_labels}{(\code{list} or \code{vector})\cr
+A named list or a named vector of custom term labels.}
 
-\item{interaction_sep}{separator for interaction terms}
+\item{interaction_sep}{(\code{string})\cr
+Separator for interaction terms.}
 
-\item{categorical_terms_pattern}{a \link[glue:glue]{glue pattern} for
-labels of categorical terms with treatment or sum contrasts
-(see \code{\link[broom.helpers:model_list_terms_levels]{model_list_terms_levels()}})}
+\item{categorical_terms_pattern}{(\code{\link[glue:glue]{glue pattern}})\cr
+A \link[glue:glue]{glue pattern} for labels of categorical terms with treatment
+or sum contrasts (see \code{\link[broom.helpers:model_list_terms_levels]{model_list_terms_levels()}}).}
 
-\item{add_reference_rows}{should reference rows be added?}
+\item{add_reference_rows}{(\code{logical})\cr
+Should reference rows be added?}
 
-\item{no_reference_row}{variables (accepts \link[dplyr:select]{tidyselect} notation)
-for those no reference row should be added, when \code{add_reference_rows = TRUE}}
+\item{no_reference_row}{(\code{\link[dplyr:dplyr_tidy_select]{tidy-select}})\cr
+Variables for those no reference row should be added,
+when \code{add_reference_rows = TRUE}.}
 
-\item{intercept}{should the intercept(s) be included?}
+\item{intercept}{(\code{logical})\cr
+Should the intercept(s) be included?}
 
-\item{include}{variables to include. Accepts \link[dplyr:select]{tidyselect}
-syntax. Use \code{-} to remove a variable. Default is \code{everything()}.
+\item{include}{(\code{\link[dplyr:dplyr_tidy_select]{tidy-select}})\cr
+Variables to include. Default is \code{everything()}.
 See also \code{\link[broom.helpers:all_continuous]{all_continuous()}}, \code{\link[broom.helpers:all_categorical]{all_categorical()}}, \code{\link[broom.helpers:all_dichotomous]{all_dichotomous()}}
-and \code{\link[broom.helpers:all_interaction]{all_interaction()}}}
+and \code{\link[broom.helpers:all_interaction]{all_interaction()}}.}
 
-\item{add_pairwise_contrasts}{apply \code{\link[broom.helpers:tidy_add_pairwise_contrasts]{tidy_add_pairwise_contrasts()}}?
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
+\item{add_pairwise_contrasts}{(\code{logical})\cr
+Apply \code{\link[broom.helpers:tidy_add_pairwise_contrasts]{tidy_add_pairwise_contrasts()}}?}
 
-\item{pairwise_variables}{variables to add pairwise contrasts
-(accepts \link[dplyr:select]{tidyselect} notation)}
+\item{pairwise_variables}{(\code{\link[dplyr:dplyr_tidy_select]{tidy-select}})\cr
+Variables to add pairwise contrasts.}
 
-\item{keep_model_terms}{keep original model terms for variables where
+\item{keep_model_terms}{(\code{logical})\cr
+Keep original model terms for variables where
 pairwise contrasts are added? (default is \code{FALSE})}
 
-\item{pairwise_reverse}{determines whether to use \code{"pairwise"} (if \code{TRUE})
-or \code{"revpairwise"} (if \code{FALSE}), see \code{\link[emmeans:contrast]{emmeans::contrast()}}}
+\item{pairwise_reverse}{(\code{logical})\cr
+Determines whether to use \code{"pairwise"} (if \code{TRUE})
+or \code{"revpairwise"} (if \code{FALSE}), see \code{\link[emmeans:contrast]{emmeans::contrast()}}.}
 
-\item{emmeans_args}{list of additional parameter to pass to
-\code{\link[emmeans:emmeans]{emmeans::emmeans()}} when computing pairwise contrasts}
+\item{emmeans_args}{(\code{list})\cr
+List of additional parameter to pass to
+\code{\link[emmeans:emmeans]{emmeans::emmeans()}} when computing pairwise contrasts.}
 
 \item{significance}{level (between 0 and 1) below which a
 coefficient is consider to be significantly different from 0

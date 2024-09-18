@@ -3,9 +3,9 @@
 \docType{data}
 \name{position_likert}
 \alias{position_likert}
-\alias{position_likert_count}
+\alias{position_diverging}
 \alias{PositionLikert}
-\alias{PositionLikertCount}
+\alias{PositionDiverging}
 \title{Stack objects on top of each another and center them around 0}
 \usage{
 position_likert(
@@ -15,7 +15,7 @@ position_likert(
   cutoff = NULL
 )
 
-position_likert_count(
+position_diverging(
   vjust = 1,
   reverse = FALSE,
   exclude_fill_values = NULL,
@@ -44,11 +44,11 @@ By default (\code{NULL}), it will be equal to the number of categories divided
 by 2, i.e. it will be centered.}
 }
 \description{
-\code{position_likert()} stacks proportion bars on top of each other and
+\code{position_diverging()} stacks bars on top of each other and
 center them around zero (the same number of categories are displayed on
-each side). This type of presentation is commonly used to display
-Likert-type scales.
-\code{position_likert_count()} uses counts instead of proportions.
+each side).
+\code{position_likert()} uses proportions instead of counts. This type of
+presentation is commonly used to display Likert-type scales.
 }
 \details{
 It is recommended to use \code{position_likert()} with \code{stat_prop()}
@@ -77,7 +77,7 @@ ggplot(diamonds) +
 
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
-  geom_bar(position = "likert_count") +
+  geom_bar(position = "diverging") +
   scale_x_continuous(label = label_number_abs()) +
   scale_fill_likert()
 

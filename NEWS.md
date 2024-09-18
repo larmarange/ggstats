@@ -1,5 +1,9 @@
 # ggstats (development version)
 
+**Minor breaking change**
+
+* `position_likert_count()` has been renamed as `position_diverging()` (#69)
+
 **Improvements**
 
 * new scale `scale_fill_likert()`
@@ -10,6 +14,14 @@
 * new sorting option `"prop_lower"` for `gglikert()` (#62)
 * new helper `symmetric_limits()` to make a scale symmetric (#66)
 * new argument `symmetric` for `gglikert()` (#66)
+* new arguments `default_by`, `height`, `labels` and `labeller` for
+  `stat_prop()` (#69)
+* new returned statistics for `stat_prop()`: `after_stat(denominator)`,
+  `after_stat(height)` and `after_stat(labels)`
+* new geometries: `geom_diverging()`, `geom_likert()`,
+  `geom_pyramid()` and `geom_diverging_text()`, `geom_likert_text()`,
+  `geom_pyramid_text()` (#69)
+* new geometries: `geom_prop_bar()` and `geom_prop_text()` (#69)
 
 # ggstats 0.6.0
 
