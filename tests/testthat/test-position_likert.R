@@ -88,3 +88,36 @@ test_that("position_likert()", {
     p
   )
 })
+
+test_that("geom_diverging() & associates", {
+  library(ggplot2)
+  p <-
+    ggplot(diamonds) +
+    aes(y = clarity, fill = cut) +
+    geom_diverging() +
+    geom_diverging_text(aes(color = after_scale(hex_bw(.data$fill))))
+  vdiffr::expect_doppelganger(
+    "geom_diverging and geom_diverging_text",
+    p
+  )
+
+  p <-
+    ggplot(diamonds) +
+    aes(y = clarity, fill = cut) +
+    geom_likert() +
+    geom_likert_text(aes(color = after_scale(hex_bw(.data$fill))))
+  vdiffr::expect_doppelganger(
+    "geom_likert and geom_likert_text",
+    p
+  )
+
+  d <- Titanic |> as.data.frame()
+  p <- ggplot(d) +
+    aes(y = Class, fill = Sex, weight = Freq) +
+    geom_pyramid() +
+    geom_pyramid_text()
+  vdiffr::expect_doppelganger(
+    "geom_pyramid and geom_pyramid_text",
+    p
+  )
+})
