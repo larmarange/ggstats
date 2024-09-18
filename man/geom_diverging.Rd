@@ -65,11 +65,12 @@ geom_diverging_text(
   default_by = "total",
   height = "count",
   labels = "count",
-  labeller = label_number_abs(),
+  labeller = label_number_abs(hide_below = hide_below),
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
-  vjust = 0.5
+  vjust = 0.5,
+  hide_below = NULL
 )
 
 geom_likert_text(
@@ -83,11 +84,12 @@ geom_likert_text(
   default_by = "x",
   height = "prop",
   labels = "prop",
-  labeller = label_percent_abs(accuracy = 1),
+  labeller = label_percent_abs(accuracy = 1, hide_below = hide_below),
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
-  vjust = 0.5
+  vjust = 0.5,
+  hide_below = NULL
 )
 
 geom_pyramid_text(
@@ -101,11 +103,12 @@ geom_pyramid_text(
   default_by = "total",
   height = "prop",
   labels = "prop",
-  labeller = label_percent_abs(accuracy = 1),
+  labeller = label_percent_abs(accuracy = 1, hide_below = hide_below),
   reverse = FALSE,
   exclude_fill_values = NULL,
   cutoff = NULL,
-  vjust = 0.5
+  vjust = 0.5,
+  hide_below = NULL
 )
 }
 \arguments{
@@ -153,6 +156,9 @@ see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
 (like points or lines), not a dimension (like bars or areas). Set to
 \code{0} to align with the bottom, \code{0.5} for the middle,
 and \code{1} (the default) for the top.}
+
+\item{hide_below}{If provided, values below \code{hide_below} will be masked.
+Argument passed to \code{\link[=label_number_abs]{label_number_abs()}} or \code{\link[=label_percent_abs]{label_percent_abs()}}.}
 }
 \description{
 These geometries are similar to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} but provides

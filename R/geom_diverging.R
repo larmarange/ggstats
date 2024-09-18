@@ -146,11 +146,13 @@ geom_diverging_text <- function(mapping = NULL,
                                 default_by = "total",
                                 height = "count",
                                 labels = "count",
-                                labeller = label_number_abs(),
+                                labeller =
+                                  label_number_abs(hide_below = hide_below),
                                 reverse = FALSE,
                                 exclude_fill_values = NULL,
                                 cutoff = NULL,
-                                vjust = 0.5) {
+                                vjust = 0.5,
+                                hide_below = NULL) {
 
   args <- list(...)
   if (stat == "prop") {
@@ -169,6 +171,8 @@ geom_diverging_text <- function(mapping = NULL,
 }
 
 #' @rdname geom_diverging
+#' @param hide_below If provided, values below `hide_below` will be masked.
+#' Argument passed to [`label_number_abs()`] or [`label_percent_abs()`].
 #' @export
 geom_likert_text <- function(mapping = NULL,
                              data = NULL,
@@ -184,11 +188,15 @@ geom_likert_text <- function(mapping = NULL,
                              default_by = "x",
                              height = "prop",
                              labels = "prop",
-                             labeller = label_percent_abs(accuracy = 1),
+                             labeller = label_percent_abs(
+                               accuracy = 1,
+                               hide_below = hide_below
+                             ),
                              reverse = FALSE,
                              exclude_fill_values = NULL,
                              cutoff = NULL,
-                             vjust = 0.5) {
+                             vjust = 0.5,
+                             hide_below = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_diverging_text, args)
@@ -210,11 +218,15 @@ geom_pyramid_text <- function(mapping = NULL,
                               default_by = "total",
                               height = "prop",
                               labels = "prop",
-                              labeller = label_percent_abs(accuracy = 1),
+                              labeller = label_percent_abs(
+                                accuracy = 1,
+                                hide_below = hide_below
+                              ),
                               reverse = FALSE,
                               exclude_fill_values = NULL,
                               cutoff = NULL,
-                              vjust = 0.5) {
+                              vjust = 0.5,
+                              hide_below = NULL) {
 
   args <- c(as.list(environment()), list(...))
   do.call(geom_diverging_text, args)
