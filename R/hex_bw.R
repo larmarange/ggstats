@@ -6,6 +6,17 @@
 #' @export
 #' @examples
 #' hex_bw("#0dadfd")
+#'
+#' library(ggplot2)
+#' ggplot(diamonds) +
+#'   aes(x = cut, fill = color, label = after_stat(count)) +
+#'   geom_bar() +
+#'   geom_text(
+#'     mapping = aes(color = after_scale(hex_bw(.data$fill))),
+#'     position = position_stack(.5),
+#'     stat = "count",
+#'     size = 2
+#'   )
 hex_bw <- function(hex_code) {
   rgb_conv <-
     lapply(
