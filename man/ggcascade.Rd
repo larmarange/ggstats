@@ -80,7 +80,8 @@ ggplot2::mpg |>
     "recent & economic" = year > 2000 & displ < 3,
     .by = cyl,
     .ncol = 3,
-    .arrows = FALSE
+    .arrows = FALSE,
+    .text_size = 3
   )
 
 ggplot2::mpg |>
@@ -90,6 +91,6 @@ ggplot2::mpg |>
     "recent & economic" = year > 2000 & displ < 3,
     .by = pick(cyl, drv),
     .add_n = FALSE,
-    .text_size = 3
+    .text_size = 2
   )
 }
