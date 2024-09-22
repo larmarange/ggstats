@@ -32,6 +32,7 @@ Suggests:
     broom,
     emmeans,
     glue,
+    gtsummary,
     knitr,
     labelled (>= 2.11.0),
     reshape,
