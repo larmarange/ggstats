@@ -91,9 +91,7 @@ compute_cascade <- function(.data, ..., .weights = NULL, .by = NULL) {
     dplyr::summarise(
       dplyr::across(
         dplyr::all_of(names(dots)),
-        .fns = weighted.sum,
-        w = .data$.w,
-        na.rm = TRUE
+        \(x) {weighted.sum(x, .data$.w)}
       ),
       .groups = "keep"
     ) |>
