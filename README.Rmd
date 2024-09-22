@@ -143,3 +143,16 @@ df <-
 gglikert(df)
 ```
 
+## Cascade plot
+
+`r lifecycle::badge("experimental")`
+
+```{r}
+ggplot2::diamonds |>
+  ggcascade(
+    all = TRUE,
+    big = carat > .5,
+    "big & ideal" = carat > .5 & cut == "Ideal"
+  )
+```
+

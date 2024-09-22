@@ -168,3 +168,16 @@ gglikert(df)
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+
+## Cascade plot
+
+``` r
+ggplot2::diamonds |>
+  ggcascade(
+    all = TRUE,
+    big = carat > .5,
+    "big & ideal" = carat > .5 & cut == "Ideal"
+  )
+```
+
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
