@@ -12,4 +12,3 @@
 weighted.sum <- function(x, w, na.rm = TRUE) {
   sum(x * w, na.rm = na.rm)
 }
-
