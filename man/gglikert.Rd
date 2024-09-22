@@ -217,7 +217,7 @@ df <-
     q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
     q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
     q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
-  ) \%>\%
+  ) |>
   mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
 
 gglikert(df)
@@ -251,11 +251,11 @@ gglikert(
 gglikert(df, exclude_fill_values = "Neither agree nor disagree")
 
 if (require("labelled")) {
-  df \%>\%
+  df |>
     set_variable_labels(
       q1 = "First question",
       q2 = "Second question"
-    ) \%>\%
+    ) |>
     gglikert(
       variable_labels = c(
         q4 = "a custom label",

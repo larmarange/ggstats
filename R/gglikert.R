@@ -100,7 +100,7 @@
 #'     q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
 #'     q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
 #'     q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
-#'   ) %>%
+#'   ) |>
 #'   mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
 #'
 #' gglikert(df)
@@ -134,11 +134,11 @@
 #' gglikert(df, exclude_fill_values = "Neither agree nor disagree")
 #'
 #' if (require("labelled")) {
-#'   df %>%
+#'   df |>
 #'     set_variable_labels(
 #'       q1 = "First question",
 #'       q2 = "Second question"
-#'     ) %>%
+#'     ) |>
 #'     gglikert(
 #'       variable_labels = c(
 #'         q4 = "a custom label",
@@ -220,19 +220,15 @@ gglikert <- function(data,
       data_fun = data_fun
     )
 
-  y <- broom.helpers::.select_to_varnames(
-    select = {{ y }},
-    data = data,
-    arg_name = "y",
-    select_single = TRUE
-  )
+  y <- data |> dplyr::select({{ y }}) |> colnames()
+  if (length(y) != 1) cli::cli_abort("{.arg y} should select only one column.")
 
   if (!is.factor(data[[y]])) {
     data[[y]] <- factor(data[[y]])
   }
 
   if (y_reverse) {
-    data[[y]] <- data[[y]] %>% forcats::fct_rev()
+    data[[y]] <- data[[y]] |> forcats::fct_rev()
   }
 
   p <- ggplot(data) +
@@ -298,8 +294,8 @@ gglikert <- function(data,
   }
 
   if (add_totals) {
-    dtot <- data %>%
-      dplyr::group_by(.data[[y]], !!!facet_rows, !!!facet_cols) %>%
+    dtot <- data |>
+      dplyr::group_by(.data[[y]], !!!facet_rows, !!!facet_cols) |>
       dplyr::summarise(
         prop_lower = .prop_lower(
           .data$.answer,
@@ -329,8 +325,8 @@ gglikert <- function(data,
           exclude_fill_values = exclude_fill_values,
           cutoff = cutoff
         )
-      ) %>%
-      dplyr::ungroup() %>%
+      ) |>
+      dplyr::ungroup() |>
       dplyr::mutate(
         label_lower =
           label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
@@ -346,15 +342,15 @@ gglikert <- function(data,
           max(.data$prop_higher, .data$prop_lower) + totals_hjust,
           max(.data$prop_higher) + totals_hjust
         )
-      ) %>%
+      ) |>
       dplyr::group_by(!!!facet_rows, !!!facet_cols)
     dtot <- dplyr::bind_rows(
-      dtot %>%
+      dtot |>
         dplyr::select(
           dplyr::all_of(c(y, x = "x_lower", label = "label_lower")),
           dplyr::group_cols()
         ),
-      dtot %>%
+      dtot |>
         dplyr::select(
           dplyr::all_of(c(y, x = "x_higher", label = "label_higher")),
           dplyr::group_cols()
@@ -420,30 +416,21 @@ gglikert_data <- function(data,
                           exclude_fill_values = NULL,
                           cutoff = NULL,
                           data_fun = NULL) {
-  rlang::check_installed("broom.helpers")
   rlang::check_installed("labelled")
 
   sort <- match.arg(sort)
   sort_method <- match.arg(sort_method)
 
-  variables <- broom.helpers::.select_to_varnames(
-    select = {{ include }},
-    data = data,
-    arg_name = "include"
-  )
+  variables <- data |> dplyr::select({{ include }}) |> colnames()
 
-  weights_var <- broom.helpers::.select_to_varnames(
-    select = {{ weights }},
-    data = data,
-    arg_name = "weights",
-    select_single = TRUE
-  )
-  if (is.null(weights_var)) {
+  weights_var <- data |> dplyr::select({{ weights }}) |> colnames()
+  if (length(weights_var) > 1)
+    cli::cli_abort("{.arg weights} should select only one column.")
+  if (length(weights_var) == 0) {
     data$.weights <- 1
   } else {
     data$.weights <- data[[weights_var]]
   }
-
   if (!is.numeric(data$.weights)) {
     cli::cli_abort("{.arg weights} should correspond to a numerical variable.")
   }
@@ -451,40 +438,37 @@ gglikert_data <- function(data,
   if (is.list(variable_labels)) {
     variable_labels <- unlist(variable_labels)
   }
-  data_labels <- data %>%
+  data_labels <- data |>
     labelled::var_label(unlist = TRUE, null_action = "fill")
   if (!is.null(variable_labels)) {
     data_labels[names(variable_labels)] <- variable_labels
   }
   data_labels <- data_labels[variables]
 
-  data <- data %>%
+  data <- data |>
     dplyr::mutate(
-      dplyr::across(dplyr::all_of(variables), labelled::to_factor)
+      dplyr::across(dplyr::all_of(variables), .fns = labelled::to_factor)
     )
 
-  data <- data %>%
+  data <- data |>
     dplyr::mutate(
       dplyr::bind_cols(forcats::fct_unify(data[, variables]))
-    ) %>%
+    ) |>
     tidyr::pivot_longer(
       cols = dplyr::all_of(variables),
       names_to = ".question",
       values_to = ".answer"
     )
 
-  data$.question <- data_labels[data$.question] %>%
+  data$.question <- data_labels[data$.question] |>
     forcats::fct_inorder()
 
-  factor_to_sort <- broom.helpers::.select_to_varnames(
-    select = {{ factor_to_sort }},
-    data = data,
-    arg_name = "factor_to_sort",
-    select_single = TRUE
-  )
+  factor_to_sort <- data |> dplyr::select({{ factor_to_sort }}) |> colnames()
+  if (length(factor_to_sort) != 1)
+    cli::cli_abort("{.arg factor_to_sort} should select only one column.")
 
   if (sort == "ascending" && sort_method == "prop") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -497,7 +481,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "prop") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -510,7 +494,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "prop_lower") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -523,7 +507,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "prop_lower") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -536,7 +520,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "mean") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -547,7 +531,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "mean") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -558,7 +542,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "median") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -569,7 +553,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "median") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -709,19 +693,15 @@ gglikert_stacked <- function(data,
       data_fun = data_fun
     )
 
-  y <- broom.helpers::.select_to_varnames(
-    select = {{ y }},
-    data = data,
-    arg_name = "y",
-    select_single = TRUE
-  )
+  y <- data |> dplyr::select({{ y }}) |> colnames()
+  if (length(y) != 1) cli::cli_abort("{.arg y} should select only one column.")
 
   if (!is.factor(data[[y]])) {
     data[[y]] <- factor(data[[y]])
   }
 
   if (y_reverse) {
-    data[[y]] <- data[[y]] %>% forcats::fct_rev()
+    data[[y]] <- data[[y]] |> forcats::fct_rev()
   }
 
   p <- ggplot(data) +

@@ -162,7 +162,7 @@ StatCross <- ggplot2::ggproto(
       all.x = TRUE
     )
 
-    panel <- panel %>% dplyr::distinct(.data$x, .data$y, .keep_all = TRUE)
+    panel <- panel |> dplyr::distinct(.data$x, .data$y, .keep_all = TRUE)
 
     if (!keep.zero.cells) {
       panel <- panel[panel$observed != 0, ]
@@ -206,12 +206,12 @@ augment_chisq_add_phi <- function(x) {
     ))
   }
 
-  broom::augment(x) %>%
-    dplyr::group_by(dplyr::across(1)) %>%
-    dplyr::mutate(.row.observed = sum(.data$.observed)) %>%
-    dplyr::group_by(dplyr::across(2)) %>%
-    dplyr::mutate(.col.observed = sum(.data$.observed)) %>%
-    dplyr::ungroup() %>%
+  broom::augment(x) |>
+    dplyr::group_by(dplyr::across(1)) |>
+    dplyr::mutate(.row.observed = sum(.data$.observed)) |>
+    dplyr::group_by(dplyr::across(2)) |>
+    dplyr::mutate(.col.observed = sum(.data$.observed)) |>
+    dplyr::ungroup() |>
     dplyr::mutate(
       .total.observed = sum(.data$.observed),
       .phi = .compute_phi(

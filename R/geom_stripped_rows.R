@@ -77,20 +77,20 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
   draw_panel = function(data, panel_params, coord,
                         xfrom, xto, width = 1, nudge_y = 0) {
     ggplot2::GeomRect$draw_panel(
-      data %>%
+      data |>
         dplyr::mutate(
           y = round_any(.data$y, width),
           ymin = .data$y - width / 2 + nudge_y,
           ymax = .data$y + width / 2 + nudge_y,
           xmin = xfrom,
           xmax = xto
-        ) %>%
+        ) |>
         dplyr::select(dplyr::all_of(c(
           "xmin", "xmax", "ymin", "ymax", "odd", "even",
           "alpha", "colour", "linetype", "linewidth"
-        ))) %>%
-        dplyr::distinct(.data$ymin, .keep_all = TRUE) %>%
-        dplyr::arrange(.data$ymin) %>%
+        ))) |>
+        dplyr::distinct(.data$ymin, .keep_all = TRUE) |>
+        dplyr::arrange(.data$ymin) |>
         dplyr::mutate(
           .n = dplyr::row_number(),
           fill = dplyr::if_else(
@@ -98,7 +98,7 @@ GeomStrippedRows <- ggplot2::ggproto("GeomStrippedRows", ggplot2::Geom,
             true = .data$odd,
             false = .data$even
           )
-        ) %>%
+        ) |>
         dplyr::select(-dplyr::all_of(c(".n", "odd", "even"))),
       panel_params,
       coord
@@ -145,20 +145,20 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
   draw_panel = function(data, panel_params, coord,
                         yfrom, yto, width = 1, nudge_x = 0) {
     ggplot2::GeomRect$draw_panel(
-      data %>%
+      data |>
         dplyr::mutate(
           x = round_any(.data$x, width),
           xmin = .data$x - width / 2 + nudge_x,
           xmax = .data$x + width / 2 + nudge_x,
           ymin = yfrom,
           ymax = yto
-        ) %>%
+        ) |>
         dplyr::select(dplyr::all_of(c(
           "xmin", "xmax", "ymin", "ymax", "odd", "even",
           "alpha", "colour", "linetype", "linewidth"
-        ))) %>%
-        dplyr::distinct(.data$xmin, .keep_all = TRUE) %>%
-        dplyr::arrange(.data$xmin) %>%
+        ))) |>
+        dplyr::distinct(.data$xmin, .keep_all = TRUE) |>
+        dplyr::arrange(.data$xmin) |>
         dplyr::mutate(
           .n = dplyr::row_number(),
           fill = dplyr::if_else(
@@ -166,7 +166,7 @@ GeomStrippedCols <- ggplot2::ggproto("GeomStrippedCols", ggplot2::Geom,
             true = .data$odd,
             false = .data$even
           )
-        ) %>%
+        ) |>
         dplyr::select(-dplyr::all_of(c(".n", "odd", "even"))),
       panel_params,
       coord

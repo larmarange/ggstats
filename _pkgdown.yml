@@ -21,6 +21,10 @@ reference:
   contents:
   - gglikert
 
+- title: Cascade plots
+  contents:
+  - ggcascade
+
 - title: Additional statistics for `ggplot2`
   contents:
   - starts_with("stat_")
@@ -45,6 +49,7 @@ reference:
   - augment_chisq_add_phi
   - label_number_abs
   - weighted.median
+  - weighted.sum
   - round_any
   - hex_bw
   - pal_extender

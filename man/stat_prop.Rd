@@ -233,9 +233,9 @@ aes(y = Class, fill = Survived, weight = Freq) +
   geom_prop_text()
 
 # displaying unobserved levels with complete
-d <- diamonds \%>\%
-  dplyr::filter(!(cut == "Ideal" & clarity == "I1")) \%>\%
-  dplyr::filter(!(cut == "Very Good" & clarity == "VS2")) \%>\%
+d <- diamonds |>
+  dplyr::filter(!(cut == "Ideal" & clarity == "I1")) |>
+  dplyr::filter(!(cut == "Very Good" & clarity == "VS2")) |>
   dplyr::filter(!(cut == "Premium" & clarity == "IF"))
 p <- ggplot(d) +
   aes(x = clarity, fill = cut, by = clarity) +

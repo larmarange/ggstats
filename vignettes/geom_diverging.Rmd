@@ -3,7 +3,7 @@ title: "Geometries for diverging bar plots"
 author: Joseph Larmarange
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Plot Likert-type items with `gglikert()`}
+  %\VignetteIndexEntry{Geometries for diverging bar plots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -161,10 +161,23 @@ df <-
     q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
     q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
     q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
-  ) %>%
+  ) |>
   mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
 
 gglikert(df)
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+
+## Cascade plot
+
+``` r
+ggplot2::diamonds |>
+  ggcascade(
+    all = TRUE,
+    big = carat > .5,
+    "big & ideal" = carat > .5 & cut == "Ideal"
+  )
+```
+
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />

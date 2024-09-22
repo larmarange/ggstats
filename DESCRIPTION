@@ -12,14 +12,14 @@ Description: Provides new statistics, new geometries and new positions for
 License: GPL (>= 3)
 URL: https://larmarange.github.io/ggstats/, https://github.com/larmarange/ggstats
 BugReports: https://github.com/larmarange/ggstats/issues
+Depends:
+    R (>= 4.2)
 Imports: 
-    broom.helpers (>= 1.14.0),
     cli,
     dplyr,
     forcats,
     ggplot2 (>= 3.4.0),
     lifecycle,
-    magrittr,
     patchwork,
     purrr,
     rlang,
@@ -30,8 +30,10 @@ Imports:
 Suggests:
     betareg,
     broom,
+    broom.helpers (>= 1.17.0),
     emmeans,
     glue,
+    gtsummary,
     knitr,
     labelled (>= 2.11.0),
     reshape,

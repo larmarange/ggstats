@@ -62,7 +62,7 @@ You can use the `{labelled}` package to define variable labels. They will be aut
 
 ```{r}
 library(labelled)
-tips_labelled <- tips %>%
+tips_labelled <- tips |>
   set_variable_labels(
     day = "Day of the week",
     time = "Lunch or Dinner",
@@ -342,7 +342,7 @@ Advanced users could use their own dataset and pass it to `ggcoef_plot()`. Such 
 ## Supported models
 
 ```{r, echo=FALSE}
-broom.helpers::supported_models %>%
+broom.helpers::supported_models |>
   knitr::kable()
 ```
 

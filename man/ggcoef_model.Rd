@@ -481,7 +481,7 @@ ggcoef_model(mod_simple)
 # you can use the labelled package to define variable labels
 # before computing model
 if (requireNamespace("labelled")) {
-  tips_labelled <- tips \%>\%
+  tips_labelled <- tips |>
     labelled::set_variable_labels(
       day = "Day of the week",
       time = "Lunch or Dinner",
