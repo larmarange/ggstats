@@ -169,7 +169,7 @@ gglikert(df)
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
 
-## Cascade plot
+## Cascade plot (*experimental*)
 
 ``` r
 ggplot2::diamonds |>

@@ -143,9 +143,7 @@ df <-
 gglikert(df)
 ```
 
-## Cascade plot
-
-`r lifecycle::badge("experimental")`
+## Cascade plot (*experimental*)
 
 ```{r}
 ggplot2::diamonds |>
