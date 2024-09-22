@@ -3,6 +3,7 @@
 **Minor breaking change**
 
 * `position_likert_count()` has been renamed as `position_diverging()` (#69)
+* R minimum version 4.2.0 is now required.
 
 **Improvements**
 
