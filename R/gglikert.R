@@ -220,12 +220,8 @@ gglikert <- function(data,
       data_fun = data_fun
     )
 
-  y <- broom.helpers::.select_to_varnames(
-    select = {{ y }},
-    data = data,
-    arg_name = "y",
-    select_single = TRUE
-  )
+  y <- data |> dplyr::select({{ y }}) |> colnames()
+  if (length(y) != 1) cli::cli_abort("{.arg y} should select only one column.")
 
   if (!is.factor(data[[y]])) {
     data[[y]] <- factor(data[[y]])
@@ -420,30 +416,21 @@ gglikert_data <- function(data,
                           exclude_fill_values = NULL,
                           cutoff = NULL,
                           data_fun = NULL) {
-  rlang::check_installed("broom.helpers")
   rlang::check_installed("labelled")
 
   sort <- match.arg(sort)
   sort_method <- match.arg(sort_method)
 
-  variables <- broom.helpers::.select_to_varnames(
-    select = {{ include }},
-    data = data,
-    arg_name = "include"
-  )
+  variables <- data |> dplyr::select({{ include }}) |> colnames()
 
-  weights_var <- broom.helpers::.select_to_varnames(
-    select = {{ weights }},
-    data = data,
-    arg_name = "weights",
-    select_single = TRUE
-  )
-  if (is.null(weights_var)) {
+  weights_var <- data |> dplyr::select({{ weights }}) |> colnames()
+  if (length(weights_var) > 1)
+    cli::cli_abort("{.arg weights} should select only one column.")
+  if (length(weights_var) == 0) {
     data$.weights <- 1
   } else {
     data$.weights <- data[[weights_var]]
   }
-
   if (!is.numeric(data$.weights)) {
     cli::cli_abort("{.arg weights} should correspond to a numerical variable.")
   }
@@ -476,12 +463,9 @@ gglikert_data <- function(data,
   data$.question <- data_labels[data$.question] %>%
     forcats::fct_inorder()
 
-  factor_to_sort <- broom.helpers::.select_to_varnames(
-    select = {{ factor_to_sort }},
-    data = data,
-    arg_name = "factor_to_sort",
-    select_single = TRUE
-  )
+  factor_to_sort <- data |> dplyr::select({{ factor_to_sort }}) |> colnames()
+  if (length(factor_to_sort) != 1)
+    cli::cli_abort("{.arg factor_to_sort} should select only one column.")
 
   if (sort == "ascending" && sort_method == "prop") {
     data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
@@ -709,12 +693,8 @@ gglikert_stacked <- function(data,
       data_fun = data_fun
     )
 
-  y <- broom.helpers::.select_to_varnames(
-    select = {{ y }},
-    data = data,
-    arg_name = "y",
-    select_single = TRUE
-  )
+  y <- data |> dplyr::select({{ y }}) |> colnames()
+  if (length(y) != 1) cli::cli_abort("{.arg y} should select only one column.")
 
   if (!is.factor(data[[y]])) {
     data[[y]] <- factor(data[[y]])

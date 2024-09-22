@@ -15,7 +15,6 @@ BugReports: https://github.com/larmarange/ggstats/issues
 Depends:
     R (>= 4.2)
 Imports: 
-    broom.helpers (>= 1.14.0),
     cli,
     dplyr,
     forcats,
@@ -32,6 +31,7 @@ Imports:
 Suggests:
     betareg,
     broom,
+    broom.helpers (>= 1.17.0),
     emmeans,
     glue,
     gtsummary,
