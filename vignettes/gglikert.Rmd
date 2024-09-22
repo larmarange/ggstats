@@ -42,7 +42,7 @@ df <-
     q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
     q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
     q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
-  ) %>%
+  ) |>
   mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
 
 likert_levels_dk <- c(
@@ -64,7 +64,7 @@ df_dk <-
       likert_levels_dk, 150,
       replace = TRUE, prob = c(1, 0, 1, 1, 0, 1)
     )
-  ) %>%
+  ) |>
   mutate(across(everything(), ~ factor(.x, levels = likert_levels_dk)))
 ```
 
@@ -171,7 +171,7 @@ If you are using variable labels (see `labelled::set_variable_labels()`), they w
 
 ```{r}
 if (require(labelled)) {
-  df <- df %>%
+  df <- df |>
     set_variable_labels(
       q1 = "first question",
       q2 = "second question",
@@ -238,15 +238,15 @@ gglikert(df_dk)
 A first option could be to convert the don't knows into `NA`. In such case, the proportions will be computed on non missing.
 
 ```{r}
-df_dk %>%
-  mutate(across(everything(), ~ factor(.x, levels = likert_levels))) %>%
+df_dk |>
+  mutate(across(everything(), ~ factor(.x, levels = likert_levels))) |>
   gglikert()
 ```
 
 Or, you could use `exclude_fill_values` to not display specific values, but still counting them in the denominator for computing proportions.
 
 ```{r}
-df_dk %>% gglikert(exclude_fill_values = "Don't know")
+df_dk |> gglikert(exclude_fill_values = "Don't know")
 ```
 
 ## Facets
@@ -322,7 +322,7 @@ gglikert_stacked(
 Internally, `gglikert()` is calling `gglikert_data()` to generate a long format dataset combining all questions into two columns, `.question` and `.answer`.
 
 ```{r}
-gglikert_data(df) %>%
+gglikert_data(df) |>
   head()
 ```
 
