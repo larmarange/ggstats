@@ -100,7 +100,7 @@
 #'     q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
 #'     q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
 #'     q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
-#'   ) %>%
+#'   ) |>
 #'   mutate(across(everything(), ~ factor(.x, levels = likert_levels)))
 #'
 #' gglikert(df)
@@ -134,11 +134,11 @@
 #' gglikert(df, exclude_fill_values = "Neither agree nor disagree")
 #'
 #' if (require("labelled")) {
-#'   df %>%
+#'   df |>
 #'     set_variable_labels(
 #'       q1 = "First question",
 #'       q2 = "Second question"
-#'     ) %>%
+#'     ) |>
 #'     gglikert(
 #'       variable_labels = c(
 #'         q4 = "a custom label",
@@ -228,7 +228,7 @@ gglikert <- function(data,
   }
 
   if (y_reverse) {
-    data[[y]] <- data[[y]] %>% forcats::fct_rev()
+    data[[y]] <- data[[y]] |> forcats::fct_rev()
   }
 
   p <- ggplot(data) +
@@ -294,8 +294,8 @@ gglikert <- function(data,
   }
 
   if (add_totals) {
-    dtot <- data %>%
-      dplyr::group_by(.data[[y]], !!!facet_rows, !!!facet_cols) %>%
+    dtot <- data |>
+      dplyr::group_by(.data[[y]], !!!facet_rows, !!!facet_cols) |>
       dplyr::summarise(
         prop_lower = .prop_lower(
           .data$.answer,
@@ -325,8 +325,8 @@ gglikert <- function(data,
           exclude_fill_values = exclude_fill_values,
           cutoff = cutoff
         )
-      ) %>%
-      dplyr::ungroup() %>%
+      ) |>
+      dplyr::ungroup() |>
       dplyr::mutate(
         label_lower =
           label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
@@ -342,15 +342,15 @@ gglikert <- function(data,
           max(.data$prop_higher, .data$prop_lower) + totals_hjust,
           max(.data$prop_higher) + totals_hjust
         )
-      ) %>%
+      ) |>
       dplyr::group_by(!!!facet_rows, !!!facet_cols)
     dtot <- dplyr::bind_rows(
-      dtot %>%
+      dtot |>
         dplyr::select(
           dplyr::all_of(c(y, x = "x_lower", label = "label_lower")),
           dplyr::group_cols()
         ),
-      dtot %>%
+      dtot |>
         dplyr::select(
           dplyr::all_of(c(y, x = "x_higher", label = "label_higher")),
           dplyr::group_cols()
@@ -438,29 +438,29 @@ gglikert_data <- function(data,
   if (is.list(variable_labels)) {
     variable_labels <- unlist(variable_labels)
   }
-  data_labels <- data %>%
+  data_labels <- data |>
     labelled::var_label(unlist = TRUE, null_action = "fill")
   if (!is.null(variable_labels)) {
     data_labels[names(variable_labels)] <- variable_labels
   }
   data_labels <- data_labels[variables]
 
-  data <- data %>%
+  data <- data |>
     dplyr::mutate(
       dplyr::across(dplyr::all_of(variables), .fns = labelled::to_factor)
     )
 
-  data <- data %>%
+  data <- data |>
     dplyr::mutate(
       dplyr::bind_cols(forcats::fct_unify(data[, variables]))
-    ) %>%
+    ) |>
     tidyr::pivot_longer(
       cols = dplyr::all_of(variables),
       names_to = ".question",
       values_to = ".answer"
     )
 
-  data$.question <- data_labels[data$.question] %>%
+  data$.question <- data_labels[data$.question] |>
     forcats::fct_inorder()
 
   factor_to_sort <- data |> dplyr::select({{ factor_to_sort }}) |> colnames()
@@ -468,7 +468,7 @@ gglikert_data <- function(data,
     cli::cli_abort("{.arg factor_to_sort} should select only one column.")
 
   if (sort == "ascending" && sort_method == "prop") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -481,7 +481,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "prop") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -494,7 +494,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "prop_lower") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -507,7 +507,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "prop_lower") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -520,7 +520,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "mean") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -531,7 +531,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "mean") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -542,7 +542,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "ascending" && sort_method == "median") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -553,7 +553,7 @@ gglikert_data <- function(data,
       )
   }
   if (sort == "descending" && sort_method == "median") {
-    data[[factor_to_sort]] <- data[[factor_to_sort]] %>%
+    data[[factor_to_sort]] <- data[[factor_to_sort]] |>
       forcats::fct_reorder2(
         data$.answer,
         data$.weights,
@@ -701,7 +701,7 @@ gglikert_stacked <- function(data,
   }
 
   if (y_reverse) {
-    data[[y]] <- data[[y]] %>% forcats::fct_rev()
+    data[[y]] <- data[[y]] |> forcats::fct_rev()
   }
 
   p <- ggplot(data) +

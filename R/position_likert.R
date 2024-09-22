@@ -215,8 +215,8 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
       cli::cli_abort("{.fn position_liker} does not work with negative values")
     }
 
-    data <- data %>%
-      tidyr::nest(.by = "x", .key = "d") %>%
+    data <- data |>
+      tidyr::nest(.by = "x", .key = "d") |>
       dplyr::mutate(
         d = purrr::map(
           .data$d,
@@ -231,7 +231,7 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
             )
           }
         )
-      ) %>%
+      ) |>
       tidyr::unnest(cols = "d")
 
     ggplot2::flip_data(data, params$flipped_aes)

@@ -84,9 +84,9 @@
 #'   geom_prop_text()
 #'
 #' # displaying unobserved levels with complete
-#' d <- diamonds %>%
-#'   dplyr::filter(!(cut == "Ideal" & clarity == "I1")) %>%
-#'   dplyr::filter(!(cut == "Very Good" & clarity == "VS2")) %>%
+#' d <- diamonds |>
+#'   dplyr::filter(!(cut == "Ideal" & clarity == "I1")) |>
+#'   dplyr::filter(!(cut == "Very Good" & clarity == "VS2")) |>
 #'   dplyr::filter(!(cut == "Premium" & clarity == "IF"))
 #' p <- ggplot(d) +
 #'   aes(x = clarity, fill = cut, by = clarity) +
@@ -213,16 +213,16 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     panel$count[is.na(panel$count)] <- 0
 
     if (!is.null(complete) && complete %in% names(panel)) {
-      panel <- panel %>% dplyr::select(-dplyr::all_of("group"))
+      panel <- panel |> dplyr::select(-dplyr::all_of("group"))
       cols <- names(panel)
       cols <- cols[!cols %in% c("count", complete)]
 
-      panel <- panel %>%
+      panel <- panel |>
         tidyr::complete(
           tidyr::nesting(!!!syms(cols)),
           .data[[complete]],
           fill = list(count = 0)
-        ) %>%
+        ) |>
         dplyr::mutate(group = seq_len(dplyr::n()))
     }
 

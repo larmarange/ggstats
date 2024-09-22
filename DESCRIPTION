@@ -20,7 +20,6 @@ Imports:
     forcats,
     ggplot2 (>= 3.4.0),
     lifecycle,
-    magrittr,
     patchwork,
     purrr,
     rlang,

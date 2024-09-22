@@ -23,11 +23,6 @@ utils::globalVariables(c("prop"))
 # \lifecycle{defunct}
 # \lifecycle{archived}
 
-#' @importFrom magrittr %>%
-#' @export
-magrittr::`%>%`
-
-
 # from ggplot2 (but not exported by ggplot2)
 
 `%||%` <- function(a, b) {

@@ -114,7 +114,7 @@
 #' # you can use the labelled package to define variable labels
 #' # before computing model
 #' if (requireNamespace("labelled")) {
-#'   tips_labelled <- tips %>%
+#'   tips_labelled <- tips |>
 #'     labelled::set_variable_labels(
 #'       day = "Day of the week",
 #'       time = "Lunch or Dinner",
@@ -425,7 +425,7 @@ ggcoef_table <- function(
     if (!"term" %in% names(data)) {
       data$term <- data[[args$y]]
     }
-    data <- data %>%
+    data <- data |>
       dplyr::mutate(.fill = dplyr::if_else(
         as.integer(.in_order(.data$term)) %% 2L == 1,
         args$strips_even,
@@ -455,7 +455,7 @@ ggcoef_table <- function(
 
   tbl_data$ci <- stringr::str_glue_data(tbl_data, ci_pattern)
   tbl_data$ci[is.na(data$conf.low) & is.na(data$conf.high)] <- " "
-  tbl_data <- tbl_data %>%
+  tbl_data <- tbl_data |>
     tidyr::pivot_longer(
       dplyr::any_of(table_stat),
       names_to = "stat",
@@ -606,16 +606,16 @@ ggcoef_compare <- function(
   data$label <- .in_order(data$label)
 
   # include should be applied after lapply
-  data <- data %>%
+  data <- data |>
     broom.helpers::tidy_select_variables(
       include = {{ include }},
       model = models[[1]] # just need to pass 1 model for the function to work
-    ) %>%
+    ) |>
     broom.helpers::tidy_detach_model()
 
   # Add NA values for unobserved combinations
   # (i.e. for a term present in one model but not in another)
-  data <- data %>%
+  data <- data |>
     tidyr::complete(
       .data$model,
       tidyr::nesting(
@@ -623,7 +623,7 @@ ggcoef_compare <- function(
         !!sym("var_type"), !!sym("contrasts"),
         !!sym("label"), !!sym("label_light"), !!sym("term")
       )
-    ) %>%
+    ) |>
     # order lost after nesting
     dplyr::arrange(.data$model, .data$variable, .data$term)
 
@@ -1057,7 +1057,7 @@ ggcoef_multi_t <- function(
     )
   }
 
-  res <- levels(data[[component_col]]) %>%
+  res <- levels(data[[component_col]]) |>
     purrr::map(
       ~ ggcoef_table(
         data = dplyr::filter(data, .data[[component_col]] == .x),
@@ -1182,7 +1182,7 @@ ggcoef_data <- function(
       ((!grepl("^nmatrix", data$var_class)) | is.na(data$var_class)),
     "",
     as.character(data$label)
-  ) %>%
+  ) |>
     .in_order()
 
   data
@@ -1268,7 +1268,7 @@ ggcoef_plot <- function(
     if (!"term" %in% names(data)) {
       data$term <- data[[y]]
     }
-    data <- data %>%
+    data <- data |>
       dplyr::mutate(.fill = dplyr::if_else(
         as.integer(.in_order(.data$term)) %% 2L == 1,
         strips_even,
