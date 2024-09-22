@@ -43,3 +43,17 @@ hex_bw <- function(hex_code) {
   bw[is.na(hex_code)] <- "#ffffff"
   bw
 }
+
+#' @rdname hex_bw
+#' @description
+#' `hex_bw_threshold()` is a variation of `hex_bw()`. For `values` below
+#' `threshold`, black (`"#000000"`) will always be returned, regardless of
+#' `hex_code`.
+#' @export
+#' @param values Values to be compared.
+#' @param threshold Threshold.
+hex_bw_threshold <- function(hex_code, values, threshold) {
+  x <- hex_bw(hex_code)
+  x[values < threshold] <- "#000000"
+  x
+}
