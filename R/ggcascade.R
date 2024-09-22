@@ -129,7 +129,7 @@ plot_cascade <- function(.data,
       label_step = scales::percent(
         .data$prop_step,
         accuracy = .1,
-        prefix = "×"
+        prefix = "\u00d7"
       )
     )
 
