@@ -279,7 +279,7 @@ be used for x-axis</p></dd>
 
 
 <dt id="arg-variable-labels">variable_labels<a class="anchor" aria-label="anchor" href="#arg-variable-labels"></a></dt>
-<dd><p>(<code>formula-list-selector</code>)<br>
+<dd><p>(<code><a href="https://www.danieldsjoberg.com/gtsummary/reference/syntax.html" class="external-link">formula-list-selector</a></code>)<br>
 A named list or a named vector of custom variable labels.</p></dd>
 
 
@@ -676,7 +676,7 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span><span class="co"># you can use the labelled package to define variable labels</span></span></span>
 <span class="r-in"><span><span class="co"># before computing model</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">tips_labelled</span> <span class="op">&lt;-</span> <span class="va">tips</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/labelled/reference/var_label.html" class="external-link">set_variable_labels</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      day <span class="op">=</span> <span class="st">"Day of the week"</span>,</span></span>
 <span class="r-in"><span>      time <span class="op">=</span> <span class="st">"Lunch or Dinner"</span>,</span></span>

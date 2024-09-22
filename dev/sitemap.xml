@@ -13,6 +13,7 @@
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/augment_chisq_add_phi.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/geom_diverging.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/geom_stripped_rows.html</loc></url>
+<url><loc>https://larmarange.github.io/ggstats/dev/reference/ggcascade.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/ggcoef_model.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/gglikert.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/ggstats-package.html</loc></url>
@@ -22,7 +23,6 @@
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/label_number_abs.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/pal_extender.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/position_likert.html</loc></url>
-<url><loc>https://larmarange.github.io/ggstats/dev/reference/reexports.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/round_any.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/scale_fill_likert.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/signif_stars.html</loc></url>
@@ -31,5 +31,6 @@
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/stat_weighted_mean.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/symmetric_limits.html</loc></url>
 <url><loc>https://larmarange.github.io/ggstats/dev/reference/weighted.median.html</loc></url>
+<url><loc>https://larmarange.github.io/ggstats/dev/reference/weighted.sum.html</loc></url>
 </urlset>
 

@@ -46,20 +46,19 @@
 <p><strong>Minor breaking change</strong></p>
 <ul><li>
 <code>position_likert_count()</code> has been renamed as <code><a href="../reference/position_likert.html">position_diverging()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
+<li>R minimum version 4.2.0 is now required.</li>
 </ul><p><strong>Improvements</strong></p>
-<ul><li>new scale <code><a href="../reference/scale_fill_likert.html">scale_fill_likert()</a></code>
-</li>
-<li>new argument <code>cutoff</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code>, <code><a href="../reference/position_likert.html">position_likert()</a></code> and <code><a href="../reference/scale_fill_likert.html">scale_fill_likert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/64" class="external-link">#64</a>)</li>
-<li>new helper <code><a href="../reference/pal_extender.html">pal_extender()</a></code> and corresponding <code>scale_fill_extender()</code> and <code>scale_colour_extender()</code>
-</li>
-<li>new sorting option <code>"prop_lower"</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/62" class="external-link">#62</a>)</li>
-<li>new helper <code><a href="../reference/symmetric_limits.html">symmetric_limits()</a></code> to make a scale symmetric (<a href="https://github.com/larmarange/ggstats/issues/66" class="external-link">#66</a>)</li>
-<li>new argument <code>symmetric</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/66" class="external-link">#66</a>)</li>
-<li>new arguments <code>default_by</code>, <code>height</code>, <code>labels</code> and <code>labeller</code> for <code><a href="../reference/stat_prop.html">stat_prop()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
-<li>new returned statistics for <code><a href="../reference/stat_prop.html">stat_prop()</a></code>: <code>after_stat(denominator)</code>, <code>after_stat(height)</code> and <code>after_stat(labels)</code>
-</li>
-<li>new geometries: <code><a href="../reference/geom_diverging.html">geom_diverging()</a></code>, <code><a href="../reference/geom_diverging.html">geom_likert()</a></code>, <code><a href="../reference/geom_diverging.html">geom_pyramid()</a></code> and <code><a href="../reference/geom_diverging.html">geom_diverging_text()</a></code>, <code><a href="../reference/geom_diverging.html">geom_likert_text()</a></code>, <code><a href="../reference/geom_diverging.html">geom_pyramid_text()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
-<li>new geometries: <code><a href="../reference/stat_prop.html">geom_prop_bar()</a></code> and <code><a href="../reference/stat_prop.html">geom_prop_text()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</li>
+<ul><li><p>new experimental plot: <code><a href="../reference/ggcascade.html">ggcascade()</a></code> for “cascade” plots (<a href="https://github.com/larmarange/ggstats/issues/71" class="external-link">#71</a>)</p></li>
+<li><p>new scale <code><a href="../reference/scale_fill_likert.html">scale_fill_likert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/64" class="external-link">#64</a>)</p></li>
+<li><p>new geometries: <code><a href="../reference/stat_prop.html">geom_prop_bar()</a></code> and <code><a href="../reference/stat_prop.html">geom_prop_text()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</p></li>
+<li><p>new geometries: <code><a href="../reference/geom_diverging.html">geom_diverging()</a></code>, <code><a href="../reference/geom_diverging.html">geom_likert()</a></code>, <code><a href="../reference/geom_diverging.html">geom_pyramid()</a></code> and <code><a href="../reference/geom_diverging.html">geom_diverging_text()</a></code>, <code><a href="../reference/geom_diverging.html">geom_likert_text()</a></code>, <code><a href="../reference/geom_diverging.html">geom_pyramid_text()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</p></li>
+<li><p>new helper <code><a href="../reference/symmetric_limits.html">symmetric_limits()</a></code> to make a scale symmetric (<a href="https://github.com/larmarange/ggstats/issues/66" class="external-link">#66</a>)</p></li>
+<li><p>new helper <code><a href="../reference/pal_extender.html">pal_extender()</a></code> and corresponding <code>scale_fill_extender()</code> and <code>scale_colour_extender()</code></p></li>
+<li><p>new helper <code><a href="../reference/weighted.sum.html">weighted.sum()</a></code> for weighted sums (<a href="https://github.com/larmarange/ggstats/issues/71" class="external-link">#71</a>)</p></li>
+<li><p>new sorting option <code>"prop_lower"</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/62" class="external-link">#62</a>)</p></li>
+<li><p>new argument <code>symmetric</code> for <code><a href="../reference/gglikert.html">gglikert()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/66" class="external-link">#66</a>)</p></li>
+<li><p>new arguments <code>default_by</code>, <code>height</code>, <code>labels</code> and <code>labeller</code> for <code><a href="../reference/stat_prop.html">stat_prop()</a></code> (<a href="https://github.com/larmarange/ggstats/issues/69" class="external-link">#69</a>)</p></li>
+<li><p>new returned statistics for <code><a href="../reference/stat_prop.html">stat_prop()</a></code>: <code>after_stat(denominator)</code>, <code>after_stat(height)</code> and <code>after_stat(labels)</code></p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.0" id="ggstats-060">ggstats 0.6.0<a class="anchor" aria-label="anchor" href="#ggstats-060"></a></h2><p class="text-muted">CRAN release: 2024-04-05</p>
