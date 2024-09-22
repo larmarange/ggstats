@@ -460,7 +460,7 @@ gglikert_data <- function(data,
 
   data <- data %>%
     dplyr::mutate(
-      dplyr::across(dplyr::all_of(variables), labelled::to_factor)
+      dplyr::across(dplyr::all_of(variables), .fns = labelled::to_factor)
     )
 
   data <- data %>%
