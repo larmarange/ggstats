@@ -24,8 +24,7 @@ geom_likert(
   position = "likert",
   ...,
   complete = "fill",
-  default_by = "x",
-  height = "prop"
+  default_by = "x"
 )
 
 geom_pyramid(
@@ -78,8 +77,6 @@ see \code{\link[=stat_prop]{stat_prop()}}.}
 
 \item{default_by}{Name of an aesthetic determining denominators by default,
 see \code{\link[=stat_prop]{stat_prop()}}.}
-
-\item{stat}{The statistical transformation to use on the data for this layer.}
 }
 \description{
 These geometries are variations of \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} and

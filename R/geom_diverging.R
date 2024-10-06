@@ -17,7 +17,6 @@
 #'
 #' @param mapping Optional set of aesthetic mappings.
 #' @param data The data to be displayed in this layers.
-#' @param stat The statistical transformation to use on the data for this layer.
 #' @param position A position adjustment to use on the data for this layer.
 #' @param ... Other arguments passed on to [`ggplot2::geom_bar()`]
 #' @param complete An aesthetic for those unobserved values should be completed,
@@ -87,8 +86,7 @@ geom_likert <- function(mapping = NULL,
                         position = "likert",
                         ...,
                         complete = "fill",
-                        default_by = "x",
-                        height = "prop") {
+                        default_by = "x") {
   new_default_aes <- ggplot2::aes(
     x = after_stat(prop),
     y = after_stat(prop)
