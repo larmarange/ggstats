@@ -95,7 +95,7 @@ geom_likert <- function(mapping = NULL,
   )
   CustomStat <- StatProp
   CustomStat$default_aes <- ggplot2::aes(
-    !!!modifyList(StatProp$default_aes, new_default_aes)
+    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
   )
   ggplot2::geom_bar(
     mapping = mapping,
@@ -121,7 +121,7 @@ geom_pyramid <- function(mapping = NULL,
   )
   CustomStat <- StatProp
   CustomStat$default_aes <- ggplot2::aes(
-    !!!modifyList(StatProp$default_aes, new_default_aes)
+    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
   )
   ggplot2::geom_bar(
     mapping = mapping,
@@ -147,7 +147,7 @@ geom_diverging_text <- function(mapping = NULL,
   )
   CustomStat <- StatProp
   CustomStat$default_aes <- ggplot2::aes(
-    !!!modifyList(StatProp$default_aes, new_default_aes)
+    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
   )
   ggplot2::geom_text(
     mapping = mapping,
@@ -175,7 +175,7 @@ geom_likert_text <- function(mapping = NULL,
   )
   CustomStat <- StatProp
   CustomStat$default_aes <- ggplot2::aes(
-    !!!modifyList(StatProp$default_aes, new_default_aes)
+    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
   )
   ggplot2::geom_text(
     mapping = mapping,
@@ -203,7 +203,7 @@ geom_pyramid_text <- function(mapping = NULL,
   )
   CustomStat <- StatProp
   CustomStat$default_aes <- ggplot2::aes(
-    !!!modifyList(StatProp$default_aes, new_default_aes)
+    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
   )
   ggplot2::geom_text(
     mapping = mapping,

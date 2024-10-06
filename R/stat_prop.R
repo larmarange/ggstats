@@ -249,7 +249,7 @@ geom_prop_bar <- function(mapping = NULL,
   )
   CustomStat <- StatProp
   CustomStat$default_aes <- ggplot2::aes(
-    !!!modifyList(StatProp$default_aes, new_default_aes)
+    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
   )
   ggplot2::geom_bar(
     mapping = mapping,
@@ -278,7 +278,7 @@ geom_prop_text <- function(mapping = NULL,
   )
   CustomStat <- StatProp
   CustomStat$default_aes <- ggplot2::aes(
-    !!!modifyList(StatProp$default_aes, new_default_aes)
+    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
   )
   ggplot2::geom_text(
     mapping = mapping,
