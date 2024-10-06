@@ -276,6 +276,7 @@ geom_prop_text <- function(mapping = NULL,
       .modify_default_aes(
         x = after_stat(prop),
         y = after_stat(prop),
+        label = scales::percent(after_stat(prop), accuracy = .1),
         colour = after_scale(hex_bw(.data$fill))
       )
   )
