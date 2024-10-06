@@ -1,5 +1,17 @@
 # ggstats (development version)
 
+**Breaking changes**
+
+* `stat_prop()`: arguments `height`, `labels` and `labeller` have been
+  removed (#73)
+* `geom_diverging()`, `geom_likert()`, `geom_pyramid()`,
+  `geom_diverging_text()`, `geom_likert_text()`, and `geom_pyramid_text()` have
+  been redesigned (#73)
+  
+**Other changes**
+
+* Requiring only R minimum version 4.1.0 (#72)
+
 # ggstats 0.7.0
 
 **Minor breaking change**

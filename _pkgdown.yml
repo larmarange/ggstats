@@ -31,7 +31,12 @@ reference:
 
 - title: Additional geometries for `ggplot2`
   contents:
-  - starts_with("geom_")
+  - geom_stripped_rows
+
+- title: Convenient geometries / layers
+  contents:
+  - geom_prop_bar
+  - geom_diverging
 
 - title: Additional positions for `ggplot2`
   contents:

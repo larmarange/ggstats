@@ -12,103 +12,55 @@
 geom_diverging(
   mapping = NULL,
   data = NULL,
-  stat = "prop",
-  position = position_diverging(reverse = reverse, exclude_fill_values =
-    exclude_fill_values, cutoff = cutoff),
+  position = "diverging",
   ...,
   complete = "fill",
-  default_by = "total",
-  height = "count",
-  reverse = FALSE,
-  exclude_fill_values = NULL,
-  cutoff = NULL
+  default_by = "total"
 )
 
 geom_likert(
   mapping = NULL,
   data = NULL,
-  stat = "prop",
-  position = position_likert(reverse = reverse, exclude_fill_values =
-    exclude_fill_values, cutoff = cutoff),
+  position = "likert",
   ...,
   complete = "fill",
-  default_by = "x",
-  height = "prop",
-  reverse = FALSE,
-  exclude_fill_values = NULL,
-  cutoff = NULL
+  default_by = "x"
 )
 
 geom_pyramid(
   mapping = NULL,
   data = NULL,
-  stat = "prop",
-  position = position_diverging(reverse = reverse, exclude_fill_values =
-    exclude_fill_values, cutoff = cutoff),
+  position = "diverging",
   ...,
   complete = NULL,
-  default_by = "total",
-  height = "prop",
-  reverse = FALSE,
-  exclude_fill_values = NULL,
-  cutoff = NULL
+  default_by = "total"
 )
 
 geom_diverging_text(
   mapping = NULL,
   data = NULL,
-  stat = "prop",
-  position = position_diverging(vjust = vjust, reverse = reverse, exclude_fill_values =
-    exclude_fill_values, cutoff = cutoff),
+  position = position_diverging(0.5),
   ...,
   complete = "fill",
-  default_by = "total",
-  height = "count",
-  labels = "count",
-  labeller = label_number_abs(hide_below = hide_below),
-  reverse = FALSE,
-  exclude_fill_values = NULL,
-  cutoff = NULL,
-  vjust = 0.5,
-  hide_below = NULL
+  default_by = "total"
 )
 
 geom_likert_text(
   mapping = NULL,
   data = NULL,
-  stat = "prop",
-  position = position_likert(vjust = vjust, reverse = reverse, exclude_fill_values =
-    exclude_fill_values, cutoff = cutoff),
+  position = position_likert(0.5),
   ...,
   complete = "fill",
-  default_by = "x",
-  height = "prop",
-  labels = "prop",
-  labeller = label_percent_abs(accuracy = 1, hide_below = hide_below),
-  reverse = FALSE,
-  exclude_fill_values = NULL,
-  cutoff = NULL,
-  vjust = 0.5,
-  hide_below = NULL
+  default_by = "x"
 )
 
 geom_pyramid_text(
   mapping = NULL,
   data = NULL,
-  stat = "prop",
-  position = position_diverging(vjust = vjust, reverse = reverse, exclude_fill_values =
-    exclude_fill_values, cutoff = cutoff),
+  position = position_diverging(0.5),
   ...,
   complete = NULL,
-  default_by = "total",
-  height = "prop",
-  labels = "prop",
-  labeller = label_percent_abs(accuracy = 1, hide_below = hide_below),
-  reverse = FALSE,
-  exclude_fill_values = NULL,
-  cutoff = NULL,
-  vjust = 0.5,
-  hide_below = NULL
+  default_by = "total"
 )
 }
 \arguments{
@@ -116,66 +68,34 @@ geom_pyramid_text(
 
 \item{data}{The data to be displayed in this layers.}
 
-\item{stat}{The statistical transformation to use on the data for this layer.}
-
 \item{position}{A position adjustment to use on the data for this layer.}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}}
 
 \item{complete}{An aesthetic for those unobserved values should be completed,
-see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
+see \code{\link[=stat_prop]{stat_prop()}}.}
 
 \item{default_by}{Name of an aesthetic determining denominators by default,
-see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
-
-\item{height}{Statistic used, by default, to determine the height/width,
-see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
-
-\item{reverse}{If \code{TRUE}, will reverse the default stacking order.
-This is useful if you're rotating both the plot and legend.}
-
-\item{exclude_fill_values}{Vector of values from the variable associated with
-the \code{fill} aesthetic that should not be displayed (but still taken into
-account for computing proportions)}
-
-\item{cutoff}{number of categories to be displayed negatively (i.e. on the
-left of the x axis or the bottom of the y axis), could be a decimal value:
-\code{2} to display negatively the two first categories, \code{2.5} to display
-negatively the two first categories and half of the third, \code{2.2} to display
-negatively the two first categories and a fifth of the third (see examples).
-By default (\code{NULL}), it will be equal to the number of categories divided
-by 2, i.e. it will be centered.}
-
-\item{labels}{Statistic used, by default, to determine the labels,
-see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
-
-\item{labeller}{Labeller function to format labels,
-see \code{\link[=stat_prop]{stat_prop()}}. Passed only if \code{stat = "prop"}.}
-
-\item{vjust}{Vertical adjustment for geoms that have a position
-(like points or lines), not a dimension (like bars or areas). Set to
-\code{0} to align with the bottom, \code{0.5} for the middle,
-and \code{1} (the default) for the top.}
-
-\item{hide_below}{If provided, values below \code{hide_below} will be masked.
-Argument passed to \code{\link[=label_number_abs]{label_number_abs()}} or \code{\link[=label_percent_abs]{label_percent_abs()}}.}
+see \code{\link[=stat_prop]{stat_prop()}}.}
 }
 \description{
-These geometries are similar to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} but provides
-different set of default values.
+These geometries are variations of \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} and
+\code{\link[ggplot2:geom_text]{ggplot2::geom_text()}} but provides different set of default values.
 }
 \details{
 \itemize{
 \item \code{geom_diverging()} is designed for stacked diverging bar plots, using
 \code{\link[=position_diverging]{position_diverging()}}.
 \item \code{geom_likert()} is designed for Likert-type items. Using
-\code{position_likert()} (each bar sums to 100\%).
+\code{\link[=position_likert]{position_likert()}} (each bar sums to 100\%).
 \item \code{geom_pyramid()} is similar to \code{geom_diverging()} but uses
 proportions of the total instead of counts.
 }
 
 To add labels on the bar plots, simply use \code{geom_diverging_text()},
 \code{geom_likert_text()}, or \code{geom_pyramid_text()}.
+
+All these geometries relies on \code{\link[=stat_prop]{stat_prop()}}.
 }
 \examples{
 library(ggplot2)
@@ -185,12 +105,24 @@ ggplot(diamonds) +
 
 ggplot(diamonds) +
   aes(x = clarity, fill = cut) +
-  geom_diverging(cutoff = 4)
+  geom_diverging(position = position_diverging(cutoff = 4))
 
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_likert() +
-  geom_likert_text(aes(color = after_scale(hex_bw(.data$fill))))
+  geom_likert_text()
+
+ggplot(diamonds) +
+  aes(y = clarity, fill = cut) +
+  geom_likert() +
+  geom_likert_text(
+    aes(
+      label = label_percent_abs(accuracy = 1, hide_below = .10)(
+        after_stat(prop)
+      ),
+      colour = after_scale(hex_bw(.data$fill))
+    )
+  )
 
 d <- Titanic |> as.data.frame()
 
