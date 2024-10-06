@@ -11,7 +11,7 @@
 ## usethis namespace: end
 NULL
 
-utils::globalVariables(c("prop"))
+utils::globalVariables(c("prop", "count"))
 
 # \lifecycle{experimental}
 # \lifecycle{maturing}
