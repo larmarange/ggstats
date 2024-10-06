@@ -243,21 +243,17 @@ geom_prop_bar <- function(mapping = NULL,
                           ...,
                           complete = NULL,
                           default_by = "x") {
-  new_default_aes <- ggplot2::aes(
-    x = after_stat(prop),
-    y = after_stat(prop)
-  )
-  CustomStat <- StatProp
-  CustomStat$default_aes <- ggplot2::aes(
-    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
-  )
   ggplot2::geom_bar(
     mapping = mapping,
     data = data,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = CustomStat
+    stat = StatProp %>%
+      .modify_default_aes(
+        x = after_stat(prop),
+        y = after_stat(prop)
+      )
   )
 }
 
@@ -270,22 +266,17 @@ geom_prop_text <- function(mapping = NULL,
                            ...,
                            complete = NULL,
                            default_by = "x") {
-
-  new_default_aes <- ggplot2::aes(
-    x = after_stat(prop),
-    y = after_stat(prop),
-    colour = after_scale(hex_bw(.data$fill))
-  )
-  CustomStat <- StatProp
-  CustomStat$default_aes <- ggplot2::aes(
-    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
-  )
   ggplot2::geom_text(
     mapping = mapping,
     data = data,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = CustomStat
+    stat = StatProp %>%
+      .modify_default_aes(
+        x = after_stat(prop),
+        y = after_stat(prop),
+        colour = after_scale(hex_bw(.data$fill))
+      )
   )
 }

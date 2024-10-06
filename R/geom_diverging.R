@@ -23,7 +23,6 @@
 #' see [`stat_prop()`].
 #' @param default_by Name of an aesthetic determining denominators by default,
 #' see [`stat_prop()`].
-#' @inheritParams position_likert
 #' @export
 #' @examples
 #' library(ggplot2)
@@ -87,21 +86,17 @@ geom_likert <- function(mapping = NULL,
                         ...,
                         complete = "fill",
                         default_by = "x") {
-  new_default_aes <- ggplot2::aes(
-    x = after_stat(prop),
-    y = after_stat(prop)
-  )
-  CustomStat <- StatProp
-  CustomStat$default_aes <- ggplot2::aes(
-    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
-  )
   ggplot2::geom_bar(
     mapping = mapping,
     data = data,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = CustomStat
+    stat = StatProp %>%
+      .modify_default_aes(
+        x = after_stat(prop),
+        y = after_stat(prop)
+      )
   )
 }
 
@@ -113,21 +108,17 @@ geom_pyramid <- function(mapping = NULL,
                          ...,
                          complete = NULL,
                          default_by = "total") {
-  new_default_aes <- ggplot2::aes(
-    x = after_stat(prop),
-    y = after_stat(prop)
-  )
-  CustomStat <- StatProp
-  CustomStat$default_aes <- ggplot2::aes(
-    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
-  )
   ggplot2::geom_bar(
     mapping = mapping,
     data = data,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = CustomStat
+    stat = StatProp %>%
+      .modify_default_aes(
+        x = after_stat(prop),
+        y = after_stat(prop)
+      )
   )
 }
 
@@ -139,21 +130,17 @@ geom_diverging_text <- function(mapping = NULL,
                                 ...,
                                 complete = "fill",
                                 default_by = "total") {
-  new_default_aes <- ggplot2::aes(
-    label = after_stat(count),
-    colour = after_scale(hex_bw(.data$fill))
-  )
-  CustomStat <- StatProp
-  CustomStat$default_aes <- ggplot2::aes(
-    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
-  )
   ggplot2::geom_text(
     mapping = mapping,
     data = data,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = CustomStat
+    stat = StatProp %>%
+      .modify_default_aes(
+        label = after_stat(count),
+        colour = after_scale(hex_bw(.data$fill))
+      )
   )
 }
 
@@ -165,23 +152,19 @@ geom_likert_text <- function(mapping = NULL,
                              ...,
                              complete = "fill",
                              default_by = "x") {
-  new_default_aes <- ggplot2::aes(
-    x = after_stat(prop),
-    y = after_stat(prop),
-    label = scales::percent(after_stat(prop), accuracy = 1),
-    colour = after_scale(hex_bw(.data$fill))
-  )
-  CustomStat <- StatProp
-  CustomStat$default_aes <- ggplot2::aes(
-    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
-  )
   ggplot2::geom_text(
     mapping = mapping,
     data = data,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = CustomStat
+    stat = StatProp %>%
+      .modify_default_aes(
+        x = after_stat(prop),
+        y = after_stat(prop),
+        label = scales::percent(after_stat(prop), accuracy = 1),
+        colour = after_scale(hex_bw(.data$fill))
+      )
   )
 }
 
@@ -193,22 +176,18 @@ geom_pyramid_text <- function(mapping = NULL,
                               ...,
                               complete = NULL,
                               default_by = "total") {
-  new_default_aes <- ggplot2::aes(
-    x = after_stat(prop),
-    y = after_stat(prop),
-    label = scales::percent(after_stat(prop), accuracy = 1),
-    colour = after_scale(hex_bw(.data$fill))
-  )
-  CustomStat <- StatProp
-  CustomStat$default_aes <- ggplot2::aes(
-    !!!utils::modifyList(StatProp$default_aes, new_default_aes)
-  )
   ggplot2::geom_text(
     mapping = mapping,
     data = data,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = CustomStat
+    stat = StatProp %>%
+      .modify_default_aes(
+        x = after_stat(prop),
+        y = after_stat(prop),
+        label = scales::percent(after_stat(prop), accuracy = 1),
+        colour = after_scale(hex_bw(.data$fill))
+      )
   )
 }

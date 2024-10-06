@@ -32,3 +32,15 @@ utils::globalVariables(c("prop", "count"))
     b
   }
 }
+
+# helper for changing default aes
+# @param Stat a ggproto stat
+# @param ... new default aes
+#' @importFrom utils modifyList
+.modify_default_aes <- function(Stat, ...) {
+  new_aes <- ggplot2::aes(...)
+  Stat$default_aes <- ggplot2::aes(
+    !!!utils::modifyList(StatProp$default_aes, new_aes)
+  )
+  Stat
+}
