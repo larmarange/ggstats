@@ -249,7 +249,7 @@ geom_prop_bar <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp %>%
+    stat = StatProp |>
       .modify_default_aes(
         x = after_stat(prop),
         y = after_stat(prop)
@@ -272,7 +272,7 @@ geom_prop_text <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp %>%
+    stat = StatProp |>
       .modify_default_aes(
         x = after_stat(prop),
         y = after_stat(prop),
