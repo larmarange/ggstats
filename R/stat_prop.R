@@ -14,15 +14,6 @@
 #' aesthetic that will be used to determine the denominators (e.g. `"fill"`),
 #' or `NULL` or `"total"` to compute proportions of the total. To be noted,
 #' `default_by = "x"` works both for vertical and horizontal bars.
-#' @param height Which statistic (`"count"` or `"prop"`) should be used, by
-#' default, for determining the height/width of the geometry (accessible
-#' through `after_stat(height)`)?
-#' @param labels Which statistic (`"prop"` or `"count"`) should be used, by
-#' default, for generating formatted labels (accessible through
-#' `after_stat(labels)`)?
-#' @param labeller Labeller function to format labels and populate
-#' `after_stat(labels)`.
-#'
 #' @section Aesthetics:
 #' `stat_prop()` understands the following aesthetics
 #' (required aesthetics are in bold):
@@ -36,9 +27,6 @@
 #'   \item{`after_stat(denominator)`}{denominator for the proportions}
 #'   \item{`after_stat(prop)`}{computed proportion, i.e.
 #'     `after_stat(count)`/`after_stat(denominator)`}
-#'   \item{`after_stat(height)`}{counts or proportions, according to `height`}
-#'   \item{`after_stat(labels)`}{formatted heights, according to `labels` and
-#'     `labeller`}
 #' }
 #' @seealso `vignette("stat_prop")`, [ggplot2::stat_count()]. For an alternative
 #' approach, see
@@ -78,11 +66,6 @@
 #'     )
 #' }
 #'
-#' ggplot(d) +
-#' aes(y = Class, fill = Survived, weight = Freq) +
-#'   geom_prop_bar() +
-#'   geom_prop_text()
-#'
 #' # displaying unobserved levels with complete
 #' d <- diamonds |>
 #'   dplyr::filter(!(cut == "Ideal" & clarity == "I1")) |>
@@ -106,19 +89,13 @@ stat_prop <- function(mapping = NULL,
                       show.legend = NA,
                       inherit.aes = TRUE,
                       complete = NULL,
-                      default_by = "total",
-                      height = c("count", "prop"),
-                      labels = c("prop", "count"),
-                      labeller = scales::label_percent(accuracy = .1)) {
+                      default_by = "total") {
   params <- list(
     na.rm = na.rm,
     orientation = orientation,
     width = width,
     complete = complete,
     default_by = default_by,
-    height = height,
-    labels = labels,
-    labeller = labeller,
     ...
   )
   if (!is.null(params$y)) {
@@ -147,10 +124,10 @@ stat_prop <- function(mapping = NULL,
 StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   required_aes = c("x|y"),
   default_aes = ggplot2::aes(
-    x = after_stat(height),
-    y = after_stat(height),
+    x = after_stat(count),
+    y = after_stat(count),
     weight = 1,
-    label = after_stat(labels),
+    label = scales::percent(after_stat(prop), accuracy = .1),
     by = 1
   ),
   setup_params = function(data, params) {
@@ -181,13 +158,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
                            width = NULL,
                            flipped_aes = FALSE,
                            complete = NULL,
-                           default_by = "total",
-                           height = c("count", "prop"),
-                           labels = c("prop", "count"),
-                           labeller =
-                             scales::label_percent(accuracy = .1)) {
-    height <- match.arg(height)
-    labels <- match.arg(labels)
+                           default_by = "total") {
     data <- ggplot2::flip_data(data, flipped_aes)
     data$weight <- data$weight %||% rep(1, nrow(data))
 
@@ -232,8 +203,6 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     }
     panel$denominator <- ave(panel$count, panel$by, FUN = sum_abs)
     panel$prop <- panel$count / panel$denominator
-    panel$height <- panel[[height]]
-    panel$labels <- labeller(panel[[labels]])
     panel$width <- width
     panel$flipped_aes <- flipped_aes
 
@@ -241,62 +210,82 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
   }
 )
 
-#' @rdname stat_prop
-#' @param stat The statistical transformation to use on the data for this layer.
+#' Convenient geometries for proportion bar plots
+#'
+#' `geom_prop_bar()` and `geom_prop_text()` are variations of
+#' [ggplot2::geom_bar()] and [ggplot2::geom_text()] using [stat_prop()],
+#' with custom default aesthetics: `after_stat(prop)` for **x** or **y**, and
+#' `scales::percent(after_stat(prop))` for **label**.
+#'
+#' @inheritParams stat_prop
 #' @export
+#' @examples
+#' library(ggplot2)
+#' d <- as.data.frame(Titanic)
+#' ggplot(d) +
+#'   aes(y = Class, fill = Survived, weight = Freq) +
+#'   geom_prop_bar() +
+#'   geom_prop_text()
+#'
+#' ggplot(d) +
+#'   aes(
+#'     y = Class,
+#'     fill = Survived,
+#'     weight = Freq,
+#'     x = after_stat(count),
+#'     label = after_stat(count)
+#'   ) +
+#'   geom_prop_bar() +
+#'   geom_prop_text()
 geom_prop_bar <- function(mapping = NULL,
                           data = NULL,
-                          stat = "prop",
-                          position = position_stack(),
+                          position = "stack",
                           ...,
                           complete = NULL,
-                          default_by = "x",
-                          height = "prop") {
-
-  args <- list(...)
-  if (stat == "prop") {
-    args$complete <- complete
-    args$default_by <- default_by
-    args$height <- height
-  }
-
-  args$mapping <- mapping
-  args$data <- data
-  args$stat <- stat
-  args$position <- position
-  do.call(ggplot2::geom_bar, args)
+                          default_by = "x") {
+  new_default_aes <- ggplot2::aes(
+    x = after_stat(prop),
+    y = after_stat(prop)
+  )
+  CustomStat <- StatProp
+  CustomStat$default_aes <- ggplot2::aes(
+    !!!modifyList(StatProp$default_aes, new_default_aes)
+  )
+  ggplot2::geom_bar(
+    mapping = mapping,
+    data = data,
+    position = position,
+    complete = complete,
+    default_by = default_by,
+    stat = CustomStat
+  )
 }
 
-#' @rdname stat_prop
-#' @param vjust Vertical/Horizontal adjustment for the position. Set to 0 to
-#' align with the bottom/left, 0.5 (the default) for the middle, and 1 for the
-#' top/right.
+#' @rdname geom_prop_bar
+#' @importFrom scales percent
 #' @export
 geom_prop_text <- function(mapping = NULL,
                            data = NULL,
-                           stat = "prop",
-                           position = position_stack(vjust),
+                           position = ggplot2::position_stack(0.5),
                            ...,
                            complete = NULL,
-                           default_by = "x",
-                           height = "prop",
-                           labels = "prop",
-                           labeller =
-                             scales::label_percent(accuracy = .1),
-                           vjust = 0.5) {
+                           default_by = "x") {
 
-  args <- list(...)
-  if (stat == "prop") {
-    args$complete <- complete
-    args$default_by <- default_by
-    args$height <- height
-    args$labels <- labels
-    args$labeller <- labeller
-  }
-
-  args$mapping <- mapping
-  args$data <- data
-  args$stat <- stat
-  args$position <- position
-  do.call(ggplot2::geom_text, args)
+  new_default_aes <- ggplot2::aes(
+    x = after_stat(prop),
+    y = after_stat(prop),
+    colour = after_scale(hex_bw(.data$fill))
+  )
+  CustomStat <- StatProp
+  CustomStat$default_aes <- ggplot2::aes(
+    !!!modifyList(StatProp$default_aes, new_default_aes)
+  )
+  ggplot2::geom_text(
+    mapping = mapping,
+    data = data,
+    position = position,
+    complete = complete,
+    default_by = default_by,
+    stat = CustomStat
+  )
 }
