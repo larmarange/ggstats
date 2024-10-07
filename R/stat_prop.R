@@ -249,11 +249,8 @@ geom_prop_bar <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp |>
-      .modify_default_aes(
-        x = after_stat(prop),
-        y = after_stat(prop)
-      )
+    stat = StatPropProp,
+    ...
   )
 }
 
@@ -272,12 +269,35 @@ geom_prop_text <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp |>
-      .modify_default_aes(
-        x = after_stat(prop),
-        y = after_stat(prop),
-        label = scales::percent(after_stat(prop), accuracy = .1),
-        colour = after_scale(hex_bw(.data$fill))
-      )
+    stat = StatPropProp,
+    ...
   )
 }
+
+# all defaults to after_stat(prop)
+StatPropProp <- ggplot2::ggproto(
+  "StatPropProp",
+  StatProp,
+  default_aes = utils::modifyList(
+    StatProp$default_aes,
+    ggplot2::aes(
+      x = after_stat(prop),
+      y = after_stat(prop),
+      label = scales::percent(after_stat(prop), accuracy = .1)
+    )
+  )
+)
+
+# all defaults to after_stat(count)
+StatPropCount <- ggplot2::ggproto(
+  "StatPropCount",
+  StatProp,
+  default_aes = utils::modifyList(
+    StatProp$default_aes,
+    ggplot2::aes(
+      x = after_stat(count),
+      y = after_stat(count),
+      label = after_stat(count)
+    )
+  )
+)

@@ -74,7 +74,8 @@ geom_diverging <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp
+    stat = StatPropCount,
+    ...
   )
 }
 
@@ -92,11 +93,8 @@ geom_likert <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp |>
-      .modify_default_aes(
-        x = after_stat(prop),
-        y = after_stat(prop)
-      )
+    stat = StatPropProp,
+    ...
   )
 }
 
@@ -114,11 +112,8 @@ geom_pyramid <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp |>
-      .modify_default_aes(
-        x = after_stat(prop),
-        y = after_stat(prop)
-      )
+    stat = StatPropProp,
+    ...
   )
 }
 
@@ -136,11 +131,8 @@ geom_diverging_text <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp |>
-      .modify_default_aes(
-        label = after_stat(count),
-        colour = after_scale(hex_bw(.data$fill))
-      )
+    stat = StatPropCount,
+    ...
   )
 }
 
@@ -158,13 +150,8 @@ geom_likert_text <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp |>
-      .modify_default_aes(
-        x = after_stat(prop),
-        y = after_stat(prop),
-        label = scales::percent(after_stat(prop), accuracy = 1),
-        colour = after_scale(hex_bw(.data$fill))
-      )
+    stat = StatPropProp,
+    ...
   )
 }
 
@@ -182,12 +169,7 @@ geom_pyramid_text <- function(mapping = NULL,
     position = position,
     complete = complete,
     default_by = default_by,
-    stat = StatProp |>
-      .modify_default_aes(
-        x = after_stat(prop),
-        y = after_stat(prop),
-        label = scales::percent(after_stat(prop), accuracy = 1),
-        colour = after_scale(hex_bw(.data$fill))
-      )
+    stat = StatPropProp,
+    ...
   )
 }
