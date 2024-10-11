@@ -37,7 +37,7 @@ geom_pyramid(
 )
 
 geom_diverging_text(
-  mapping = NULL,
+  mapping = ggplot2::aes(!!!auto_contrast),
   data = NULL,
   position = position_diverging(0.5),
   ...,
@@ -46,7 +46,7 @@ geom_diverging_text(
 )
 
 geom_likert_text(
-  mapping = NULL,
+  mapping = ggplot2::aes(!!!auto_contrast),
   data = NULL,
   position = position_likert(0.5),
   ...,
@@ -55,7 +55,7 @@ geom_likert_text(
 )
 
 geom_pyramid_text(
-  mapping = NULL,
+  mapping = ggplot2::aes(!!!auto_contrast),
   data = NULL,
   position = position_diverging(0.5),
   ...,

@@ -8,6 +8,10 @@
   `geom_diverging_text()`, `geom_likert_text()`, and `geom_pyramid_text()` have
   been redesigned (#73)
   
+**Improvements**
+
+* New shortcut `auto_contrast` (#75)
+
 **Other changes**
 
 * Requiring only R minimum version 4.1.0 (#72)

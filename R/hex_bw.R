@@ -1,8 +1,14 @@
 #' Identify a suitable font color (black or white) given a background HEX color
 #'
+#' You could use `auto_contrast` as a shortcut of
+#' `aes(colour = after_scale(hex_bw(.data$fill)))`. You should use `!!!` to
+#' inject it within [ggplot2::aes()] (see examples).
+#'
 #' @param hex_code Background color in hex-format.
 #' @return Either black or white, in hex-format
-#' @source Adapted from `saros`
+#' @source Adapted from `saros` for `hex_code()` and from
+#' <https://github.com/teunbrand/ggplot_tricks?tab=readme-ov-file#text-contrast>
+#' for `auto_contrast`.
 #' @export
 #' @examples
 #' hex_bw("#0dadfd")
@@ -13,6 +19,26 @@
 #'   geom_bar() +
 #'   geom_text(
 #'     mapping = aes(color = after_scale(hex_bw(.data$fill))),
+#'     position = position_stack(.5),
+#'     stat = "count",
+#'     size = 2
+#'   )
+#'
+#' ggplot(diamonds) +
+#'   aes(x = cut, fill = color, label = after_stat(count)) +
+#'   geom_bar() +
+#'   geom_text(
+#'     mapping = auto_contrast,
+#'     position = position_stack(.5),
+#'     stat = "count",
+#'     size = 2
+#'   )
+#'
+#' ggplot(diamonds) +
+#'   aes(x = cut, fill = color, label = after_stat(count), !!!auto_contrast) +
+#'   geom_bar() +
+#'   geom_text(
+#'     mapping = auto_contrast,
 #'     position = position_stack(.5),
 #'     stat = "count",
 #'     size = 2
@@ -57,3 +83,7 @@ hex_bw_threshold <- function(hex_code, values, threshold) {
   x[values < threshold] <- "#000000"
   x
 }
+
+#' @rdname hex_bw
+#' @export
+auto_contrast <- ggplot2::aes(colour = after_scale(hex_bw(.data$fill)))
