@@ -11,7 +11,7 @@ An object of class \code{uneval} of length 1.
 }
 \source{
 Adapted from \code{saros} for \code{hex_code()} and from
-\link{https://github.com/teunbrand/ggplot_tricks?tab=readme-ov-file#text-contrast}
+\url{https://github.com/teunbrand/ggplot_tricks?tab=readme-ov-file#text-contrast}
 for \code{auto_contrast}.
 }
 \usage{

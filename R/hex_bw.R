@@ -7,7 +7,7 @@
 #' @param hex_code Background color in hex-format.
 #' @return Either black or white, in hex-format
 #' @source Adapted from `saros` for `hex_code()` and from
-#' [https://github.com/teunbrand/ggplot_tricks?tab=readme-ov-file#text-contrast]
+#' <https://github.com/teunbrand/ggplot_tricks?tab=readme-ov-file#text-contrast>
 #' for `auto_contrast`.
 #' @export
 #' @examples

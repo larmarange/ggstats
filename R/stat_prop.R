@@ -275,6 +275,7 @@ geom_prop_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
 }
 
 # all defaults to after_stat(prop)
+#' @importFrom utils modifyList
 StatPropProp <- ggplot2::ggproto(
   "StatPropProp",
   StatProp,
