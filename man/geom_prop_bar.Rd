@@ -15,7 +15,7 @@ geom_prop_bar(
 )
 
 geom_prop_text(
-  mapping = NULL,
+  mapping = ggplot2::aes(!!!auto_contrast),
   data = NULL,
   position = ggplot2::position_stack(0.5),
   ...,

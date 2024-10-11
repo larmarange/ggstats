@@ -119,7 +119,7 @@ geom_pyramid <- function(mapping = NULL,
 
 #' @rdname geom_diverging
 #' @export
-geom_diverging_text <- function(mapping = NULL,
+geom_diverging_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
                                 data = NULL,
                                 position = position_diverging(0.5),
                                 ...,
@@ -138,7 +138,7 @@ geom_diverging_text <- function(mapping = NULL,
 
 #' @rdname geom_diverging
 #' @export
-geom_likert_text <- function(mapping = NULL,
+geom_likert_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
                              data = NULL,
                              position = position_likert(0.5),
                              ...,
@@ -157,7 +157,7 @@ geom_likert_text <- function(mapping = NULL,
 
 #' @rdname geom_diverging
 #' @export
-geom_pyramid_text <- function(mapping = NULL,
+geom_pyramid_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
                               data = NULL,
                               position = position_diverging(0.5),
                               ...,

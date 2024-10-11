@@ -257,7 +257,7 @@ geom_prop_bar <- function(mapping = NULL,
 #' @rdname geom_prop_bar
 #' @importFrom scales percent
 #' @export
-geom_prop_text <- function(mapping = NULL,
+geom_prop_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
                            data = NULL,
                            position = ggplot2::position_stack(0.5),
                            ...,
