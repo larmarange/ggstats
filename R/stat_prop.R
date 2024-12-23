@@ -257,20 +257,23 @@ geom_prop_bar <- function(mapping = NULL,
 #' @rdname geom_prop_bar
 #' @importFrom scales percent
 #' @export
-geom_prop_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
+geom_prop_text <- function(mapping = NULL,
                            data = NULL,
                            position = ggplot2::position_stack(0.5),
                            ...,
                            complete = NULL,
                            default_by = "x") {
-  ggplot2::geom_text(
-    mapping = mapping,
-    data = data,
-    position = position,
-    complete = complete,
-    default_by = default_by,
+  ggplot2::layer(
+    geom = GeomTextAutoContrast,
     stat = StatPropProp,
-    ...
+    data = data,
+    mapping = mapping,
+    position = position,
+    params = list(
+      complete = complete,
+      default_by = default_by,
+      ...
+    )
   )
 }
 
@@ -300,5 +303,23 @@ StatPropCount <- ggplot2::ggproto(
       y = after_stat(count),
       label = after_stat(count)
     )
+  )
+)
+
+GeomTextAutoContrast <- ggproto(
+  "GeomTextAutoContrast",
+  ggplot2::GeomText,
+  default_aes = utils::modifyList(
+    ggplot2::aes(
+      size = 3.88,
+      angle = 0,
+      hjust = 0.5,
+      vjust = 0.5,
+      alpha =NA,
+      family = "",
+      fontface = 1,
+      lineheight = 1.2
+    ),
+    auto_contrast
   )
 )
