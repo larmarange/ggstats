@@ -150,6 +150,8 @@ ggplot(diamonds) +
   theme_minimal() +
   theme(legend.position = "bottom")
 
+\donttest{
+
 ggplot(diamonds) +
   aes(x = clarity, fill = cut) +
   geom_bar(width = .5) +
@@ -173,5 +175,37 @@ ggplot(diamonds) +
   geom_bar(width = .5, position = "diverging") +
   geom_connect_bars(width = .5, position = "diverging", linewidth = .25) +
   theme(legend.position = "bottom")
+
+ggplot(mtcars) +
+aes(x = wt, y = mpg, colour = factor(cyl)) +
+  geom_connect() +
+  geom_point()
+
+ggplot(mtcars) +
+  aes(x = wt, y = mpg, colour = factor(cyl)) +
+  geom_connect(continuous = TRUE) +
+  geom_point()
+
+ggplot(mtcars) +
+  aes(x = wt, y = mpg, colour = factor(cyl)) +
+  geom_connect(continuous = TRUE, width = .3) +
+  geom_point()
+
+ggplot(mtcars) +
+  aes(x = wt, y = mpg, colour = factor(cyl)) +
+  geom_connect(width = 0) +
+  geom_point()
+
+ggplot(mtcars) +
+  aes(x = wt, y = mpg, colour = factor(cyl)) +
+  geom_connect(width = Inf) +
+  geom_point()
+
+ggplot(mtcars) +
+  aes(x = wt, y = mpg, colour = factor(cyl)) +
+  geom_connect(width = Inf, continuous = TRUE) +
+  geom_point()
+
+}
 }
 \keyword{datasets}

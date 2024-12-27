@@ -11,6 +11,8 @@
 #' @examples
 #' library(ggplot2)
 #'
+#' # geom_connect_bars() -----------
+#'
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
 #'   geom_bar(width = .5) +
@@ -18,6 +20,7 @@
 #'   theme_minimal() +
 #'   theme(legend.position = "bottom")
 #'
+#' \donttest{
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
 #'   geom_bar(width = .5) +
@@ -41,6 +44,39 @@
 #'   geom_bar(width = .5, position = "diverging") +
 #'   geom_connect_bars(width = .5, position = "diverging", linewidth = .25) +
 #'   theme(legend.position = "bottom")
+#'
+#' # geom_connect() -----------
+#'
+#' ggplot(mtcars) +
+#' aes(x = wt, y = mpg, colour = factor(cyl)) +
+#'   geom_connect() +
+#'   geom_point()
+#'
+#' ggplot(mtcars) +
+#'   aes(x = wt, y = mpg, colour = factor(cyl)) +
+#'   geom_connect(continuous = TRUE) +
+#'   geom_point()
+#'
+#' ggplot(mtcars) +
+#'   aes(x = wt, y = mpg, colour = factor(cyl)) +
+#'   geom_connect(continuous = TRUE, width = .3) +
+#'   geom_point()
+#'
+#' ggplot(mtcars) +
+#'   aes(x = wt, y = mpg, colour = factor(cyl)) +
+#'   geom_connect(width = 0) +
+#'   geom_point()
+#'
+#' ggplot(mtcars) +
+#'   aes(x = wt, y = mpg, colour = factor(cyl)) +
+#'   geom_connect(width = Inf) +
+#'   geom_point()
+#'
+#' ggplot(mtcars) +
+#'   aes(x = wt, y = mpg, colour = factor(cyl)) +
+#'   geom_connect(width = Inf, continuous = TRUE) +
+#'   geom_point()
+#' }
 geom_connect <- function(mapping = NULL,
                          data = NULL,
                          stat = "identity",
@@ -182,6 +218,8 @@ connect_points <- function(data, width = 0.9, continuous = FALSE) {
   gaps <- data$x[-1] - data$x[-n]
   nudge <- pmin(gaps / 2, width / 2)
 
+  data[["..rank.."]] <- seq_along(data$x)
+
   d1 <- data
   d1[["..order.."]] <- 0
   if (!continuous) d1$y <- NA
@@ -195,6 +233,6 @@ connect_points <- function(data, width = 0.9, continuous = FALSE) {
   d3$x <- d3$x + nudge
 
   dplyr::bind_rows(d1, d2, d3) |>
-    dplyr::arrange(.data$x, .data[["..order.."]]) |>
-    dplyr::select(-dplyr::all_of("..order.."))
+    dplyr::arrange(.data[["..rank.."]], .data[["..order.."]]) |>
+    dplyr::select(-dplyr::all_of(c("..rank..", "..order..")))
 }
