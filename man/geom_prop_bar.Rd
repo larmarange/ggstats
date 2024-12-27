@@ -3,6 +3,7 @@
 \name{geom_prop_bar}
 \alias{geom_prop_bar}
 \alias{geom_prop_text}
+\alias{geom_prop_connect}
 \title{Convenient geometries for proportion bar plots}
 \usage{
 geom_prop_bar(
@@ -10,6 +11,7 @@ geom_prop_bar(
   data = NULL,
   position = "stack",
   ...,
+  width = 0.9,
   complete = NULL,
   default_by = "x"
 )
@@ -20,6 +22,16 @@ geom_prop_text(
   position = ggplot2::position_stack(0.5),
   ...,
   complete = NULL,
+  default_by = "x"
+)
+
+geom_prop_connect(
+  mapping = NULL,
+  data = NULL,
+  position = "stack",
+  ...,
+  width = 0.9,
+  complete = "fill",
   default_by = "x"
 )
 }
@@ -57,33 +69,10 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \link[ggplot2:layer_positions]{layer position} documentation.
 }}
 
-\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}'s \code{params} argument. These
-arguments broadly fall into one of 4 categories below. Notably, further
-arguments to the \code{position} argument, or aesthetics that are required
-can \emph{not} be passed through \code{...}. Unknown arguments that are not part
-of the 4 categories below are ignored.
-\itemize{
-\item Static aesthetics that are not mapped to a scale, but are at a fixed
-value and apply to the layer as a whole. For example, \code{colour = "red"}
-or \code{linewidth = 3}. The geom's documentation has an \strong{Aesthetics}
-section that lists the available options. The 'required' aesthetics
-cannot be passed on to the \code{params}. Please note that while passing
-unmapped aesthetics as vectors is technically possible, the order and
-required length is not guaranteed to be parallel to the input data.
-\item When constructing a layer using
-a \verb{stat_*()} function, the \code{...} argument can be used to pass on
-parameters to the \code{geom} part of the layer. An example of this is
-\code{stat_density(geom = "area", outline.type = "both")}. The geom's
-documentation lists which parameters it can accept.
-\item Inversely, when constructing a layer using a
-\verb{geom_*()} function, the \code{...} argument can be used to pass on parameters
-to the \code{stat} part of the layer. An example of this is
-\code{geom_area(stat = "density", adjust = 0.5)}. The stat's documentation
-lists which parameters it can accept.
-\item The \code{key_glyph} argument of \code{\link[ggplot2:layer]{layer()}} may also be passed on through
-\code{...}. This can be one of the functions described as
-\link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
-}}
+\item{...}{Additional parameters passed to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}},
+\code{\link[ggplot2:geom_text]{ggplot2::geom_text()}} or \code{\link[=geom_connect_bars]{geom_connect_bars()}}.}
+
+\item{width}{Bar width (\code{0.9} by default).}
 
 \item{complete}{Name (character) of an aesthetic for those statistics should
 be completed for unobserved values (see example).}
@@ -94,27 +83,39 @@ or \code{NULL} or \code{"total"} to compute proportions of the total. To be note
 \code{default_by = "x"} works both for vertical and horizontal bars.}
 }
 \description{
-\code{geom_prop_bar()} and \code{geom_prop_text()} are variations of
-\code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}} and \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}} using \code{\link[=stat_prop]{stat_prop()}},
-with custom default aesthetics: \code{after_stat(prop)} for \strong{x} or \strong{y}, and
+\code{geom_prop_bar()}, \code{geom_prop_text()} and \code{geom_prop_connect()} are
+variations of \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}, \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}} and
+\code{\link[=geom_connect_bars]{geom_connect_bars()}} using \code{\link[=stat_prop]{stat_prop()}}, with custom default aesthetics:
+\code{after_stat(prop)} for \strong{x} or \strong{y}, and
 \code{scales::percent(after_stat(prop))} for \strong{label}.
 }
 \examples{
 library(ggplot2)
 d <- as.data.frame(Titanic)
 ggplot(d) +
-  aes(y = Class, fill = Survived, weight = Freq) +
+  aes(x = Class, fill = Survived, weight = Freq) +
   geom_prop_bar() +
-  geom_prop_text()
+  geom_prop_text() +
+  geom_prop_connect()
+
+ggplot(d) +
+  aes(y = Class, fill = Survived, weight = Freq) +
+  geom_prop_bar(width = .5) +
+  geom_prop_text() +
+  geom_prop_connect(width = .5, linetype = "dotted")
 
 ggplot(d) +
   aes(
-    y = Class,
+    x = Class,
     fill = Survived,
     weight = Freq,
-    x = after_stat(count),
+    y = after_stat(count),
     label = after_stat(count)
   ) +
   geom_prop_bar() +
-  geom_prop_text()
+  geom_prop_text() +
+  geom_prop_connect()
+}
+\seealso{
+\code{\link[=geom_connect_bars]{geom_connect_bars()}}
 }

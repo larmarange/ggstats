@@ -10,11 +10,9 @@
   
 **Improvements**
 
+* New geoms `geom_connect()`, `geom_connect_bars()` and
+  `geom_prop_connect()` (#81)
 * New shortcut `auto_contrast` (#75)
-
-**Other changes**
-
-* Requiring only R minimum version 4.1.0 (#72)
 
 # ggstats 0.7.0
 
