@@ -214,35 +214,49 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
 
 #' Convenient geometries for proportion bar plots
 #'
-#' `geom_prop_bar()` and `geom_prop_text()` are variations of
-#' [ggplot2::geom_bar()] and [ggplot2::geom_text()] using [stat_prop()],
-#' with custom default aesthetics: `after_stat(prop)` for **x** or **y**, and
+#' `geom_prop_bar()`, `geom_prop_text()` and `geom_prop_connect()` are
+#' variations of [ggplot2::geom_bar()], [ggplot2::geom_text()] and
+#' [geom_connect_bars()] using [stat_prop()], with custom default aesthetics:
+#' `after_stat(prop)` for **x** or **y**, and
 #' `scales::percent(after_stat(prop))` for **label**.
 #'
 #' @inheritParams stat_prop
+#' @param width Bar width (`0.9` by default).
+#' @param ... Additional parameters passed to [ggplot2::geom_bar()],
+#' [ggplot2::geom_text()] or [geom_connect_bars()].
 #' @export
+#' @seealso [geom_connect_bars()]
 #' @examples
 #' library(ggplot2)
 #' d <- as.data.frame(Titanic)
 #' ggplot(d) +
-#'   aes(y = Class, fill = Survived, weight = Freq) +
+#'   aes(x = Class, fill = Survived, weight = Freq) +
 #'   geom_prop_bar() +
-#'   geom_prop_text()
+#'   geom_prop_text() +
+#'   geom_prop_connect()
+#'
+#' ggplot(d) +
+#'   aes(y = Class, fill = Survived, weight = Freq) +
+#'   geom_prop_bar(width = .5) +
+#'   geom_prop_text() +
+#'   geom_prop_connect(width = .5, linetype = "dotted")
 #'
 #' ggplot(d) +
 #'   aes(
-#'     y = Class,
+#'     x = Class,
 #'     fill = Survived,
 #'     weight = Freq,
-#'     x = after_stat(count),
+#'     y = after_stat(count),
 #'     label = after_stat(count)
 #'   ) +
 #'   geom_prop_bar() +
-#'   geom_prop_text()
+#'   geom_prop_text() +
+#'   geom_prop_connect()
 geom_prop_bar <- function(mapping = NULL,
                           data = NULL,
                           position = "stack",
                           ...,
+                          width = 0.9,
                           complete = NULL,
                           default_by = "x") {
   ggplot2::geom_bar(
@@ -252,6 +266,7 @@ geom_prop_bar <- function(mapping = NULL,
     complete = complete,
     default_by = default_by,
     stat = StatPropProp,
+    width = width,
     ...
   )
 }
@@ -272,6 +287,27 @@ geom_prop_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
     complete = complete,
     default_by = default_by,
     stat = StatPropProp,
+    ...
+  )
+}
+
+#' @rdname geom_prop_bar
+#' @export
+geom_prop_connect <- function(mapping = NULL,
+                              data = NULL,
+                              position = "stack",
+                              ...,
+                              width = 0.9,
+                              complete = "fill",
+                              default_by = "x") {
+  geom_connect_bars(
+    mapping = mapping,
+    data = data,
+    position = position,
+    complete = complete,
+    default_by = default_by,
+    stat = StatPropProp,
+    width = width,
     ...
   )
 }

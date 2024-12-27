@@ -10,6 +10,7 @@
   
 **Improvements**
 
+* New geoms `geom_connect()`, `geom_connect_bars()` and `geom_prop_connect()`
 * New shortcut `auto_contrast` (#75)
 
 **Other changes**
