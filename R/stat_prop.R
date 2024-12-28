@@ -294,12 +294,12 @@ geom_prop_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
 #' @rdname geom_prop_bar
 #' @export
 geom_prop_connector <- function(mapping = NULL,
-                              data = NULL,
-                              position = "stack",
-                              ...,
-                              width = 0.9,
-                              complete = "fill",
-                              default_by = "x") {
+                                data = NULL,
+                                position = "stack",
+                                ...,
+                                width = 0.9,
+                                complete = "fill",
+                                default_by = "x") {
   geom_bar_connector(
     mapping = mapping,
     data = data,

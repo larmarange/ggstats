@@ -79,16 +79,16 @@
 #'   geom_point()
 #' }
 geom_connector <- function(mapping = NULL,
-                         data = NULL,
-                         stat = "identity",
-                         position = "identity",
-                         width = 0.1,
-                         continuous = FALSE,
-                         na.rm = FALSE,
-                         orientation = NA,
-                         show.legend = NA,
-                         inherit.aes = TRUE,
-                         ...) {
+                           data = NULL,
+                           stat = "identity",
+                           position = "identity",
+                           width = 0.1,
+                           continuous = FALSE,
+                           na.rm = FALSE,
+                           orientation = NA,
+                           show.legend = NA,
+                           inherit.aes = TRUE,
+                           ...) {
   layer(
     data = data,
     mapping = mapping,
@@ -110,17 +110,17 @@ geom_connector <- function(mapping = NULL,
 #' @rdname geom_connector
 #' @export
 geom_bar_connector <- function(mapping = NULL,
-                              data = NULL,
-                              stat = "prop",
-                              position = "stack",
-                              width = 0.9,
-                              continuous = FALSE,
-                              add_baseline = TRUE,
-                              na.rm = FALSE,
-                              orientation = NA,
-                              show.legend = NA,
-                              inherit.aes = TRUE,
-                              ...) {
+                               data = NULL,
+                               stat = "prop",
+                               position = "stack",
+                               width = 0.9,
+                               continuous = FALSE,
+                               add_baseline = TRUE,
+                               na.rm = FALSE,
+                               orientation = NA,
+                               show.legend = NA,
+                               inherit.aes = TRUE,
+                               ...) {
   params <- rlang::list2(
     width = width,
     continuous = continuous,
