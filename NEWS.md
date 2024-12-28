@@ -10,8 +10,8 @@
   
 **Improvements**
 
-* New geoms `geom_connect()`, `geom_connect_bars()` and
-  `geom_prop_connect()` (#81)
+* New geoms `geom_connector()`, `geom_bar_connector()` and
+  `geom_prop_connector()` (#81)
 * New shortcut `auto_contrast` (#75)
 
 # ggstats 0.7.0

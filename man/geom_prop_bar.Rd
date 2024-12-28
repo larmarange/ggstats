@@ -3,7 +3,7 @@
 \name{geom_prop_bar}
 \alias{geom_prop_bar}
 \alias{geom_prop_text}
-\alias{geom_prop_connect}
+\alias{geom_prop_connector}
 \title{Convenient geometries for proportion bar plots}
 \usage{
 geom_prop_bar(
@@ -25,7 +25,7 @@ geom_prop_text(
   default_by = "x"
 )
 
-geom_prop_connect(
+geom_prop_connector(
   mapping = NULL,
   data = NULL,
   position = "stack",
@@ -70,7 +70,7 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 }}
 
 \item{...}{Additional parameters passed to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}},
-\code{\link[ggplot2:geom_text]{ggplot2::geom_text()}} or \code{\link[=geom_connect_bars]{geom_connect_bars()}}.}
+\code{\link[ggplot2:geom_text]{ggplot2::geom_text()}} or \code{\link[=geom_bar_connector]{geom_bar_connector()}}.}
 
 \item{width}{Bar width (\code{0.9} by default).}
 
@@ -83,9 +83,9 @@ or \code{NULL} or \code{"total"} to compute proportions of the total. To be note
 \code{default_by = "x"} works both for vertical and horizontal bars.}
 }
 \description{
-\code{geom_prop_bar()}, \code{geom_prop_text()} and \code{geom_prop_connect()} are
+\code{geom_prop_bar()}, \code{geom_prop_text()} and \code{geom_prop_connector()} are
 variations of \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}, \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}} and
-\code{\link[=geom_connect_bars]{geom_connect_bars()}} using \code{\link[=stat_prop]{stat_prop()}}, with custom default aesthetics:
+\code{\link[=geom_bar_connector]{geom_bar_connector()}} using \code{\link[=stat_prop]{stat_prop()}}, with custom default aesthetics:
 \code{after_stat(prop)} for \strong{x} or \strong{y}, and
 \code{scales::percent(after_stat(prop))} for \strong{label}.
 }
@@ -96,13 +96,13 @@ ggplot(d) +
   aes(x = Class, fill = Survived, weight = Freq) +
   geom_prop_bar() +
   geom_prop_text() +
-  geom_prop_connect()
+  geom_prop_connector()
 
 ggplot(d) +
   aes(y = Class, fill = Survived, weight = Freq) +
   geom_prop_bar(width = .5) +
   geom_prop_text() +
-  geom_prop_connect(width = .5, linetype = "dotted")
+  geom_prop_connector(width = .5, linetype = "dotted")
 
 ggplot(d) +
   aes(
@@ -114,8 +114,8 @@ ggplot(d) +
   ) +
   geom_prop_bar() +
   geom_prop_text() +
-  geom_prop_connect()
+  geom_prop_connector()
 }
 \seealso{
-\code{\link[=geom_connect_bars]{geom_connect_bars()}}
+\code{\link[=geom_bar_connector]{geom_bar_connector()}}
 }

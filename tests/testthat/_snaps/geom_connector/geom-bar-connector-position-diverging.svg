@@ -166,6 +166,6 @@
 <text x='372.62' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='42.08px' lengthAdjust='spacingAndGlyphs'>Very Good</text>
 <text x='442.93' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='35.21px' lengthAdjust='spacingAndGlyphs'>Premium</text>
 <text x='506.38' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='19.08px' lengthAdjust='spacingAndGlyphs'>Ideal</text>
-<text x='47.48' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='226.04px' lengthAdjust='spacingAndGlyphs'>geom_connect_bars position diverging</text>
+<text x='47.48' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='231.18px' lengthAdjust='spacingAndGlyphs'>geom_bar_connector position diverging</text>
 </g>
 </svg>

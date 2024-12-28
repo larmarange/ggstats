@@ -101,6 +101,6 @@
 <text x='688.99' y='277.36' style='font-size: 8.80px; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>4</text>
 <text x='688.99' y='294.64' style='font-size: 8.80px; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>6</text>
 <text x='688.99' y='311.92' style='font-size: 8.80px; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>8</text>
-<text x='32.79' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='154.14px' lengthAdjust='spacingAndGlyphs'>geom_connect continuous</text>
+<text x='32.79' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='165.88px' lengthAdjust='spacingAndGlyphs'>geom_connector continuous</text>
 </g>
 </svg>

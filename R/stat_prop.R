@@ -214,18 +214,18 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
 
 #' Convenient geometries for proportion bar plots
 #'
-#' `geom_prop_bar()`, `geom_prop_text()` and `geom_prop_connect()` are
+#' `geom_prop_bar()`, `geom_prop_text()` and `geom_prop_connector()` are
 #' variations of [ggplot2::geom_bar()], [ggplot2::geom_text()] and
-#' [geom_connect_bars()] using [stat_prop()], with custom default aesthetics:
+#' [geom_bar_connector()] using [stat_prop()], with custom default aesthetics:
 #' `after_stat(prop)` for **x** or **y**, and
 #' `scales::percent(after_stat(prop))` for **label**.
 #'
 #' @inheritParams stat_prop
 #' @param width Bar width (`0.9` by default).
 #' @param ... Additional parameters passed to [ggplot2::geom_bar()],
-#' [ggplot2::geom_text()] or [geom_connect_bars()].
+#' [ggplot2::geom_text()] or [geom_bar_connector()].
 #' @export
-#' @seealso [geom_connect_bars()]
+#' @seealso [geom_bar_connector()]
 #' @examples
 #' library(ggplot2)
 #' d <- as.data.frame(Titanic)
@@ -233,13 +233,13 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
 #'   aes(x = Class, fill = Survived, weight = Freq) +
 #'   geom_prop_bar() +
 #'   geom_prop_text() +
-#'   geom_prop_connect()
+#'   geom_prop_connector()
 #'
 #' ggplot(d) +
 #'   aes(y = Class, fill = Survived, weight = Freq) +
 #'   geom_prop_bar(width = .5) +
 #'   geom_prop_text() +
-#'   geom_prop_connect(width = .5, linetype = "dotted")
+#'   geom_prop_connector(width = .5, linetype = "dotted")
 #'
 #' ggplot(d) +
 #'   aes(
@@ -251,7 +251,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
 #'   ) +
 #'   geom_prop_bar() +
 #'   geom_prop_text() +
-#'   geom_prop_connect()
+#'   geom_prop_connector()
 geom_prop_bar <- function(mapping = NULL,
                           data = NULL,
                           position = "stack",
@@ -293,14 +293,14 @@ geom_prop_text <- function(mapping = ggplot2::aes(!!!auto_contrast),
 
 #' @rdname geom_prop_bar
 #' @export
-geom_prop_connect <- function(mapping = NULL,
+geom_prop_connector <- function(mapping = NULL,
                               data = NULL,
                               position = "stack",
                               ...,
                               width = 0.9,
                               complete = "fill",
                               default_by = "x") {
-  geom_connect_bars(
+  geom_bar_connector(
     mapping = mapping,
     data = data,
     position = position,

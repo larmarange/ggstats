@@ -27,9 +27,35 @@
 </defs>
 <g clip-path='url(#cpMzIuNzl8NjU1LjI3fDIyLjc4fDU0NS4xMQ==)'>
 <rect x='32.79' y='22.78' width='622.48' height='522.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<polyline points='61.09,117.25 68.47,117.25 68.47,117.25 75.85,117.25 91.76,117.25 91.76,46.53 107.68,46.53 114.91,46.53 114.91,179.89 122.15,179.89 136.98,179.89 136.98,206.15 151.81,206.15 156.15,206.15 156.15,76.83 160.49,76.83 169.17,76.83 169.17,270.81 177.85,270.81 188.34,270.81 188.34,297.08 198.83,297.08 221.62,297.08 221.62,299.10 244.41,299.10 271.18,299.10 271.18,270.81 297.95,270.81 300.84,270.81 300.84,238.48 303.74,238.48 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
-<polyline points='221.26,307.19 232.11,307.19 232.11,333.45 242.96,333.45 250.56,333.45 250.56,307.19 258.16,307.19 282.75,307.19 282.75,299.10 307.35,299.10 323.63,299.10 323.63,343.56 339.91,343.56 339.91,343.56 339.91,371.84 339.91,371.84 341.35,371.84 341.35,365.78 342.80,365.78 ' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
-<polyline points='300.84,412.26 320.01,412.26 320.01,424.38 339.18,424.38 339.55,424.38 339.55,353.66 339.91,353.66 345.70,353.66 345.70,418.32 351.48,418.32 355.10,418.32 355.10,442.57 358.72,442.57 358.72,442.57 358.72,428.42 358.72,428.42 370.29,428.42 370.29,381.95 381.87,381.95 385.49,381.95 385.49,424.38 389.10,424.38 393.44,424.38 393.44,462.77 397.78,462.77 398.15,462.77 398.15,343.56 398.51,343.56 414.79,343.56 414.79,400.13 431.06,400.13 516.43,400.13 516.43,521.37 601.80,521.37 608.67,521.37 608.67,434.48 615.54,434.48 621.26,434.48 621.26,521.37 626.98,521.37 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='68.47,117.25 68.47,117.25 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='91.76,117.25 91.76,46.53 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='114.91,46.53 114.91,179.89 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='136.98,179.89 136.98,206.15 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='156.15,206.15 156.15,76.83 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='169.17,76.83 169.17,270.81 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='188.34,270.81 188.34,297.08 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='221.62,297.08 221.62,299.10 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='271.18,299.10 271.18,270.81 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='300.84,270.81 300.84,238.48 ' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
+<polyline points='232.11,307.19 232.11,333.45 ' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
+<polyline points='250.56,333.45 250.56,307.19 ' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
+<polyline points='282.75,307.19 282.75,299.10 ' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
+<polyline points='323.63,299.10 323.63,343.56 ' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
+<polyline points='339.91,343.56 339.91,371.84 ' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
+<polyline points='341.35,371.84 341.35,365.78 ' style='stroke-width: 1.07; stroke: #00BA38; stroke-linecap: butt;' />
+<polyline points='320.01,412.26 320.01,424.38 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='339.55,424.38 339.55,353.66 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='345.70,353.66 345.70,418.32 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='355.10,418.32 355.10,442.57 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='358.72,442.57 358.72,428.42 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='370.29,428.42 370.29,381.95 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='385.49,381.95 385.49,424.38 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='393.44,424.38 393.44,462.77 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='398.15,462.77 398.15,343.56 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='414.79,343.56 414.79,400.13 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='516.43,400.13 516.43,521.37 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='608.67,521.37 608.67,434.48 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
+<polyline points='621.26,434.48 621.26,521.37 ' style='stroke-width: 1.07; stroke: #619CFF; stroke-linecap: butt;' />
 <circle cx='221.26' cy='307.19' r='1.95' style='stroke-width: 0.71; stroke: #00BA38; fill: #00BA38;' />
 <circle cx='258.16' cy='307.19' r='1.95' style='stroke-width: 0.71; stroke: #00BA38; fill: #00BA38;' />
 <circle cx='177.85' cy='270.81' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
@@ -101,6 +127,6 @@
 <text x='688.99' y='277.36' style='font-size: 8.80px; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>4</text>
 <text x='688.99' y='294.64' style='font-size: 8.80px; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>6</text>
 <text x='688.99' y='311.92' style='font-size: 8.80px; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>8</text>
-<text x='32.79' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='256.13px' lengthAdjust='spacingAndGlyphs'>geom_connect infinite width and continuous</text>
+<text x='32.79' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='174.65px' lengthAdjust='spacingAndGlyphs'>geom_connector infinite width</text>
 </g>
 </svg>
