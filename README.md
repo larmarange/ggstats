@@ -169,10 +169,23 @@ gglikert(df)
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
 
-## Cascade plot (*experimental*)
+## Connect bars
 
 ``` r
-ggplot2::diamonds |>
+ggplot(diamonds) +
+  aes(x = clarity, fill = cut) +
+  geom_bar(width = .5) +
+  geom_bar_connector(width = .5, linewidth = .25) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+
+## Cascade plot
+
+``` r
+diamonds |>
   ggcascade(
     all = TRUE,
     big = carat > .5,
@@ -180,4 +193,4 @@ ggplot2::diamonds |>
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />

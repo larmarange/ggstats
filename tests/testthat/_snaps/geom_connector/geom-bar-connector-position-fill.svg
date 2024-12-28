@@ -173,6 +173,6 @@
 <text x='368.94' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='42.08px' lengthAdjust='spacingAndGlyphs'>Very Good</text>
 <text x='439.26' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='35.21px' lengthAdjust='spacingAndGlyphs'>Premium</text>
 <text x='502.71' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='19.08px' lengthAdjust='spacingAndGlyphs'>Ideal</text>
-<text x='40.13' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='184.93px' lengthAdjust='spacingAndGlyphs'>geom_connect_bars position fill</text>
+<text x='40.13' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='190.06px' lengthAdjust='spacingAndGlyphs'>geom_bar_connector position fill</text>
 </g>
 </svg>

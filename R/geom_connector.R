@@ -1,7 +1,8 @@
 #' Connect bars / points
 #'
-#' `geom_connect()` is a variation of [ggplot2::geom_step()] adapted to
-#' connect bars, but could also be used to connect points.
+#' `geom_connector()` is a variation of [ggplot2::geom_step()].
+#' Its variant `geom_bar_connector()` is particularly adapted to
+#' connect bars.
 #'
 #' @inheritParams ggplot2::geom_step
 #' @param width Bar width (see examples).
@@ -11,12 +12,12 @@
 #' @examples
 #' library(ggplot2)
 #'
-#' # geom_connect_bars() -----------
+#' # geom_bar_connector() -----------
 #'
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
 #'   geom_bar(width = .5) +
-#'   geom_connect_bars(width = .5, linewidth = .25) +
+#'   geom_bar_connector(width = .5, linewidth = .25) +
 #'   theme_minimal() +
 #'   theme(legend.position = "bottom")
 #'
@@ -24,7 +25,7 @@
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
 #'   geom_bar(width = .5) +
-#'   geom_connect_bars(
+#'   geom_bar_connector(
 #'     width = .5,
 #'     continuous = TRUE,
 #'     colour = "red",
@@ -36,63 +37,63 @@
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
 #'   geom_bar(width = .5, position = "fill") +
-#'   geom_connect_bars(width = .5, position = "fill") +
+#'   geom_bar_connector(width = .5, position = "fill") +
 #'   theme(legend.position = "bottom")
 #'
 #' ggplot(diamonds) +
 #'   aes(x = clarity, fill = cut) +
 #'   geom_bar(width = .5, position = "diverging") +
-#'   geom_connect_bars(width = .5, position = "diverging", linewidth = .25) +
+#'   geom_bar_connector(width = .5, position = "diverging", linewidth = .25) +
 #'   theme(legend.position = "bottom")
 #'
-#' # geom_connect() -----------
+#' # geom_connector() -----------
 #'
 #' ggplot(mtcars) +
 #' aes(x = wt, y = mpg, colour = factor(cyl)) +
-#'   geom_connect() +
+#'   geom_connector() +
 #'   geom_point()
 #'
 #' ggplot(mtcars) +
 #'   aes(x = wt, y = mpg, colour = factor(cyl)) +
-#'   geom_connect(continuous = TRUE) +
+#'   geom_connector(continuous = TRUE) +
 #'   geom_point()
 #'
 #' ggplot(mtcars) +
 #'   aes(x = wt, y = mpg, colour = factor(cyl)) +
-#'   geom_connect(continuous = TRUE, width = .3) +
+#'   geom_connector(continuous = TRUE, width = .3) +
 #'   geom_point()
 #'
 #' ggplot(mtcars) +
 #'   aes(x = wt, y = mpg, colour = factor(cyl)) +
-#'   geom_connect(width = 0) +
+#'   geom_connector(width = 0) +
 #'   geom_point()
 #'
 #' ggplot(mtcars) +
 #'   aes(x = wt, y = mpg, colour = factor(cyl)) +
-#'   geom_connect(width = Inf) +
+#'   geom_connector(width = Inf) +
 #'   geom_point()
 #'
 #' ggplot(mtcars) +
 #'   aes(x = wt, y = mpg, colour = factor(cyl)) +
-#'   geom_connect(width = Inf, continuous = TRUE) +
+#'   geom_connector(width = Inf, continuous = TRUE) +
 #'   geom_point()
 #' }
-geom_connect <- function(mapping = NULL,
-                         data = NULL,
-                         stat = "identity",
-                         position = "identity",
-                         width = 0.1,
-                         continuous = FALSE,
-                         na.rm = FALSE,
-                         orientation = NA,
-                         show.legend = NA,
-                         inherit.aes = TRUE,
-                         ...) {
+geom_connector <- function(mapping = NULL,
+                           data = NULL,
+                           stat = "identity",
+                           position = "identity",
+                           width = 0.1,
+                           continuous = FALSE,
+                           na.rm = FALSE,
+                           orientation = NA,
+                           show.legend = NA,
+                           inherit.aes = TRUE,
+                           ...) {
   layer(
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomConnect,
+    geom = GeomConnector,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -106,20 +107,20 @@ geom_connect <- function(mapping = NULL,
   )
 }
 
-#' @rdname geom_connect
+#' @rdname geom_connector
 #' @export
-geom_connect_bars <- function(mapping = NULL,
-                              data = NULL,
-                              stat = "prop",
-                              position = "stack",
-                              width = 0.9,
-                              continuous = FALSE,
-                              add_baseline = TRUE,
-                              na.rm = FALSE,
-                              orientation = NA,
-                              show.legend = NA,
-                              inherit.aes = TRUE,
-                              ...) {
+geom_bar_connector <- function(mapping = NULL,
+                               data = NULL,
+                               stat = "prop",
+                               position = "stack",
+                               width = 0.9,
+                               continuous = FALSE,
+                               add_baseline = TRUE,
+                               na.rm = FALSE,
+                               orientation = NA,
+                               show.legend = NA,
+                               inherit.aes = TRUE,
+                               ...) {
   params <- rlang::list2(
     width = width,
     continuous = continuous,
@@ -135,7 +136,7 @@ geom_connect_bars <- function(mapping = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomConnect,
+    geom = GeomConnector,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -143,12 +144,12 @@ geom_connect_bars <- function(mapping = NULL,
   )
 }
 
-#' @rdname geom_connect
+#' @rdname geom_connector
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomConnect <- ggproto(
-  "GeomConnect",
+GeomConnector <- ggproto(
+  "GeomConnector",
   ggplot2::GeomPath,
   setup_params = function(data, params) {
     params$flipped_aes <- has_flipped_aes(data, params, ambiguous = TRUE)
@@ -203,8 +204,8 @@ GeomConnect <- ggproto(
   }
 )
 
-#' Calculate connections for `geom_connect()`
-#' Used by `GeomConnect()`
+#' Calculate connections for `geom_connector()`
+#' Used by `GeomConnector()`
 #'
 #' @noRd
 connect_points <- function(data, width = 0.9, continuous = FALSE) {

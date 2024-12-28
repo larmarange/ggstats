@@ -31,7 +31,7 @@ reference:
 
 - title: Additional geometries for `ggplot2`
   contents:
-  - geom_connect
+  - geom_connector
   - geom_stripped_rows
 
 - title: Convenient geometries / layers

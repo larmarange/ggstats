@@ -118,11 +118,15 @@ test_that("stat_prop() works with default_by", {
   vdiffr::expect_doppelganger("stat_prop() default_by x horizontal", p)
 })
 
-test_that("geom_prop_bar() & geom_prop_text()", {
+test_that("geom_prop_bar() & geom_prop_text() & geom_prop_connector()", {
   d <- as.data.frame(Titanic)
   p <- ggplot(d) +
     aes(y = Class, fill = Survived, weight = Freq) +
     geom_prop_bar() +
-    geom_prop_text()
-  vdiffr::expect_doppelganger("geom_prop_bar() & geom_prop_text()", p)
+    geom_prop_text() +
+    geom_prop_connector()
+  vdiffr::expect_doppelganger(
+    "geom_prop_bar() & geom_prop_text() & geom_prop_connector()",
+    p
+  )
 })
