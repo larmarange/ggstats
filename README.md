@@ -182,7 +182,7 @@ ggplot(diamonds) +
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
 
-## Cascade plot
+## Generate a cascade plot
 
 ``` r
 diamonds |>
