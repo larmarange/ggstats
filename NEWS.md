@@ -2,17 +2,17 @@
 
 **Breaking changes**
 
-* `stat_prop()`: arguments `height`, `labels` and `labeller` have been
-  removed (#73)
 * `geom_diverging()`, `geom_likert()`, `geom_pyramid()`,
   `geom_diverging_text()`, `geom_likert_text()`, and `geom_pyramid_text()` have
   been redesigned (#73)
+* `stat_prop()`: arguments `height`, `labels` and `labeller` have been
+  removed (#73)
   
 **Improvements**
 
-* New geoms `geom_connector()`, `geom_bar_connector()` and
+* new geoms `geom_connector()`, `geom_bar_connector()` and
   `geom_prop_connector()` (#81)
-* New shortcut `auto_contrast` (#75)
+* new shortcut `auto_contrast` (#75)
 
 # ggstats 0.7.0
 
