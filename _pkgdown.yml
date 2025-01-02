@@ -1,6 +1,10 @@
 url: https://larmarange.github.io/ggstats/
 template:
   bootstrap: 5
+  bslib:
+    base_font: {google: "Source Sans 3"}
+    heading_font: {google: "Source Sans 3"}
+    code_font: {google: "Source Code Pro"}
 
 development:
   mode: auto
