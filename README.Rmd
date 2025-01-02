@@ -155,7 +155,7 @@ ggplot(diamonds) +
 ```
 
 
-## Cascade plot
+## Generate a cascade plot
 
 ```{r}
 diamonds |>
