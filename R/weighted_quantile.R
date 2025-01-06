@@ -56,11 +56,11 @@ weighted.quantile <- function(x, w, probs = seq(0, 1, 0.25),
   x <- as.numeric(as.vector(x))
   w <- as.numeric(as.vector(w))
   if (length(x) == 0) {
-    stop("No data given")
+    cli::cli_abort("No data given")
   }
   stopifnot(length(x) == length(w))
   if (is.na(m <- match(type, c(1, 2, 4)))) {
-    stop("Argument 'type' must equal 1, 2 or 4", call. = FALSE)
+    cli::cli_abort("Argument 'type' must equal 1, 2 or 4", call. = FALSE)
   }
   type <- c(1, 2, 4)[m]
   if (anyNA(x) || anyNA(w)) {
@@ -69,11 +69,11 @@ weighted.quantile <- function(x, w, probs = seq(0, 1, 0.25),
     w <- w[ok]
   }
   if (length(x) == 0) {
-    stop("At least one non-NA value is required")
+    cli::cli_abort("At least one non-NA value is required")
   }
   stopifnot(all(w >= 0))
   if (all(w == 0)) {
-    stop("All weights are zero", call. = FALSE)
+    cli::cli_abort("All weights are zero", call. = FALSE)
   }
   oo <- order(x)
   x <- x[oo]
