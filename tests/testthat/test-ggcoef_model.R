@@ -200,9 +200,8 @@ test_that("ggcoef_compare()", {
     c("Male", "Female", "Child", "Adult", "1st", "2nd", "3rd", "Crew")
   )
 
-  expect_error(
-    ggcoef_compare(models, add_reference_rows = FALSE),
-    NA
+  expect_no_error(
+    ggcoef_compare(models, add_reference_rows = FALSE)
   )
 })
 
@@ -305,23 +304,20 @@ test_that("ggcoef_model() works with pairwise contratst", {
   skip_if_not_installed("broom.helpers")
   skip_if_not_installed("emmeans")
   mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
-  expect_error(
-    ggcoef_model(mod, add_pairwise_contrasts = TRUE),
-    NA
+  expect_no_error(
+    ggcoef_model(mod, add_pairwise_contrasts = TRUE)
   )
-  expect_error(
+  expect_no_error(
     ggcoef_model(
       mod,
       add_pairwise_contrasts = TRUE,
       pairwise_variables = dplyr::starts_with("Sp"),
       keep_model_terms = TRUE
-    ),
-    NA
+    )
   )
   mod2 <- lm(Sepal.Length ~ Species, data = iris)
-  expect_error(
-    ggcoef_compare(list(mod, mod2), add_pairwise_contrasts = TRUE),
-    NA
+  expect_no_error(
+    ggcoef_compare(list(mod, mod2), add_pairwise_contrasts = TRUE)
   )
 })
 

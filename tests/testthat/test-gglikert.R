@@ -56,9 +56,8 @@ test_that("gglikert()", {
     gglikert(df)
   )
 
-  expect_error(
-    d <- gglikert_data(df),
-    NA
+  expect_no_error(
+    d <- gglikert_data(df)
   )
   expect_equal(levels(d$.answer), likert_levels)
 
