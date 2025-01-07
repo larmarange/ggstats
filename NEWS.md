@@ -1,4 +1,4 @@
-# ggstats (development version)
+# ggstats 0.8.0
 
 **Breaking changes**
 
