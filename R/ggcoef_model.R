@@ -1439,7 +1439,8 @@ ggcoef_plot <- function(
 
 .find_label <- function(l, y_labeller = NULL) {
   function(y) {
-    if (is.null(y_labeller)) y_labeller <- function(x) {x}
+    if (is.null(y_labeller))
+      y_labeller <- function(x) {x} # nolint
     y_labeller(as.character(l[y]))
   }
 }
