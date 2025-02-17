@@ -1,5 +1,14 @@
 # ggstats (development version)
 
+**Improvements**
+
+* `ggcoef_plot()` got a new argument `y_labeller` (#86)
+
+**Bug fix**
+
+* fix terms order in `ggcoef_model()` for specific cases when two modalities of
+  two different variables have the same name (#86)
+
 # ggstats 0.8.0
 
 **Breaking changes**

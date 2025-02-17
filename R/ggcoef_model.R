@@ -76,9 +76,9 @@
 #'   signif_stars = FALSE,
 #'   add_reference_rows = FALSE,
 #'   categorical_terms_pattern = "{level} (ref: {reference_level})",
-#'   interaction_sep = " x "
-#' ) +
-#'   ggplot2::scale_y_discrete(labels = scales::label_wrap(15))
+#'   interaction_sep = " x ",
+#'   y_labeller = scales::label_wrap(15)
+#' )
 #'
 #' # display only a subset of terms
 #' ggcoef_model(mod_titanic, exponentiate = TRUE, include = c("Age", "Class"))
@@ -1195,6 +1195,7 @@ ggcoef_data <- function(
 #' @param x,y variables mapped to x and y axis
 #' @param exponentiate if `TRUE` a logarithmic scale will
 #' be used for x-axis
+#' @param y_labeller optional function to be applied on y labels (see examples)
 #' @param point_size size of the points
 #' @param point_stroke thickness of the points
 #' @param point_fill fill colour for the points
@@ -1235,6 +1236,7 @@ ggcoef_plot <- function(
     x = "estimate",
     y = "label",
     exponentiate = FALSE,
+    y_labeller = NULL,
     point_size = 2,
     point_stroke = 2,
     point_fill = "white",
@@ -1259,15 +1261,17 @@ ggcoef_plot <- function(
     facet_row = "var_label",
     facet_col = NULL,
     facet_labeller = "label_value") {
-  data[[y]] <- forcats::fct_rev(.in_order(data[[y]]))
+
   if (!is.null(facet_row)) {
     data[[facet_row]] <- .in_order(data[[facet_row]])
   }
+  data[[y]] <- forcats::fct_rev(.in_order(data[[y]]))
+  if (!"term" %in% names(data)) {
+    data$term <- data[[y]]
+  }
+  data$term <- forcats::fct_rev(.in_order(data$term))
 
   if (stripped_rows) {
-    if (!"term" %in% names(data)) {
-      data$term <- data[[y]]
-    }
     data <- data |>
       dplyr::mutate(.fill = dplyr::if_else(
         as.integer(.in_order(.data$term)) %% 2L == 1,
@@ -1277,7 +1281,7 @@ ggcoef_plot <- function(
   }
 
   # mapping
-  mapping <- ggplot2::aes(x = .data[[x]], y = .data[[y]])
+  mapping <- ggplot2::aes(x = .data[[x]], y = .data$term)
 
   errorbar <- errorbar & all(c("conf.low", "conf.high") %in% names(data))
   if (errorbar) {
@@ -1346,6 +1350,10 @@ ggcoef_plot <- function(
     facet_row <- ggplot2::vars(!!sym(facet_row))
   }
 
+  # used later for reapplying appropriate labels
+  l <- data[[y]]
+  names(l) <- data$term
+
   p <- p +
     ggplot2::geom_point(
       size = point_size,
@@ -1361,7 +1369,10 @@ ggcoef_plot <- function(
       scales = "free_y", space = "free_y", switch = "y"
     ) +
     ggplot2::ylab("") +
-    ggplot2::scale_y_discrete(expand = ggplot2::expansion(mult = 0, add = .5)) +
+    ggplot2::scale_y_discrete(
+      expand = ggplot2::expansion(mult = 0, add = .5),
+      labels = .find_label(l, y_labeller)
+    ) +
     ggplot2::theme_light() +
     ggplot2::theme(
       legend.position = "bottom",
@@ -1424,4 +1435,12 @@ ggcoef_plot <- function(
 .in_order <- function(x) {
   # droping unobserved value if needed
   forcats::fct_inorder(as.character(x))
+}
+
+.find_label <- function(l, y_labeller = NULL) {
+  function(y) {
+    if (is.null(y_labeller))
+      y_labeller <- function(x) {x} # nolint
+    y_labeller(as.character(l[y]))
+  }
 }
