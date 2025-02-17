@@ -3,8 +3,12 @@ Type: Package
 Title: Extension to 'ggplot2' for Plotting Stats
 Version: 0.8.0.9000
 Authors@R: c(
-    person("Joseph", "Larmarange", , "joseph@larmarange.net", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-7097-700X"))
+    person(
+      "Joseph", "Larmarange", ,
+      "joseph@larmarange.net",
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0001-7097-700X")
+    )
   )
 Description: Provides new statistics, new geometries and new positions for 
     'ggplot2' and a suite of functions to facilitate the creation of 
