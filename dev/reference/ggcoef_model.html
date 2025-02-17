@@ -216,6 +216,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  x <span class="op">=</span> <span class="st">"estimate"</span>,</span>
 <span>  y <span class="op">=</span> <span class="st">"label"</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  y_labeller <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  point_size <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  point_stroke <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  point_fill <span class="op">=</span> <span class="st">"white"</span>,</span>
@@ -442,6 +443,10 @@ or <code>ggcoef_multinom()</code> with the option <code>return_data = TRUE</code
 <dd><p>variables mapped to x and y axis</p></dd>
 
 
+<dt id="arg-y-labeller">y_labeller<a class="anchor" aria-label="anchor" href="#arg-y-labeller"></a></dt>
+<dd><p>optional function to be applied on y labels (see examples)</p></dd>
+
+
 <dt id="arg-point-size">point_size<a class="anchor" aria-label="anchor" href="#arg-point-size"></a></dt>
 <dd><p>size of the points</p></dd>
 
@@ -631,11 +636,9 @@ multi-component models such as zero-inflated models or beta regressions.
 <span class="r-in"><span>  signif_stars <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>  add_reference_rows <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>  categorical_terms_pattern <span class="op">=</span> <span class="st">"{level} (ref: {reference_level})"</span>,</span></span>
-<span class="r-in"><span>  interaction_sep <span class="op">=</span> <span class="st">" x "</span></span></span>
-<span class="r-in"><span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for <span style="color: #00BB00;">y</span> is already present.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span>
+<span class="r-in"><span>  interaction_sep <span class="op">=</span> <span class="st">" x "</span>,</span></span>
+<span class="r-in"><span>  y_labeller <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_wrap.html" class="external-link">label_wrap</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcoef_model-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display only a subset of terms</span></span></span>
