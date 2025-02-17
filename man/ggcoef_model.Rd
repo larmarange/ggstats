@@ -162,6 +162,7 @@ ggcoef_plot(
   x = "estimate",
   y = "label",
   exponentiate = FALSE,
+  y_labeller = NULL,
   point_size = 2,
   point_stroke = 2,
   point_fill = "white",
@@ -306,6 +307,8 @@ or \code{ggcoef_multinom()} with the option \code{return_data = TRUE}}
 
 \item{x, y}{variables mapped to x and y axis}
 
+\item{y_labeller}{optional function to be applied on y labels (see examples)}
+
 \item{point_size}{size of the points}
 
 \item{point_stroke}{thickness of the points}
@@ -443,9 +446,9 @@ ggcoef_model(
   signif_stars = FALSE,
   add_reference_rows = FALSE,
   categorical_terms_pattern = "{level} (ref: {reference_level})",
-  interaction_sep = " x "
-) +
-  ggplot2::scale_y_discrete(labels = scales::label_wrap(15))
+  interaction_sep = " x ",
+  y_labeller = scales::label_wrap(15)
+)
 
 # display only a subset of terms
 ggcoef_model(mod_titanic, exponentiate = TRUE, include = c("Age", "Class"))
