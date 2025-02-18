@@ -118,7 +118,49 @@ test_that("stat_prop() works with default_by", {
   vdiffr::expect_doppelganger("stat_prop() default_by x horizontal", p)
 })
 
+test_that("stat_prop() complete argument", {
+  skip_on_cran()
+  library(ggplot2)
+  df <-
+    dplyr::tibble(
+      year = c(rep(2020, 60), rep(2021, 80), rep(2022, 60)),
+      grp = c(
+        rep("a", 20), rep("b", 10), rep("c", 30),
+        rep("a", 45), rep("c", 35),
+        rep("a", 20), rep("b", 30), rep("c", 10)
+      ) |>
+        factor(levels = c("a", "b", "c"))
+    )
+  p <-
+    ggplot(df) +
+    aes(x = year, color = grp) +
+    geom_line(
+      stat = "prop",
+      complete = "color"
+    )
+  vdiffr::expect_doppelganger("stat_prop() complete color", p)
+
+  p <-
+    ggplot(df) +
+    aes(x = year, colour = grp) +
+    geom_line(
+      stat = "prop",
+      complete = "colour"
+    )
+  vdiffr::expect_doppelganger("stat_prop() complete colour", p)
+
+  p <-
+    ggplot(df) +
+    aes(x = year, group = grp) +
+    geom_line(
+      stat = "prop",
+      complete = "group"
+    )
+  vdiffr::expect_doppelganger("stat_prop() complete group", p)
+})
+
 test_that("geom_prop_bar() & geom_prop_text() & geom_prop_connector()", {
+  library(ggplot2)
   d <- as.data.frame(Titanic)
   p <- ggplot(d) +
     aes(y = Class, fill = Survived, weight = Freq) +
