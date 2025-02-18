@@ -183,7 +183,7 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
     names(panel)[which(names(panel) == "weight")] <- "count"
     panel$count[is.na(panel$count)] <- 0
 
-    if (complete == "color") complete <- "colour"
+    if (!is.null(complete) && complete == "color") complete <- "colour"
     if (!is.null(complete) && complete %in% names(panel)) {
       if (complete != "group")
         panel <- panel |> dplyr::select(-dplyr::all_of("group"))
