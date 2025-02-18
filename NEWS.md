@@ -8,6 +8,8 @@
 
 * fix terms order in `ggcoef_model()` for specific cases when two modalities of
   two different variables have the same name (#86)
+* bug fix in `stat_prop()` when `complete = "color"` or
+  `complete = "group"`(#89)
 
 # ggstats 0.8.0
 
