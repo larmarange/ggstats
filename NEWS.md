@@ -10,6 +10,8 @@
   two different variables have the same name (#86)
 * bug fix in `stat_prop()` when `complete = "color"` or
   `complete = "group"`(#89)
+* bug fix in `gglikert()` when `reverse_likert = TRUE` and
+  `add_totals = TRUE` (#91)
 
 # ggstats 0.8.0
 

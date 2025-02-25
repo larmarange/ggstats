@@ -294,7 +294,9 @@ gglikert <- function(data,
   }
 
   if (add_totals) {
-    dtot <- data |>
+    d <- data
+    if (reverse_likert) d$.answer <- forcats::fct_rev(d$.answer)
+    dtot <- d |>
       dplyr::group_by(.data[[y]], !!!facet_rows, !!!facet_cols) |>
       dplyr::summarise(
         prop_lower = .prop_lower(
