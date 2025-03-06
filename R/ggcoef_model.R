@@ -181,6 +181,8 @@ ggcoef_model <- function(
     no_reference_row = NULL,
     intercept = FALSE,
     include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
     add_pairwise_contrasts = FALSE,
     pairwise_variables = broom.helpers::all_categorical(),
     keep_model_terms = FALSE,
@@ -192,29 +194,38 @@ ggcoef_model <- function(
     signif_stars = TRUE,
     return_data = FALSE,
     ...) {
-  data <- ggcoef_data(
-    model = model,
-    tidy_fun = tidy_fun,
-    tidy_args = {{ tidy_args }},
-    conf.int = conf.int,
-    conf.level = conf.level,
-    exponentiate = exponentiate,
-    variable_labels = variable_labels,
-    term_labels = term_labels,
-    interaction_sep = interaction_sep,
-    categorical_terms_pattern = categorical_terms_pattern,
-    add_reference_rows = add_reference_rows,
-    no_reference_row = {{ no_reference_row }},
-    intercept = intercept,
-    include = {{ include }},
-    add_pairwise_contrasts = add_pairwise_contrasts,
-    pairwise_variables = {{ pairwise_variables }},
-    keep_model_terms = keep_model_terms,
-    pairwise_reverse = pairwise_reverse,
-    emmeans_args = emmeans_args,
-    significance = significance,
-    significance_labels = significance_labels
-  )
+  args <- list(...)
+
+  # undocumented feature, we can pass directly `data`
+  if (is.null(args$data)) {
+    data <- ggcoef_data(
+      model = model,
+      tidy_fun = tidy_fun,
+      tidy_args = {{ tidy_args }},
+      conf.int = conf.int,
+      conf.level = conf.level,
+      exponentiate = exponentiate,
+      variable_labels = variable_labels,
+      term_labels = term_labels,
+      interaction_sep = interaction_sep,
+      categorical_terms_pattern = categorical_terms_pattern,
+      add_reference_rows = add_reference_rows,
+      no_reference_row = {{ no_reference_row }},
+      intercept = intercept,
+      include = {{ include }},
+      group_by = {{ group_by }},
+      group_labels = group_labels,
+      add_pairwise_contrasts = add_pairwise_contrasts,
+      pairwise_variables = {{ pairwise_variables }},
+      keep_model_terms = keep_model_terms,
+      pairwise_reverse = pairwise_reverse,
+      emmeans_args = emmeans_args,
+      significance = significance,
+      significance_labels = significance_labels
+    )
+  } else {
+    data <- args$data
+  }
 
   if (show_p_values && signif_stars) {
     data$add_to_label <- paste0(data$p_value_label, data$signif_stars)
@@ -257,8 +268,6 @@ ggcoef_model <- function(
     return(data)
   }
 
-  args <- list(...)
-  args$data <- data
   args$exponentiate <- exponentiate
 
   if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
@@ -272,7 +281,17 @@ ggcoef_model <- function(
     }
   }
 
-  do.call(ggcoef_plot, args)
+  if ("group_by" %in% names(data)) {
+    d <- data |>
+      tidyr::nest(.by = dplyr::all_of("group_by"))
+    purrr::map2(
+      d$data,
+      d$group_by,
+      ~ .call_ggcoef_plot(args, .x, plot_title = as.character(.y))) |>
+      patchwork::wrap_plots(ncol = 1)
+  } else {
+    .call_ggcoef_plot(args, data)
+  }
 }
 
 #' @describeIn ggcoef_model a variation of [ggcoef_model()] adding a table
@@ -319,7 +338,6 @@ ggcoef_table <- function(
     table_stat_label = NULL,
     ci_pattern = "{conf.low}, {conf.high}",
     table_witdhs = c(3, 2),
-    plot_title = NULL,
     ...) {
   args <- list(...)
 
@@ -411,15 +429,6 @@ ggcoef_table <- function(
   if (!"strips_even" %in% names(args)) args$strips_even <- "#00000000"
 
   coef_plot <- do.call(ggcoef_plot, args)
-
-  if (!is.null(plot_title)) {
-    coef_plot <- coef_plot +
-      ggplot2::ggtitle(plot_title) +
-      ggplot2::theme(
-        plot.title = ggplot2::element_text(face = "bold"),
-        plot.title.position = "plot"
-      )
-  }
 
   if (args$stripped_rows) {
     if (!"term" %in% names(data)) {
@@ -1107,6 +1116,8 @@ ggcoef_data <- function(
     no_reference_row = NULL,
     intercept = FALSE,
     include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
     add_pairwise_contrasts = FALSE,
     pairwise_variables = broom.helpers::all_categorical(),
     keep_model_terms = FALSE,
@@ -1141,6 +1152,8 @@ ggcoef_data <- function(
     add_header_rows = FALSE,
     intercept = intercept,
     include = {{ include }},
+    group_by = {{ group_by }},
+    group_labels = group_labels,
     keep_model = FALSE,
     !!!tidy_args
   ))
@@ -1260,7 +1273,8 @@ ggcoef_plot <- function(
     dodged_width = .8,
     facet_row = "var_label",
     facet_col = NULL,
-    facet_labeller = "label_value") {
+    facet_labeller = "label_value",
+    plot_title = NULL) {
 
   if (!is.null(facet_row)) {
     data[[facet_row]] <- .in_order(data[[facet_row]])
@@ -1429,7 +1443,22 @@ ggcoef_plot <- function(
     p <- p + ggplot2::xlab(attr(data, "coefficients_label"))
   }
 
+  if (!is.null(plot_title)) {
+    p <- p +
+      ggplot2::ggtitle(plot_title) +
+      ggplot2::theme(
+        plot.title = ggplot2::element_text(face = "bold"),
+        plot.title.position = "plot"
+      )
+  }
+
   p
+}
+
+.call_ggcoef_plot <- function(args, data, plot_title = NULL) {
+  args$data <- data
+  if (!is.null(plot_title)) args$plot_title <- plot_title
+  do.call(ggcoef_plot, args)
 }
 
 .in_order <- function(x) {

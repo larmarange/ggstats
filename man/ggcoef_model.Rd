@@ -24,6 +24,8 @@ ggcoef_model(
   no_reference_row = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  group_by = broom.helpers::auto_group_by(),
+  group_labels = NULL,
   add_pairwise_contrasts = FALSE,
   pairwise_variables = broom.helpers::all_categorical(),
   keep_model_terms = FALSE,
@@ -67,7 +69,6 @@ ggcoef_table(
   table_stat_label = NULL,
   ci_pattern = "{conf.low}, {conf.high}",
   table_witdhs = c(3, 2),
-  plot_title = NULL,
   ...
 )
 
@@ -186,7 +187,8 @@ ggcoef_plot(
   dodged_width = 0.8,
   facet_row = "var_label",
   facet_col = NULL,
-  facet_labeller = "label_value"
+  facet_labeller = "label_value",
+  plot_title = NULL
 )
 }
 \arguments{
@@ -236,6 +238,13 @@ Should the intercept(s) be included?}
 Variables to include. Default is \code{everything()}.
 See also \code{\link[broom.helpers:all_continuous]{all_continuous()}}, \code{\link[broom.helpers:all_categorical]{all_categorical()}}, \code{\link[broom.helpers:all_dichotomous]{all_dichotomous()}}
 and \code{\link[broom.helpers:all_interaction]{all_interaction()}}.}
+
+\item{group_by}{(\code{\link[dplyr:dplyr_tidy_select]{tidy-select}})\cr
+One or several variables to group by. Default is \code{auto_group_by()}.
+Use \code{NULL} to force ungrouping.}
+
+\item{group_labels}{(\code{string})\cr
+An optional named vector of custom term labels.}
 
 \item{add_pairwise_contrasts}{(\code{logical})\cr
 Apply \code{\link[broom.helpers:tidy_add_pairwise_contrasts]{tidy_add_pairwise_contrasts()}}?}
@@ -287,8 +296,6 @@ displayed statistic (see examples)}
 
 \item{table_witdhs}{relative widths of the forest plot and the coefficients
 table}
-
-\item{plot_title}{an optional plot title}
 
 \item{models}{named list of models}
 
@@ -365,6 +372,8 @@ shape aesthetic}
 \item{facet_labeller}{labeller function to be used for labeling facets;
 if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}} (see
 examples), more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
+
+\item{plot_title}{an optional plot title}
 }
 \value{
 A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.
