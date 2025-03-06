@@ -306,7 +306,6 @@ ggcoef_model <- function(
 #' @param ci_pattern glue pattern for confidence intervals in the table
 #' @param table_witdhs relative widths of the forest plot and the coefficients
 #' table
-#' @param plot_title an optional plot title
 #' @export
 ggcoef_table <- function(
     model,
@@ -860,6 +859,7 @@ ggcoef_data <- function(
 #' @param facet_labeller labeller function to be used for labeling facets;
 #'   if labels are too long, you can use [ggplot2::label_wrap_gen()] (see
 #'   examples), more information in the documentation of [ggplot2::facet_grid()]
+#' @param plot_title an optional plot title
 #' @seealso `vignette("ggcoef_model")`
 #' @export
 ggcoef_plot <- function(
