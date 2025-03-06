@@ -4,8 +4,6 @@
 \alias{ggcoef_model}
 \alias{ggcoef_table}
 \alias{ggcoef_compare}
-\alias{ggcoef_multinom}
-\alias{ggcoef_multicomponents}
 \alias{ggcoef_plot}
 \title{Plot model coefficients}
 \usage{
@@ -96,65 +94,6 @@ ggcoef_compare(
   significance = 1 - conf.level,
   significance_labels = NULL,
   return_data = FALSE,
-  ...
-)
-
-ggcoef_multinom(
-  model,
-  type = c("dodged", "faceted", "table"),
-  y.level_label = NULL,
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = 0.95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  significance = 1 - conf.level,
-  significance_labels = NULL,
-  return_data = FALSE,
-  table_stat = c("estimate", "ci", "p.value"),
-  table_header = NULL,
-  table_text_size = 3,
-  table_stat_label = NULL,
-  ci_pattern = "{conf.low}, {conf.high}",
-  table_witdhs = c(3, 2),
-  ...
-)
-
-ggcoef_multicomponents(
-  model,
-  type = c("dodged", "faceted", "table"),
-  component_col = "component",
-  component_label = NULL,
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = 0.95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  significance = 1 - conf.level,
-  significance_labels = NULL,
-  return_data = FALSE,
-  table_stat = c("estimate", "ci", "p.value"),
-  table_header = NULL,
-  table_text_size = 3,
-  table_stat_label = NULL,
-  ci_pattern = "{conf.low}, {conf.high}",
-  table_witdhs = c(3, 2),
   ...
 )
 
@@ -301,13 +240,6 @@ table}
 
 \item{type}{a dodged plot, a faceted plot or multiple table plots?}
 
-\item{y.level_label}{an optional named vector for labeling \code{y.level}
-(see examples)}
-
-\item{component_col}{name of the component column}
-
-\item{component_label}{an optional named vector for labeling components}
-
 \item{data}{a data frame containing data to be plotted,
 typically the output of \code{ggcoef_model()}, \code{ggcoef_compare()}
 or \code{ggcoef_multinom()} with the option \code{return_data = TRUE}}
@@ -398,14 +330,6 @@ with estimates, confidence intervals and p-values
 
 \item \code{ggcoef_compare()}: designed for displaying several models on the same
 plot.
-
-\item \code{ggcoef_multinom()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
-multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet::multinom()}}.
-
-\item \code{ggcoef_multicomponents()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
-multi-component models such as zero-inflated models or beta regressions.
-\code{\link[=ggcoef_multicomponents]{ggcoef_multicomponents()}} has been tested with \code{pscl::zeroinfl()},
-\code{pscl::hurdle()} and \code{betareg::betareg()}
 
 \item \code{ggcoef_plot()}: plot a tidy \code{tibble} of coefficients
 
@@ -563,41 +487,6 @@ ggcoef_compare(models, type = "faceted")
 # value for dodged_width (but it will produce some warnings)
 ggcoef_compare(models, dodged_width = -.9)
 }
-\dontshow{if (requireNamespace("nnet")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-
-\donttest{
-# specific function for nnet::multinom models
-mod <- nnet::multinom(Species ~ ., data = iris)
-ggcoef_multinom(mod, exponentiate = TRUE)
-ggcoef_multinom(mod, type = "faceted")
-ggcoef_multinom(
-  mod,
-  type = "faceted",
-  y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
-)
-}
-\dontshow{\}) # examplesIf}
-\dontshow{if (requireNamespace("pscl")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
-library(pscl)
-data("bioChemists", package = "pscl")
-mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
-ggcoef_multicomponents(mod)
-
-ggcoef_multicomponents(mod, type = "f")
-
-ggcoef_multicomponents(mod, type = "t")
-
-ggcoef_multicomponents(
-  mod,
-  type = "t",
-  component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")
-)
-
-mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
-ggcoef_multicomponents(mod2, type = "t")
-}
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{vignette("ggcoef_model")}
