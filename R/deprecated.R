@@ -34,12 +34,17 @@ ggcoef_multicomponents <- function(
     ci_pattern = "{conf.low}, {conf.high}",
     table_witdhs = c(3, 2),
     ...) {
+  type <- match.arg(type)
   lifecycle::deprecate_soft(
     when = "0.9.0",
     what = "ggcoef_multicomponents()",
-    with = "ggcoef_model()"
+    with = type |>
+      switch(
+        "dodged" = "ggcoef_dodged()",
+        "faceted" = "ggcoef_faceted()",
+        "table" = "ggcoef_table()"
+      )
   )
-  type <- match.arg(type)
   if (return_data && type == "table") type <- "faceted"
   if (type %in% c("dodged", "faceted")) {
     res <- ggcoef_multi_d_f(
@@ -361,12 +366,17 @@ ggcoef_multinom <- function(
     ci_pattern = "{conf.low}, {conf.high}",
     table_witdhs = c(3, 2),
     ...) {
+  type <- match.arg(type)
   lifecycle::deprecate_soft(
     when = "0.9.0",
-    what = "ggcoef_multinom()",
-    with = "ggcoef_model()"
+    what = "ggcoef_multicomponents()",
+    with = type |>
+      switch(
+        "dodged" = "ggcoef_dodged()",
+        "faceted" = "ggcoef_faceted()",
+        "table" = "ggcoef_table()"
+      )
   )
-  type <- match.arg(type)
   attr(model, "component_label_arg") <- "y.level_label"
   ggcoef_multicomponents(
     model = model,
