@@ -369,7 +369,6 @@ ggcoef_table <- function(
   args <- list(...)
 
   # undocumented feature, we can pass directly `data`
-  # used by ggcoef_multicomponents()
   if (is.null(args$data)) {
     data <- ggcoef_data(
       model = model,
