@@ -323,6 +323,8 @@ ggcoef_table <- function(
     no_reference_row = NULL,
     intercept = FALSE,
     include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
     add_pairwise_contrasts = FALSE,
     pairwise_variables = broom.helpers::all_categorical(),
     keep_model_terms = FALSE,
@@ -359,6 +361,8 @@ ggcoef_table <- function(
       no_reference_row = {{ no_reference_row }},
       intercept = intercept,
       include = {{ include }},
+      group_by = {{ group_by }},
+      group_labels = group_labels,
       add_pairwise_contrasts = add_pairwise_contrasts,
       pairwise_variables = {{ pairwise_variables }},
       keep_model_terms = keep_model_terms,
@@ -369,6 +373,44 @@ ggcoef_table <- function(
     )
   } else {
     data <- args$data
+  }
+
+  if ("group_by" %in% colnames(data)) {
+    d <- data |>
+      tidyr::nest(.by = dplyr::all_of("group_by"))
+    res <- purrr::map2(
+      d$data,
+      d$group_by,
+      ~ ggcoef_table(
+          data = .x,
+          plot_title = .y,
+          model = model,
+          tidy_fun = tidy_fun,
+          tidy_args = tidy_args,
+          conf.int = conf.int,
+          conf.level = conf.level,
+          exponentiate = exponentiate,
+          variable_labels = variable_labels,
+          term_labels = term_labels,
+          interaction_sep = interaction_sep,
+          categorical_terms_pattern = categorical_terms_pattern,
+          add_reference_rows = add_reference_rows,
+          no_reference_row = {{ no_reference_row }},
+          intercept = intercept,
+          include = {{ include }},
+          significance = significance,
+          significance_labels = significance_labels,
+          show_p_values = show_p_values,
+          signif_stars = signif_stars,
+          table_stat = table_stat,
+          table_header = table_header,
+          table_text_size = table_text_size,
+          table_stat_label = table_stat_label,
+          ci_pattern = ci_pattern,
+          table_witdhs = table_witdhs
+        )
+    ) |> patchwork::wrap_plots(ncol = 1)
+    return(res)
   }
 
   if (show_p_values && signif_stars) {

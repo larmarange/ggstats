@@ -52,6 +52,8 @@ ggcoef_table(
   no_reference_row = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  group_by = broom.helpers::auto_group_by(),
+  group_labels = NULL,
   add_pairwise_contrasts = FALSE,
   pairwise_variables = broom.helpers::all_categorical(),
   keep_model_terms = FALSE,
