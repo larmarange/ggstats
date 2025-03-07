@@ -10,7 +10,7 @@
 
 **Deprecated functions**
 
-* `ggcoef_multinom()` and `ggcoef_multicomponents()` are now soft-depreacated
+* `ggcoef_multinom()` and `ggcoef_multicomponents()` are now soft-deprecated
   and may be removed in a future release. Use instead `ggcoef_model()`,
   `ggcoef_table()`, `ggcoef_dodged()` or `ggcoef_faceted()` (#93)
 
