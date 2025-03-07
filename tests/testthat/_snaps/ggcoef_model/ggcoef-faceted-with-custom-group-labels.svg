@@ -264,6 +264,6 @@
 <circle cx='413.46' cy='556.40' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
 <text x='362.15' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
 <text x='427.58' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
-<text x='79.03' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='275.17px' lengthAdjust='spacingAndGlyphs'>ggcoef_multinom() faceted custom y level label</text>
+<text x='79.03' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='251.71px' lengthAdjust='spacingAndGlyphs'>ggcoef_faceted() with custom group_labels</text>
 </g>
 </svg>

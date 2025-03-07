@@ -33,7 +33,6 @@ The purpose of `ggcoef_model()` is to quickly plot the coefficients of a model. 
 
 To work automatically, this function requires the `{broom.helpers}`. Simply call `ggcoef_model()` with a model object. It could be the result of `stats::lm`, `stats::glm` or any other model covered by `{broom.helpers}`.
 
-
 ```{r ggcoef-reg}
 data(tips, package = "reshape")
 mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
@@ -142,7 +141,6 @@ Continuous variables with polynomial terms defined with `stats::poly()` are also
 mod_poly <- lm(Sepal.Length ~ poly(Petal.Width, 3) + Petal.Length, data = iris)
 ggcoef_model(mod_poly)
 ```
-
 
 Use `no_reference_row` to indicate which variables should not have a reference row added.
 
@@ -253,7 +251,7 @@ ggcoef_table(
 
 ## Multinomial models
 
-For multinomial models, simply use `ggcoef_multinom()`. Three types of visualizations are available: `"dodged"`, `"faceted"` and `"table"`.
+For multinomial models, simply use `ggcoef_model()` or `ggcoef_table()`. Additional visualizations are available using `ggcoef_dodged()` or `ggcoef_faceted()`.
 
 ```{r}
 library(nnet)
@@ -263,58 +261,50 @@ mod <- multinom(
   data = hec,
   weights = hec$Freq
 )
-ggcoef_multinom(
-  mod,
-  exponentiate = TRUE
-)
-ggcoef_multinom(
-  mod,
-  exponentiate = TRUE,
-  type = "faceted"
-)
 ```
 
 ```{r, fig.height=9, fig.width=6}
-ggcoef_multinom(
-  mod,
-  exponentiate = TRUE,
-  type = "table"
-)
+mod |> ggcoef_model(exponentiate = TRUE)
+mod |> ggcoef_table(exponentiate = TRUE)
 ```
 
-You can use `y.level_label` to customize the label of each level.
+```{r, fig.height=4, fig.width=6}
+mod |> ggcoef_dodged(exponentiate = TRUE)
+mod |> ggcoef_faceted(exponentiate = TRUE)
+```
+
+You can use `group_labels` to customize the label of each level.
 
 ```{r}
-ggcoef_multinom(
-  mod,
-  type = "faceted",
-  y.level_label = c("Brown" = "Brown\n(ref: Black)"),
-  exponentiate = TRUE
-)
+mod |>
+  ggcoef_faceted(
+    group_labels = c("Brown" = "Brown\n(ref: Black)"),
+    exponentiate = TRUE
+  )
 ```
 
 ## Multi-components models
 
-Multi-components models such as zero-inflated Poisson or beta regression generate a set of terms for each of their components. You can use `ggcoef_multicomponents()` which is similar to `ggcoef_multinom()`.
+Multi-components models such as zero-inflated Poisson or beta regression generate a set of terms for each of their components. simply use `ggcoef_model()` or `ggcoef_table()`. Additional visualizations are available using `ggcoef_dodged()` or `ggcoef_faceted()`.
 
 ```{r}
 library(pscl)
 data("bioChemists", package = "pscl")
 mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
-
-ggcoef_multicomponents(mod)
-ggcoef_multicomponents(mod, type = "f")
 ```
 
-```{r, fig.height=7, fig.width=6}
-ggcoef_multicomponents(mod, type = "t")
-ggcoef_multicomponents(
-  mod,
-  type = "t",
-  component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")
+```{r, fig.height=9, fig.width=6}
+mod |> ggcoef_model()
+mod |> ggcoef_table()
+```
+
+```{r, fig.height=4, fig.width=6}
+mod |> ggcoef_dodged(exponentiate = TRUE)
+mod |> ggcoef_faceted(
+  exponentiate = TRUE,
+  group_labels = c(conditional = "Count", zero_inflated = "Zero-inflated")
 )
 ```
-
 
 ## Comparing several models
 
@@ -334,10 +324,9 @@ ggcoef_compare(models)
 ggcoef_compare(models, type = "faceted")
 ```
 
-
 ## Advanced users
 
-Advanced users could use their own dataset and pass it to `ggcoef_plot()`. Such dataset could be produced by `ggcoef_model()`, `ggcoef_compare()` or `ggcoef_multinom()` with the option `return_data = TRUE` or by using `broom::tidy()` or `broom.helpers::tidy_plus_plus()`.
+Advanced users could use their own dataset and pass it to `ggcoef_plot()`. Such dataset could be produced by `ggcoef_model()`, `ggcoef_dodged()`, `ggcoef_faceted()` or `ggcoef_compare()` with the option `return_data = TRUE` or by using `broom::tidy()` or `broom.helpers::tidy_plus_plus()`.
 
 ## Supported models
 
@@ -346,5 +335,4 @@ broom.helpers::supported_models |>
   knitr::kable()
 ```
 
-Note: this list of models has been tested. `{broom.helpers}`, and therefore `ggcoef_model()`, may or may not work properly or partially with other 
-types of models. 
+Note: this list of models has been tested. `{broom.helpers}`, and therefore `ggcoef_model()`, may or may not work properly or partially with other types of models.

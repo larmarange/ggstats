@@ -2,7 +2,17 @@
 
 **Improvements**
 
+* `ggccoef_model()` and `ggcoef_table()` are now compatible with multinomial
+  and multi-component models, following `broom.helpers` 1.20.0: both functions
+  gained new arguments `group_by` and `group_labels` (#93)
+* new functions `ggcoef_dodged()` and `ggcoef_faceted()` (#93)
 * `ggcoef_plot()` got a new argument `y_labeller` (#86)
+
+**Deprecated functions**
+
+* `ggcoef_multinom()` and `ggcoef_multicomponents()` are now soft-depreacated
+  and may be removed in a future release. Use instead `ggcoef_model()`,
+  `ggcoef_table()`, `ggcoef_dodged()` or `ggcoef_faceted()` (#93)
 
 **Bug fix**
 

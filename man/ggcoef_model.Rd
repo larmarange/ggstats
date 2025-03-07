@@ -3,9 +3,9 @@
 \name{ggcoef_model}
 \alias{ggcoef_model}
 \alias{ggcoef_table}
+\alias{ggcoef_dodged}
+\alias{ggcoef_faceted}
 \alias{ggcoef_compare}
-\alias{ggcoef_multinom}
-\alias{ggcoef_multicomponents}
 \alias{ggcoef_plot}
 \title{Plot model coefficients}
 \usage{
@@ -24,6 +24,8 @@ ggcoef_model(
   no_reference_row = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  group_by = broom.helpers::auto_group_by(),
+  group_labels = NULL,
   add_pairwise_contrasts = FALSE,
   pairwise_variables = broom.helpers::all_categorical(),
   keep_model_terms = FALSE,
@@ -52,6 +54,8 @@ ggcoef_table(
   no_reference_row = NULL,
   intercept = FALSE,
   include = dplyr::everything(),
+  group_by = broom.helpers::auto_group_by(),
+  group_labels = NULL,
   add_pairwise_contrasts = FALSE,
   pairwise_variables = broom.helpers::all_categorical(),
   keep_model_terms = FALSE,
@@ -67,7 +71,52 @@ ggcoef_table(
   table_stat_label = NULL,
   ci_pattern = "{conf.low}, {conf.high}",
   table_witdhs = c(3, 2),
-  plot_title = NULL,
+  ...
+)
+
+ggcoef_dodged(
+  model,
+  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
+  conf.int = TRUE,
+  conf.level = 0.95,
+  exponentiate = FALSE,
+  variable_labels = NULL,
+  term_labels = NULL,
+  interaction_sep = " * ",
+  categorical_terms_pattern = "{level}",
+  add_reference_rows = TRUE,
+  no_reference_row = NULL,
+  intercept = FALSE,
+  include = dplyr::everything(),
+  group_by = broom.helpers::auto_group_by(),
+  group_labels = NULL,
+  significance = 1 - conf.level,
+  significance_labels = NULL,
+  return_data = FALSE,
+  ...
+)
+
+ggcoef_faceted(
+  model,
+  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+  tidy_args = NULL,
+  conf.int = TRUE,
+  conf.level = 0.95,
+  exponentiate = FALSE,
+  variable_labels = NULL,
+  term_labels = NULL,
+  interaction_sep = " * ",
+  categorical_terms_pattern = "{level}",
+  add_reference_rows = TRUE,
+  no_reference_row = NULL,
+  intercept = FALSE,
+  include = dplyr::everything(),
+  group_by = broom.helpers::auto_group_by(),
+  group_labels = NULL,
+  significance = 1 - conf.level,
+  significance_labels = NULL,
+  return_data = FALSE,
   ...
 )
 
@@ -95,65 +144,6 @@ ggcoef_compare(
   significance = 1 - conf.level,
   significance_labels = NULL,
   return_data = FALSE,
-  ...
-)
-
-ggcoef_multinom(
-  model,
-  type = c("dodged", "faceted", "table"),
-  y.level_label = NULL,
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = 0.95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  significance = 1 - conf.level,
-  significance_labels = NULL,
-  return_data = FALSE,
-  table_stat = c("estimate", "ci", "p.value"),
-  table_header = NULL,
-  table_text_size = 3,
-  table_stat_label = NULL,
-  ci_pattern = "{conf.low}, {conf.high}",
-  table_witdhs = c(3, 2),
-  ...
-)
-
-ggcoef_multicomponents(
-  model,
-  type = c("dodged", "faceted", "table"),
-  component_col = "component",
-  component_label = NULL,
-  tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-  tidy_args = NULL,
-  conf.int = TRUE,
-  conf.level = 0.95,
-  exponentiate = FALSE,
-  variable_labels = NULL,
-  term_labels = NULL,
-  interaction_sep = " * ",
-  categorical_terms_pattern = "{level}",
-  add_reference_rows = TRUE,
-  no_reference_row = NULL,
-  intercept = FALSE,
-  include = dplyr::everything(),
-  significance = 1 - conf.level,
-  significance_labels = NULL,
-  return_data = FALSE,
-  table_stat = c("estimate", "ci", "p.value"),
-  table_header = NULL,
-  table_text_size = 3,
-  table_stat_label = NULL,
-  ci_pattern = "{conf.low}, {conf.high}",
-  table_witdhs = c(3, 2),
   ...
 )
 
@@ -186,7 +176,8 @@ ggcoef_plot(
   dodged_width = 0.8,
   facet_row = "var_label",
   facet_col = NULL,
-  facet_labeller = "label_value"
+  facet_labeller = "label_value",
+  plot_title = NULL
 )
 }
 \arguments{
@@ -236,6 +227,13 @@ Should the intercept(s) be included?}
 Variables to include. Default is \code{everything()}.
 See also \code{\link[broom.helpers:all_continuous]{all_continuous()}}, \code{\link[broom.helpers:all_categorical]{all_categorical()}}, \code{\link[broom.helpers:all_dichotomous]{all_dichotomous()}}
 and \code{\link[broom.helpers:all_interaction]{all_interaction()}}.}
+
+\item{group_by}{(\code{\link[dplyr:dplyr_tidy_select]{tidy-select}})\cr
+One or several variables to group by. Default is \code{auto_group_by()}.
+Use \code{NULL} to force ungrouping.}
+
+\item{group_labels}{(\code{string})\cr
+An optional named vector of custom term labels.}
 
 \item{add_pairwise_contrasts}{(\code{logical})\cr
 Apply \code{\link[broom.helpers:tidy_add_pairwise_contrasts]{tidy_add_pairwise_contrasts()}}?}
@@ -288,18 +286,9 @@ displayed statistic (see examples)}
 \item{table_witdhs}{relative widths of the forest plot and the coefficients
 table}
 
-\item{plot_title}{an optional plot title}
-
 \item{models}{named list of models}
 
 \item{type}{a dodged plot, a faceted plot or multiple table plots?}
-
-\item{y.level_label}{an optional named vector for labeling \code{y.level}
-(see examples)}
-
-\item{component_col}{name of the component column}
-
-\item{component_label}{an optional named vector for labeling components}
 
 \item{data}{a data frame containing data to be plotted,
 typically the output of \code{ggcoef_model()}, \code{ggcoef_compare()}
@@ -365,13 +354,15 @@ shape aesthetic}
 \item{facet_labeller}{labeller function to be used for labeling facets;
 if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}} (see
 examples), more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
+
+\item{plot_title}{an optional plot title}
 }
 \value{
 A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.
 }
 \description{
-\code{ggcoef_model()}, \code{ggcoef_table()}, \code{ggcoef_multinom()},
-\code{ggcoef_multicomponents()} and \code{ggcoef_compare()}
+\code{ggcoef_model()}, \code{ggcoef_table()}, \code{ggcoef_dodged()},
+\code{ggcoef_faceted()} and \code{ggcoef_compare()}
 use \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}}
 to obtain a \code{tibble} of the model coefficients,
 apply additional data transformation and then pass the
@@ -387,16 +378,14 @@ then pass your customized \code{tibble} to \code{ggcoef_plot()}.
 \item \code{ggcoef_table()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adding a table
 with estimates, confidence intervals and p-values
 
+\item \code{ggcoef_dodged()}: a dodged variation of \code{\link[=ggcoef_model]{ggcoef_model()}} for
+multi groups models
+
+\item \code{ggcoef_faceted()}: a faceted variation of \code{\link[=ggcoef_model]{ggcoef_model()}} for
+multi groups models
+
 \item \code{ggcoef_compare()}: designed for displaying several models on the same
 plot.
-
-\item \code{ggcoef_multinom()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
-multinomial logistic regressions performed with \code{\link[nnet:multinom]{nnet::multinom()}}.
-
-\item \code{ggcoef_multicomponents()}: a variation of \code{\link[=ggcoef_model]{ggcoef_model()}} adapted to
-multi-component models such as zero-inflated models or beta regressions.
-\code{\link[=ggcoef_multicomponents]{ggcoef_multicomponents()}} has been tested with \code{pscl::zeroinfl()},
-\code{pscl::hurdle()} and \code{betareg::betareg()}
 
 \item \code{ggcoef_plot()}: plot a tidy \code{tibble} of coefficients
 
@@ -536,6 +525,35 @@ if (requireNamespace("emmeans")) {
 }
 }
 \dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("nnet") && requireNamespace("gtsummary")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+\donttest{
+# multinomial model
+mod <- nnet::multinom(grade ~ stage + trt + age, data = gtsummary::trial)
+ggcoef_model(mod, exponentiate = TRUE)
+ggcoef_table(mod, group_labels = c(II = "Stage 2 vs. 1"))
+ggcoef_dodged(mod, exponentiate = TRUE)
+ggcoef_faceted(mod, exponentiate = TRUE)
+}
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("pscl")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+library(pscl)
+data("bioChemists", package = "pscl")
+mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
+ggcoef_model(mod)
+ggcoef_table(mod)
+ggcoef_dodged(mod)
+ggcoef_faceted(
+  mod,
+  group_labels = c(conditional = "Count", zero_inflated = "Zero-inflated")
+)
+
+mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
+ggcoef_table(mod2)
+ggcoef_table(mod2, intercept = TRUE)
+}
+\dontshow{\}) # examplesIf}
 \donttest{
 # Use ggcoef_compare() for comparing several models on the same plot
 mod1 <- lm(Fertility ~ ., data = swiss)
@@ -554,41 +572,6 @@ ggcoef_compare(models, type = "faceted")
 # value for dodged_width (but it will produce some warnings)
 ggcoef_compare(models, dodged_width = -.9)
 }
-\dontshow{if (requireNamespace("nnet")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-
-\donttest{
-# specific function for nnet::multinom models
-mod <- nnet::multinom(Species ~ ., data = iris)
-ggcoef_multinom(mod, exponentiate = TRUE)
-ggcoef_multinom(mod, type = "faceted")
-ggcoef_multinom(
-  mod,
-  type = "faceted",
-  y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
-)
-}
-\dontshow{\}) # examplesIf}
-\dontshow{if (requireNamespace("pscl")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
-library(pscl)
-data("bioChemists", package = "pscl")
-mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
-ggcoef_multicomponents(mod)
-
-ggcoef_multicomponents(mod, type = "f")
-
-ggcoef_multicomponents(mod, type = "t")
-
-ggcoef_multicomponents(
-  mod,
-  type = "t",
-  component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")
-)
-
-mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
-ggcoef_multicomponents(mod2, type = "t")
-}
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{vignette("ggcoef_model")}

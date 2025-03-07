@@ -607,6 +607,6 @@
 <text x='510.52' y='418.61' text-anchor='middle' style='font-size: 8.80px; font-weight: bold; fill: #4D4D4D; font-family: sans;' textLength='13.21px' lengthAdjust='spacingAndGlyphs'>OR</text>
 <text x='586.87' y='418.61' text-anchor='middle' style='font-size: 8.80px; font-weight: bold; fill: #4D4D4D; font-family: sans;' textLength='28.86px' lengthAdjust='spacingAndGlyphs'>95% CI</text>
 <text x='663.23' y='418.61' text-anchor='middle' style='font-size: 8.80px; font-weight: bold; fill: #4D4D4D; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>p</text>
-<text x='10.96' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='141.62px' lengthAdjust='spacingAndGlyphs'>ggcoef_multinom() table</text>
+<text x='10.96' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='141.62px' lengthAdjust='spacingAndGlyphs'>ggcoef_table() multinom</text>
 </g>
 </svg>

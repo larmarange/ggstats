@@ -16,6 +16,14 @@ test_that("ggcoef_model()", {
     ggcoef_model(mod_simple, shape_guide = FALSE, colour_guide = FALSE)
   )
 
+  expect_error(
+    mod_simple |> ggcoef_dodged()
+  )
+
+  expect_error(
+    mod_simple |> ggcoef_faceted()
+  )
+
   # custom variable labels
   # you can use to define variable labels before computing model
   if (requireNamespace("labelled")) {
@@ -205,7 +213,7 @@ test_that("ggcoef_compare()", {
   )
 })
 
-test_that("ggcoef_multinom()", {
+test_that("ggcoef_*() and multinom models", {
   skip_if_not_installed("broom.helpers")
   skip_if_not_installed("nnet")
   skip_on_cran()
@@ -219,26 +227,30 @@ test_that("ggcoef_multinom()", {
   )
 
   vdiffr::expect_doppelganger(
-    "ggcoef_multinom() dodged",
-    ggcoef_multinom(mod, exponentiate = TRUE)
+    "ggcoef_model() multinom",
+    ggcoef_model(mod, exponentiate = TRUE)
   )
 
   vdiffr::expect_doppelganger(
-    "ggcoef_multinom() faceted",
-    ggcoef_multinom(mod, type = "faceted")
+    "ggcoef_table() multinom",
+    ggcoef_table(mod, exponentiate = TRUE)
   )
 
   vdiffr::expect_doppelganger(
-    "ggcoef_multinom() table",
-    ggcoef_multinom(mod, type = "table", exponentiate = TRUE)
+    "ggcoef_dodged() multinom",
+    ggcoef_dodged(mod, exponentiate = TRUE)
   )
 
   vdiffr::expect_doppelganger(
-    "ggcoef_multinom() faceted custom y level label",
-    ggcoef_multinom(
+    "ggcoef_faceted() multinom",
+    ggcoef_faceted(mod, exponentiate = TRUE)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_faceted() with custom group_labels",
+    ggcoef_faceted(
       mod,
-      type = "faceted",
-      y.level_label = c("Brown" = "Brown\n(ref: Black)"),
+      group_labels = c("Brown" = "Brown\n(ref: Black)"),
       exponentiate = TRUE
     )
   )
@@ -428,7 +440,7 @@ test_that("ggcoef_table()", {
   )
 })
 
-test_that("ggcoef_multicomponents()", {
+test_that("ggcoef_*() and multicomponents models", {
   skip_on_cran()
   skip_if_not_installed("broom.helpers")
   skip_if_not_installed("pscl")
@@ -438,145 +450,33 @@ test_that("ggcoef_multicomponents()", {
   mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
 
   vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() dodged",
-    ggcoef_multicomponents(mod, tidy_fun = broom.helpers::tidy_zeroinfl)
+    "ggcoef_model() zeroinfl",
+    ggcoef_model(mod)
   )
 
   vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() faceted",
-    ggcoef_multicomponents(
+    "ggcoef_table() zeroinfl",
+    ggcoef_table(mod)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_dodged() zeroinfl",
+    ggcoef_dodged(mod)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_faceted() zeroinfl",
+    ggcoef_faceted(mod)
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_faceted() zeroinfl with custom group_labels",
+    ggcoef_faceted(
       mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "f"
+      group_labels = c(
+        conditional = "Count",
+        zero_inflated = "Zero-inflated"
+      )
     )
-  )
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() faceted exponentiated",
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "f",
-      exponentiate = TRUE
-    )
-  )
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() table",
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "t"
-    )
-  )
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() table exponentiated",
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "t",
-      exponentiate = TRUE
-    )
-  )
-
-  expect_s3_class(
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "t",
-      return_data = TRUE
-    ),
-    "tbl"
-  )
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() table component_label",
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "t",
-      component_label = c(conditional = "Count", zero_inflated = "Zero-inflated") # nolint
-    )
-  )
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() faceted component_label",
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "f",
-      component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")  # nolint
-    )
-  )
-
-  # message if unfound values for component_label
-  expect_message(
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "t",
-      component_label = c(c = "Count", zi = "Zero-inflated")
-    )
-  )
-
-  # error if unnamed values for component_label
-  expect_error(
-    ggcoef_multicomponents(
-      mod,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "t",
-      component_label = c("Count", zi = "Zero-inflated")
-    )
-  )
-
-  mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() mod2 table",
-    ggcoef_multicomponents(
-      mod2,
-      tidy_fun = broom.helpers::tidy_zeroinfl,
-      type = "t"
-    )
-  )
-
-  skip_if_not_installed("betareg")
-  skip_if_not_installed("parameters")
-
-  library(betareg)
-  data("GasolineYield", package = "betareg")
-  m1 <- betareg(yield ~ batch + temp, data = GasolineYield)
-  m2 <- betareg(yield ~ batch + temp | temp + pressure, data = GasolineYield)
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() betareg m1 table",
-    ggcoef_multicomponents(
-      m1,
-      type = "t",
-      tidy_fun = broom.helpers::tidy_parameters,
-      tidy_args = list(component = "all")
-    )
-  )
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() betareg m2 table",
-    ggcoef_multicomponents(
-      m2,
-      type = "t",
-      tidy_fun = broom.helpers::tidy_parameters,
-      tidy_args = list(component = "all")
-    )
-  )
-
-  modlm <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() linear model table",
-    ggcoef_multicomponents(modlm, type = "t")
-  )
-
-  vdiffr::expect_doppelganger(
-    "ggcoef_multicomponents() linear model faceted",
-    ggcoef_multicomponents(modlm, type = "f")
   )
 })

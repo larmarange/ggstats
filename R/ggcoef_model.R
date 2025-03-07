@@ -1,7 +1,7 @@
 #' Plot model coefficients
 #'
-#' `ggcoef_model()`, `ggcoef_table()`, `ggcoef_multinom()`,
-#' `ggcoef_multicomponents()` and `ggcoef_compare()`
+#' `ggcoef_model()`, `ggcoef_table()`, `ggcoef_dodged()`,
+#' `ggcoef_faceted()` and `ggcoef_compare()`
 #' use [broom.helpers::tidy_plus_plus()]
 #' to obtain a `tibble` of the model coefficients,
 #' apply additional data transformation and then pass the
@@ -165,7 +165,33 @@
 #'   ggcoef_model(mod2)
 #' }
 #' }
+#' @examplesIf requireNamespace("nnet") && requireNamespace("gtsummary")
 #'
+#' \donttest{
+#' # multinomial model
+#' mod <- nnet::multinom(grade ~ stage + trt + age, data = gtsummary::trial)
+#' ggcoef_model(mod, exponentiate = TRUE)
+#' ggcoef_table(mod, group_labels = c(II = "Stage 2 vs. 1"))
+#' ggcoef_dodged(mod, exponentiate = TRUE)
+#' ggcoef_faceted(mod, exponentiate = TRUE)
+#' }
+#' @examplesIf requireNamespace("pscl")
+#' \donttest{
+#' library(pscl)
+#' data("bioChemists", package = "pscl")
+#' mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
+#' ggcoef_model(mod)
+#' ggcoef_table(mod)
+#' ggcoef_dodged(mod)
+#' ggcoef_faceted(
+#'   mod,
+#'   group_labels = c(conditional = "Count", zero_inflated = "Zero-inflated")
+#' )
+#'
+#' mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
+#' ggcoef_table(mod2)
+#' ggcoef_table(mod2, intercept = TRUE)
+#' }
 ggcoef_model <- function(
     model,
     tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
@@ -181,6 +207,8 @@ ggcoef_model <- function(
     no_reference_row = NULL,
     intercept = FALSE,
     include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
     add_pairwise_contrasts = FALSE,
     pairwise_variables = broom.helpers::all_categorical(),
     keep_model_terms = FALSE,
@@ -192,29 +220,38 @@ ggcoef_model <- function(
     signif_stars = TRUE,
     return_data = FALSE,
     ...) {
-  data <- ggcoef_data(
-    model = model,
-    tidy_fun = tidy_fun,
-    tidy_args = {{ tidy_args }},
-    conf.int = conf.int,
-    conf.level = conf.level,
-    exponentiate = exponentiate,
-    variable_labels = variable_labels,
-    term_labels = term_labels,
-    interaction_sep = interaction_sep,
-    categorical_terms_pattern = categorical_terms_pattern,
-    add_reference_rows = add_reference_rows,
-    no_reference_row = {{ no_reference_row }},
-    intercept = intercept,
-    include = {{ include }},
-    add_pairwise_contrasts = add_pairwise_contrasts,
-    pairwise_variables = {{ pairwise_variables }},
-    keep_model_terms = keep_model_terms,
-    pairwise_reverse = pairwise_reverse,
-    emmeans_args = emmeans_args,
-    significance = significance,
-    significance_labels = significance_labels
-  )
+  args <- list(...)
+
+  # undocumented feature, we can pass directly `data`
+  if (is.null(args$data)) {
+    data <- ggcoef_data(
+      model = model,
+      tidy_fun = tidy_fun,
+      tidy_args = {{ tidy_args }},
+      conf.int = conf.int,
+      conf.level = conf.level,
+      exponentiate = exponentiate,
+      variable_labels = variable_labels,
+      term_labels = term_labels,
+      interaction_sep = interaction_sep,
+      categorical_terms_pattern = categorical_terms_pattern,
+      add_reference_rows = add_reference_rows,
+      no_reference_row = {{ no_reference_row }},
+      intercept = intercept,
+      include = {{ include }},
+      group_by = {{ group_by }},
+      group_labels = group_labels,
+      add_pairwise_contrasts = add_pairwise_contrasts,
+      pairwise_variables = {{ pairwise_variables }},
+      keep_model_terms = keep_model_terms,
+      pairwise_reverse = pairwise_reverse,
+      emmeans_args = emmeans_args,
+      significance = significance,
+      significance_labels = significance_labels
+    )
+  } else {
+    data <- args$data
+  }
 
   if (show_p_values && signif_stars) {
     data$add_to_label <- paste0(data$p_value_label, data$signif_stars)
@@ -257,8 +294,6 @@ ggcoef_model <- function(
     return(data)
   }
 
-  args <- list(...)
-  args$data <- data
   args$exponentiate <- exponentiate
 
   if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
@@ -272,7 +307,17 @@ ggcoef_model <- function(
     }
   }
 
-  do.call(ggcoef_plot, args)
+  if ("group_by" %in% names(data)) {
+    d <- data |>
+      tidyr::nest(.by = dplyr::all_of("group_by"))
+    purrr::map2(
+      d$data,
+      d$group_by,
+      ~ .call_ggcoef_plot(args, .x, plot_title = as.character(.y))
+    ) |> patchwork::wrap_plots(ncol = 1)
+  } else {
+    .call_ggcoef_plot(args, data)
+  }
 }
 
 #' @describeIn ggcoef_model a variation of [ggcoef_model()] adding a table
@@ -287,7 +332,6 @@ ggcoef_model <- function(
 #' @param ci_pattern glue pattern for confidence intervals in the table
 #' @param table_witdhs relative widths of the forest plot and the coefficients
 #' table
-#' @param plot_title an optional plot title
 #' @export
 ggcoef_table <- function(
     model,
@@ -304,6 +348,8 @@ ggcoef_table <- function(
     no_reference_row = NULL,
     intercept = FALSE,
     include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
     add_pairwise_contrasts = FALSE,
     pairwise_variables = broom.helpers::all_categorical(),
     keep_model_terms = FALSE,
@@ -319,12 +365,10 @@ ggcoef_table <- function(
     table_stat_label = NULL,
     ci_pattern = "{conf.low}, {conf.high}",
     table_witdhs = c(3, 2),
-    plot_title = NULL,
     ...) {
   args <- list(...)
 
   # undocumented feature, we can pass directly `data`
-  # used by ggcoef_multicomponents()
   if (is.null(args$data)) {
     data <- ggcoef_data(
       model = model,
@@ -341,6 +385,8 @@ ggcoef_table <- function(
       no_reference_row = {{ no_reference_row }},
       intercept = intercept,
       include = {{ include }},
+      group_by = {{ group_by }},
+      group_labels = group_labels,
       add_pairwise_contrasts = add_pairwise_contrasts,
       pairwise_variables = {{ pairwise_variables }},
       keep_model_terms = keep_model_terms,
@@ -351,6 +397,44 @@ ggcoef_table <- function(
     )
   } else {
     data <- args$data
+  }
+
+  if ("group_by" %in% colnames(data)) {
+    d <- data |>
+      tidyr::nest(.by = dplyr::all_of("group_by"))
+    res <- purrr::map2(
+      d$data,
+      d$group_by,
+      ~ ggcoef_table(
+        data = .x,
+        plot_title = .y,
+        model = model,
+        tidy_fun = tidy_fun,
+        tidy_args = tidy_args,
+        conf.int = conf.int,
+        conf.level = conf.level,
+        exponentiate = exponentiate,
+        variable_labels = variable_labels,
+        term_labels = term_labels,
+        interaction_sep = interaction_sep,
+        categorical_terms_pattern = categorical_terms_pattern,
+        add_reference_rows = add_reference_rows,
+        no_reference_row = {{ no_reference_row }},
+        intercept = intercept,
+        include = {{ include }},
+        significance = significance,
+        significance_labels = significance_labels,
+        show_p_values = show_p_values,
+        signif_stars = signif_stars,
+        table_stat = table_stat,
+        table_header = table_header,
+        table_text_size = table_text_size,
+        table_stat_label = table_stat_label,
+        ci_pattern = ci_pattern,
+        table_witdhs = table_witdhs
+      )
+    ) |> patchwork::wrap_plots(ncol = 1)
+    return(res)
   }
 
   if (show_p_values && signif_stars) {
@@ -412,15 +496,6 @@ ggcoef_table <- function(
 
   coef_plot <- do.call(ggcoef_plot, args)
 
-  if (!is.null(plot_title)) {
-    coef_plot <- coef_plot +
-      ggplot2::ggtitle(plot_title) +
-      ggplot2::theme(
-        plot.title = ggplot2::element_text(face = "bold"),
-        plot.title.position = "plot"
-      )
-  }
-
   if (args$stripped_rows) {
     if (!"term" %in% names(data)) {
       data$term <- data[[args$y]]
@@ -433,7 +508,7 @@ ggcoef_table <- function(
       ))
   }
 
-  # building the coefficient table ----
+  # building the coefficient table
   tbl_data <- data
 
   if (!"estimate" %in% names(table_stat_label)) {
@@ -521,6 +596,150 @@ ggcoef_table <- function(
 
   # join the plots
   patchwork::wrap_plots(coef_plot, table_plot, nrow = 1, widths = table_witdhs)
+}
+
+#' @describeIn ggcoef_model a dodged variation of [ggcoef_model()] for
+#' multi groups models
+#' @export
+ggcoef_dodged <- function(
+    model,
+    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+    tidy_args = NULL,
+    conf.int = TRUE,
+    conf.level = .95,
+    exponentiate = FALSE,
+    variable_labels = NULL,
+    term_labels = NULL,
+    interaction_sep = " * ",
+    categorical_terms_pattern = "{level}",
+    add_reference_rows = TRUE,
+    no_reference_row = NULL,
+    intercept = FALSE,
+    include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
+    significance = 1 - conf.level,
+    significance_labels = NULL,
+    return_data = FALSE,
+    ...) {
+
+  data <- ggcoef_data(
+    model,
+    tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
+    conf.int = conf.int,
+    conf.level = conf.level,
+    exponentiate = exponentiate,
+    variable_labels = variable_labels,
+    term_labels = term_labels,
+    interaction_sep = interaction_sep,
+    categorical_terms_pattern = categorical_terms_pattern,
+    add_reference_rows = add_reference_rows,
+    no_reference_row = {{ no_reference_row }},
+    intercept = intercept,
+    include = {{ include }},
+    group_by = {{ group_by }},
+    group_labels = group_labels,
+    significance = significance,
+    significance_labels = significance_labels
+  )
+
+  if (return_data) {
+    return(data)
+  }
+
+  if (!"group_by" %in% colnames(data))
+    cli::cli_abort("No groups detected. Define groups with {.arg group_by}.")
+
+  args <- list(...)
+  args$exponentiate <- exponentiate
+  if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
+    args$y <- "label_light"
+  }
+
+  if (!"dodged " %in% names(args)) {
+    args$dodged <- TRUE
+  }
+  if (!"colour" %in% names(args)) {
+    args$colour <- "group_by"
+  }
+  if (!"errorbar_coloured" %in% names(args)) {
+    args$errorbar_coloured <- TRUE
+  }
+
+  .call_ggcoef_plot(args, data)
+}
+
+#' @describeIn ggcoef_model a faceted variation of [ggcoef_model()] for
+#' multi groups models
+#' @export
+ggcoef_faceted <- function(
+    model,
+    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
+    tidy_args = NULL,
+    conf.int = TRUE,
+    conf.level = .95,
+    exponentiate = FALSE,
+    variable_labels = NULL,
+    term_labels = NULL,
+    interaction_sep = " * ",
+    categorical_terms_pattern = "{level}",
+    add_reference_rows = TRUE,
+    no_reference_row = NULL,
+    intercept = FALSE,
+    include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
+    significance = 1 - conf.level,
+    significance_labels = NULL,
+    return_data = FALSE,
+    ...) {
+
+  data <- ggcoef_data(
+    model,
+    tidy_fun = tidy_fun,
+    tidy_args = {{ tidy_args }},
+    conf.int = conf.int,
+    conf.level = conf.level,
+    exponentiate = exponentiate,
+    variable_labels = variable_labels,
+    term_labels = term_labels,
+    interaction_sep = interaction_sep,
+    categorical_terms_pattern = categorical_terms_pattern,
+    add_reference_rows = add_reference_rows,
+    no_reference_row = {{ no_reference_row }},
+    intercept = intercept,
+    include = {{ include }},
+    group_by = {{ group_by }},
+    group_labels = group_labels,
+    significance = significance,
+    significance_labels = significance_labels
+  )
+
+  if (return_data) {
+    return(data)
+  }
+
+  if (!"group_by" %in% colnames(data))
+    cli::cli_abort("No groups detected. Define groups with {.arg group_by}.")
+
+  args <- list(...)
+  args$exponentiate <- exponentiate
+  if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
+    args$y <- "label_light"
+  }
+
+  if (!"facet_col" %in% names(args)) {
+    args$facet_col <- "group_by"
+  }
+  if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
+    args$colour <- "var_label"
+    if (!"colour_guide" %in% names(args)) {
+      args$colour_guide <- FALSE
+    }
+  }
+
+  .call_ggcoef_plot(args, data)
 }
 
 #' @describeIn ggcoef_model designed for displaying several models on the same
@@ -667,430 +886,6 @@ ggcoef_compare <- function(
   do.call(ggcoef_plot, args)
 }
 
-#' @describeIn ggcoef_model a variation of [ggcoef_model()] adapted to
-#'   multinomial logistic regressions performed with [nnet::multinom()].
-#' @param y.level_label an optional named vector for labeling `y.level`
-#'   (see examples)
-#' @export
-#' @examplesIf requireNamespace("nnet")
-#'
-#' \donttest{
-#' # specific function for nnet::multinom models
-#' mod <- nnet::multinom(Species ~ ., data = iris)
-#' ggcoef_multinom(mod, exponentiate = TRUE)
-#' ggcoef_multinom(mod, type = "faceted")
-#' ggcoef_multinom(
-#'   mod,
-#'   type = "faceted",
-#'   y.level_label = c("versicolor" = "versicolor\n(ref: setosa)")
-#' )
-#' }
-ggcoef_multinom <- function(
-    model,
-    type = c("dodged", "faceted", "table"),
-    y.level_label = NULL,
-    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-    tidy_args = NULL,
-    conf.int = TRUE,
-    conf.level = .95,
-    exponentiate = FALSE,
-    variable_labels = NULL,
-    term_labels = NULL,
-    interaction_sep = " * ",
-    categorical_terms_pattern = "{level}",
-    add_reference_rows = TRUE,
-    no_reference_row = NULL,
-    intercept = FALSE,
-    include = dplyr::everything(),
-    significance = 1 - conf.level,
-    significance_labels = NULL,
-    return_data = FALSE,
-    table_stat = c("estimate", "ci", "p.value"),
-    table_header = NULL,
-    table_text_size = 3,
-    table_stat_label = NULL,
-    ci_pattern = "{conf.low}, {conf.high}",
-    table_witdhs = c(3, 2),
-    ...) {
-  type <- match.arg(type)
-  attr(model, "component_label_arg") <- "y.level_label"
-  ggcoef_multicomponents(
-    model = model,
-    type = type,
-    component_col = "y.level",
-    component_label = y.level_label,
-    tidy_fun = tidy_fun,
-    tidy_args = tidy_args,
-    conf.int = conf.int,
-    conf.level = conf.level,
-    exponentiate = exponentiate,
-    variable_labels = variable_labels,
-    term_labels = term_labels,
-    interaction_sep = interaction_sep,
-    categorical_terms_pattern = categorical_terms_pattern,
-    add_reference_rows = add_reference_rows,
-    no_reference_row = {{ no_reference_row }},
-    intercept = intercept,
-    include = {{ include }},
-    significance = significance,
-    significance_labels = significance_labels,
-    return_data = return_data,
-    table_stat = table_stat,
-    table_header = table_header,
-    table_text_size = table_text_size,
-    table_stat_label = table_stat_label,
-    ci_pattern = ci_pattern,
-    table_witdhs = table_witdhs,
-    ...
-  )
-}
-
-#' @describeIn ggcoef_model a variation of [ggcoef_model()] adapted to
-#'   multi-component models such as zero-inflated models or beta regressions.
-#'   [ggcoef_multicomponents()] has been tested with `pscl::zeroinfl()`,
-#'   `pscl::hurdle()` and `betareg::betareg()`
-#' @param component_col name of the component column
-#' @param component_label an optional named vector for labeling components
-#' @export
-#' @examplesIf requireNamespace("pscl")
-#' \donttest{
-#' library(pscl)
-#' data("bioChemists", package = "pscl")
-#' mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
-#' ggcoef_multicomponents(mod)
-#'
-#' ggcoef_multicomponents(mod, type = "f")
-#'
-#' ggcoef_multicomponents(mod, type = "t")
-#'
-#' ggcoef_multicomponents(
-#'   mod,
-#'   type = "t",
-#'   component_label = c(conditional = "Count", zero_inflated = "Zero-inflated")
-#' )
-#'
-#' mod2 <- zeroinfl(art ~ fem + mar | 1, data = bioChemists)
-#' ggcoef_multicomponents(mod2, type = "t")
-#' }
-ggcoef_multicomponents <- function(
-    model,
-    type = c("dodged", "faceted", "table"),
-    component_col = "component",
-    component_label = NULL,
-    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-    tidy_args = NULL,
-    conf.int = TRUE,
-    conf.level = .95,
-    exponentiate = FALSE,
-    variable_labels = NULL,
-    term_labels = NULL,
-    interaction_sep = " * ",
-    categorical_terms_pattern = "{level}",
-    add_reference_rows = TRUE,
-    no_reference_row = NULL,
-    intercept = FALSE,
-    include = dplyr::everything(),
-    significance = 1 - conf.level,
-    significance_labels = NULL,
-    return_data = FALSE,
-    table_stat = c("estimate", "ci", "p.value"),
-    table_header = NULL,
-    table_text_size = 3,
-    table_stat_label = NULL,
-    ci_pattern = "{conf.low}, {conf.high}",
-    table_witdhs = c(3, 2),
-    ...) {
-  type <- match.arg(type)
-  if (return_data && type == "table") type <- "faceted"
-  if (type %in% c("dodged", "faceted")) {
-    res <- ggcoef_multi_d_f(
-      model = model,
-      type = type,
-      component_col = component_col,
-      component_label = component_label,
-      tidy_fun = tidy_fun,
-      tidy_args = tidy_args,
-      conf.int = conf.int,
-      conf.level = conf.level,
-      exponentiate = exponentiate,
-      variable_labels = variable_labels,
-      term_labels = term_labels,
-      interaction_sep = interaction_sep,
-      categorical_terms_pattern = categorical_terms_pattern,
-      add_reference_rows = add_reference_rows,
-      no_reference_row = {{ no_reference_row }},
-      intercept = intercept,
-      include = {{ include }},
-      significance = significance,
-      significance_labels = significance_labels,
-      return_data = return_data,
-      ...
-    )
-  } else {
-    res <- ggcoef_multi_t(
-      model = model,
-      type = type,
-      component_col = component_col,
-      component_label = component_label,
-      tidy_fun = tidy_fun,
-      tidy_args = tidy_args,
-      conf.int = conf.int,
-      conf.level = conf.level,
-      exponentiate = exponentiate,
-      variable_labels = variable_labels,
-      term_labels = term_labels,
-      interaction_sep = interaction_sep,
-      categorical_terms_pattern = categorical_terms_pattern,
-      add_reference_rows = add_reference_rows,
-      no_reference_row = {{ no_reference_row }},
-      intercept = intercept,
-      include = {{ include }},
-      significance = significance,
-      significance_labels = significance_labels,
-      ...
-    )
-  }
-
-  res
-}
-
-# dodged & faceted version
-ggcoef_multi_d_f <- function(
-    model,
-    type = c("dodged", "faceted"),
-    component_col = "component",
-    component_label = NULL,
-    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-    tidy_args = NULL,
-    conf.int = TRUE,
-    conf.level = .95,
-    exponentiate = FALSE,
-    variable_labels = NULL,
-    term_labels = NULL,
-    interaction_sep = " * ",
-    categorical_terms_pattern = "{level}",
-    add_reference_rows = TRUE,
-    no_reference_row = NULL,
-    intercept = FALSE,
-    include = dplyr::everything(),
-    significance = 1 - conf.level,
-    significance_labels = NULL,
-    return_data = FALSE,
-    ...) {
-  component_label_arg <- attr(model, "component_label_arg")
-  if (is.null(component_label_arg)) component_label_arg <- "component_label"
-
-  data <- ggcoef_data(
-    model,
-    tidy_fun = tidy_fun,
-    tidy_args = {{ tidy_args }},
-    conf.int = conf.int,
-    conf.level = conf.level,
-    exponentiate = exponentiate,
-    variable_labels = variable_labels,
-    term_labels = term_labels,
-    interaction_sep = interaction_sep,
-    categorical_terms_pattern = categorical_terms_pattern,
-    add_reference_rows = add_reference_rows,
-    no_reference_row = {{ no_reference_row }},
-    intercept = intercept,
-    include = {{ include }},
-    significance = significance,
-    significance_labels = significance_labels
-  )
-
-  if (!component_col %in% names(data)) data[[component_col]] <- " "
-  data[[component_col]] <- .in_order(data[[component_col]])
-  if (!is.null(component_label)) {
-    if (
-      is.null(names(component_label)) ||
-        any(names(component_label) == "")
-    ) {
-      cli::cli_abort(
-        "All elements of {.arg {component_label_arg}} should be named."
-      )
-    }
-    keep <- names(component_label) %in% levels(data[[component_col]])
-    drop <- component_label[!keep]
-    if (length(drop) > 0) {
-      cli::cli_alert_warning(c(
-        "Error in {.arg {component_label_arg}}:\n",
-        "value{?s} {.strong {drop}} not found in the data and ignored."
-      ))
-    }
-    component_label <- component_label[keep]
-
-    missing_levels <- setdiff(
-      levels(.in_order(data[[component_col]])),
-      names(component_label)
-    )
-    names(missing_levels) <- missing_levels
-    data[[component_col]] <- factor(
-      data[[component_col]],
-      levels = c(names(component_label), missing_levels),
-      labels = c(component_label, missing_levels)
-    )
-  }
-
-  if (return_data) {
-    return(data)
-  }
-
-  type <- match.arg(type)
-
-  args <- list(...)
-  args$data <- data
-  args$exponentiate <- exponentiate
-  if (!"y" %in% names(args) && !"facet_row" %in% names(args)) {
-    args$y <- "label_light"
-  }
-
-  if (type == "dodged") {
-    if (!"dodged " %in% names(args)) {
-      args$dodged <- TRUE
-    }
-    if (!"colour" %in% names(args)) {
-      args$colour <- component_col
-    }
-    if (!"errorbar_coloured" %in% names(args)) {
-      args$errorbar_coloured <- TRUE
-    }
-  } else {
-    if (!"facet_col" %in% names(args)) {
-      args$facet_col <- component_col
-    }
-    if (!"colour" %in% names(args) && !all(is.na(data$var_label))) {
-      args$colour <- "var_label"
-      if (!"colour_guide" %in% names(args)) {
-        args$colour_guide <- FALSE
-      }
-    }
-  }
-
-  do.call(ggcoef_plot, args)
-}
-
-# table version
-ggcoef_multi_t <- function(
-    model,
-    type = c("table"),
-    component_col = "component",
-    component_label = NULL,
-    tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
-    tidy_args = NULL,
-    conf.int = TRUE,
-    conf.level = .95,
-    exponentiate = FALSE,
-    variable_labels = NULL,
-    term_labels = NULL,
-    interaction_sep = " * ",
-    categorical_terms_pattern = "{level}",
-    add_reference_rows = TRUE,
-    no_reference_row = NULL,
-    intercept = FALSE,
-    include = dplyr::everything(),
-    significance = 1 - conf.level,
-    significance_labels = NULL,
-    table_stat = c("estimate", "ci", "p.value"),
-    table_header = NULL,
-    table_text_size = 3,
-    table_stat_label = NULL,
-    ci_pattern = "{conf.low}, {conf.high}",
-    table_witdhs = c(3, 2),
-    ...) {
-  type <- match.arg(type)
-  component_label_arg <- attr(model, "component_label_arg")
-  if (is.null(component_label_arg)) component_label_arg <- "component_label"
-
-  data <- ggcoef_data(
-    model = model,
-    tidy_fun = tidy_fun,
-    tidy_args = {{ tidy_args }},
-    conf.int = conf.int,
-    conf.level = conf.level,
-    exponentiate = exponentiate,
-    variable_labels = variable_labels,
-    term_labels = term_labels,
-    interaction_sep = interaction_sep,
-    categorical_terms_pattern = categorical_terms_pattern,
-    add_reference_rows = add_reference_rows,
-    no_reference_row = {{ no_reference_row }},
-    intercept = intercept,
-    include = {{ include }},
-    significance = significance,
-    significance_labels = significance_labels
-  )
-
-  if (!component_col %in% names(data)) data[[component_col]] <- " "
-
-  data[[component_col]] <- .in_order(data[[component_col]])
-
-  if (!is.null(component_label)) {
-    if (
-      is.null(names(component_label)) ||
-        any(names(component_label) == "")
-    ) {
-      cli::cli_abort(
-        "All elements of {.arg {component_label_arg}} should be named."
-      )
-    }
-
-    keep <- names(component_label) %in% levels(data[[component_col]])
-    drop <- component_label[!keep]
-    if (length(drop) > 0) {
-      cli::cli_alert_warning(c(
-        "Error in {.arg {component_label_arg}}:\n",
-        "value{?s} {.strong {drop}} not found in the data and ignored."
-      ))
-    }
-    component_label <- component_label[keep]
-
-    missing_levels <- setdiff(
-      levels(.in_order(data[[component_col]])),
-      names(component_label)
-    )
-    names(missing_levels) <- missing_levels
-    data[[component_col]] <- factor(
-      data[[component_col]],
-      levels = c(names(component_label), missing_levels),
-      labels = c(component_label, missing_levels)
-    )
-  }
-
-  res <- levels(data[[component_col]]) |>
-    purrr::map(
-      ~ ggcoef_table(
-        data = dplyr::filter(data, .data[[component_col]] == .x),
-        plot_title = .x,
-        model = model,
-        tidy_fun = tidy_fun,
-        tidy_args = tidy_args,
-        conf.int = conf.int,
-        conf.level = conf.level,
-        exponentiate = exponentiate,
-        variable_labels = variable_labels,
-        term_labels = term_labels,
-        interaction_sep = interaction_sep,
-        categorical_terms_pattern = categorical_terms_pattern,
-        add_reference_rows = add_reference_rows,
-        no_reference_row = {{ no_reference_row }},
-        intercept = intercept,
-        include = {{ include }},
-        significance = significance,
-        significance_labels = significance_labels,
-        show_p_values = FALSE,
-        signif_stars = FALSE,
-        table_stat = table_stat,
-        table_header = table_header,
-        table_text_size = table_text_size,
-        table_stat_label = table_stat_label,
-        ci_pattern = ci_pattern,
-        table_witdhs = table_witdhs
-      )
-    )
-  patchwork::wrap_plots(res, ncol = 1)
-}
-
 # not exporting ggcoef_data
 ggcoef_data <- function(
     model,
@@ -1107,6 +902,8 @@ ggcoef_data <- function(
     no_reference_row = NULL,
     intercept = FALSE,
     include = dplyr::everything(),
+    group_by = broom.helpers::auto_group_by(),
+    group_labels = NULL,
     add_pairwise_contrasts = FALSE,
     pairwise_variables = broom.helpers::all_categorical(),
     keep_model_terms = FALSE,
@@ -1141,6 +938,8 @@ ggcoef_data <- function(
     add_header_rows = FALSE,
     intercept = intercept,
     include = {{ include }},
+    group_by = {{ group_by }},
+    group_labels = group_labels,
     keep_model = FALSE,
     !!!tidy_args
   ))
@@ -1229,6 +1028,7 @@ ggcoef_data <- function(
 #' @param facet_labeller labeller function to be used for labeling facets;
 #'   if labels are too long, you can use [ggplot2::label_wrap_gen()] (see
 #'   examples), more information in the documentation of [ggplot2::facet_grid()]
+#' @param plot_title an optional plot title
 #' @seealso `vignette("ggcoef_model")`
 #' @export
 ggcoef_plot <- function(
@@ -1260,7 +1060,8 @@ ggcoef_plot <- function(
     dodged_width = .8,
     facet_row = "var_label",
     facet_col = NULL,
-    facet_labeller = "label_value") {
+    facet_labeller = "label_value",
+    plot_title = NULL) {
 
   if (!is.null(facet_row)) {
     data[[facet_row]] <- .in_order(data[[facet_row]])
@@ -1429,7 +1230,22 @@ ggcoef_plot <- function(
     p <- p + ggplot2::xlab(attr(data, "coefficients_label"))
   }
 
+  if (!is.null(plot_title)) {
+    p <- p +
+      ggplot2::ggtitle(plot_title) +
+      ggplot2::theme(
+        plot.title = ggplot2::element_text(face = "bold"),
+        plot.title.position = "plot"
+      )
+  }
+
   p
+}
+
+.call_ggcoef_plot <- function(args, data, plot_title = NULL) {
+  args$data <- data
+  if (!is.null(plot_title)) args$plot_title <- plot_title
+  do.call(ggcoef_plot, args)
 }
 
 .in_order <- function(x) {
