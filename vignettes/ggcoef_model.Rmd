@@ -276,7 +276,7 @@ mod |> ggcoef_faceted(exponentiate = TRUE)
 You can use `group_labels` to customize the label of each level.
 
 ```{r}
-mod |> 
+mod |>
   ggcoef_faceted(
     group_labels = c("Brown" = "Brown\n(ref: Black)"),
     exponentiate = TRUE
