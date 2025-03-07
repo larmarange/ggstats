@@ -158,6 +158,6 @@
 <circle cx='444.52' cy='556.40' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
 <text x='393.20' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
 <text x='458.64' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
-<text x='141.13' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='203.29px' lengthAdjust='spacingAndGlyphs'>ggcoef_multicomponents() dodged</text>
+<text x='141.13' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='146.04px' lengthAdjust='spacingAndGlyphs'>ggcoef_dodged() zeroinfl</text>
 </g>
 </svg>

@@ -155,7 +155,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMTQxLjEzfDQyNS4wOXwyMi43OHwzOS40Mw==)'>
-<text x='283.11' y='34.14' text-anchor='middle' style='font-size: 8.80px; font-weight: bold; font-family: sans;' textLength='23.49px' lengthAdjust='spacingAndGlyphs'>Count</text>
+<text x='283.11' y='34.14' text-anchor='middle' style='font-size: 8.80px; font-weight: bold; font-family: sans;' textLength='42.08px' lengthAdjust='spacingAndGlyphs'>conditional</text>
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
@@ -165,7 +165,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpNDMwLjU3fDcxNC41MnwyMi43OHwzOS40Mw==)'>
-<text x='572.54' y='34.14' text-anchor='middle' style='font-size: 8.80px; font-weight: bold; font-family: sans;' textLength='49.40px' lengthAdjust='spacingAndGlyphs'>Zero-inflated</text>
+<text x='572.54' y='34.14' text-anchor='middle' style='font-size: 8.80px; font-weight: bold; font-family: sans;' textLength='50.39px' lengthAdjust='spacingAndGlyphs'>zero_inflated</text>
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
@@ -227,6 +227,6 @@
 <circle cx='444.52' cy='556.40' r='3.55' style='stroke-width: 2.83; fill: #FFFFFF;' />
 <text x='393.20' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='37.20px' lengthAdjust='spacingAndGlyphs'>p &lt;= 0.05</text>
 <text x='458.64' y='559.43' style='font-size: 8.80px; font-family: sans;' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>p &gt; 0.05</text>
-<text x='141.13' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='306.77px' lengthAdjust='spacingAndGlyphs'>ggcoef_multicomponents() faceted component_label</text>
+<text x='141.13' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='145.30px' lengthAdjust='spacingAndGlyphs'>ggcoef_faceted() zeroinfl</text>
 </g>
 </svg>
