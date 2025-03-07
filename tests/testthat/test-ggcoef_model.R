@@ -16,6 +16,14 @@ test_that("ggcoef_model()", {
     ggcoef_model(mod_simple, shape_guide = FALSE, colour_guide = FALSE)
   )
 
+  expect_error(
+    mod_simple |> ggcoef_dodged()
+  )
+
+  expect_error(
+    mod_simple |> ggcoef_faceted()
+  )
+
   # custom variable labels
   # you can use to define variable labels before computing model
   if (requireNamespace("labelled")) {
