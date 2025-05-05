@@ -1,5 +1,11 @@
 # ggstats (development version)
 
+**Improvements**
+
+* `gglikert()`: legend order is reversed when `reverse_likert = TRUE` (#95)
+* `gglikert_stacked()`: legend order is reversed when `reverse_fill = TRUE`
+  (#95)
+
 # ggstats 0.9.0
 
 **Improvements**
