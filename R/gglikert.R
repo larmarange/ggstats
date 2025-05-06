@@ -395,7 +395,8 @@ gglikert <- function(data,
       legend.position = "bottom",
       panel.grid.major.y = element_blank()
     ) +
-    scale_fill_likert(cutoff = cutoff)
+    scale_fill_likert(cutoff = cutoff) +
+    guides(fill = guide_legend(reverse = reverse_likert))
 
   p + facet_grid(
     rows = facet_rows, cols = facet_cols,
@@ -774,7 +775,8 @@ gglikert_stacked <- function(data,
       legend.position = "bottom",
       panel.grid.major.y = element_blank()
     ) +
-    scale_fill_extended()
+    scale_fill_extended() +
+    guides(fill = guide_legend(reverse = !reverse_fill))
 
   p
 }
