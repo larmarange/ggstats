@@ -17,7 +17,6 @@
 #' @export
 #' @return A `ggplot2` plot with the added statistic.
 #' @examplesIf requireNamespace("reshape")
-#' @examples
 #' library(ggplot2)
 #'
 #' data(tips, package = "reshape")
@@ -51,21 +50,19 @@
 #'     scale_y_continuous(labels = scales::percent)
 #' }
 #' }
-#' @examples
+#' @examplesIf requireNamespace("scales")
 #' library(ggplot2)
 #'
 #' # taking into account some weights
-#' if (requireNamespace("scales")) {
-#'   d <- as.data.frame(Titanic)
-#'   ggplot(d) +
-#'     aes(
-#'       x = Class, y = as.integer(Survived == "Yes"),
-#'       weight = Freq, fill = Sex
-#'     ) +
-#'     geom_bar(stat = "weighted_mean", position = "dodge") +
-#'     scale_y_continuous(labels = scales::percent) +
-#'     labs(y = "Survived")
-#' }
+#' d <- as.data.frame(Titanic)
+#' ggplot(d) +
+#'   aes(
+#'     x = Class, y = as.integer(Survived == "Yes"),
+#'     weight = Freq, fill = Sex
+#'   ) +
+#'   geom_bar(stat = "weighted_mean", position = "dodge") +
+#'   scale_y_continuous(labels = scales::percent) +
+#'   labs(y = "Survived")
 stat_weighted_mean <- function(mapping = NULL,
                                data = NULL,
                                geom = "point",
