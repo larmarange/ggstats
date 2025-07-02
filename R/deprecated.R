@@ -35,7 +35,7 @@ ggcoef_multicomponents <- function(
     table_witdhs = c(3, 2),
     ...) {
   type <- match.arg(type)
-  lifecycle::deprecate_soft(
+  lifecycle::deprecate_warn(
     when = "0.9.0",
     what = "ggcoef_multicomponents()",
     with = type |>
@@ -367,7 +367,7 @@ ggcoef_multinom <- function(
     table_witdhs = c(3, 2),
     ...) {
   type <- match.arg(type)
-  lifecycle::deprecate_soft(
+  lifecycle::deprecate_warn(
     when = "0.9.0",
     what = "ggcoef_multicomponents()",
     with = type |>

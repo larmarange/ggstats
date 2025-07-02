@@ -398,7 +398,7 @@ test_that("ggcoef_table()", {
 
   vdiffr::expect_doppelganger(
     "ggcoef_table() table_widths",
-    ggcoef_table(mod_simple, table_witdhs = c(1, 2))
+    ggcoef_table(mod_simple, table_widths = c(1, 2))
   )
 
   vdiffr::expect_doppelganger(
@@ -435,7 +435,7 @@ test_that("ggcoef_table()", {
         label = toupper
       ),
       table_header = c("Term", "Coef.", "SE", "CI"),
-      table_witdhs = c(2, 3)
+      table_widths = c(2, 3)
     )
   )
 })

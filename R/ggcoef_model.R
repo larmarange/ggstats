@@ -48,7 +48,7 @@
 #'   )
 #' )
 #'
-#' ggcoef_table(mod, table_text_size = 5, table_witdhs = c(1, 1))
+#' ggcoef_table(mod, table_text_size = 5, table_widths = c(1, 1))
 #'
 #' # a logistic regression example
 #' d_titanic <- as.data.frame(Titanic)
@@ -330,8 +330,11 @@ ggcoef_model <- function(
 #' @param table_stat_label optional named list of labeller functions for the
 #' displayed statistic (see examples)
 #' @param ci_pattern glue pattern for confidence intervals in the table
-#' @param table_witdhs relative widths of the forest plot and the coefficients
+#' @param table_widths relative widths of the forest plot and the coefficients
 #' table
+#' @param table_witdhs `r lifecycle::badge("deprecated")`\cr
+#' use `table_widths` instead
+#' @importFrom lifecycle deprecated
 #' @export
 ggcoef_table <- function(
     model,
@@ -364,8 +367,18 @@ ggcoef_table <- function(
     table_text_size = 3,
     table_stat_label = NULL,
     ci_pattern = "{conf.low}, {conf.high}",
-    table_witdhs = c(3, 2),
+    table_widths = c(3, 2),
+    table_witdhs = deprecated(),
     ...) {
+  if (lifecycle::is_present(table_witdhs)) {
+    lifecycle::deprecate_warn(
+      "0.10.0",
+      "ggcoef_table(table_witdhs)",
+      "ggcoef_table(table_widths)"
+    )
+    table_widths <- table_witdhs
+  }
+
   args <- list(...)
 
   # undocumented feature, we can pass directly `data`
@@ -431,7 +444,7 @@ ggcoef_table <- function(
         table_text_size = table_text_size,
         table_stat_label = table_stat_label,
         ci_pattern = ci_pattern,
-        table_witdhs = table_witdhs
+        table_widths = table_widths
       )
     ) |> patchwork::wrap_plots(ncol = 1)
     return(res)
@@ -595,7 +608,7 @@ ggcoef_table <- function(
   }
 
   # join the plots
-  patchwork::wrap_plots(coef_plot, table_plot, nrow = 1, widths = table_witdhs)
+  patchwork::wrap_plots(coef_plot, table_plot, nrow = 1, widths = table_widths)
 }
 
 #' @describeIn ggcoef_model a dodged variation of [ggcoef_model()] for

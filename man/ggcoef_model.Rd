@@ -70,7 +70,8 @@ ggcoef_table(
   table_text_size = 3,
   table_stat_label = NULL,
   ci_pattern = "{conf.low}, {conf.high}",
-  table_witdhs = c(3, 2),
+  table_widths = c(3, 2),
+  table_witdhs = deprecated(),
   ...
 )
 
@@ -283,8 +284,11 @@ displayed statistic (see examples)}
 
 \item{ci_pattern}{glue pattern for confidence intervals in the table}
 
-\item{table_witdhs}{relative widths of the forest plot and the coefficients
+\item{table_widths}{relative widths of the forest plot and the coefficients
 table}
+
+\item{table_witdhs}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}\cr
+use \code{table_widths} instead}
 
 \item{models}{named list of models}
 
@@ -407,7 +411,7 @@ ggcoef_table(
   )
 )
 
-ggcoef_table(mod, table_text_size = 5, table_witdhs = c(1, 1))
+ggcoef_table(mod, table_text_size = 5, table_widths = c(1, 1))
 
 # a logistic regression example
 d_titanic <- as.data.frame(Titanic)
