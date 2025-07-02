@@ -26,11 +26,12 @@ We checked 5 reverse dependencies (4 from CRAN + 1 from Bioconductor), comparing
 Check status summary:
                   OK
   Source packages  1
-  Reverse depends  4
+  Reverse depends  5
 
 Check results summary:
 ggstats ... OK
 rdepends_GGally ... OK
+rdepends_bregr ... OK
 rdepends_broom.helpers ... OK
 rdepends_ggplot2.utils ... OK
 rdepends_gtsummary ... OK
