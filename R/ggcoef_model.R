@@ -48,7 +48,7 @@
 #'   )
 #' )
 #'
-#' ggcoef_table(mod, table_text_size = 5, table_witdhs = c(1, 1))
+#' ggcoef_table(mod, table_text_size = 5, table_widths = c(1, 1))
 #'
 #' # a logistic regression example
 #' d_titanic <- as.data.frame(Titanic)
@@ -330,8 +330,10 @@ ggcoef_model <- function(
 #' @param table_stat_label optional named list of labeller functions for the
 #' displayed statistic (see examples)
 #' @param ci_pattern glue pattern for confidence intervals in the table
-#' @param table_witdhs relative widths of the forest plot and the coefficients
+#' @param table_widths relative widths of the forest plot and the coefficients
 #' table
+#' @param table_witdhs `r lifecycle::badge("deprecated")`\cr
+#' use `table_widths` instead
 #' @importFrom lifecycle deprecated
 #' @export
 ggcoef_table <- function(

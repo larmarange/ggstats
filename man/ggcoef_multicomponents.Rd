@@ -142,8 +142,8 @@ displayed statistic (see examples)}
 
 \item{ci_pattern}{glue pattern for confidence intervals in the table}
 
-\item{table_witdhs}{relative widths of the forest plot and the coefficients
-table}
+\item{table_witdhs}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}\cr
+use \code{table_widths} instead}
 
 \item{...}{parameters passed to \code{\link[=ggcoef_plot]{ggcoef_plot()}}}
 
