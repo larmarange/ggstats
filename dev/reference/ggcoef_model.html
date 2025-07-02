@@ -124,7 +124,8 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  table_text_size <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  table_stat_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ci_pattern <span class="op">=</span> <span class="st">"{conf.low}, {conf.high}"</span>,</span>
-<span>  table_witdhs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  table_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  table_witdhs <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -405,9 +406,14 @@ displayed statistic (see examples)</p></dd>
 <dd><p>glue pattern for confidence intervals in the table</p></dd>
 
 
-<dt id="arg-table-witdhs">table_witdhs<a class="anchor" aria-label="anchor" href="#arg-table-witdhs"></a></dt>
+<dt id="arg-table-widths">table_widths<a class="anchor" aria-label="anchor" href="#arg-table-widths"></a></dt>
 <dd><p>relative widths of the forest plot and the coefficients
 table</p></dd>
+
+
+<dt id="arg-table-witdhs">table_witdhs<a class="anchor" aria-label="anchor" href="#arg-table-witdhs"></a></dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a><br>
+use <code>table_widths</code> instead</p></dd>
 
 
 <dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
@@ -591,7 +597,7 @@ plot.</p></li>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcoef_model-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">ggcoef_table</span><span class="op">(</span><span class="va">mod</span>, table_text_size <span class="op">=</span> <span class="fl">5</span>, table_witdhs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ggcoef_table</span><span class="op">(</span><span class="va">mod</span>, table_text_size <span class="op">=</span> <span class="fl">5</span>, table_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcoef_model-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># a logistic regression example</span></span></span>
@@ -826,7 +832,7 @@ plot.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
