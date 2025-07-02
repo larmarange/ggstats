@@ -120,7 +120,6 @@ aesthetic if provided.
 
 \examples{
 \dontshow{if (requireNamespace("reshape")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\dontshow{\}) # examplesIf}
 library(ggplot2)
 
 data(tips, package = "reshape")
@@ -154,20 +153,21 @@ if (requireNamespace("scales")) {
     scale_y_continuous(labels = scales::percent)
 }
 }
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("scales")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(ggplot2)
 
 # taking into account some weights
-if (requireNamespace("scales")) {
-  d <- as.data.frame(Titanic)
-  ggplot(d) +
-    aes(
-      x = Class, y = as.integer(Survived == "Yes"),
-      weight = Freq, fill = Sex
-    ) +
-    geom_bar(stat = "weighted_mean", position = "dodge") +
-    scale_y_continuous(labels = scales::percent) +
-    labs(y = "Survived")
-}
+d <- as.data.frame(Titanic)
+ggplot(d) +
+  aes(
+    x = Class, y = as.integer(Survived == "Yes"),
+    weight = Freq, fill = Sex
+  ) +
+  geom_bar(stat = "weighted_mean", position = "dodge") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y = "Survived")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{vignette("stat_weighted_mean")}

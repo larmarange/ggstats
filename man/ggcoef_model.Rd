@@ -70,7 +70,8 @@ ggcoef_table(
   table_text_size = 3,
   table_stat_label = NULL,
   ci_pattern = "{conf.low}, {conf.high}",
-  table_witdhs = c(3, 2),
+  table_widths = c(3, 2),
+  table_witdhs = deprecated(),
   ...
 )
 
