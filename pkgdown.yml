@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   geom_diverging: geom_diverging.html
@@ -8,7 +8,7 @@ articles:
   stat_cross: stat_cross.html
   stat_prop: stat_prop.html
   stat_weighted_mean: stat_weighted_mean.html
-last_built: 2025-03-10T12:30Z
+last_built: 2025-07-03T07:50Z
 urls:
   reference: https://larmarange.github.io/ggstats/reference
   article: https://larmarange.github.io/ggstats/articles
