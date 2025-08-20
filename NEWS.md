@@ -1,5 +1,12 @@
 # ggstats (development version)
 
+**Improvements**
+
+* new `type = "table"` for `ggcoef_compare()` (#102)
+* new argument `x_limits` for `ggcoef_plot()`
+* limits of x-axis are now harmonized between sub-plots returned
+  by `ggcoef_table()` (#102)
+
 # ggstats 0.10.0
 
 **Improvements**

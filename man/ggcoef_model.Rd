@@ -123,7 +123,7 @@ ggcoef_faceted(
 
 ggcoef_compare(
   models,
-  type = c("dodged", "faceted"),
+  type = c("dodged", "faceted", "table"),
   tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
   tidy_args = NULL,
   conf.int = TRUE,
@@ -144,6 +144,12 @@ ggcoef_compare(
   emmeans_args = list(),
   significance = 1 - conf.level,
   significance_labels = NULL,
+  table_stat = c("estimate", "ci", "p.value"),
+  table_header = NULL,
+  table_text_size = 3,
+  table_stat_label = NULL,
+  ci_pattern = "{conf.low}, {conf.high}",
+  table_widths = c(3, 2),
   return_data = FALSE,
   ...
 )
@@ -178,7 +184,8 @@ ggcoef_plot(
   facet_row = "var_label",
   facet_col = NULL,
   facet_labeller = "label_value",
-  plot_title = NULL
+  plot_title = NULL,
+  x_limits = NULL
 )
 }
 \arguments{
@@ -360,6 +367,8 @@ if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::labe
 examples), more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
 
 \item{plot_title}{an optional plot title}
+
+\item{x_limits}{optional limits for the x axis}
 }
 \value{
 A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.
@@ -394,6 +403,10 @@ plot.
 \item \code{ggcoef_plot()}: plot a tidy \code{tibble} of coefficients
 
 }}
+\note{
+\code{ggcoef_compare(type = "table")} is not compatible with multi-components
+models.
+}
 \examples{
 mod <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 ggcoef_model(mod)
@@ -571,6 +584,7 @@ models <- list(
 
 ggcoef_compare(models)
 ggcoef_compare(models, type = "faceted")
+ggcoef_compare(models, type = "table")
 
 # you can reverse the vertical position of the point by using a negative
 # value for dodged_width (but it will produce some warnings)

@@ -324,6 +324,11 @@ ggcoef_compare(models)
 ggcoef_compare(models, type = "faceted")
 ```
 
+```{r fig.height=10, fig.width=8}
+ggcoef_compare(models, type = "table")
+```
+
+
 ## Advanced users
 
 Advanced users could use their own dataset and pass it to `ggcoef_plot()`. Such dataset could be produced by `ggcoef_model()`, `ggcoef_dodged()`, `ggcoef_faceted()` or `ggcoef_compare()` with the option `return_data = TRUE` or by using `broom::tidy()` or `broom.helpers::tidy_plus_plus()`.
