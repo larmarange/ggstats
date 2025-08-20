@@ -413,6 +413,18 @@ ggcoef_table <- function(
   }
 
   if ("group_by" %in% colnames(data)) {
+    x_limits <- args$x_limits
+    if (is.null(x_limits)) {
+      if (all(c("conf.low", "conf.high") %in% names(data)))
+        x_limits <- range(
+          data$estimate,
+          data$conf.low,
+          data$conf.high,
+          na.rm = TRUE
+        )
+      else
+        x_limits <- range(data$estimate, na.rm = TRUE)
+    }
     d <- data |>
       tidyr::nest(.by = dplyr::all_of("group_by"))
     res <- purrr::map2(
@@ -444,7 +456,8 @@ ggcoef_table <- function(
         table_text_size = table_text_size,
         table_stat_label = table_stat_label,
         ci_pattern = ci_pattern,
-        table_widths = table_widths
+        table_widths = table_widths,
+        x_limits = x_limits
       )
     ) |> patchwork::wrap_plots(ncol = 1)
     return(res)
