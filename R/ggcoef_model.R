@@ -1070,6 +1070,7 @@ ggcoef_data <- function(
 #'   if labels are too long, you can use [ggplot2::label_wrap_gen()] (see
 #'   examples), more information in the documentation of [ggplot2::facet_grid()]
 #' @param plot_title an optional plot title
+#' @param x_limits optional limits for the x axis
 #' @seealso `vignette("ggcoef_model")`
 #' @export
 ggcoef_plot <- function(
@@ -1102,7 +1103,8 @@ ggcoef_plot <- function(
     facet_row = "var_label",
     facet_col = NULL,
     facet_labeller = "label_value",
-    plot_title = NULL) {
+    plot_title = NULL,
+    x_limits = NULL) {
 
   if (!is.null(facet_row)) {
     data[[facet_row]] <- .in_order(data[[facet_row]])
@@ -1264,7 +1266,9 @@ ggcoef_plot <- function(
   }
 
   if (exponentiate) {
-    p <- p + ggplot2::scale_x_log10()
+    p <- p + ggplot2::scale_x_log10(limits = x_limits)
+  } else {
+    p <- p + ggplot2::scale_x_continuous(limits = x_limits)
   }
 
   if (!is.null(attr(data, "coefficients_label"))) {

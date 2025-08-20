@@ -184,7 +184,8 @@ ggcoef_plot(
   facet_row = "var_label",
   facet_col = NULL,
   facet_labeller = "label_value",
-  plot_title = NULL
+  plot_title = NULL,
+  x_limits = NULL
 )
 }
 \arguments{
@@ -366,6 +367,8 @@ if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::labe
 examples), more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
 
 \item{plot_title}{an optional plot title}
+
+\item{x_limits}{optional limits for the x axis}
 }
 \value{
 A \code{ggplot2} plot or a \code{tibble} if \code{return_data = TRUE}.

@@ -3,6 +3,7 @@
 **Improvements**
 
 * new `type = "table"` for `ggcoef_compare()` (#102)
+* new argument `x_limits` for `ggcoef_plot()`
 
 # ggstats 0.10.0
 
