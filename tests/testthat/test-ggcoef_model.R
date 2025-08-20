@@ -182,6 +182,11 @@ test_that("ggcoef_compare()", {
     ggcoef_compare(models, type = "faceted")
   )
 
+  vdiffr::expect_doppelganger(
+    "ggcoef_compare() table",
+    ggcoef_compare(models, type = "table")
+  )
+
   d <- as.data.frame(Titanic)
   m1 <- glm(Survived ~ Sex + Age, family = binomial, data = d, weights = Freq)
   m2 <- glm(
@@ -200,6 +205,11 @@ test_that("ggcoef_compare()", {
   vdiffr::expect_doppelganger(
     "ggcoef_compare() titanic faceted",
     ggcoef_compare(models, type = "faceted")
+  )
+
+  vdiffr::expect_doppelganger(
+    "ggcoef_compare() titanic table",
+    ggcoef_compare(models, type = "table")
   )
 
   rd <- ggcoef_compare(models, return_data = TRUE)

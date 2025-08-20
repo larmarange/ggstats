@@ -760,6 +760,9 @@ ggcoef_faceted <- function(
 #' @export
 #' @param models named list of models
 #' @param type a dodged plot, a faceted plot or multiple table plots?
+#' @note
+#' `ggcoef_compare(type = "table")` is not compatible with multi-components
+#' models.
 #' @examples
 #' \donttest{
 #' # Use ggcoef_compare() for comparing several models on the same plot
@@ -774,6 +777,7 @@ ggcoef_faceted <- function(
 #'
 #' ggcoef_compare(models)
 #' ggcoef_compare(models, type = "faceted")
+#' ggcoef_compare(models, type = "table")
 #'
 #' # you can reverse the vertical position of the point by using a negative
 #' # value for dodged_width (but it will produce some warnings)
@@ -781,7 +785,7 @@ ggcoef_faceted <- function(
 #' }
 ggcoef_compare <- function(
     models,
-    type = c("dodged", "faceted"),
+    type = c("dodged", "faceted", "table"),
     tidy_fun = broom.helpers::tidy_with_broom_or_parameters,
     tidy_args = NULL,
     conf.int = TRUE,
@@ -802,6 +806,12 @@ ggcoef_compare <- function(
     emmeans_args = list(),
     significance = 1 - conf.level,
     significance_labels = NULL,
+    table_stat = c("estimate", "ci", "p.value"),
+    table_header = NULL,
+    table_text_size = 3,
+    table_stat_label = NULL,
+    ci_pattern = "{conf.low}, {conf.high}",
+    table_widths = c(3, 2),
     return_data = FALSE,
     ...) {
   data <- lapply(
@@ -866,6 +876,24 @@ ggcoef_compare <- function(
   }
 
   type <- match.arg(type)
+
+  if (type == "table") {
+    data$group_by <- data$model
+    data <- data[!is.na(data$estimate), ]
+    return(
+      ggcoef_table(
+        data = data,
+        ...,
+        exponentiate = exponentiate,
+        table_stat = table_stat,
+        table_header = table_header,
+        table_text_size = table_text_size,
+        table_stat_label = table_stat_label,
+        ci_pattern = ci_pattern,
+        table_widths = table_widths
+      )
+    )
+  }
 
   args <- list(...)
   args$data <- data

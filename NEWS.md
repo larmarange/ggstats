@@ -1,5 +1,9 @@
 # ggstats (development version)
 
+**Improvements**
+
+* new `type = "table"` for `ggcoef_compare()` (#102)
+
 # ggstats 0.10.0
 
 **Improvements**
