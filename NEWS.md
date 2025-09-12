@@ -6,7 +6,9 @@
 * new argument `x_limits` for `ggcoef_plot()`
 * limits of x-axis are now harmonized between sub-plots returned
   by `ggcoef_table()` (#102)
-
+* `ggcoef_plot()` has been updated to account for the deprecation of
+  `ggplot2::geom_errorbarh()` in version 4.0.0 of `ggplot2` (#104)
+  
 # ggstats 0.10.0
 
 **Improvements**
