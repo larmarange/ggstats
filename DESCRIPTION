@@ -22,7 +22,7 @@ Imports:
     cli,
     dplyr,
     forcats,
-    ggplot2 (>= 3.4.0),
+    ggplot2 (>= 4.0.0),
     lifecycle,
     patchwork,
     purrr,

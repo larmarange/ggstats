@@ -1183,19 +1183,21 @@ ggcoef_plot <- function(
   if (errorbar) {
     if (!is.null(colour) && errorbar_coloured) {
       p <- p +
-        ggplot2::geom_errorbarh(
+        ggplot2::geom_errorbar(
           na.rm = TRUE,
-          height = errorbar_height,
-          position = position
+          width = errorbar_height,
+          position = position,
+          orientation = "y"
         )
     } else {
       p <- p +
-        ggplot2::geom_errorbarh(
+        ggplot2::geom_errorbar(
           mapping = ggplot2::aes(colour = NULL),
           na.rm = TRUE,
-          height = errorbar_height,
+          width = errorbar_height,
           colour = "black",
-          position = position
+          position = position,
+          orientation = "y"
         )
     }
   }
