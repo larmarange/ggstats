@@ -17,7 +17,7 @@ produced tibble to ggcoef_plot() to generate the plot."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ggstats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.10.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.11.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -177,7 +177,7 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span></span>
 <span><span class="fu">ggcoef_compare</span><span class="op">(</span></span>
 <span>  <span class="va">models</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dodged"</span>, <span class="st">"faceted"</span>, <span class="st">"table"</span><span class="op">)</span>,</span>
 <span>  tidy_fun <span class="op">=</span> <span class="fu">broom.helpers</span><span class="fu">::</span><span class="va"><a href="https://larmarange.github.io/broom.helpers/reference/tidy_with_broom_or_parameters.html" class="external-link">tidy_with_broom_or_parameters</a></span>,</span>
 <span>  tidy_args <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -198,6 +198,12 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  emmeans_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  significance <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">conf.level</span>,</span>
 <span>  significance_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  table_stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"estimate"</span>, <span class="st">"ci"</span>, <span class="st">"p.value"</span><span class="op">)</span>,</span>
+<span>  table_header <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  table_text_size <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  table_stat_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ci_pattern <span class="op">=</span> <span class="st">"{conf.low}, {conf.high}"</span>,</span>
+<span>  table_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>  return_data <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
@@ -232,7 +238,8 @@ produced <code>tibble</code> to <code>ggcoef_plot()</code> to generate the plot.
 <span>  facet_row <span class="op">=</span> <span class="st">"var_label"</span>,</span>
 <span>  facet_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_labeller <span class="op">=</span> <span class="st">"label_value"</span>,</span>
-<span>  plot_title <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  plot_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  x_limits <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -546,6 +553,10 @@ examples), more information in the documentation of <code><a href="https://ggplo
 <dt id="arg-plot-title">plot_title<a class="anchor" aria-label="anchor" href="#arg-plot-title"></a></dt>
 <dd><p>an optional plot title</p></dd>
 
+
+<dt id="arg-x-limits">x_limits<a class="anchor" aria-label="anchor" href="#arg-x-limits"></a></dt>
+<dd><p>optional limits for the x axis</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -570,6 +581,11 @@ multi groups models</p></li>
 plot.</p></li>
 <li><p><code>ggcoef_plot()</code>: plot a tidy <code>tibble</code> of coefficients</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p><code>ggcoef_compare(type = "table")</code> is not compatible with multi-components
+models.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="../articles/ggcoef_model.html">vignette("ggcoef_model")</a></code></p></div>
@@ -809,6 +825,8 @@ plot.</p></li>
 <span class="r-plt img"><img src="ggcoef_model-31.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, type <span class="op">=</span> <span class="st">"faceted"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcoef_model-32.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">ggcoef_compare</span><span class="op">(</span><span class="va">models</span>, type <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggcoef_model-33.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># you can reverse the vertical position of the point by using a negative</span></span></span>
 <span class="r-in"><span><span class="co"># value for dodged_width (but it will produce some warnings)</span></span></span>
@@ -819,7 +837,7 @@ plot.</p></li>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals.</span>
-<span class="r-plt img"><img src="ggcoef_model-33.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ggcoef_model-34.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
