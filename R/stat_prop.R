@@ -83,7 +83,6 @@ stat_prop <- function(mapping = NULL,
                       geom = "bar",
                       position = "fill",
                       ...,
-                      width = NULL,
                       na.rm = FALSE,
                       orientation = NA,
                       show.legend = NA,
@@ -93,7 +92,6 @@ stat_prop <- function(mapping = NULL,
   params <- list(
     na.rm = na.rm,
     orientation = orientation,
-    width = width,
     complete = complete,
     default_by = default_by,
     ...
@@ -150,6 +148,10 @@ StatProp <- ggplot2::ggproto("StatProp", ggplot2::Stat,
         "{.fn stat_prop} can only have an {.arg x} or an {.arg y} aesthetic.",
         call. = FALSE
       )
+    }
+    if (is.null(params$width)) {
+      x <- if (params$flipped_aes) "y" else "x"
+      params$width <- resolution(data[[x]], discrete = TRUE) * 0.9
     }
     params
   },

@@ -7,7 +7,7 @@
 \alias{auto_contrast}
 \title{Identify a suitable font color (black or white) given a background HEX color}
 \format{
-An object of class \code{uneval} of length 1.
+An object of class \code{ggplot2::mapping} (inherits from \code{uneval}, \code{gg}, \code{S7_object}) of length 1.
 }
 \source{
 Adapted from \code{saros} for \code{hex_code()} and from

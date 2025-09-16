@@ -479,7 +479,7 @@ ggcoef_model(
   show_p_values = FALSE
 )
 }
-\dontshow{if (requireNamespace("reshape")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("reshape")) withAutoprint(\{ # examplesIf}
 
 \donttest{
 data(tips, package = "reshape")
@@ -542,7 +542,7 @@ if (requireNamespace("emmeans")) {
 }
 }
 \dontshow{\}) # examplesIf}
-\dontshow{if (requireNamespace("nnet") && requireNamespace("gtsummary")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("nnet") && requireNamespace("gtsummary")) withAutoprint(\{ # examplesIf}
 
 \donttest{
 # multinomial model
@@ -553,7 +553,7 @@ ggcoef_dodged(mod, exponentiate = TRUE)
 ggcoef_faceted(mod, exponentiate = TRUE)
 }
 \dontshow{\}) # examplesIf}
-\dontshow{if (requireNamespace("pscl")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("pscl")) withAutoprint(\{ # examplesIf}
 \donttest{
 library(pscl)
 data("bioChemists", package = "pscl")

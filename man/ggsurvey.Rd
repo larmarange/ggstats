@@ -30,7 +30,7 @@ correct variance computation (like \code{\link[ggplot2:geom_smooth]{ggplot2::geo
 be statistically incorrect.
 }
 \examples{
-\dontshow{if (requireNamespace("survey")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("survey")) withAutoprint(\{ # examplesIf}
 data(api, package = "survey")
 dstrat <- survey::svydesign(
   id = ~1, strata = ~stype,
