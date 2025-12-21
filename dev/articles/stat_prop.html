@@ -105,14 +105,14 @@ also used <code><a href="https://ggplot2.tidyverse.org/reference/position_stack.
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"prop"</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_fill</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
 <p>Note that <code><a href="../reference/stat_prop.html">stat_prop()</a></code> has properly taken into account
 the <strong>weight</strong> aesthetic.</p>
 <p><code><a href="../reference/stat_prop.html">stat_prop()</a></code> is also compatible with faceting. In that
 case, proportions are computed separately in each facet.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="displaying-proportions-of-the-total">Displaying proportions of the total<a class="anchor" aria-label="anchor" href="#displaying-proportions-of-the-total"></a>
@@ -129,7 +129,7 @@ stacked bar chart.</p>
 <span>    stat <span class="op">=</span> <span class="st">"prop"</span>,</span>
 <span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_stack</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="a-dodged-bar-plot-to-compare-two-distributions">A dodged bar plot to compare two distributions<a class="anchor" aria-label="anchor" href="#a-dodged-bar-plot-to-compare-two-distributions"></a>
@@ -139,7 +139,7 @@ stacked bar chart.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, fill <span class="op">=</span> <span class="va">Sex</span>, weight <span class="op">=</span> <span class="va">Freq</span>, by <span class="op">=</span> <span class="va">Sex</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
 <p>On the previous graph, it is difficult to see if first class is over-
 or under-represented among women, due to the fact they were much more
 men on the boat. <code><a href="../reference/stat_prop.html">stat_prop()</a></code> could be used to adjust the
@@ -150,7 +150,7 @@ graph by displaying instead the proportion within each category
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span>, fill <span class="op">=</span> <span class="va">Sex</span>, weight <span class="op">=</span> <span class="va">Freq</span>, by <span class="op">=</span> <span class="va">Sex</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"prop"</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span><span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
 <p>The same example with labels:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
@@ -166,7 +166,7 @@ graph by displaying instead the proportion within each category
 <span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span><span class="fl">.9</span><span class="op">)</span>,</span>
 <span>    stat <span class="op">=</span> <span class="st">"prop"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="displaying-unobserved-levels">Displaying unobserved levels<a class="anchor" aria-label="anchor" href="#displaying-unobserved-levels"></a>
@@ -187,7 +187,7 @@ values.</p>
 <span>    stat <span class="op">=</span> <span class="st">"prop"</span>,</span>
 <span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_fill</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700"></p>
 <p>Adding <code>complete = "fill"</code> will generate “0.0%” labels
 where relevant.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -197,7 +197,7 @@ where relevant.</p>
 <span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_fill</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span>,</span>
 <span>    complete <span class="op">=</span> <span class="st">"fill"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="using-geom_prop_bar-and-geom_prop_text">Using <code>geom_prop_bar()</code> and
@@ -215,7 +215,7 @@ bar plot.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">clarity</span>, fill <span class="op">=</span> <span class="va">cut</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_prop_bar.html">geom_prop_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_prop_bar.html">geom_prop_text</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="700"></p>
 <p>You can specify a <code>by</code> aesthetic. For example, to
 reproduce the comparison of the two distributions presented earlier.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -228,7 +228,7 @@ reproduce the comparison of the two distributions presented earlier.</p>
 <span>    vjust <span class="op">=</span> <span class="op">-</span> <span class="fl">0.5</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span><span class="op">)</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="700"></p>
 <p>You can also display counts instead of proportions.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span> <span class="op">+</span></span>
@@ -244,7 +244,7 @@ reproduce the comparison of the two distributions presented earlier.</p>
 <span><span class="co">#&gt; Warning in ggplot2::geom_text(mapping = mapping, data = data, position =</span></span>
 <span><span class="co">#&gt; position, : Ignoring unknown parameters: `height`, `labels`, and</span></span>
 <span><span class="co">#&gt; `labeller`</span></span></code></pre></div>
-<p><img src="stat_prop_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="stat_prop_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -257,7 +257,7 @@ reproduce the comparison of the two distributions presented earlier.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
