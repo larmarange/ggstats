@@ -2,6 +2,8 @@
 
 **Improvements**
 
+* `gglikert()`, `gglikert_stacked()` and `gglikert_data()` now accepts
+  survey objects (#110)
 * compatibility with `vctrs` version 0.7.0 added (#109)
 
 # ggstats 0.11.0

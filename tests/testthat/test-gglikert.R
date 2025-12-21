@@ -260,6 +260,29 @@ test_that("gglikert()", {
     gglikert(df_group, q1:q6, data_fun = f)
   )
   expect_error(gglikert(df_group, data_fun = "text"))
+
+  # testing compatibility with survey object
+  skip_if_not_installed("survey")
+  set.seed(42)
+  df$w <- .5 + stats::runif(n = nrow(df))
+  ds <- survey::svydesign(ids = ~ 1, weights = ~ w, data = df)
+  expect_no_error(
+    df |> gglikert_data(include = q1:q4, weights = w)
+  )
+  expect_no_error(
+    ds |> gglikert_data(include = q1:q4)
+  )
+  expect_error(
+    ds |> gglikert_data(include = q1:q4, weights = w)
+  )
+  expect_doppelganger(
+    "gglikert() survey",
+    gglikert(ds, q1:q4)
+  )
+  expect_doppelganger(
+    "gglikert_stacked() survey",
+    gglikert_stacked(ds, q1:q4)
+  )
 })
 
 test_that("hex_bw()", {
