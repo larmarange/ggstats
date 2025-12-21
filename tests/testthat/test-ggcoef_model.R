@@ -6,12 +6,12 @@ test_that("ggcoef_model()", {
   data(tips, package = "reshape")
   mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() mod simple",
     ggcoef_model(mod_simple)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() mod simple no guide",
     ggcoef_model(mod_simple, shape_guide = FALSE, colour_guide = FALSE)
   )
@@ -34,13 +34,13 @@ test_that("ggcoef_model()", {
         total_bill = "Bill's total"
       )
     mod_labelled <- lm(tip ~ day + time + total_bill, data = tips_labelled)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       "ggcoef_model() mod labelled",
       ggcoef_model(mod_labelled)
     )
   }
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() mod simple with variable labels",
     ggcoef_model(
       mod_simple,
@@ -53,7 +53,7 @@ test_that("ggcoef_model()", {
   )
 
   # if labels are too long, you can use 'facet_labeller' to wrap them
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() mod simple facet_labeller",
     ggcoef_model(
       mod_simple,
@@ -67,7 +67,7 @@ test_that("ggcoef_model()", {
   )
 
   # do not display variable facets but add colour guide
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() mod simple no variable facets",
     ggcoef_model(
       mod_simple,
@@ -86,31 +86,31 @@ test_that("ggcoef_model()", {
     family = binomial
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() logistic regression",
     ggcoef_model(mod_titanic, exponentiate = TRUE)
   )
 
   # display intercept
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() logistic regression with intercept",
     ggcoef_model(mod_titanic, exponentiate = TRUE, intercept = TRUE)
   )
 
   # display only a subset of terms
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() logistic regression subset",
     ggcoef_model(mod_titanic, exponentiate = TRUE, include = c("Age", "Class"))
   )
 
   # do not change points' shape based on significance
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() logistic regression no significance",
     ggcoef_model(mod_titanic, exponentiate = TRUE, significance = NULL)
   )
 
   # a black and white version
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() logistic regression black and white",
     ggcoef_model(
       mod_titanic,
@@ -121,7 +121,7 @@ test_that("ggcoef_model()", {
   )
 
   # show dichotomous terms on one row
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() logistic regression no reference row",
     ggcoef_model(
       mod_titanic,
@@ -138,7 +138,7 @@ test_that("ggcoef_model()", {
     tip ~ poly(total_bill, 3) + day,
     data = tips,
   )
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() polynomial terms",
     ggcoef_model(mod_poly)
   )
@@ -151,7 +151,7 @@ test_that("ggcoef_model()", {
       data = tips,
       contrasts = list(time = contr.sum, day = contr.treatment(4, base = 3))
     )
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       "ggcoef_model() different types of contrasts",
       ggcoef_model(mod2)
     )
@@ -172,17 +172,17 @@ test_that("ggcoef_compare()", {
     "With interaction" = mod3
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_compare() dodged",
     ggcoef_compare(models)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_compare() faceted",
     ggcoef_compare(models, type = "faceted")
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_compare() table",
     ggcoef_compare(models, type = "table")
   )
@@ -197,17 +197,17 @@ test_that("ggcoef_compare()", {
   )
   models <- list("Model 1" = m1, "Model 2" = m2)
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_compare() titanic dodged",
     ggcoef_compare(models)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_compare() titanic faceted",
     ggcoef_compare(models, type = "faceted")
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_compare() titanic table",
     ggcoef_compare(models, type = "table")
   )
@@ -236,27 +236,27 @@ test_that("ggcoef_*() and multinom models", {
     weights = hec$Freq
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() multinom",
     ggcoef_model(mod, exponentiate = TRUE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() multinom",
     ggcoef_table(mod, exponentiate = TRUE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_dodged() multinom",
     ggcoef_dodged(mod, exponentiate = TRUE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_faceted() multinom",
     ggcoef_faceted(mod, exponentiate = TRUE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_faceted() with custom group_labels",
     ggcoef_faceted(
       mod,
@@ -277,7 +277,7 @@ test_that("ggcoef_model() works with tieders not returning p-values", {
       broom::tidy(...) |>
       dplyr::select(-dplyr::all_of("p.value"))
   }
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() no p values",
     ggcoef_model(mod, tidy_fun = my_tidier)
   )
@@ -316,7 +316,7 @@ test_that("ggcoef_compare() does not produce an error with an include", {
   )
   models <- list("Model 1" = m1, "Model 2" = m2)
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_compare() with include",
     ggcoef_compare(models, include = broom.helpers::starts_with("p"))
   )
@@ -367,17 +367,17 @@ test_that("ggcoef_table()", {
   data(tips, package = "reshape")
   mod_simple <- lm(tip ~ day + time + total_bill, data = tips)
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() mod simple",
     ggcoef_table(mod_simple)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() table_stat",
     ggcoef_table(mod_simple, table_stat = c("p.value", "ci"))
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() table_header",
     ggcoef_table(mod_simple, table_header = c("A", "B", "C"))
   )
@@ -386,12 +386,12 @@ test_that("ggcoef_table()", {
     ggcoef_table(mod_simple, table_header = c("A", "B", "C", "D"))
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() table_text_size",
     ggcoef_table(mod_simple, table_text_size = 5)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() table_stat_label ",
     ggcoef_table(
       mod_simple,
@@ -401,37 +401,37 @@ test_that("ggcoef_table()", {
     )
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() ci_pattern",
     ggcoef_table(mod_simple, ci_pattern = "{conf.low} to {conf.high}")
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() table_widths",
     ggcoef_table(mod_simple, table_widths = c(1, 2))
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() stripped_rows",
     ggcoef_table(mod_simple, stripped_rows = FALSE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() show_p_values & signif_stars",
     ggcoef_table(mod_simple, show_p_values = TRUE, signif_stars = TRUE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() show_p_values only",
     ggcoef_table(mod_simple, show_p_values = TRUE, signif_stars = FALSE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() signif_stars only",
     ggcoef_table(mod_simple, show_p_values = FALSE, signif_stars = TRUE)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() customized statistics",
     ggcoef_table(
       mod_simple,
@@ -459,27 +459,27 @@ test_that("ggcoef_*() and multicomponents models", {
   data("bioChemists", package = "pscl")
   mod <- zeroinfl(art ~ fem * mar | fem + mar, data = bioChemists)
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_model() zeroinfl",
     ggcoef_model(mod)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_table() zeroinfl",
     ggcoef_table(mod)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_dodged() zeroinfl",
     ggcoef_dodged(mod)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_faceted() zeroinfl",
     ggcoef_faceted(mod)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcoef_faceted() zeroinfl with custom group_labels",
     ggcoef_faceted(
       mod,

@@ -9,7 +9,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     theme_minimal() +
     theme(legend.position = "bottom")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_bar_connector",
     p
   )
@@ -26,7 +26,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     ) +
     theme(legend.position = "bottom")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_bar_connector continuous and no baseline",
     p
   )
@@ -37,7 +37,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     geom_bar_connector(width = .5, position = "fill") +
     theme(legend.position = "bottom")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_bar_connector position fill",
     p
   )
@@ -48,7 +48,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     geom_bar_connector(width = .5, position = "diverging", linewidth = .25) +
     theme(legend.position = "bottom")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_bar_connector position diverging",
     p
   )
@@ -58,7 +58,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     geom_connector() +
     geom_point()
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_connector",
     p
   )
@@ -68,7 +68,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     geom_connector(continuous = TRUE) +
     geom_point()
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_connector continuous",
     p
   )
@@ -78,7 +78,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     geom_connector(width = 0) +
     geom_point()
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_connector zero width",
     p
   )
@@ -88,7 +88,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     geom_connector(width = Inf) +
     geom_point()
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_connector infinite width",
     p
   )
@@ -98,7 +98,7 @@ test_that("geom_connector() and geom_bar_connector()() works", {
     geom_connector(width = Inf, continuous = TRUE) +
     geom_point()
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_connector infinite width and continuous",
     p
   )

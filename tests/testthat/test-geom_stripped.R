@@ -6,7 +6,7 @@ test_that("geom_stripped_cols() and geom_stripped_rows() works", {
     aes(x = Species, y = Petal.Length) +
     geom_count()
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "stripped rows and cols",
     p +
       geom_stripped_rows(

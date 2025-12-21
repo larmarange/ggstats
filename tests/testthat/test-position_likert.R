@@ -9,12 +9,12 @@ test_that("position_likert()", {
     scale_fill_brewer(palette = "PiYG") +
     xlab("proportion")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_likert() base",
     p
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_likert() facet",
     p + facet_grid(~ price > 2500)
   )
@@ -25,12 +25,12 @@ test_that("position_likert()", {
     scale_x_continuous(label = label_number_abs()) +
     scale_fill_brewer(palette = "PiYG")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_diverging() base",
     p
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_diverging() facet",
     p + facet_grid(~ price > 2500)
   )
@@ -39,7 +39,7 @@ test_that("position_likert()", {
     aes(y = clarity, fill = cut) +
     geom_bar(position = position_likert(reverse = TRUE))
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_likert() reverse",
     p
   )
@@ -48,7 +48,7 @@ test_that("position_likert()", {
     aes(y = clarity, fill = cut) +
     geom_bar(position = position_diverging(reverse = TRUE))
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_diverging() reverse",
     p
   )
@@ -71,7 +71,7 @@ test_that("position_likert()", {
     scale_fill_brewer(palette = "PiYG", direction = -1) +
     xlab("proportion")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_likert() vjust",
     p
   )
@@ -83,7 +83,7 @@ test_that("position_likert()", {
     scale_fill_brewer(palette = "PiYG") +
     xlab("proportion")
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "position_likert() exclude_fill_values",
     p
   )
@@ -96,7 +96,7 @@ test_that("geom_diverging() & associates", {
     aes(y = clarity, fill = cut) +
     geom_diverging() +
     geom_diverging_text(aes(color = after_scale(hex_bw(.data$fill))))
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_diverging and geom_diverging_text",
     p
   )
@@ -106,7 +106,7 @@ test_that("geom_diverging() & associates", {
     aes(y = clarity, fill = cut) +
     geom_likert() +
     geom_likert_text(aes(color = after_scale(hex_bw(.data$fill))))
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_likert and geom_likert_text",
     p
   )
@@ -116,7 +116,7 @@ test_that("geom_diverging() & associates", {
     aes(y = Class, fill = Sex, weight = Freq) +
     geom_pyramid() +
     geom_pyramid_text()
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_pyramid and geom_pyramid_text",
     p
   )
