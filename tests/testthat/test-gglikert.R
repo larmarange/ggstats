@@ -20,7 +20,7 @@ test_that("gglikert()", {
       q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
       q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
       q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
-    ) %>%
+    ) |>
     dplyr::mutate(dplyr::across(
       dplyr::everything(),
       ~ factor(.x, levels = likert_levels)
@@ -45,7 +45,7 @@ test_that("gglikert()", {
         likert_levels_dk, 150,
         replace = TRUE, prob = c(1, 0, 1, 1, 0, 1)
       )
-    ) %>%
+    ) |>
     dplyr::mutate(dplyr::across(
       dplyr::everything(),
       ~ factor(.x, levels = likert_levels_dk)
@@ -159,12 +159,12 @@ test_that("gglikert()", {
 
   vdiffr::expect_doppelganger(
     "gglikert() variable labels and y_label_wrap",
-    df %>%
+    df |>
       labelled::set_variable_labels(
         q1 = "first question",
         q2 = "second question",
         q3 = "third question with a very very very veru very very long label"
-      ) %>%
+      ) |>
       gglikert(
         variable_labels = c(
           q2 = "question 2",

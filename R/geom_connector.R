@@ -239,7 +239,7 @@ connect_points <- function(data, width = 0.9, continuous = FALSE) {
     dplyr::select(-dplyr::all_of(c("..rank..", "..order..")))
 }
 
-undim <- function (x) {
+undim <- function(x) {
   dim <- dim(x)
 
   if (is.null(dim)) {

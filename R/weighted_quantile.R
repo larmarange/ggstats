@@ -104,5 +104,5 @@ weighted.quantile <- function(x, w, probs = seq(0, 1, 0.25),
     format(100 * probs, trim = TRUE),
     "%"
   )
-  return(result)
+  result
 }
