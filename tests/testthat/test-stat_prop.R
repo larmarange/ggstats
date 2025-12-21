@@ -8,24 +8,24 @@ test_that("stat_prop()", {
     geom_bar(position = "fill") +
     geom_text(stat = "prop", position = position_fill(.5))
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "stat_prop() titanic",
     p
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "stat_prop() direct call",
     ggplot(d) +
       aes(x = Class, fill = Survived, weight = Freq, by = Class) +
       stat_prop(geom = "bar")
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "stat_prop() titanic-facet",
     p + facet_grid(~Sex)
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "stat_prop() titanic-dodge",
     ggplot(d) +
       aes(x = Class, fill = Survived, weight = Freq) +
@@ -37,7 +37,7 @@ test_that("stat_prop()", {
       )
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "stat_prop() titanic-dodge (not specifying by)",
     ggplot(d) +
       aes(x = Class, fill = Survived, weight = Freq) +
@@ -48,7 +48,7 @@ test_that("stat_prop()", {
       )
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "stat_prop() titanic-stack",
     ggplot(d) +
       aes(x = Class, fill = Survived, weight = Freq, by = 1) +
@@ -71,7 +71,7 @@ test_that("stat_prop() works with an y aesthetic", {
     geom_bar(position = "fill") +
     geom_text(stat = "prop", position = position_fill(.5))
 
-  vdiffr::expect_doppelganger("stat_prop() y-aes", p)
+  expect_doppelganger("stat_prop() y-aes", p)
 })
 
 test_that("stat_prop() works with a character by", {
@@ -88,7 +88,7 @@ test_that("stat_prop() works with a character by", {
     geom_bar(position = "fill") +
     geom_text(stat = "prop", position = position_fill(.5))
 
-  vdiffr::expect_doppelganger("stat_prop() by-character", p)
+  expect_doppelganger("stat_prop() by-character", p)
 })
 
 test_that("stat_prop() works with default_by", {
@@ -100,22 +100,22 @@ test_that("stat_prop() works with default_by", {
   p <- ggplot(d) +
     aes(x = Class, fill = Survived, weight = Freq, y = after_stat(prop)) +
     geom_bar(stat = "prop")
-  vdiffr::expect_doppelganger("stat_prop() default_by none", p)
+  expect_doppelganger("stat_prop() default_by none", p)
 
   p <- ggplot(d) +
     aes(x = Class, fill = Survived, weight = Freq, y = after_stat(prop)) +
     geom_bar(stat = "prop", default_by = "fill")
-  vdiffr::expect_doppelganger("stat_prop() default_by fill", p)
+  expect_doppelganger("stat_prop() default_by fill", p)
 
   p <- ggplot(d) +
     aes(x = Class, fill = Survived, weight = Freq, y = after_stat(prop)) +
     geom_bar(stat = "prop", default_by = "x")
-  vdiffr::expect_doppelganger("stat_prop() default_by x", p)
+  expect_doppelganger("stat_prop() default_by x", p)
 
   p <- ggplot(d) +
     aes(y = Class, fill = Survived, weight = Freq, x = after_stat(prop)) +
     geom_bar(stat = "prop", default_by = "x")
-  vdiffr::expect_doppelganger("stat_prop() default_by x horizontal", p)
+  expect_doppelganger("stat_prop() default_by x horizontal", p)
 })
 
 test_that("stat_prop() complete argument", {
@@ -138,7 +138,7 @@ test_that("stat_prop() complete argument", {
       stat = "prop",
       complete = "color"
     )
-  vdiffr::expect_doppelganger("stat_prop() complete color", p)
+  expect_doppelganger("stat_prop() complete color", p)
 
   p <-
     ggplot(df) +
@@ -147,7 +147,7 @@ test_that("stat_prop() complete argument", {
       stat = "prop",
       complete = "colour"
     )
-  vdiffr::expect_doppelganger("stat_prop() complete colour", p)
+  expect_doppelganger("stat_prop() complete colour", p)
 
   p <-
     ggplot(df) +
@@ -156,7 +156,7 @@ test_that("stat_prop() complete argument", {
       stat = "prop",
       complete = "group"
     )
-  vdiffr::expect_doppelganger("stat_prop() complete group", p)
+  expect_doppelganger("stat_prop() complete group", p)
 })
 
 test_that("geom_prop_bar() & geom_prop_text() & geom_prop_connector()", {
@@ -167,7 +167,7 @@ test_that("geom_prop_bar() & geom_prop_text() & geom_prop_connector()", {
     geom_prop_bar() +
     geom_prop_text() +
     geom_prop_connector()
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "geom_prop_bar() & geom_prop_text() & geom_prop_connector()",
     p
   )

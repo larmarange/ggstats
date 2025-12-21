@@ -1,5 +1,9 @@
 # ggstats (development version)
 
+**Improvements**
+
+* compatibility with `vctrs` version 0.7.0 added (#109)
+
 # ggstats 0.11.0
 
 **Improvements**

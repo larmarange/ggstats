@@ -11,7 +11,7 @@ test_that("ggsurvey works correctly", {
     fpc = ~fpc
   )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggsurvey() dstrat",
     ggsurvey(dstrat) +
       aes(x = cnum, y = dnum) +
@@ -21,7 +21,7 @@ test_that("ggsurvey works correctly", {
   d <- as.data.frame(Titanic)
   dw <- survey::svydesign(ids = ~1, weights = ~Freq, data = d)
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggsurvey() titanic",
     ggsurvey(dw) +
       aes(x = Class, fill = Survived) +
