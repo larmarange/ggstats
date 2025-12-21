@@ -4,6 +4,12 @@
 
 **Improvements**
 
+- [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md),
+  [`gglikert_stacked()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
+  and
+  [`gglikert_data()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
+  now accepts survey objects
+  ([\#110](https://github.com/larmarange/ggstats/issues/110))
 - compatibility with `vctrs` version 0.7.0 added
   ([\#109](https://github.com/larmarange/ggstats/issues/109))
 

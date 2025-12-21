@@ -84,7 +84,8 @@ gglikert_stacked(
 
 - data:
 
-  a data frame
+  a data frame, a data frame extension (e.g. a tibble), or a survey
+  design object
 
 - include:
 
