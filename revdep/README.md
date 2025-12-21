@@ -10,10 +10,10 @@
 |collate  |French_France.utf8                                                                                                                                               |
 |ctype    |French_France.utf8                                                                                                                                               |
 |tz       |Europe/Paris                                                                                                                                                     |
-|date     |2025-12-21                                                                                                                                                       |
+|date     |2025-12-22                                                                                                                                                       |
 |rstudio  |2025.09.2+418 Cucumberleaf Sunflower (desktop)                                                                                                                   |
 |pandoc   |3.6.3 @ C:\PROGRA~1\Quarto\bin\tools\pandoc.exe                                                                                                                  |
-|quarto   |ERROR: Unknown command "TMPDIR=C:/Users/josep/AppData/Local/Temp/RtmpGagiW4/fileb0f84ed839e". Did you mean command "create"? @ C:\PROGRA~1\Quarto\bin\quarto.exe |
+|quarto   |ERROR: Unknown command "TMPDIR=C:/Users/josep/AppData/Local/Temp/RtmpqK19ow/file3ed41844442". Did you mean command "create"? @ C:\PROGRA~1\Quarto\bin\quarto.exe |
 
 # Dependencies
 
@@ -53,4 +53,11 @@
 |withr        |3.0.2  |3.0.2       |   |
 
 # Revdeps
+
+## Failed to check (2)
+
+|package       |version |error |warning |note |
+|:-------------|:-------|:-----|:-------|:----|
+|bregr         |?       |      |        |     |
+|broom.helpers |?       |      |        |     |
 
