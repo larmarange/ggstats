@@ -57,11 +57,11 @@ test_that("stat_cross()", {
 })
 
 test_that("phi coefficients", {
-  res <- Titanic %>%
-    as.data.frame() %>%
-    xtabs(Freq ~ Sex + Class, data = .) %>%
-    chisq.test() %>%
-    augment_chisq_add_phi() %>%
+  res <- Titanic |>
+    as.data.frame() |>
+    xtabs(Freq ~ Sex + Class, data = _) |>
+    chisq.test() |>
+    augment_chisq_add_phi() |>
     dplyr::mutate(.phi = round(.data$.phi, digits = 3))
   expect_equal(
     res$.phi,

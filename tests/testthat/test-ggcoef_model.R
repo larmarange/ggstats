@@ -27,7 +27,7 @@ test_that("ggcoef_model()", {
   # custom variable labels
   # you can use to define variable labels before computing model
   if (requireNamespace("labelled")) {
-    tips_labelled <- tips %>%
+    tips_labelled <- tips |>
       labelled::set_variable_labels(
         day = "Day of the week",
         time = "Lunch or Dinner",
@@ -273,8 +273,8 @@ test_that("ggcoef_model() works with tieders not returning p-values", {
 
   mod <- lm(Sepal.Width ~ Species, iris)
   my_tidier <- function(x, ...) {
-    x %>%
-      broom::tidy(...) %>%
+    x |>
+      broom::tidy(...) |>
       dplyr::select(-dplyr::all_of("p.value"))
   }
   vdiffr::expect_doppelganger(
@@ -346,7 +346,7 @@ test_that("ggcoef_model() works with pairwise contratst", {
 test_that("tidy_args is supported", {
   mod <- lm(Sepal.Length ~ Sepal.Width, data = iris)
   custom <- function(x, force = 1, ...) {
-    broom::tidy(x, ...) %>%
+    broom::tidy(x, ...) |>
       dplyr::mutate(estimate = force)
   }
   res <- ggcoef_model(

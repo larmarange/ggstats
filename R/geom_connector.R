@@ -194,6 +194,7 @@ GeomConnector <- ggproto(
       ) |>
       unclass() |>
       as.list() |>
+      undim() |>
       dplyr::bind_rows()
     data <- flip_data(data, flipped_aes)
     GeomPath$draw_panel(
@@ -236,4 +237,21 @@ connect_points <- function(data, width = 0.9, continuous = FALSE) {
   dplyr::bind_rows(d1, d2, d3) |>
     dplyr::arrange(.data[["..rank.."]], .data[["..order.."]]) |>
     dplyr::select(-dplyr::all_of(c("..rank..", "..order..")))
+}
+
+undim <- function(x) {
+  dim <- dim(x)
+
+  if (is.null(dim)) {
+    return(x)
+  }
+
+  dim(x) <- NULL
+
+  if (length(dim) == 1L && !is.null(rownames(x))) {
+    # Preserve names of 1D arrays
+    names(x) <- rownames(x)
+  }
+
+  x
 }
