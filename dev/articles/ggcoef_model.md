@@ -322,14 +322,8 @@ ggcoef_table(
     label = toupper
   ),
   table_header = c("Term", "Coef.", "SE", "CI"),
-  table_witdhs = c(2, 3)
+  table_widths = c(2, 3)
 )
-#> Warning: The `table_witdhs` argument of `ggcoef_table()` is deprecated as of ggstats
-#> 0.10.0.
-#> ℹ Please use the `table_widths` argument instead.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
 ```
 
 ![](ggcoef_model_files/figure-html/unnamed-chunk-20-1.png)
