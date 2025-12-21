@@ -9,7 +9,7 @@ test_that("ggcascade() works", {
       "big & ideal" = carat > .5 & cut == "Ideal"
     )
 
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcascade diamonds",
     p
   )
@@ -23,7 +23,7 @@ test_that("ggcascade() works", {
       .ncol = 3,
       .arrows = FALSE
     )
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcascade mpg by, no arrow and ncol",
     p
   )
@@ -37,7 +37,7 @@ test_that("ggcascade() works", {
       .add_n = FALSE,
       .text_size = 2
     )
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcascade mpg py pick, no n, text_size",
     p
   )
@@ -51,7 +51,7 @@ test_that("ggcascade() works", {
       .weights = Freq,
       .by = Class
     )
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     "ggcascade titanic weights",
     p
   )
