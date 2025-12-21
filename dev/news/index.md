@@ -2,6 +2,11 @@
 
 ## ggstats (development version)
 
+**Improvements**
+
+- compatibility with `vctrs` version 0.7.0 added
+  ([\#109](https://github.com/larmarange/ggstats/issues/109))
+
 ## ggstats 0.11.0
 
 CRAN release: 2025-09-15
