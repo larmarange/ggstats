@@ -371,12 +371,11 @@ ggcoef_table <- function(
     table_witdhs = deprecated(),
     ...) {
   if (lifecycle::is_present(table_witdhs)) {
-    lifecycle::deprecate_warn(
+    lifecycle::deprecate_stop(
       "0.10.0",
       "ggcoef_table(table_witdhs)",
       "ggcoef_table(table_widths)"
     )
-    table_widths <- table_witdhs
   }
 
   args <- list(...)
