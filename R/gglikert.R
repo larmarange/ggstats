@@ -422,7 +422,7 @@ gglikert_data <- function(data,
                           data_fun = NULL) {
   rlang::check_installed("labelled")
 
-  if (!inherits(design, "survey.design")) {
+  if (inherits(data, "survey.design")) {
     ..weights.. <- stats::weights(data)
     data <- data$variables
     if (!is.null(weights))
