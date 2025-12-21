@@ -79,7 +79,8 @@ gglikert_stacked(
 )
 }
 \arguments{
-\item{data}{a data frame}
+\item{data}{a data frame, a data frame extension (e.g. a tibble),
+or a survey design object}
 
 \item{include}{variables to include, accepts \link[dplyr:select]{tidy-select}
 syntax}

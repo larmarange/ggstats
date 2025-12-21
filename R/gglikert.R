@@ -10,7 +10,8 @@
 #' be considered. You can also pass custom variables labels with the
 #' `variable_labels` argument.
 #'
-#' @param data a data frame
+#' @param data a data frame, a data frame extension (e.g. a tibble),
+#' or a survey design object
 #' @param include variables to include, accepts [tidy-select][dplyr::select]
 #' syntax
 #' @param weights optional variable name of a weighting variable,
@@ -420,6 +421,19 @@ gglikert_data <- function(data,
                           cutoff = NULL,
                           data_fun = NULL) {
   rlang::check_installed("labelled")
+
+  if (!inherits(design, "survey.design")) {
+    ..weights.. <- stats::weights(data)
+    data <- data$variables
+    if (!is.null(weights))
+      cli::cli_abort(paste(
+        "{.arg data} is a survey object:",
+        "you can't pass a {.arg weights} argument.",
+        "Survey weights from the survey object will automatically be retrieved."
+      ))
+    data$..weights.. <- ..weights..
+    weights <- dplyr::all_of("..weights..")
+  }
 
   sort <- match.arg(sort)
   sort_method <- match.arg(sort_method)
