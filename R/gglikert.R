@@ -423,16 +423,17 @@ gglikert_data <- function(data,
   rlang::check_installed("labelled")
 
   if (inherits(data, "survey.design")) {
-    ..weights.. <- stats::weights(data)
+    survey_weights <- stats::weights(data)
     data <- data$variables
-    if (!is.null(weights))
+    weights <- enquo(weights)
+    if (!rlang::quo_is_null(weights))
       cli::cli_abort(paste(
         "{.arg data} is a survey object:",
         "you can't pass a {.arg weights} argument.",
         "Survey weights from the survey object will automatically be retrieved."
       ))
-    data$..weights.. <- ..weights..
-    weights <- dplyr::all_of("..weights..")
+    data$survey_weights <- survey_weights
+    weights <- dplyr::all_of("survey_weights")
   }
 
   sort <- match.arg(sort)
