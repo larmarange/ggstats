@@ -22,18 +22,18 @@ We checked 6 reverse dependencies (4 from CRAN + 2 from Bioconductor), comparing
 
 ------- Check results summary ------
 Check status summary:
-                  ERROR OK
-  Source packages     0  1
-  Reverse depends     1  4
+                  OK
+  Source packages  1
+  Reverse depends  6
 
 Check results summary:
 ggstats ... OK
 rdepends_GGally ... OK
-rdepends_bregr ... ERROR
-* checking tests ... ERROR
+rdepends_bregr ... OK
 rdepends_broom.helpers ... OK
 rdepends_ggplot2.utils ... OK
 rdepends_gtsummary ... OK
+rdepends_guideR ... OK
 
 ------- Check for regressions ------
 No changes between old and new version
