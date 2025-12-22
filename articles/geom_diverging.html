@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggstats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.11.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.12.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,7 +115,7 @@ displayed on each side).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"position_diverging()"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p_stack</span> <span class="op">+</span> <span class="va">p_diverging</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
 <p><code><a href="../reference/position_likert.html">position_likert()</a></code> is similar but uses proportions
 instead of counts.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -130,7 +130,7 @@ instead of counts.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"position_likert()"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p_fill</span> <span class="op">+</span> <span class="va">p_likert</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="700"></p>
 <p>By default, the same number of categories is displayed on each side,
 i.e. if you have 4 categories, 2 will be displayed negatively and 2
 positively. If you have an odd number of categories, half of the central
@@ -168,7 +168,7 @@ the two first categories and a fifth of the third.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"cutoff = 5"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="va">p_1</span>, <span class="va">p_2</span>, <span class="va">p_null</span>, <span class="va">p_3.75</span>, <span class="va">p_5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="new-scales">New scales<a class="anchor" aria-label="anchor" href="#new-scales"></a>
@@ -187,7 +187,7 @@ to change the center of the palette as well.</p>
 <span>  <span class="va">p_null</span> <span class="op">+</span> <span class="fu"><a href="../reference/scale_fill_likert.html">scale_fill_likert</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">p_3.75</span> <span class="op">+</span> <span class="fu"><a href="../reference/scale_fill_likert.html">scale_fill_likert</a></span><span class="op">(</span>cutoff <span class="op">=</span> <span class="fl">3.75</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="improving-axes">Improving axes<a class="anchor" aria-label="anchor" href="#improving-axes"></a>
@@ -205,7 +205,7 @@ with <code><a href="../reference/symmetric_limits.html">symmetric_limits()</a></
 <span>      labels <span class="op">=</span> <span class="fu"><a href="../reference/label_number_abs.html">label_number_abs</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="new-geometries">New geometries<a class="anchor" aria-label="anchor" href="#new-geometries"></a>
@@ -234,7 +234,7 @@ variants of <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html
 <span>    labels <span class="op">=</span> <span class="fu"><a href="../reference/label_number_abs.html">label_number_abs</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    limits <span class="op">=</span> <span class="va">symmetric_limits</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
 <p>The same could be achieved quicker with <code><a href="../reference/geom_diverging.html">geom_diverging()</a></code>
 and <code><a href="../reference/geom_diverging.html">geom_diverging_text()</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -253,7 +253,7 @@ and <code><a href="../reference/geom_diverging.html">geom_diverging_text()</a></
 <span>    labels <span class="op">=</span> <span class="fu"><a href="../reference/label_number_abs.html">label_number_abs</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    limits <span class="op">=</span> <span class="va">symmetric_limits</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="geom_likert-geom_likert_text">geom_likert() &amp; geom_likert_text()<a class="anchor" aria-label="anchor" href="#geom_likert-geom_likert_text"></a>
@@ -271,7 +271,7 @@ similarly. <code><a href="../reference/geom_diverging.html">geom_likert_text()</
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span></span>
 <span>    labels <span class="op">=</span> <span class="fu"><a href="../reference/label_number_abs.html">label_percent_abs</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="geom_pyramid-geom_pyramid_text">geom_pyramid() &amp; geom_pyramid_text()<a class="anchor" aria-label="anchor" href="#geom_pyramid-geom_pyramid_text"></a>
@@ -289,7 +289,7 @@ age-sex pyramid. It uses proportions of the total.</p>
 <span>    labels <span class="op">=</span> <span class="fu"><a href="../reference/label_number_abs.html">label_percent_abs</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    limits <span class="op">=</span> <span class="va">symmetric_limits</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="geom_diverging_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p><img src="geom_diverging_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -303,7 +303,7 @@ age-sex pyramid. It uses proportions of the total.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
