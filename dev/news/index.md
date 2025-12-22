@@ -2,6 +2,10 @@
 
 ## ggstats (development version)
 
+## ggstats 0.12.0
+
+CRAN release: 2025-12-22
+
 **Improvements**
 
 - [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md),
