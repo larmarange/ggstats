@@ -364,8 +364,8 @@ gglikert <- function(data,
         )
     )
 
-    if (identical(add_totals, "left")) dtot <- dtot |> filter(.data$x < 0)
-    if (identical(add_totals, "right")) dtot <- dtot |> filter(.data$x > 0)
+    if (identical(add_totals, "left")) dtot <- dtot |> dplyr::filter(.data$x < 0)
+    if (identical(add_totals, "right")) dtot <- dtot |> dplyr::filter(.data$x > 0)
 
     p <- p +
       geom_text(
