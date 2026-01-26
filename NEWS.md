@@ -2,7 +2,7 @@
 
 **Improvements**
 
-* new experimental function `gglikert_side()`
+* new experimental function `gglikert_side()` (#115)
 * new options `add_totals = "left"` and `add_totals = "right"` for `gglikert()`
 
 # ggstats 0.12.0
