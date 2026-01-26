@@ -15,6 +15,7 @@
 - [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
   [`gglikert_data()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
   [`gglikert_stacked()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
+  [`gglikert_side()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
   : Plotting Likert-type items
 
 ## Cascade plots

@@ -2,6 +2,14 @@
 
 ## ggstats (development version)
 
+**Improvements**
+
+- new experimental function
+  [`gglikert_side()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
+  ([\#115](https://github.com/larmarange/ggstats/issues/115))
+- new options `add_totals = "left"` and `add_totals = "right"` for
+  [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
+
 ## ggstats 0.12.0
 
 CRAN release: 2025-12-22

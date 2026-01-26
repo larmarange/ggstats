@@ -124,6 +124,42 @@ bar plot.</p>
 <span>  y_label_wrap <span class="op">=</span> <span class="fl">50</span>,</span>
 <span>  reverse_fill <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">gglikert_side</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  include <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">side_values</span>,</span>
+<span>  weights <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y <span class="op">=</span> <span class="st">".question"</span>,</span>
+<span>  variable_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"ascending"</span>, <span class="st">"descending"</span><span class="op">)</span>,</span>
+<span>  sort_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prop"</span>, <span class="st">"prop_lower"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
+<span>  sort_prop_include_center <span class="op">=</span> <span class="va">totals_include_center</span>,</span>
+<span>  factor_to_sort <span class="op">=</span> <span class="st">".question"</span>,</span>
+<span>  cutoff <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  data_fun <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  add_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
+<span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  totals_size <span class="op">=</span> <span class="va">labels_size</span>,</span>
+<span>  totals_color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  totals_accuracy <span class="op">=</span> <span class="va">labels_accuracy</span>,</span>
+<span>  totals_fontface <span class="op">=</span> <span class="st">"bold"</span>,</span>
+<span>  totals_include_center <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  totals_hjust <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>  y_reverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  y_label_wrap <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  reverse_likert <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>  facet_rows <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  facet_cols <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  facet_label_wrap <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  symmetric <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  coord_ratio <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -230,7 +266,8 @@ generated dataset at the end of <code>gglikert_data()</code></p></dd>
 
 <dt id="arg-add-totals">add_totals<a class="anchor" aria-label="anchor" href="#arg-add-totals"></a></dt>
 <dd><p>should the total proportions of negative and positive
-answers be added to plot? <strong>This option is not compatible with facets!</strong></p></dd>
+answers be added to plot? You could also use <code>"left'</code> or <code>"right"</code> to display
+totals only on one side.</p></dd>
 
 
 <dt id="arg-totals-size">totals_size<a class="anchor" aria-label="anchor" href="#arg-totals-size"></a></dt>
@@ -300,6 +337,14 @@ dimension (see examples)</p></dd>
 <dd><p>if <code>TRUE</code>, will reverse the default stacking order,
 see <code><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">ggplot2::position_fill()</a></code></p></dd>
 
+
+<dt id="arg-side-values">side_values<a class="anchor" aria-label="anchor" href="#arg-side-values"></a></dt>
+<dd><p>values to be displayed on the side</p></dd>
+
+
+<dt id="arg-coord-ratio">coord_ratio<a class="anchor" aria-label="anchor" href="#arg-coord-ratio"></a></dt>
+<dd><p>aspect ratio between x and y axis.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -311,6 +356,8 @@ see <code><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" 
 <p>If variable labels have been defined (see <code><a href="https://larmarange.github.io/labelled/reference/var_label.html" class="external-link">labelled::var_label()</a></code>), they will
 be considered. You can also pass custom variables labels with the
 <code>variable_labels</code> argument.</p>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a> <code>gglikert_side()</code> allows to display
+certain values (e.g. don't knows) on the side.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -450,6 +497,23 @@ be considered. You can also pass custom variables labels with the
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">.question</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gglikert-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="fu">gglikert_side</span><span class="op">(</span><span class="va">df</span>, side_values <span class="op">=</span> <span class="st">"Neither agree nor disagree"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gglikert-21.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">gglikert_side</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">df</span>,</span></span>
+<span class="r-in"><span>  side_values <span class="op">=</span> <span class="st">"Neither agree nor disagree"</span>,</span></span>
+<span class="r-in"><span>  coord_ratio <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gglikert-22.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">gglikert_side</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">df</span>,</span></span>
+<span class="r-in"><span>  side_values <span class="op">=</span> <span class="st">"Neither agree nor disagree"</span>,</span></span>
+<span class="r-in"><span>  cutoff <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>  add_totals <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gglikert-23.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
