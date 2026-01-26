@@ -221,6 +221,8 @@ dimension (see examples)}
 \item{reverse_fill}{if \code{TRUE}, will reverse the default stacking order,
 see \code{\link[ggplot2:position_stack]{ggplot2::position_fill()}}}
 
+\item{side_values}{values to be displayed on the side}
+
 \item{coord_ratio}{aspect ratio between x and y axis.}
 }
 \value{

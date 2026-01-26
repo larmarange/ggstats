@@ -355,7 +355,7 @@ test_that("gglikert_side()", {
     gglikert_side(
       df,
       side_values = "Neither agree nor disagree",
-      coord_ratio = 1/3
+      coord_ratio = 1 / 3
     )
   )
 

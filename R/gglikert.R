@@ -364,8 +364,10 @@ gglikert <- function(data,
         )
     )
 
-    if (identical(add_totals, "left")) dtot <- dtot |> dplyr::filter(.data$x < 0)
-    if (identical(add_totals, "right")) dtot <- dtot |> dplyr::filter(.data$x > 0)
+    if (identical(add_totals, "left"))
+      dtot <- dtot |> dplyr::filter(.data$x < 0)
+    if (identical(add_totals, "right"))
+      dtot <- dtot |> dplyr::filter(.data$x > 0)
 
     p <- p +
       geom_text(
@@ -807,6 +809,7 @@ gglikert_stacked <- function(data,
 }
 
 #' @rdname gglikert
+#' @param side_values values to be displayed on the side
 #' @param coord_ratio aspect ratio between x and y axis.
 #' @export
 #' @examples
