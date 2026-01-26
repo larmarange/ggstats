@@ -1,5 +1,10 @@
 # ggstats (development version)
 
+**Improvements**
+
+* new experimental function `gglikert_side()`
+* new options `add_totals = "left"` and `add_totals = "right"` for `gglikert()`
+
 # ggstats 0.12.0
 
 **Improvements**
