@@ -4,6 +4,7 @@
 \alias{gglikert}
 \alias{gglikert_data}
 \alias{gglikert_stacked}
+\alias{gglikert_side}
 \title{Plotting Likert-type items}
 \usage{
 gglikert(
@@ -77,6 +78,42 @@ gglikert_stacked(
   reverse_fill = TRUE,
   width = 0.9
 )
+
+gglikert_side(
+  data,
+  include = dplyr::everything(),
+  side_values,
+  weights = NULL,
+  y = ".question",
+  variable_labels = NULL,
+  sort = c("none", "ascending", "descending"),
+  sort_method = c("prop", "prop_lower", "mean", "median"),
+  sort_prop_include_center = totals_include_center,
+  factor_to_sort = ".question",
+  cutoff = NULL,
+  data_fun = NULL,
+  add_labels = TRUE,
+  labels_size = 3.5,
+  labels_color = "auto",
+  labels_accuracy = 1,
+  labels_hide_below = 0.05,
+  add_totals = TRUE,
+  totals_size = labels_size,
+  totals_color = "black",
+  totals_accuracy = labels_accuracy,
+  totals_fontface = "bold",
+  totals_include_center = FALSE,
+  totals_hjust = 0.1,
+  y_reverse = TRUE,
+  y_label_wrap = 50,
+  reverse_likert = FALSE,
+  width = 0.9,
+  facet_rows = NULL,
+  facet_cols = NULL,
+  facet_label_wrap = 50,
+  symmetric = FALSE,
+  coord_ratio = NULL
+)
 }
 \arguments{
 \item{data}{a data frame, a data frame extension (e.g. a tibble),
@@ -143,7 +180,8 @@ generated dataset at the end of \code{gglikert_data()}}
 \code{\link[=label_percent_abs]{label_percent_abs()}}}
 
 \item{add_totals}{should the total proportions of negative and positive
-answers be added to plot? \strong{This option is not compatible with facets!}}
+answers be added to plot? You could also use \verb{"left'} or \code{"right"} to display
+totals only on one side.}
 
 \item{totals_size}{size of the total proportions}
 
@@ -182,6 +220,10 @@ dimension (see examples)}
 
 \item{reverse_fill}{if \code{TRUE}, will reverse the default stacking order,
 see \code{\link[ggplot2:position_stack]{ggplot2::position_fill()}}}
+
+\item{side_values}{values to be displayed on the side}
+
+\item{coord_ratio}{aspect ratio between x and y axis.}
 }
 \value{
 A \code{ggplot2} plot or a \code{tibble}.
@@ -197,6 +239,9 @@ You could use \code{gglikert_data()} to just produce the dataset to be plotted.
 If variable labels have been defined (see \code{\link[labelled:var_label]{labelled::var_label()}}), they will
 be considered. You can also pass custom variables labels with the
 \code{variable_labels} argument.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \code{gglikert_side()} allows to display
+certain values (e.g. don't knows) on the side.
 }
 \examples{
 library(ggplot2)
@@ -299,6 +344,20 @@ gglikert_stacked(df, q1:q6, add_median_line = TRUE, sort = "asc")
 gglikert_stacked(df_group, q1:q6, y = "group", add_median_line = TRUE) +
   facet_grid(rows = vars(.question))
 }
+gglikert_side(df, side_values = "Neither agree nor disagree")
+
+gglikert_side(
+  df,
+  side_values = "Neither agree nor disagree",
+  coord_ratio = 1/3
+)
+
+gglikert_side(
+  df,
+  side_values = "Neither agree nor disagree",
+  cutoff = 0,
+  add_totals = FALSE
+)
 }
 \seealso{
 \code{vignette("gglikert")}, \code{\link[=position_likert]{position_likert()}}, \code{\link[=stat_prop]{stat_prop()}}

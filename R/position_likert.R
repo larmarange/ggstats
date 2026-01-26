@@ -212,7 +212,7 @@ PositionLikert <- ggplot2::ggproto("PositionLikert", Position,
     negative[is.na(negative)] <- FALSE
 
     if (any(negative)) {
-      cli::cli_abort("{.fn position_liker} does not work with negative values")
+      cli::cli_abort("{.fn position_likert} does not work with negative values")
     }
 
     data <- data |>

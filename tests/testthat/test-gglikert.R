@@ -291,3 +291,81 @@ test_that("hex_bw()", {
   expect_equal(hex_bw("#000000"), "#ffffff")
   expect_equal(hex_bw("#444444"), "#ffffff")
 })
+
+test_that("gglikert_side()", {
+  skip_on_cran()
+  skip_if_not_installed("labelled")
+  skip_if_not_installed("ggplot2")
+  skip_if_not_installed("dplyr")
+
+  likert_levels <- c(
+    "Strongly disagree",
+    "Disagree",
+    "Neither agree nor disagree",
+    "Agree",
+    "Strongly agree"
+  )
+  set.seed(42)
+  df <-
+    dplyr::tibble(
+      q1 = sample(likert_levels, 150, replace = TRUE),
+      q2 = sample(likert_levels, 150, replace = TRUE, prob = 5:1),
+      q3 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
+      q4 = sample(likert_levels, 150, replace = TRUE, prob = 1:5),
+      q5 = sample(c(likert_levels, NA), 150, replace = TRUE),
+      q6 = sample(likert_levels, 150, replace = TRUE, prob = c(1, 0, 1, 1, 0))
+    ) |>
+    dplyr::mutate(dplyr::across(
+      dplyr::everything(),
+      ~ factor(.x, levels = likert_levels)
+    ))
+
+  likert_levels_dk <- c(
+    "Strongly disagree",
+    "Disagree",
+    "Neither agree nor disagree",
+    "Agree",
+    "Strongly agree",
+    "Don't know"
+  )
+  df_dk <-
+    dplyr::tibble(
+      q1 = sample(likert_levels_dk, 150, replace = TRUE),
+      q2 = sample(likert_levels_dk, 150, replace = TRUE, prob = 6:1),
+      q3 = sample(likert_levels_dk, 150, replace = TRUE, prob = 1:6),
+      q4 = sample(likert_levels_dk, 150, replace = TRUE, prob = 1:6),
+      q5 = sample(c(likert_levels_dk, NA), 150, replace = TRUE),
+      q6 = sample(
+        likert_levels_dk, 150,
+        replace = TRUE, prob = c(1, 0, 1, 1, 0, 1)
+      )
+    ) |>
+    dplyr::mutate(dplyr::across(
+      dplyr::everything(),
+      ~ factor(.x, levels = likert_levels_dk)
+    ))
+
+  expect_doppelganger(
+    "gglikert_side() simple",
+    gglikert_side(df, side_values = "Neither agree nor disagree")
+  )
+
+  expect_doppelganger(
+    "gglikert_side() coord_ratio",
+    gglikert_side(
+      df,
+      side_values = "Neither agree nor disagree",
+      coord_ratio = 1 / 3
+    )
+  )
+
+  expect_doppelganger(
+    "gglikert_side() with options",
+    gglikert_side(
+      df,
+      side_values = "Neither agree nor disagree",
+      cutoff = 0,
+      add_totals = FALSE
+    )
+  )
+})

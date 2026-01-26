@@ -10,6 +10,9 @@
 #' be considered. You can also pass custom variables labels with the
 #' `variable_labels` argument.
 #'
+#' `r lifecycle::badge("experimental")` `gglikert_side()` allows to display
+#' certain values (e.g. don't knows) on the side.
+#'
 #' @param data a data frame, a data frame extension (e.g. a tibble),
 #' or a survey design object
 #' @param include variables to include, accepts [tidy-select][dplyr::select]
@@ -57,7 +60,8 @@
 #' @param labels_hide_below if provided, values below will be masked, see
 #' [label_percent_abs()]
 #' @param add_totals should the total proportions of negative and positive
-#' answers be added to plot? **This option is not compatible with facets!**
+#' answers be added to plot? You could also use `"left'` or `"right"` to display
+#' totals only on one side.
 #' @param totals_size size of the total proportions
 #' @param totals_color color of the total proportions
 #' @param totals_accuracy accuracy of the total proportions, see
@@ -294,7 +298,7 @@ gglikert <- function(data,
       )
   }
 
-  if (add_totals) {
+  if (!isFALSE(add_totals)) {
     d <- data
     if (reverse_likert) d$.answer <- forcats::fct_rev(d$.answer)
     dtot <- d |>
@@ -360,6 +364,11 @@ gglikert <- function(data,
         )
     )
 
+    if (identical(add_totals, "left"))
+      dtot <- dtot |> dplyr::filter(.data$x < 0)
+    if (identical(add_totals, "right"))
+      dtot <- dtot |> dplyr::filter(.data$x > 0)
+
     p <- p +
       geom_text(
         mapping = aes(
@@ -421,6 +430,9 @@ gglikert_data <- function(data,
                           cutoff = NULL,
                           data_fun = NULL) {
   rlang::check_installed("labelled")
+
+  # hidden feature to bypass the computation of data
+  if (identical(data_fun, "as_is")) return(data)
 
   if (inherits(data, "survey.design")) {
     survey_weights <- stats::weights(data)
@@ -794,4 +806,162 @@ gglikert_stacked <- function(data,
     guides(fill = guide_legend(reverse = !reverse_fill))
 
   p
+}
+
+#' @rdname gglikert
+#' @param side_values values to be displayed on the side
+#' @param coord_ratio aspect ratio between x and y axis.
+#' @export
+#' @examples
+#' gglikert_side(df, side_values = "Neither agree nor disagree")
+#'
+#' gglikert_side(
+#'   df,
+#'   side_values = "Neither agree nor disagree",
+#'   coord_ratio = 1/3
+#' )
+#'
+#' gglikert_side(
+#'   df,
+#'   side_values = "Neither agree nor disagree",
+#'   cutoff = 0,
+#'   add_totals = FALSE
+#' )
+gglikert_side <- function(
+  data,
+  include = dplyr::everything(),
+  side_values,
+  weights = NULL,
+  y = ".question",
+  variable_labels = NULL,
+  sort = c("none", "ascending", "descending"),
+  sort_method = c("prop", "prop_lower", "mean", "median"),
+  sort_prop_include_center = totals_include_center,
+  factor_to_sort = ".question",
+  cutoff = NULL,
+  data_fun = NULL,
+  add_labels = TRUE,
+  labels_size = 3.5,
+  labels_color = "auto",
+  labels_accuracy = 1,
+  labels_hide_below = .05,
+  add_totals = TRUE,
+  totals_size = labels_size,
+  totals_color = "black",
+  totals_accuracy = labels_accuracy,
+  totals_fontface = "bold",
+  totals_include_center = FALSE,
+  totals_hjust = .1,
+  y_reverse = TRUE,
+  y_label_wrap = 50,
+  reverse_likert = FALSE,
+  width = .9,
+  facet_rows = NULL,
+  facet_cols = NULL,
+  facet_label_wrap = 50,
+  symmetric = FALSE,
+  coord_ratio = NULL
+) {
+  if (!is.character(side_values))
+    cli::cli_abort("{.arg side_values} should be character.")
+
+  data <-
+    gglikert_data(
+      data,
+      {{ include }},
+      weights = {{ weights }},
+      variable_labels = variable_labels,
+      sort = sort,
+      sort_method = sort_method,
+      sort_prop_include_center = sort_prop_include_center,
+      factor_to_sort = {{ factor_to_sort }},
+      exclude_fill_values = side_values,
+      cutoff = cutoff,
+      data_fun = data_fun
+    )
+
+  y <- data |> dplyr::select({{ y }}) |> colnames()
+
+  if (is.null(coord_ratio)) {
+    if (is.factor(data[[y]])) {
+      coord_ratio <- 1 / length(levels(data[[y]]))
+    } else {
+      coord_ratio <- 1 / length(unique(data[[y]]))
+    }
+  }
+
+  # left plot
+  lp <-
+    data |>
+    gglikert(
+      weights = {{ weights }},
+      y = {{ y }},
+      exclude_fill_values = side_values,
+      cutoff = cutoff,
+      data_fun = "as_is",
+      add_labels = add_labels,
+      labels_size = labels_size,
+      labels_color = labels_color,
+      labels_accuracy = labels_accuracy,
+      labels_hide_below = labels_hide_below,
+      add_totals = add_totals,
+      totals_size = totals_size,
+      totals_color = totals_color,
+      totals_accuracy = totals_accuracy,
+      totals_fontface = totals_fontface,
+      totals_include_center = totals_include_center,
+      totals_hjust = totals_hjust,
+      y_reverse = y_reverse,
+      y_label_wrap = y_label_wrap,
+      reverse_likert = reverse_likert,
+      width = width,
+      facet_rows = facet_rows,
+      facet_cols = facet_cols,
+      facet_label_wrap = facet_label_wrap,
+      symmetric = symmetric
+    ) +
+    coord_fixed(ratio = coord_ratio)
+
+  # right plot
+
+  l <- levels(data$.answer)
+
+  rp <-
+    data |>
+    gglikert(
+      weights = {{ weights }},
+      y = {{ y }},
+      exclude_fill_values = l[!l %in% side_values],
+      cutoff = 0,
+      data_fun = "as_is",
+      add_labels = add_labels,
+      labels_size = labels_size,
+      labels_color = labels_color,
+      labels_accuracy = labels_accuracy,
+      labels_hide_below = labels_hide_below,
+      add_totals = FALSE,
+      y_reverse = y_reverse,
+      y_label_wrap = y_label_wrap,
+      reverse_likert = reverse_likert,
+      width = width,
+      facet_rows = facet_rows,
+      facet_cols = facet_cols,
+      facet_label_wrap = facet_label_wrap,
+      symmetric = symmetric
+    ) +
+    coord_fixed(ratio = coord_ratio) +
+    theme(
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank()
+    )
+
+  suppressMessages(
+    if (length(side_values) == 1) {
+      rp <- rp + ggplot2::scale_fill_manual(values = "grey40")
+    } else {
+      rp <- rp + ggplot2::scale_fill_brewer(palette = "Greys")
+    }
+  )
+
+  patchwork::wrap_plots(lp, rp, nrow = 1)
 }
