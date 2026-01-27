@@ -155,7 +155,8 @@ gglikert(
   totals_size = 4,
   totals_color = "blue",
   totals_fontface = "italic",
-  totals_hjust = .20
+  totals_hjust = .20,
+  add_totals = "right"
 )
 ```
 
@@ -226,7 +227,6 @@ gglikert(df, cutoff = 1)
 gglikert(df, cutoff = 1, symmetric = TRUE)
 ```
 
-
 ## Removing certain values
 
 Sometimes, the dataset could contain certain values that you should not be displayed.
@@ -247,6 +247,23 @@ Or, you could use `exclude_fill_values` to not display specific values, but stil
 
 ```{r}
 df_dk |> gglikert(exclude_fill_values = "Don't know")
+```
+
+A final alternative consist to display such values on a side plot, which could be achieved with `gglikert_side()`.
+
+```{r fig.height=5, fig.width=8}
+
+df_dk |> gglikert_side(side_values = "Don't know")
+```
+
+You can even pass several values on the side.
+
+```{r fig.height=6, fig.width=10}
+
+df_dk |>
+  gglikert_side(
+    side_values = c("Neither agree nor disagree", "Don't know")
+  )
 ```
 
 ## Facets
@@ -336,7 +353,7 @@ ggplot(gglikert_data(df)) +
 
 ## Weighted data
 
-`gglikert()`, `gglikert_stacked()` and `gglikert_data()` accepts a `weights` argument, allowing to specify statistical weights.
+`gglikert()`, `gglikert_stacked()`, `gglikert_side()` and `gglikert_data()` accepts a `weights` argument, allowing to specify statistical weights.
 
 ```{r}
 df$sampling_weights <- runif(nrow(df))
