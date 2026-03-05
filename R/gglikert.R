@@ -445,7 +445,7 @@ gglikert_data <- function(data,
         "Survey weights from the survey object will automatically be retrieved."
       ))
     data$survey_weights <- survey_weights
-    weights <- dplyr::all_of("survey_weights")
+    weights <- "survey_weights"
   }
 
   sort <- match.arg(sort)
