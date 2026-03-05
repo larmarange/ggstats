@@ -45,7 +45,6 @@ Documentation of development version: <https://larmarange.github.io/ggstats/dev/
 
 ## Plot model coefficients
 
-
 ```{r}
 library(ggstats)
 
