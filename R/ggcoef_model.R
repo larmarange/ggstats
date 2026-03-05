@@ -519,15 +519,17 @@ ggcoef_table <- function(
   if (!"strips_odd" %in% names(args)) args$strips_odd <- "#11111111"
   if (!"strips_even" %in% names(args)) args$strips_even <- "#00000000"
 
+  if (!"term" %in% names(data)) {
+    data$term <- data[[args$y]]
+  }
+  data$term <- .in_order(data$term)
+
   coef_plot <- do.call(ggcoef_plot, args)
 
   if (args$stripped_rows) {
-    if (!"term" %in% names(data)) {
-      data$term <- data[[args$y]]
-    }
     data <- data |>
       dplyr::mutate(.fill = dplyr::if_else(
-        as.integer(.in_order(.data$term)) %% 2L == 1,
+        as.integer(.data$term) %% 2L == 1,
         args$strips_even,
         args$strips_odd
       ))
@@ -585,9 +587,9 @@ ggcoef_table <- function(
 
   table_plot <- ggplot2::ggplot(tbl_data) +
     ggplot2::aes(
-      x = .data[["stat"]],
-      y = .data[[args$y]],
-      label = .data[["value"]]
+      x = .data$stat,
+      y = .data$term,
+      label = .data$value
     ) +
     ggplot2::geom_text(hjust = .5, vjust = .5, size = table_text_size) +
     ggplot2::scale_x_discrete(position = "top", labels = table_header) +
