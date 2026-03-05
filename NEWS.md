@@ -5,6 +5,11 @@
 * new experimental function `gglikert_side()` (#115)
 * new options `add_totals = "left"` and `add_totals = "right"` for `gglikert()`
 
+**Bug fix**
+
+* fix terms order in `ggcoef_table()` for specific cases when two modalities of
+  two different variables have the same name (#116)
+
 # ggstats 0.12.0
 
 **Improvements**
