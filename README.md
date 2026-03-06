@@ -47,13 +47,13 @@ mod1 <- lm(Fertility ~ ., data = swiss)
 ggcoef_model(mod1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" alt="" width="100%" />
 
 ``` r
 ggcoef_table(mod1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-2.png" alt="" width="100%" />
 
 ## Comparing several models
 
@@ -69,7 +69,7 @@ models <- list(
 ggcoef_compare(models, type = "faceted")
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" alt="" width="100%" />
 
 ## Compute custom proportions
 
@@ -82,7 +82,7 @@ ggplot(as.data.frame(Titanic)) +
   facet_grid(~Sex)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" alt="" width="100%" />
 
 ## Compute weighted mean
 
@@ -94,7 +94,7 @@ ggplot(tips) +
   ylab("Mean total bill per day and sex")
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" alt="" width="100%" />
 
 ## Compute cross-tabulation statistics
 
@@ -109,7 +109,7 @@ ggplot(as.data.frame(Titanic)) +
   scale_size_area(max_size = 20)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" alt="" width="100%" />
 
 ## Plot survey objects taking into account weights
 
@@ -131,7 +131,7 @@ ggsurvey(dw) +
   ylab("Weighted proportion of survivors")
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" alt="" width="100%" />
 
 ## Plot Likert-type items
 
@@ -167,7 +167,7 @@ df <-
 gglikert(df)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" alt="" width="100%" />
 
 ## Connect bars
 
@@ -180,7 +180,7 @@ ggplot(diamonds) +
   theme(legend.position = "bottom")
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" alt="" width="100%" />
 
 ## Generate a cascade plot
 
@@ -193,4 +193,4 @@ diamonds |>
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" alt="" width="100%" />
