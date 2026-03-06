@@ -78,6 +78,42 @@ gglikert_stacked(
   reverse_fill = TRUE,
   width = 0.9
 )
+
+gglikert_side(
+  data,
+  include = dplyr::everything(),
+  side_values,
+  weights = NULL,
+  y = ".question",
+  variable_labels = NULL,
+  sort = c("none", "ascending", "descending"),
+  sort_method = c("prop", "prop_lower", "mean", "median"),
+  sort_prop_include_center = totals_include_center,
+  factor_to_sort = ".question",
+  cutoff = NULL,
+  data_fun = NULL,
+  add_labels = TRUE,
+  labels_size = 3.5,
+  labels_color = "auto",
+  labels_accuracy = 1,
+  labels_hide_below = 0.05,
+  add_totals = TRUE,
+  totals_size = labels_size,
+  totals_color = "black",
+  totals_accuracy = labels_accuracy,
+  totals_fontface = "bold",
+  totals_include_center = FALSE,
+  totals_hjust = 0.1,
+  y_reverse = TRUE,
+  y_label_wrap = 50,
+  reverse_likert = FALSE,
+  width = 0.9,
+  facet_rows = NULL,
+  facet_cols = NULL,
+  facet_label_wrap = 50,
+  symmetric = FALSE,
+  coord_ratio = NULL
+)
 ```
 
 ## Arguments
@@ -187,7 +223,8 @@ gglikert_stacked(
 - add_totals:
 
   should the total proportions of negative and positive answers be added
-  to plot? **This option is not compatible with facets!**
+  to plot? You could also use `"left'` or `"right"` to display totals
+  only on one side.
 
 - totals_size:
 
@@ -259,6 +296,14 @@ gglikert_stacked(
   if `TRUE`, will reverse the default stacking order, see
   [`ggplot2::position_fill()`](https://ggplot2.tidyverse.org/reference/position_stack.html)
 
+- side_values:
+
+  values to be displayed on the side
+
+- coord_ratio:
+
+  aspect ratio between x and y axis.
+
 ## Value
 
 A `ggplot2` plot or a `tibble`.
@@ -272,6 +317,9 @@ If variable labels have been defined (see
 [`labelled::var_label()`](https://larmarange.github.io/labelled/reference/var_label.html)),
 they will be considered. You can also pass custom variables labels with
 the `variable_labels` argument.
+
+**\[experimental\]** `gglikert_side()` allows to display certain values
+(e.g. don't knows) on the side.
 
 ## See also
 
@@ -413,4 +461,20 @@ gglikert_stacked(df_group, q1:q6, y = "group", add_median_line = TRUE) +
   facet_grid(rows = vars(.question))
 
 # }
+gglikert_side(df, side_values = "Neither agree nor disagree")
+
+
+gglikert_side(
+  df,
+  side_values = "Neither agree nor disagree",
+  coord_ratio = 1/3
+)
+
+
+gglikert_side(
+  df,
+  side_values = "Neither agree nor disagree",
+  cutoff = 0,
+  add_totals = FALSE
+)
 ```

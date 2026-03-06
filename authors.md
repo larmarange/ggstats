@@ -10,14 +10,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/larmarange/ggstats/blob/main/DESCRIPTION)
 
-Larmarange J (2025). *ggstats: Extension to 'ggplot2' for Plotting
-Stats*. R package version 0.12.0,
+Larmarange J (2026). *ggstats: Extension to 'ggplot2' for Plotting
+Stats*. R package version 0.13.0,
 <https://larmarange.github.io/ggstats/>.
 
     @Manual{,
       title = {ggstats: Extension to 'ggplot2' for Plotting Stats},
       author = {Joseph Larmarange},
-      year = {2025},
-      note = {R package version 0.12.0},
+      year = {2026},
+      note = {R package version 0.13.0},
       url = {https://larmarange.github.io/ggstats/},
     }

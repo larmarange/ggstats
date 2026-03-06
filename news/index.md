@@ -1,5 +1,23 @@
 # Changelog
 
+## ggstats 0.13.0
+
+**Improvements**
+
+- new experimental function
+  [`gglikert_side()`](https://larmarange.github.io/ggstats/reference/gglikert.md)
+  ([\#115](https://github.com/larmarange/ggstats/issues/115))
+- new options `add_totals = "left"` and `add_totals = "right"` for
+  [`gglikert()`](https://larmarange.github.io/ggstats/reference/gglikert.md)
+
+**Bug fix**
+
+- fix terms order in
+  [`ggcoef_table()`](https://larmarange.github.io/ggstats/reference/ggcoef_model.md)
+  for specific cases when two modalities of two different variables have
+  the same name
+  ([\#116](https://github.com/larmarange/ggstats/issues/116))
+
 ## ggstats 0.12.0
 
 CRAN release: 2025-12-22

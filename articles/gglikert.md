@@ -180,7 +180,8 @@ gglikert(
   totals_size = 4,
   totals_color = "blue",
   totals_fontface = "italic",
-  totals_hjust = .20
+  totals_hjust = .20,
+  add_totals = "right"
 )
 ```
 
@@ -352,6 +353,29 @@ df_dk |> gglikert(exclude_fill_values = "Don't know")
 
 ![](gglikert_files/figure-html/unnamed-chunk-21-1.png)
 
+A final alternative consist to display such values on a side plot, which
+could be achieved with
+[`gglikert_side()`](https://larmarange.github.io/ggstats/reference/gglikert.md).
+
+``` r
+
+df_dk |> gglikert_side(side_values = "Don't know")
+```
+
+![](gglikert_files/figure-html/unnamed-chunk-22-1.png)
+
+You can even pass several values on the side.
+
+``` r
+
+df_dk |>
+  gglikert_side(
+    side_values = c("Neither agree nor disagree", "Don't know")
+  )
+```
+
+![](gglikert_files/figure-html/unnamed-chunk-23-1.png)
+
 ## Facets
 
 To define facets, use `facet_rows` and/or `facet_cols`.
@@ -368,7 +392,7 @@ gglikert(df_group,
 )
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-22-1.png)
+![](gglikert_files/figure-html/unnamed-chunk-24-1.png)
 
 ``` r
 gglikert(df_group,
@@ -378,7 +402,7 @@ gglikert(df_group,
 )
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-22-2.png)
+![](gglikert_files/figure-html/unnamed-chunk-24-2.png)
 
 ``` r
 gglikert(df_group,
@@ -393,7 +417,7 @@ gglikert(df_group,
   )
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-22-3.png)
+![](gglikert_files/figure-html/unnamed-chunk-24-3.png)
 
 To compare answers by subgroup, you can alternatively map `.question` to
 facets, and define a grouping variable for `y`.
@@ -408,7 +432,7 @@ gglikert(df_group,
 )
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-23-1.png)
+![](gglikert_files/figure-html/unnamed-chunk-25-1.png)
 
 ## Stacked plot
 
@@ -419,7 +443,7 @@ For a more classical stacked bar plot, you can use
 gglikert_stacked(df)
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-24-1.png)
+![](gglikert_files/figure-html/unnamed-chunk-26-1.png)
 
 ``` r
 
@@ -431,7 +455,7 @@ gglikert_stacked(
 )
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-24-2.png)
+![](gglikert_files/figure-html/unnamed-chunk-26-2.png)
 
 ``` r
 
@@ -446,7 +470,7 @@ gglikert_stacked(
   )
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-24-3.png)
+![](gglikert_files/figure-html/unnamed-chunk-26-3.png)
 
 ## Long format dataset
 
@@ -480,12 +504,13 @@ ggplot(gglikert_data(df)) +
   geom_bar(position = "fill")
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-26-1.png)
+![](gglikert_files/figure-html/unnamed-chunk-28-1.png)
 
 ## Weighted data
 
 [`gglikert()`](https://larmarange.github.io/ggstats/reference/gglikert.md),
-[`gglikert_stacked()`](https://larmarange.github.io/ggstats/reference/gglikert.md)
+[`gglikert_stacked()`](https://larmarange.github.io/ggstats/reference/gglikert.md),
+[`gglikert_side()`](https://larmarange.github.io/ggstats/reference/gglikert.md)
 and
 [`gglikert_data()`](https://larmarange.github.io/ggstats/reference/gglikert.md)
 accepts a `weights` argument, allowing to specify statistical weights.
@@ -495,7 +520,7 @@ df$sampling_weights <- runif(nrow(df))
 gglikert(df, q1:q4, weights = sampling_weights)
 ```
 
-![](gglikert_files/figure-html/unnamed-chunk-27-1.png)
+![](gglikert_files/figure-html/unnamed-chunk-29-1.png)
 
 ## See also
 
