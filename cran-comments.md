@@ -1,6 +1,6 @@
 ## Test environments
 
-* local R installation: R-4.5.1 (windows)
+* local R installation: R-4.5.2 (windows)
 * mac OS (on github actions): R-release
 * windows (on github actions): R-release
 * ubuntu (on github actions): R-devel, R-release, R-oldrel-1
@@ -13,7 +13,7 @@ cf. https://github.com/larmarange/ggstats/actions/workflows/R-CMD-check.yaml
 
 ## revdepcheck results
 
-We checked 6 reverse dependencies (4 from CRAN + 2 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+We checked 6 reverse dependencies (5 from CRAN + 1 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
 
  * We saw 0 new problems
  * We failed to check 0 packages
