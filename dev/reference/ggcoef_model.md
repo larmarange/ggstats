@@ -211,7 +211,7 @@ ggcoef_plot(
 
   (`logical`)  
   Should confidence intervals be computed? (see
-  [`broom::tidy()`](https://broom.tidymodels.org/reference/reexports.html))
+  [`broom::tidy()`](https://rdrr.io/pkg/broom/man/reexports.html))
 
 - conf.level:
 

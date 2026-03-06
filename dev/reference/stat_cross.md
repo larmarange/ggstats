@@ -1,7 +1,7 @@
 # Compute cross-tabulation statistics
 
 Computes statistics of a 2-dimensional matrix using
-[broom::augment.htest](https://broom.tidymodels.org/reference/augment.htest.html).
+[broom::augment.htest](https://rdrr.io/pkg/broom/man/augment.htest.html).
 
 ## Usage
 
