@@ -71,11 +71,13 @@ bar plot.</p>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
 <span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  labels_suffix <span class="op">=</span> <span class="st">"%"</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  totals_size <span class="op">=</span> <span class="va">labels_size</span>,</span>
 <span>  totals_color <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>  totals_accuracy <span class="op">=</span> <span class="va">labels_accuracy</span>,</span>
+<span>  totals_suffix <span class="op">=</span> <span class="va">labels_suffix</span>,</span>
 <span>  totals_fontface <span class="op">=</span> <span class="st">"bold"</span>,</span>
 <span>  totals_include_center <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  totals_hjust <span class="op">=</span> <span class="fl">0.1</span>,</span>
@@ -118,6 +120,7 @@ bar plot.</p>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
 <span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  labels_suffix <span class="op">=</span> <span class="st">"%"</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_median_line <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  y_reverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -143,11 +146,13 @@ bar plot.</p>
 <span>  labels_size <span class="op">=</span> <span class="fl">3.5</span>,</span>
 <span>  labels_color <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  labels_suffix <span class="op">=</span> <span class="st">"%"</span>,</span>
 <span>  labels_hide_below <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  totals_size <span class="op">=</span> <span class="va">labels_size</span>,</span>
 <span>  totals_color <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>  totals_accuracy <span class="op">=</span> <span class="va">labels_accuracy</span>,</span>
+<span>  totals_suffix <span class="op">=</span> <span class="va">labels_suffix</span>,</span>
 <span>  totals_fontface <span class="op">=</span> <span class="st">"bold"</span>,</span>
 <span>  totals_include_center <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  totals_hjust <span class="op">=</span> <span class="fl">0.1</span>,</span>
@@ -259,6 +264,11 @@ generated dataset at the end of <code>gglikert_data()</code></p></dd>
 <code><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">scales::label_percent()</a></code></p></dd>
 
 
+<dt id="arg-labels-suffix">labels_suffix<a class="anchor" aria-label="anchor" href="#arg-labels-suffix"></a></dt>
+<dd><p>text displayed after the percentages, see
+<code><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">scales::label_percent()</a></code></p></dd>
+
+
 <dt id="arg-labels-hide-below">labels_hide_below<a class="anchor" aria-label="anchor" href="#arg-labels-hide-below"></a></dt>
 <dd><p>if provided, values below will be masked, see
 <code><a href="label_number_abs.html">label_percent_abs()</a></code></p></dd>
@@ -280,6 +290,11 @@ totals only on one side.</p></dd>
 
 <dt id="arg-totals-accuracy">totals_accuracy<a class="anchor" aria-label="anchor" href="#arg-totals-accuracy"></a></dt>
 <dd><p>accuracy of the total proportions, see
+<code><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">scales::label_percent()</a></code></p></dd>
+
+
+<dt id="arg-totals-suffix">totals_suffix<a class="anchor" aria-label="anchor" href="#arg-totals-suffix"></a></dt>
+<dd><p>text displayed after the total proportions, see
 <code><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">scales::label_percent()</a></code></p></dd>
 
 
@@ -430,7 +445,8 @@ certain values (e.g. don't knows) on the side.</p>
 <span class="r-in"><span>  totals_accuracy <span class="op">=</span> <span class="fl">.01</span>,</span></span>
 <span class="r-in"><span>  labels_accuracy <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>  labels_size <span class="op">=</span> <span class="fl">2.5</span>,</span></span>
-<span class="r-in"><span>  labels_hide_below <span class="op">=</span> <span class="fl">.25</span></span></span>
+<span class="r-in"><span>  labels_hide_below <span class="op">=</span> <span class="fl">.25</span>,</span></span>
+<span class="r-in"><span>  labels_suffix <span class="op">=</span> <span class="st">" %"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gglikert-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>

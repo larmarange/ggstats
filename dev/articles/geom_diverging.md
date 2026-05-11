@@ -1,6 +1,7 @@
 # Geometries for diverging bar plots
 
 ``` r
+
 library(ggstats)
 library(dplyr)
 #> 
@@ -33,6 +34,7 @@ stacks bars on top of each other and centers them around zero (the same
 number of categories are displayed on each side).
 
 ``` r
+
 base <-
   ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
@@ -57,6 +59,7 @@ p_stack + p_diverging
 is similar but uses proportions instead of counts.
 
 ``` r
+
 p_fill <-
   base +
   geom_bar(position = "fill") +
@@ -84,6 +87,7 @@ first categories and half of the third, `2.2` to display negatively the
 two first categories and a fifth of the third.
 
 ``` r
+
 p_1 <-
   base +
   geom_bar(position = position_diverging(cutoff = 1)) +
@@ -129,6 +133,7 @@ Therefore, for diverging bar plots, we recommend to use
 [`scale_fill_likert()`](https://larmarange.github.io/ggstats/dev/reference/scale_fill_likert.md).
 
 ``` r
+
 wrap_plots(
   p_1 + scale_fill_likert(cutoff = 1),
   p_null + scale_fill_likert(),
@@ -150,6 +155,7 @@ or
 to display absolute numbers.
 
 ``` r
+
 wrap_plots(
   p_3.75,
   p_3.75 +
@@ -175,6 +181,7 @@ and
 Let’s consider the following plot:
 
 ``` r
+
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_bar(position = "diverging") +
@@ -202,6 +209,7 @@ and
 [`geom_diverging_text()`](https://larmarange.github.io/ggstats/dev/reference/geom_diverging.md).
 
 ``` r
+
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_diverging() +
@@ -234,6 +242,7 @@ for computing the proportions to be displayed (see
 [`vignette("stat_prop")`](https://larmarange.github.io/ggstats/dev/articles/stat_prop.md)).
 
 ``` r
+
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_likert() +
@@ -256,6 +265,7 @@ are variations adapted to display an age-sex pyramid. It uses
 proportions of the total.
 
 ``` r
+
 d <- Titanic |> as.data.frame()
 ggplot(d) +
   aes(y = Class, fill = Sex, weight = Freq) +

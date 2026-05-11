@@ -1,6 +1,7 @@
 # Compute cross-tabulation statistics with \`stat_cross()\`
 
 ``` r
+
 library(ggstats)
 library(ggplot2)
 ```
@@ -31,6 +32,7 @@ observations, you need to map `after_stat(observed)` to an aesthetic
 (here **size**):
 
 ``` r
+
 d <- as.data.frame(Titanic)
 ggplot(d) +
   aes(x = Class, y = Survived, weight = Freq, size = after_stat(observed)) +
@@ -48,6 +50,7 @@ standardized residual to identify visually cells who are over- or
 underrepresented.
 
 ``` r
+
 ggplot(d) +
   aes(
     x = Class, y = Survived, weight = Freq,
@@ -63,6 +66,7 @@ ggplot(d) +
 We can easily recreate a cross-tabulated table.
 
 ``` r
+
 ggplot(d) +
   aes(x = Class, y = Survived, weight = Freq) +
   geom_tile(fill = "white", colour = "black") +
@@ -80,6 +84,7 @@ could be used with facets. In that case, computation is done separately
 in each facet.
 
 ``` r
+
 ggplot(d) +
   aes(
     x = Class, y = Survived, weight = Freq,

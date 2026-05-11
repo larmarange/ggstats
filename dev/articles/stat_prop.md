@@ -1,6 +1,7 @@
 # Compute custom proportions with \`stat_prop()\`
 
 ``` r
+
 library(ggstats)
 library(ggplot2)
 ```
@@ -37,6 +38,7 @@ when calling
 [`ggplot2::geom_text()`](https://ggplot2.tidyverse.org/reference/geom_text.html).
 
 ``` r
+
 d <- as.data.frame(Titanic)
 p <- ggplot(d) +
   aes(x = Class, fill = Survived, weight = Freq, by = Class) +
@@ -56,6 +58,7 @@ is also compatible with faceting. In that case, proportions are computed
 separately in each facet.
 
 ``` r
+
 p + facet_grid(cols = vars(Sex))
 ```
 
@@ -67,6 +70,7 @@ If you want to display proportions of the total, simply map the **by**
 aesthetic to `1`. Here an example using a stacked bar chart.
 
 ``` r
+
 ggplot(d) +
   aes(x = Class, fill = Survived, weight = Freq, by = 1) +
   geom_bar() +
@@ -84,6 +88,7 @@ ggplot(d) +
 A dodged bar plot could be used to compare two distributions.
 
 ``` r
+
 ggplot(d) +
   aes(x = Class, fill = Sex, weight = Freq, by = Sex) +
   geom_bar(position = "dodge")
@@ -99,6 +104,7 @@ could be used to adjust the graph by displaying instead the proportion
 within each category (i.e. here the proportion by sex).
 
 ``` r
+
 ggplot(d) +
   aes(x = Class, fill = Sex, weight = Freq, by = Sex, y = after_stat(prop)) +
   geom_bar(stat = "prop", position = "dodge") +
@@ -110,6 +116,7 @@ ggplot(d) +
 The same example with labels:
 
 ``` r
+
 ggplot(d) +
   aes(x = Class, fill = Sex, weight = Freq, by = Sex, y = after_stat(prop)) +
   geom_bar(stat = "prop", position = "dodge") +
@@ -133,6 +140,7 @@ With the `complete` argument, it is possible to indicate an aesthetic
 for those statistics should be completed for unobserved values.
 
 ``` r
+
 d <- diamonds |>
   dplyr::filter(!(cut == "Ideal" & clarity == "I1")) |>
   dplyr::filter(!(cut == "Very Good" & clarity == "VS2")) |>
@@ -152,6 +160,7 @@ p +
 Adding `complete = "fill"` will generate “0.0%” labels where relevant.
 
 ``` r
+
 p +
   geom_text(
     stat = "prop",
@@ -176,6 +185,7 @@ with relevant default values. For example, proportions are computed by
 generate a quick proportional bar plot.
 
 ``` r
+
 ggplot(diamonds) +
   aes(y = clarity, fill = cut) +
   geom_prop_bar() +
@@ -188,6 +198,7 @@ You can specify a `by` aesthetic. For example, to reproduce the
 comparison of the two distributions presented earlier.
 
 ``` r
+
 d <- as.data.frame(Titanic)
 ggplot(d) +
   aes(x = Class, fill = Sex, weight = Freq, by = Sex) +
@@ -204,6 +215,7 @@ ggplot(d) +
 You can also display counts instead of proportions.
 
 ``` r
+
 ggplot(diamonds) +
   aes(x = clarity, fill = cut) +
   geom_prop_bar(height = "count") +

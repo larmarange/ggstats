@@ -24,11 +24,13 @@ gglikert(
   labels_size = 3.5,
   labels_color = "auto",
   labels_accuracy = 1,
+  labels_suffix = "%",
   labels_hide_below = 0.05,
   add_totals = TRUE,
   totals_size = labels_size,
   totals_color = "black",
   totals_accuracy = labels_accuracy,
+  totals_suffix = labels_suffix,
   totals_fontface = "bold",
   totals_include_center = FALSE,
   totals_hjust = 0.1,
@@ -71,6 +73,7 @@ gglikert_stacked(
   labels_size = 3.5,
   labels_color = "auto",
   labels_accuracy = 1,
+  labels_suffix = "%",
   labels_hide_below = 0.05,
   add_median_line = FALSE,
   y_reverse = TRUE,
@@ -96,11 +99,13 @@ gglikert_side(
   labels_size = 3.5,
   labels_color = "auto",
   labels_accuracy = 1,
+  labels_suffix = "%",
   labels_hide_below = 0.05,
   add_totals = TRUE,
   totals_size = labels_size,
   totals_color = "black",
   totals_accuracy = labels_accuracy,
+  totals_suffix = labels_suffix,
   totals_fontface = "bold",
   totals_include_center = FALSE,
   totals_hjust = 0.1,
@@ -215,6 +220,11 @@ gglikert_side(
   accuracy of the percentages, see
   [`scales::label_percent()`](https://scales.r-lib.org/reference/label_percent.html)
 
+- labels_suffix:
+
+  text displayed after the percentages, see
+  [`scales::label_percent()`](https://scales.r-lib.org/reference/label_percent.html)
+
 - labels_hide_below:
 
   if provided, values below will be masked, see
@@ -237,6 +247,11 @@ gglikert_side(
 - totals_accuracy:
 
   accuracy of the total proportions, see
+  [`scales::label_percent()`](https://scales.r-lib.org/reference/label_percent.html)
+
+- totals_suffix:
+
+  text displayed after the total proportions, see
   [`scales::label_percent()`](https://scales.r-lib.org/reference/label_percent.html)
 
 - totals_fontface:
@@ -394,7 +409,8 @@ gglikert(
   totals_accuracy = .01,
   labels_accuracy = 1,
   labels_size = 2.5,
-  labels_hide_below = .25
+  labels_hide_below = .25,
+  labels_suffix = " %"
 )
 
 

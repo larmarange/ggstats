@@ -9,6 +9,7 @@ creation of statistical plots.
 To install **stable version**:
 
 ``` r
+
 install.packages("ggstats")
 ```
 
@@ -17,6 +18,7 @@ Documentation of stable version: <https://larmarange.github.io/ggstats/>
 To install **development version**:
 
 ``` r
+
 remotes::install_github("larmarange/ggstats")
 ```
 
@@ -26,6 +28,7 @@ Documentation of development version:
 ## Plot model coefficients
 
 ``` r
+
 library(ggstats)
 
 mod1 <- lm(Fertility ~ ., data = swiss)
@@ -35,6 +38,7 @@ ggcoef_model(mod1)
 ![](reference/figures/README-unnamed-chunk-4-1.png)
 
 ``` r
+
 ggcoef_table(mod1)
 ```
 
@@ -43,6 +47,7 @@ ggcoef_table(mod1)
 ## Comparing several models
 
 ``` r
+
 mod2 <- step(mod1, trace = 0)
 mod3 <- lm(Fertility ~ Agriculture + Education * Catholic, data = swiss)
 models <- list(
@@ -59,6 +64,7 @@ ggcoef_compare(models, type = "faceted")
 ## Compute custom proportions
 
 ``` r
+
 library(ggplot2)
 ggplot(as.data.frame(Titanic)) +
   aes(x = Class, fill = Survived, weight = Freq, by = Class) +
@@ -72,6 +78,7 @@ ggplot(as.data.frame(Titanic)) +
 ## Compute weighted mean
 
 ``` r
+
 data(tips, package = "reshape")
 ggplot(tips) +
   aes(x = day, y = total_bill, fill = sex) +
@@ -84,6 +91,7 @@ ggplot(tips) +
 ## Compute cross-tabulation statistics
 
 ``` r
+
 ggplot(as.data.frame(Titanic)) +
   aes(
     x = Class, y = Survived, weight = Freq,
@@ -99,6 +107,7 @@ ggplot(as.data.frame(Titanic)) +
 ## Plot survey objects taking into account weights
 
 ``` r
+
 library(survey, quietly = TRUE)
 #> 
 #> Attachement du package : 'survey'
@@ -121,6 +130,7 @@ ggsurvey(dw) +
 ## Plot Likert-type items
 
 ``` r
+
 library(dplyr)
 #> 
 #> Attachement du package : 'dplyr'
@@ -157,6 +167,7 @@ gglikert(df)
 ## Connect bars
 
 ``` r
+
 ggplot(diamonds) +
   aes(x = clarity, fill = cut) +
   geom_bar(width = .5) +
@@ -170,6 +181,7 @@ ggplot(diamonds) +
 ## Generate a cascade plot
 
 ``` r
+
 diamonds |>
   ggcascade(
     all = TRUE,

@@ -1,6 +1,7 @@
 # Plot Likert-type items with \`gglikert()\`
 
 ``` r
+
 library(ggstats)
 library(dplyr)
 #> 
@@ -22,6 +23,7 @@ questions sharing a common Likert-type scale.
 ## Generating an example dataset
 
 ``` r
+
 likert_levels <- c(
   "Strongly disagree",
   "Disagree",
@@ -70,6 +72,7 @@ Simply call
 [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md).
 
 ``` r
+
 gglikert(df)
 ```
 
@@ -79,6 +82,7 @@ The list of variables to plot (all by default) could by specify with
 `include`. This argument accepts tidy-select syntax.
 
 ``` r
+
 gglikert(df, include = q1:q3)
 ```
 
@@ -90,6 +94,7 @@ The generated plot is a standard `ggplot2` object. You can therefore use
 `ggplot2` functions to custom many aspects.
 
 ``` r
+
 gglikert(df) +
   ggtitle("A Likert-type items plot", subtitle = "generated with gglikert()") +
   scale_fill_brewer(palette = "RdYlBu")
@@ -104,6 +109,7 @@ gglikert(df) +
 You can sort the plot with `sort`.
 
 ``` r
+
 gglikert(df, sort = "ascending")
 ```
 
@@ -115,6 +121,7 @@ the center level, i.e. in this case the proportion of answers equal to
 transformed into a score and sorted accorded to their mean.
 
 ``` r
+
 gglikert(df, sort = "ascending", sort_method = "mean")
 ```
 
@@ -125,6 +132,7 @@ gglikert(df, sort = "ascending", sort_method = "mean")
 You can reverse the order of the answers with `reverse_likert`.
 
 ``` r
+
 gglikert(df, reverse_likert = TRUE)
 ```
 
@@ -135,6 +143,7 @@ gglikert(df, reverse_likert = TRUE)
 Proportion labels could be removed with `add_labels = FALSE`.
 
 ``` r
+
 gglikert(df, add_labels = FALSE)
 ```
 
@@ -143,6 +152,7 @@ gglikert(df, add_labels = FALSE)
 or customized.
 
 ``` r
+
 gglikert(
   df,
   labels_size = 3,
@@ -162,6 +172,7 @@ account for computing totals. With `totals_include_center = TRUE`, half
 of the proportion of the central level will be added on each side.
 
 ``` r
+
 gglikert(
   df,
   totals_include_center = TRUE,
@@ -175,6 +186,7 @@ gglikert(
 Totals could be customized.
 
 ``` r
+
 gglikert(
   df,
   totals_size = 4,
@@ -190,6 +202,7 @@ gglikert(
 Or removed.
 
 ``` r
+
 gglikert(df, add_totals = FALSE)
 ```
 
@@ -203,6 +216,7 @@ they will be taken automatically into account by
 [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md).
 
 ``` r
+
 if (require(labelled)) {
   df <- df |>
     set_variable_labels(
@@ -220,6 +234,7 @@ gglikert(df)
 You can also provide custom variable labels with `variable_labels`.
 
 ``` r
+
 gglikert(
   df,
   variable_labels = c(
@@ -234,12 +249,14 @@ gglikert(
 You can control how variable labels are wrapped with `y_label_wrap`.
 
 ``` r
+
 gglikert(df, y_label_wrap = 20)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-16-1.png)
 
 ``` r
+
 gglikert(df, y_label_wrap = 200)
 ```
 
@@ -259,48 +276,56 @@ others positively; `2.25` to display the two first categories and a
 quarter of the third negatively.
 
 ``` r
+
 gglikert(df, cutoff = 0)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-17-1.png)
 
 ``` r
+
 gglikert(df, cutoff = 1)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-17-2.png)
 
 ``` r
+
 gglikert(df, cutoff = 1.25)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-17-3.png)
 
 ``` r
+
 gglikert(df, cutoff = 1.75)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-17-4.png)
 
 ``` r
+
 gglikert(df, cutoff = 2)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-17-5.png)
 
 ``` r
+
 gglikert(df, cutoff = NULL)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-17-6.png)
 
 ``` r
+
 gglikert(df, cutoff = 4)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-17-7.png)
 
 ``` r
+
 gglikert(df, cutoff = 5)
 ```
 
@@ -311,12 +336,14 @@ gglikert(df, cutoff = 5)
 Simply specify `symmetric = TRUE`.
 
 ``` r
+
 gglikert(df, cutoff = 1)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-18-1.png)
 
 ``` r
+
 gglikert(df, cutoff = 1, symmetric = TRUE)
 ```
 
@@ -328,6 +355,7 @@ Sometimes, the dataset could contain certain values that you should not
 be displayed.
 
 ``` r
+
 gglikert(df_dk)
 ```
 
@@ -337,6 +365,7 @@ A first option could be to convert the don’t knows into `NA`. In such
 case, the proportions will be computed on non missing.
 
 ``` r
+
 df_dk |>
   mutate(across(everything(), ~ factor(.x, levels = likert_levels))) |>
   gglikert()
@@ -348,6 +377,7 @@ Or, you could use `exclude_fill_values` to not display specific values,
 but still counting them in the denominator for computing proportions.
 
 ``` r
+
 df_dk |> gglikert(exclude_fill_values = "Don't know")
 ```
 
@@ -359,6 +389,7 @@ could be achieved with
 
 ``` r
 
+
 df_dk |> gglikert_side(side_values = "Don't know")
 ```
 
@@ -367,6 +398,7 @@ df_dk |> gglikert_side(side_values = "Don't know")
 You can even pass several values on the side.
 
 ``` r
+
 
 df_dk |>
   gglikert_side(
@@ -381,6 +413,7 @@ df_dk |>
 To define facets, use `facet_rows` and/or `facet_cols`.
 
 ``` r
+
 df_group <- df
 df_group$group1 <- sample(c("A", "B"), 150, replace = TRUE)
 df_group$group2 <- sample(c("a", "b", "c"), 150, replace = TRUE)
@@ -395,6 +428,7 @@ gglikert(df_group,
 ![](gglikert_files/figure-html/unnamed-chunk-24-1.png)
 
 ``` r
+
 gglikert(df_group,
   q1:q2,
   facet_rows = vars(group1, group2),
@@ -405,6 +439,7 @@ gglikert(df_group,
 ![](gglikert_files/figure-html/unnamed-chunk-24-2.png)
 
 ``` r
+
 gglikert(df_group,
   q3:q6,
   facet_cols = vars(group1),
@@ -423,6 +458,7 @@ To compare answers by subgroup, you can alternatively map `.question` to
 facets, and define a grouping variable for `y`.
 
 ``` r
+
 gglikert(df_group,
   q1:q4,
   y = "group1",
@@ -440,12 +476,14 @@ For a more classical stacked bar plot, you can use
 [`gglikert_stacked()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md).
 
 ``` r
+
 gglikert_stacked(df)
 ```
 
 ![](gglikert_files/figure-html/unnamed-chunk-26-1.png)
 
 ``` r
+
 
 gglikert_stacked(
   df,
@@ -458,6 +496,7 @@ gglikert_stacked(
 ![](gglikert_files/figure-html/unnamed-chunk-26-2.png)
 
 ``` r
+
 
 gglikert_stacked(
   df_group,
@@ -482,6 +521,7 @@ to generate a long format dataset combining all questions into two
 columns, `.question` and `.answer`.
 
 ``` r
+
 gglikert_data(df) |>
   head()
 #> # A tibble: 6 × 3
@@ -499,6 +539,7 @@ Such dataset could be useful for other types of plot, for example for a
 classic stacked bar plot.
 
 ``` r
+
 ggplot(gglikert_data(df)) +
   aes(y = .question, fill = .answer) +
   geom_bar(position = "fill")
@@ -516,6 +557,7 @@ and
 accepts a `weights` argument, allowing to specify statistical weights.
 
 ``` r
+
 df$sampling_weights <- runif(nrow(df))
 gglikert(df, q1:q4, weights = sampling_weights)
 ```

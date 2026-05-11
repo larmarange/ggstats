@@ -32,5 +32,5 @@ A numeric vector.
 x <- 1:20
 w <- runif(20)
 weighted.sum(x, w)
-#> [1] 115.7631
+#> [1] 114.4134
 ```
