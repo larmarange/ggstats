@@ -57,6 +57,8 @@
 #' `hex_bw()` to determine a font color based on background color)
 #' @param labels_accuracy accuracy of the percentages, see
 #' [scales::label_percent()]
+#' @param labels_suffix text displayed after the percentages, see
+#' [scales::label_percent()]
 #' @param labels_hide_below if provided, values below will be masked, see
 #' [label_percent_abs()]
 #' @param add_totals should the total proportions of negative and positive
@@ -65,6 +67,8 @@
 #' @param totals_size size of the total proportions
 #' @param totals_color color of the total proportions
 #' @param totals_accuracy accuracy of the total proportions, see
+#' [scales::label_percent()]
+#' @param totals_suffix text displayed after the total proportions, see
 #' [scales::label_percent()]
 #' @param totals_fontface font face of the total proportions
 #' @param totals_include_center if the number of levels is uneven, should half
@@ -133,7 +137,8 @@
 #'   totals_accuracy = .01,
 #'   labels_accuracy = 1,
 #'   labels_size = 2.5,
-#'   labels_hide_below = .25
+#'   labels_hide_below = .25,
+#'   labels_suffix = " %"
 #' )
 #'
 #' gglikert(df, exclude_fill_values = "Neither agree nor disagree")
@@ -194,11 +199,13 @@ gglikert <- function(data,
                      labels_size = 3.5,
                      labels_color = "auto",
                      labels_accuracy = 1,
+                     labels_suffix = "%",
                      labels_hide_below = .05,
                      add_totals = TRUE,
                      totals_size = labels_size,
                      totals_color = "black",
                      totals_accuracy = labels_accuracy,
+                     totals_suffix = labels_suffix,
                      totals_fontface = "bold",
                      totals_include_center = FALSE,
                      totals_hjust = .1,
@@ -260,7 +267,8 @@ gglikert <- function(data,
         mapping = aes(
           label = label_percent_abs(
             hide_below = labels_hide_below,
-            accuracy = labels_accuracy
+            accuracy = labels_accuracy,
+            suffix = labels_suffix
           )(after_stat(prop)),
           color = after_scale(hex_bw(.data$fill))
         ),
@@ -336,9 +344,15 @@ gglikert <- function(data,
       dplyr::ungroup() |>
       dplyr::mutate(
         label_lower =
-          label_percent_abs(accuracy = totals_accuracy)(.data$label_lower),
+          label_percent_abs(
+            accuracy = totals_accuracy,
+            suffix = totals_suffix
+          )(.data$label_lower),
         label_higher =
-          label_percent_abs(accuracy = totals_accuracy)(.data$label_higher),
+          label_percent_abs(
+            accuracy = totals_accuracy,
+            suffix = totals_suffix
+          )(.data$label_higher),
         x_lower = dplyr::if_else(
           symmetric,
           -1 * max(.data$prop_lower, .data$prop_higher) - totals_hjust,
@@ -703,6 +717,7 @@ gglikert_stacked <- function(data,
                              labels_size = 3.5,
                              labels_color = "auto",
                              labels_accuracy = 1,
+                             labels_suffix = "%",
                              labels_hide_below = .05,
                              add_median_line = FALSE,
                              y_reverse = TRUE,
@@ -754,7 +769,8 @@ gglikert_stacked <- function(data,
         mapping = aes(
           label = label_percent_abs(
             hide_below = labels_hide_below,
-            accuracy = labels_accuracy
+            accuracy = labels_accuracy,
+            suffix = labels_suffix
           )(after_stat(prop)),
           color = after_scale(hex_bw(.data$fill))
         ),
@@ -774,7 +790,8 @@ gglikert_stacked <- function(data,
         mapping = aes(
           label = label_percent_abs(
             hide_below = labels_hide_below,
-            accuracy = labels_accuracy
+            accuracy = labels_accuracy,
+            suffix = labels_suffix
           )(after_stat(prop))
         ),
         stat = StatProp,
@@ -844,11 +861,13 @@ gglikert_side <- function(
   labels_size = 3.5,
   labels_color = "auto",
   labels_accuracy = 1,
+  labels_suffix = "%",
   labels_hide_below = .05,
   add_totals = TRUE,
   totals_size = labels_size,
   totals_color = "black",
   totals_accuracy = labels_accuracy,
+  totals_suffix = labels_suffix,
   totals_fontface = "bold",
   totals_include_center = FALSE,
   totals_hjust = .1,
@@ -903,11 +922,13 @@ gglikert_side <- function(
       labels_size = labels_size,
       labels_color = labels_color,
       labels_accuracy = labels_accuracy,
+      labels_suffix = labels_suffix,
       labels_hide_below = labels_hide_below,
       add_totals = add_totals,
       totals_size = totals_size,
       totals_color = totals_color,
       totals_accuracy = totals_accuracy,
+      totals_suffix = totals_suffix,
       totals_fontface = totals_fontface,
       totals_include_center = totals_include_center,
       totals_hjust = totals_hjust,
@@ -938,6 +959,7 @@ gglikert_side <- function(
       labels_size = labels_size,
       labels_color = labels_color,
       labels_accuracy = labels_accuracy,
+      labels_suffix = labels_suffix,
       labels_hide_below = labels_hide_below,
       add_totals = FALSE,
       y_reverse = y_reverse,
