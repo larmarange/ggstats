@@ -24,11 +24,13 @@ gglikert(
   labels_size = 3.5,
   labels_color = "auto",
   labels_accuracy = 1,
+  labels_suffix = "\%",
   labels_hide_below = 0.05,
   add_totals = TRUE,
   totals_size = labels_size,
   totals_color = "black",
   totals_accuracy = labels_accuracy,
+  totals_suffix = labels_suffix,
   totals_fontface = "bold",
   totals_include_center = FALSE,
   totals_hjust = 0.1,
@@ -71,6 +73,7 @@ gglikert_stacked(
   labels_size = 3.5,
   labels_color = "auto",
   labels_accuracy = 1,
+  labels_suffix = "\%",
   labels_hide_below = 0.05,
   add_median_line = FALSE,
   y_reverse = TRUE,
@@ -96,11 +99,13 @@ gglikert_side(
   labels_size = 3.5,
   labels_color = "auto",
   labels_accuracy = 1,
+  labels_suffix = "\%",
   labels_hide_below = 0.05,
   add_totals = TRUE,
   totals_size = labels_size,
   totals_color = "black",
   totals_accuracy = labels_accuracy,
+  totals_suffix = labels_suffix,
   totals_fontface = "bold",
   totals_include_center = FALSE,
   totals_hjust = 0.1,
@@ -176,6 +181,9 @@ generated dataset at the end of \code{gglikert_data()}}
 \item{labels_accuracy}{accuracy of the percentages, see
 \code{\link[scales:label_percent]{scales::label_percent()}}}
 
+\item{labels_suffix}{text displayed after the percentages, see
+\code{\link[scales:label_percent]{scales::label_percent()}}}
+
 \item{labels_hide_below}{if provided, values below will be masked, see
 \code{\link[=label_percent_abs]{label_percent_abs()}}}
 
@@ -188,6 +196,9 @@ totals only on one side.}
 \item{totals_color}{color of the total proportions}
 
 \item{totals_accuracy}{accuracy of the total proportions, see
+\code{\link[scales:label_percent]{scales::label_percent()}}}
+
+\item{totals_suffix}{text displayed after the total proportions, see
 \code{\link[scales:label_percent]{scales::label_percent()}}}
 
 \item{totals_fontface}{font face of the total proportions}
@@ -291,7 +302,8 @@ gglikert(
   totals_accuracy = .01,
   labels_accuracy = 1,
   labels_size = 2.5,
-  labels_hide_below = .25
+  labels_hide_below = .25,
+  labels_suffix = " \%"
 )
 
 gglikert(df, exclude_fill_values = "Neither agree nor disagree")

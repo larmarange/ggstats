@@ -1,5 +1,9 @@
 # ggstats (development version)
 
+**Improvements**
+
+* new arguments `labels_suffix` and `totals_suffix` for `gglikert()` (#119)
+
 # ggstats 0.13.0
 
 **Improvements**
