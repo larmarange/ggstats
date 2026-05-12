@@ -290,7 +290,8 @@ gglikert <- function(data,
         mapping = aes(
           label = label_percent_abs(
             hide_below = labels_hide_below,
-            accuracy = labels_accuracy
+            accuracy = labels_accuracy,
+            suffix = labels_suffix
           )(after_stat(prop))
         ),
         stat = StatProp,
@@ -403,12 +404,12 @@ gglikert <- function(data,
   if (symmetric) {
     p <- p +
       scale_x_continuous(
-        labels = label_percent_abs(),
+        labels = label_percent_abs(suffix = labels_suffix),
         limits = symmetric_limits
       )
   } else {
     p <- p +
-      scale_x_continuous(labels = label_percent_abs())
+      scale_x_continuous(labels = label_percent_abs(suffix = labels_suffix))
   }
 
   p <- p +
