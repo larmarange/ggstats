@@ -18,3 +18,8 @@ Useful links:
 
 **Maintainer**: Joseph Larmarange <joseph@larmarange.net>
 ([ORCID](https://orcid.org/0000-0001-7097-700X))
+
+Authors:
+
+- Joseph Larmarange <joseph@larmarange.net>
+  ([ORCID](https://orcid.org/0000-0001-7097-700X))

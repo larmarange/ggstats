@@ -8,6 +8,15 @@
   [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
   ([\#119](https://github.com/larmarange/ggstats/issues/119))
 
+**Bug fix**
+
+- [`weighted.median()`](https://larmarange.github.io/ggstats/dev/reference/weighted.median.md)
+  and
+  [`weighted.quantile()`](https://larmarange.github.io/ggstats/dev/reference/weighted.median.md)
+  now return `NA` instead of an error when an empty vector is passed to
+  the function
+  ([\#122](https://github.com/larmarange/ggstats/issues/122))
+
 ## ggstats 0.13.0
 
 CRAN release: 2026-03-06
