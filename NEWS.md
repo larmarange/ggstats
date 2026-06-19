@@ -4,6 +4,11 @@
 
 * new arguments `labels_suffix` and `totals_suffix` for `gglikert()` (#119)
 
+**Bug fix**
+
+* `weighted.median()` and `weighted.quantile()` now return `NA` instead of an
+  error when an empty vector is passed to the function (#122)
+
 # ggstats 0.13.0
 
 **Improvements**

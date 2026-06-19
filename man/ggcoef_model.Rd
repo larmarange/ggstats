@@ -331,7 +331,7 @@ in the legend?}
 shape aesthetic}
 
 \item{shape_values}{values of the different shapes to use in
-\code{\link[ggplot2:scale_manual]{ggplot2::scale_shape_manual()}}}
+\code{\link[ggplot2:scale_shape_manual]{ggplot2::scale_shape_manual()}}}
 
 \item{shape_guide}{should shape guide be displayed in the legend?}
 
@@ -363,7 +363,7 @@ shape aesthetic}
 \item{facet_col}{optional variable name to be used for column facets}
 
 \item{facet_labeller}{labeller function to be used for labeling facets;
-if labels are too long, you can use \code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}} (see
+if labels are too long, you can use \code{\link[ggplot2:label_wrap_gen]{ggplot2::label_wrap_gen()}} (see
 examples), more information in the documentation of \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}}
 
 \item{plot_title}{an optional plot title}

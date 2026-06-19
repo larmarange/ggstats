@@ -56,7 +56,7 @@ weighted.quantile <- function(x, w, probs = seq(0, 1, 0.25),
   x <- as.numeric(as.vector(x))
   w <- as.numeric(as.vector(w))
   if (length(x) == 0) {
-    cli::cli_abort("No data given")
+    return(NA)
   }
   stopifnot(length(x) == length(w))
   if (is.na(m <- match(type, c(1, 2, 4)))) {
