@@ -23,7 +23,7 @@ scale_colour_extended(
 )
 }
 \arguments{
-\item{pal}{A palette function, such as returned by \link[scales:pal_brewer]{scales::brewer_pal},
+\item{pal}{A palette function, such as returned by \link[scales:brewer_pal]{scales::brewer_pal},
 taking a number of colours as entry and returning a list of colours.}
 
 \item{name}{The name of the scale. Used as the axis or legend title.

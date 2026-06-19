@@ -20,5 +20,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Joseph Larmarange \email{joseph@larmarange.net} (\href{https://orcid.org/0000-0001-7097-700X}{ORCID})
 
+Authors:
+\itemize{
+  \item Joseph Larmarange \email{joseph@larmarange.net} (\href{https://orcid.org/0000-0001-7097-700X}{ORCID})
+}
+
 }
 \keyword{internal}

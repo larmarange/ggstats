@@ -223,14 +223,14 @@ see \code{\link[=position_likert]{position_likert()}}}
 dimension (see examples)}
 
 \item{facet_label_wrap}{number of characters per line for facet labels, see
-\code{\link[ggplot2:labellers]{ggplot2::label_wrap_gen()}}}
+\code{\link[ggplot2:label_wrap_gen]{ggplot2::label_wrap_gen()}}}
 
 \item{symmetric}{should the x-axis be symmetric?}
 
 \item{add_median_line}{add a vertical line at 50\%?}
 
 \item{reverse_fill}{if \code{TRUE}, will reverse the default stacking order,
-see \code{\link[ggplot2:position_stack]{ggplot2::position_fill()}}}
+see \code{\link[ggplot2:position_fill]{ggplot2::position_fill()}}}
 
 \item{side_values}{values to be displayed on the side}
 
