@@ -16,6 +16,10 @@
   now return `NA` instead of an error when an empty vector is passed to
   the function
   ([\#122](https://github.com/larmarange/ggstats/issues/122))
+- fix in
+  [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
+  when only one variable is selected
+  ([\#124](https://github.com/larmarange/ggstats/issues/124))
 
 ## ggstats 0.13.0
 
