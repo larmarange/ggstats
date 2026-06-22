@@ -497,7 +497,7 @@ gglikert_data <- function(data,
 
   data <- data |>
     dplyr::mutate(
-      dplyr::bind_cols(forcats::fct_unify(data[, variables]))
+      dplyr::bind_cols(forcats::fct_unify(data[, variables, drop = FALSE]))
     ) |>
     tidyr::pivot_longer(
       cols = dplyr::all_of(variables),
