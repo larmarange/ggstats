@@ -102,9 +102,3 @@
   [`scale_fill_extended()`](https://larmarange.github.io/ggstats/dev/reference/pal_extender.md)
   [`scale_colour_extended()`](https://larmarange.github.io/ggstats/dev/reference/pal_extender.md)
   : Extend a discrete colour palette
-
-## Deprecated
-
-- [`ggcoef_multicomponents()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
-  [`ggcoef_multinom()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
-  **\[deprecated\]** : Deprecated functions

@@ -20,6 +20,14 @@
   [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md)
   when only one variable is selected
   ([\#124](https://github.com/larmarange/ggstats/issues/124))
+- fix in
+  [`ggcoef_table()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_model.md)
+  when `conf.int = FALSE`
+  ([\#127](https://github.com/larmarange/ggstats/issues/127))
+
+**Deprecated functions**
+
+- `ggcoef_multinom()` and `ggcoef_multicomponents()` have been removed.
 
 ## ggstats 0.13.0
 
@@ -119,11 +127,8 @@ CRAN release: 2025-03-10
 
 **Deprecated functions**
 
-- [`ggcoef_multinom()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
-  and
-  [`ggcoef_multicomponents()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
-  are now soft-deprecated and may be removed in a future release. Use
-  instead
+- `ggcoef_multinom()` and `ggcoef_multicomponents()` are now
+  soft-deprecated and may be removed in a future release. Use instead
   [`ggcoef_model()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_model.md),
   [`ggcoef_table()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_model.md),
   [`ggcoef_dodged()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_model.md)
@@ -296,9 +301,8 @@ CRAN release: 2023-09-28
 
 **Bug fixes**
 
-- fix in
-  [`ggcoef_multicomponents()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
-  when `type = "table"` and `exponentiate = TRUE`
+- fix in `ggcoef_multicomponents()` when `type = "table"` and
+  `exponentiate = TRUE`
 - fix in
   [`gglikert()`](https://larmarange.github.io/ggstats/dev/reference/gglikert.md):
   the function could be called directly with
@@ -316,12 +320,10 @@ CRAN release: 2023-08-13
   [`ggcoef_table()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_model.md)
   displaying a coefficient table at the right of the forest plot
   ([\#32](https://github.com/larmarange/ggstats/issues/32))
-- new function
-  [`ggcoef_multicomponents()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
-  for multi-components models such as zero-inflated Poisson or beta
-  regressions ([\#38](https://github.com/larmarange/ggstats/issues/38))
-- new type `"table"` for
-  [`ggcoef_multinom()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
+- new function `ggcoef_multicomponents()` for multi-components models
+  such as zero-inflated Poisson or beta regressions
+  ([\#38](https://github.com/larmarange/ggstats/issues/38))
+- new type `"table"` for `ggcoef_multinom()`
 
 **Improvements**
 
@@ -422,9 +424,8 @@ CRAN release: 2022-11-23
 CRAN release: 2022-10-17
 
 - First version, based on dev version of GGally
-- Fix in
-  [`ggcoef_multinom()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
-  to display y levels not listed in `y.level_label`
+- Fix in `ggcoef_multinom()` to display y levels not listed in
+  `y.level_label`
 - [`stat_cross()`](https://larmarange.github.io/ggstats/dev/reference/stat_cross.md)
   now returns phi coefficients (see also
   [`augment_chisq_add_phi()`](https://larmarange.github.io/ggstats/dev/reference/augment_chisq_add_phi.md))
