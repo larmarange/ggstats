@@ -550,13 +550,18 @@ ggcoef_table <- function(
   if (!"p.value" %in% names(table_stat_label)) {
     table_stat_label$p.value <- scales::label_pvalue(add_p = FALSE)
   }
+
   for (v in names(table_stat_label)) {
-    tbl_data[[v]] <- table_stat_label[[v]](tbl_data[[v]])
-    tbl_data[[v]][is.na(tbl_data[[v]])] <- ""
+    if (v %in% names(tbl_data)) {
+      tbl_data[[v]] <- table_stat_label[[v]](tbl_data[[v]])
+      tbl_data[[v]][is.na(tbl_data[[v]])] <- ""
+    }
   }
 
-  tbl_data$ci <- stringr::str_glue_data(tbl_data, ci_pattern)
-  tbl_data$ci[is.na(data$conf.low) & is.na(data$conf.high)] <- " "
+  if (conf.int) {
+    tbl_data$ci <- stringr::str_glue_data(tbl_data, ci_pattern)
+    tbl_data$ci[is.na(data$conf.low) & is.na(data$conf.high)] <- " "
+  }
   tbl_data <- tbl_data |>
     tidyr::pivot_longer(
       dplyr::any_of(table_stat),

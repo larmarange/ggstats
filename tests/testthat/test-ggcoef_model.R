@@ -373,6 +373,11 @@ test_that("ggcoef_table()", {
   )
 
   expect_doppelganger(
+    "ggcoef_table() mod simple no CI",
+    ggcoef_table(mod_simple, conf.int = FALSE)
+  )
+
+  expect_doppelganger(
     "ggcoef_table() table_stat",
     ggcoef_table(mod_simple, table_stat = c("p.value", "ci"))
   )
