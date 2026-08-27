@@ -590,6 +590,7 @@ with the option `return_data = TRUE` or by using
 | [`survival::cch()`](https://rdrr.io/pkg/survival/man/cch.html) | Experimental support. |
 | [`survival::clogit()`](https://rdrr.io/pkg/survival/man/clogit.html) |  |
 | [`survival::coxph()`](https://rdrr.io/pkg/survival/man/coxph.html) |  |
+| [`survival::coxphms.object`](https://rdrr.io/pkg/survival/man/coxphms.object.html) | Experimental support. It is recommended to use `tidy_coxphms()` as `tidy_fun`. |
 | [`survival::survreg()`](https://rdrr.io/pkg/survival/man/survreg.html) |  |
 | `svyVGAM::svy_vglm()` | Experimental support. It is recommended to use `tidy_svy_vglm()` as `tidy_fun`. |
 | `tidycmprsk::crr()` |  |
