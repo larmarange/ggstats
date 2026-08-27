@@ -198,7 +198,7 @@ Option to specify a custom tidier function.}
 \code{\link[broom.helpers:tidy_plus_plus]{broom.helpers::tidy_plus_plus()}} and to \code{tidy_fun}}
 
 \item{conf.int}{(\code{logical})\cr
-Should confidence intervals be computed? (see \code{\link[broom:reexports]{broom::tidy()}})}
+Should confidence intervals be computed? (see \code{\link[broom:tidy]{broom::tidy()}})}
 
 \item{conf.level}{the confidence level to use for the confidence
 interval if \code{conf.int = TRUE}; must be strictly greater than 0
