@@ -65,6 +65,3 @@ reference:
   - hex_bw
   - pal_extender
 
-- title: Deprecated
-  contents:
-  - ggcoef_multicomponents
