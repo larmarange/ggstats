@@ -615,6 +615,8 @@ gglikert_data <- function(data,
     data <- data_fun(data)
   }
 
+  names(data$.question) <- NULL
+
   data
 }
 
