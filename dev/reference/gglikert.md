@@ -378,6 +378,7 @@ df <-
 gglikert(df)
 
 
+# \donttest{
 gglikert(df, include = q1:3) +
   scale_fill_likert(pal = scales::brewer_pal(palette = "PRGn"))
 #> Scale for fill is already present.
@@ -387,7 +388,6 @@ gglikert(df, include = q1:3) +
 gglikert(df, sort = "ascending")
 
 
-# \donttest{
 gglikert(df, sort = "ascending", sort_prop_include_center = TRUE)
 
 
