@@ -114,12 +114,12 @@
 #'
 #' gglikert(df)
 #'
+#' \donttest{
 #' gglikert(df, include = q1:3) +
 #'   scale_fill_likert(pal = scales::brewer_pal(palette = "PRGn"))
 #'
 #' gglikert(df, sort = "ascending")
 #'
-#' \donttest{
 #' gglikert(df, sort = "ascending", sort_prop_include_center = TRUE)
 #'
 #' gglikert(df, sort = "ascending", sort_method = "mean")
