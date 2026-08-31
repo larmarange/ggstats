@@ -295,10 +295,13 @@ test_that("ggcoef_compare() complete NA respecting variables order", {
   res <- ggcoef_compare(models = list(m1, m2, m3), return_data = TRUE)
   expect_equal(
     res$variable[1:4],
-    structure(1:4, .Label = c(
-      "Education", "Catholic", "Agriculture",
-      "Infant.Mortality"
-    ), class = "factor")
+    factor(
+      1:4,
+      labels = c(
+        "Education", "Catholic", "Agriculture",
+        "Infant.Mortality"
+      )
+    )
   )
 })
 
