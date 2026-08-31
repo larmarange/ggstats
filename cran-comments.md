@@ -16,27 +16,10 @@ cf. https://github.com/larmarange/ggstats/actions/workflows/R-CMD-check.yaml
 We checked 6 reverse dependencies (5 from CRAN + 1 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
 
  * We saw 0 new problems
- * We failed to check 0 packages
- 
-## recheck GitHub action
+ * We failed to check 1 packages
 
-------- Check results summary ------
-Check status summary:
-                  OK
-  Source packages  1
-  Reverse depends  6
+Issues with CRAN packages are summarised below.
 
-Check results summary:
-ggstats ... OK
-rdepends_GGally ... OK
-rdepends_bregr ... OK
-rdepends_broom.helpers ... OK
-rdepends_ggplot2.utils ... OK
-rdepends_gtsummary ... OK
-rdepends_guideR ... OK
+### Failed to check
 
-------- Check for regressions ------
-No changes between old and new version
-
-cf. https://github.com/larmarange/ggstats/actions/workflows/recheck.yml
-
+* GGally (NA)
