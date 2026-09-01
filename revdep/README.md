@@ -10,7 +10,7 @@
 |collate  |French_France.utf8                              |
 |ctype    |French_France.utf8                              |
 |tz       |Europe/Paris                                    |
-|date     |2026-08-31                                      |
+|date     |2026-09-01                                      |
 |rstudio  |2026.01.2+418 Apple Blossom (desktop)           |
 |pandoc   |3.8.3 @ C:\PROGRA~1\Quarto\bin\tools\pandoc.exe |
 |quarto   |1.9.37 @ C:\PROGRA~1\Quarto\bin\quarto.exe      |
@@ -56,8 +56,8 @@
 
 ## Failed to check (2)
 
-|package |version |error  |warning |note |
-|:-------|:-------|:------|:-------|:----|
-|bregr   |?       |       |        |     |
-|[GGally](failures.md#ggally)|2.4.0   |__+1__ |        |     |
+|package       |version |error |warning |note |
+|:-------------|:-------|:-----|:-------|:----|
+|bregr         |?       |      |        |     |
+|broom.helpers |?       |      |        |     |
 
