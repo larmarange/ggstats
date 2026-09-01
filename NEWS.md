@@ -11,10 +11,6 @@
 * fix in `gglikert()` when only one variable is selected (#124)
 * fix in `ggcoef_table()` when `conf.int = FALSE` (#127)
 
-**Deprecated functions**
-
-* `ggcoef_multinom()` and `ggcoef_multicomponents()` have been removed.
-
 # ggstats 0.13.0
 
 **Improvements**
