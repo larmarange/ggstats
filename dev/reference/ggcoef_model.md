@@ -386,8 +386,9 @@ ggcoef_plot(
 - data:
 
   a data frame containing data to be plotted, typically the output of
-  `ggcoef_model()`, `ggcoef_compare()` or `ggcoef_multinom()` with the
-  option `return_data = TRUE`
+  `ggcoef_model()`, `ggcoef_compare()` or
+  [`ggcoef_multinom()`](https://larmarange.github.io/ggstats/dev/reference/ggcoef_multicomponents.md)
+  with the option `return_data = TRUE`
 
 - x, y:
 
