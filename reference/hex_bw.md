@@ -20,11 +20,6 @@ hex_bw_threshold(hex_code, values, threshold)
 auto_contrast
 ```
 
-## Format
-
-An object of class `ggplot2::mapping` (inherits from `uneval`, `gg`,
-`S7_object`) of length 1.
-
 ## Source
 
 Adapted from `saros` for `hex_code()` and from
