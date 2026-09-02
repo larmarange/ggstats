@@ -2,6 +2,8 @@
 
 ## ggstats (development version)
 
+## ggstats 0.14.0
+
 **Improvements**
 
 - new arguments `labels_suffix` and `totals_suffix` for
